@@ -1,0 +1,32 @@
+.navbar-brand {
+    font-family: Viga;
+    font-size: 32px;
+    color   : black;
+}
+
+.nav-link {
+   text-transform: uppercase;
+   margin-right:30px;
+}
+
+/* .jumbotron {
+    background-color: #808a83;
+    padding: 20px;
+    height: 400px;
+    margin-top: -75px;
+} */
+.nav-link {
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+.nav-link:hover{
+    border-bottom: 3px solid #0B63DC;
+   
+}
+
+
+@media (min-width: 768px) { 
+   
+ }
+ @media (min-width: 576px) { }
