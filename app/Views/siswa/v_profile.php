@@ -138,7 +138,7 @@
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label for="inputAddress" class="form-label">Lingkar Kepala</label>
-                                <input type="text" class="form-control" name="berat" value="<?= $siswa['lingkar'] ?>">
+                                <input type="text" class="form-control" name="lingkar" value="<?= $siswa['lingkar'] ?>">
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="inputAddress2" class="form-label">Penyakit Yang Pernah Diderita/Yang Sedang Dialami</label>
