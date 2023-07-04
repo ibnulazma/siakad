@@ -47,8 +47,28 @@ $ta = $db->table('tbl_ta')
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-titile">Backup Database</h5>
+            </div>
+            <div class="card-body">
+                <?php if (session()->getFlashdata('pesan')) {
+                    echo '<div class="alert alert-primary" role="alert">';
+                    echo session()->getFlashdata('pesan');
+                    echo ' </div>';
+                } ?>
+                <button type="button" class="btn btn-success" onclick="location.href=('admin/backup')">
+                    Klik tombol untuk backup database
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

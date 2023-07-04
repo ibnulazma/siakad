@@ -7,6 +7,7 @@ use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
 use App\Models\ModelSiswa;
+use Ifsnop\Mysqldump\Mysqldump;
 
 class Admin extends BaseController
 {
@@ -182,8 +183,6 @@ class Admin extends BaseController
 
 
 
-
-
     public function delete($id_ppdb)
     {
         $data = [
@@ -261,5 +260,23 @@ class Admin extends BaseController
     {
         $data = [];
         return view('template/frontend', $data);
+    }
+
+
+    public function backup()
+    {
+        try {
+            $tglSekarang = date('dym');
+            $dump = new Mysqldump('mysql:host=localhost;dbname=db_siakad;port=3306', 'root', '');
+            $dump->start('database/databaseppdb-' . $tglSekarang . '.sql');
+
+            $pesan = "Backup berhasil";
+            session()->setFlashdata('pesan', $pesan);
+            return redirect()->to('admin');
+        } catch (\Exception $e) {
+            $pesan = "mysqldump-php error " . $e->getMessage();
+            session()->setFlashdata('pesan', $pesan);
+            return redirect()->to('admin');
+        }
     }
 }
