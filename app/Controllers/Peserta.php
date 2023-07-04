@@ -159,11 +159,11 @@ class Peserta extends BaseController
                 $nis            = $row[1];
                 $nama           = $row[2];
                 $jk             = $row[3];
-                $password       = $row[4];
-                $nama_ibu       = $row[5];
-                $tempat_lahir   = $row[6];
-                $tanggal_lahir  = $row[7];
-                $status         = $row[8];
+                $tempat_lahir   = $row[4];
+                $tanggal_lahir  = $row[5];
+                $nama_ibu       = $row[6];
+                $status         = $row[7];
+                $password       = $row[8];
                 $tingkat        = $row[9];
                 $db = \Config\Database::connect();
 

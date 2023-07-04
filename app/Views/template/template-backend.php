@@ -156,6 +156,15 @@
                                 </ul>
                             </li>
                             <li class="nav-header">EXAMPLES</li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/backup') ?>" class="nav-link">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Backup Database
+
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
                     <?php } elseif (session()->get('level') == 3) { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

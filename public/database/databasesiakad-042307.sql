@@ -3,7 +3,7 @@
 -- Host: localhost	Database: db_siakad
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.4.22-MariaDB
--- Date: Tue, 04 Jul 2023 19:48:17 +0700
+-- Date: Tue, 04 Jul 2023 19:52:02 +0700
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -876,4 +876,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Tue, 04 Jul 2023 19:48:17 +0700
+-- Dump completed on: Tue, 04 Jul 2023 19:52:03 +0700

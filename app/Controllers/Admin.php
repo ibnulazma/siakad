@@ -14,7 +14,8 @@ class Admin extends BaseController
 
     public function __construct()
     {
-        helper('form');
+
+        helper('form', 'download', 'file');
         $this->ModelPpdb    = new ModelPpdb();
         $this->ModelTa      = new ModelTa();
         $this->ModelSekolah = new ModelSekolah();
@@ -268,7 +269,7 @@ class Admin extends BaseController
         try {
             $tglSekarang = date('dym');
             $dump = new Mysqldump('mysql:host=localhost;dbname=db_siakad;port=3306', 'root', '');
-            $dump->start('database/databaseppdb-' . $tglSekarang . '.sql');
+            $dump->start('database/databasesiakad-' . $tglSekarang . '.sql');
 
             $pesan = "Backup berhasil";
             session()->setFlashdata('pesan', $pesan);

@@ -19,6 +19,7 @@ if (!empty($session->getFlashdata('sukses'))) {
 
 <div class="row">
     <div class="col-md-5">
+
         <?= form_open_multipart('peserta/upload') ?>
         <div class="form-group">
             <div class="input-group">

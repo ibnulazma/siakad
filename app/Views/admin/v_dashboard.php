@@ -9,6 +9,12 @@ $ta = $db->table('tbl_ta')
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
+<?php if (session()->getFlashdata('pesan')) {
+    echo '<div class="alert alert-success" role="alert">';
+    echo session()->getFlashdata('pesan');
+    echo ' </div>';
+} ?>
+
 
 <div class="row">
     <div class="col-md-3 col-sm-6 col-12">
@@ -57,14 +63,7 @@ $ta = $db->table('tbl_ta')
                 <h5 class="card-titile">Backup Database</h5>
             </div>
             <div class="card-body">
-                <?php if (session()->getFlashdata('pesan')) {
-                    echo '<div class="alert alert-primary" role="alert">';
-                    echo session()->getFlashdata('pesan');
-                    echo ' </div>';
-                } ?>
-                <button type="button" class="btn btn-success" onclick="location.href=('admin/backup')">
-                    Klik tombol untuk backup database
-                </button>
+
             </div>
         </div>
     </div>
