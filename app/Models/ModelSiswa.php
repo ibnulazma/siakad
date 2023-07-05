@@ -87,7 +87,6 @@ class ModelSiswa extends Model
             ->insert($data);
     }
 
-
     // public function DataAbsen($id_siswa)
     // {
     //     return $this->db->table('tbl_absen')
@@ -119,5 +118,34 @@ class ModelSiswa extends Model
         return $this->db->table('tbl_siswa')
             ->where('status_daftar', '0')
             ->countAllResults();
+    }
+
+
+
+
+
+    public function group_by()
+    {
+        // $builder = $this->db->table('tbl_siswa');
+        // $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left');
+        // $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
+        // $builder->select('kelas, COUNT("kelas") AS jumlah');
+        // $builder->groupBy('kelas');
+        // $builder->where('status', '1');
+        // $query = $builder->get();
+        // return $query;
+
+
+
+
+
+
+        //         $sql = "SELECT kelas,
+        // 		COUNT(nama_siswa) as JML_KELAS,
+        // 		COUNT(IF(jenis_kelamin = 'Laki-laki', jenis_kelamin, NULL)) as Laki,
+        // 		COUNT(IF(jenis_kelamin != 'Laki-laki', jenis_kelamin, NULL)) as Perempuan
+        // FROM tbl_siswa 
+        // INNER JOIN tbl_kelas ON tbl_kelas.id_kelas = tbl_siswa.id_kelas GROUP BY kelas";
+        //         return $this->db->query($sql)->getResultArray();
     }
 }

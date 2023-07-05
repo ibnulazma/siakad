@@ -21,7 +21,7 @@ $ta = $db->table('tbl_ta')
         <div class="info-box">
             <span class="info-box-icon bg-danger"><i class="fas fa-user-graduate"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Siswa</span>
+                <span class="info-box-text">Peserta Didik</span>
                 <span class="info-box-number"><?= $jumlahaktif ?> Orang</span>
             </div>
         </div>
@@ -60,13 +60,40 @@ $ta = $db->table('tbl_ta')
     <div class="col-md-4">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-titile">Backup Database</h5>
+                <h5 class="card-title">Rombel Tahun <?= $ta['ta'] ?></h5>
             </div>
             <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Kelas</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $db = \Config\Database::connect();
 
+                        $query = $db->table('tbl_kelas')
+                            ->join('tbl_siswa', 'tbl_siswa.id_kelas = tbl_kelas.id_kelas')
+                            ->select('tbl_siswa.jenis_kelamin, COUNT(DISTINCT tbl_kelas.id_kelas) as total_kelas')
+                            ->groupBy('tbl_siswa.jenis_kelamin')
+                            ->get();
+
+                        $results = $query->getResult();
+
+                        foreach ($results as $row) {
+                            echo "Jenis Kelamin: " . $row->jenis_kelamin . ", Jumlah Kelas: " . $row->total_kelas . "<br>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+
 </div>
 
 

@@ -31,7 +31,8 @@ class Admin extends BaseController
             'menu'          => 'admin',
             'submenu'          => 'admin',
             'jumlahaktif' => $this->ModelSiswa->jumlahAktif(),
-            'jumlahtidakaktif' => $this->ModelSiswa->jumlahNonAktif()
+            'jumlahtidakaktif' => $this->ModelSiswa->jumlahNonAktif(),
+            'datarombel' => $this->ModelSiswa->group_by()
 
         ];
         return view('admin/v_dashboard', $data);
