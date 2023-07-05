@@ -76,7 +76,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center"><?= $value["nik"] ?></td>
                             <td><?= $value["nama_siswa"] ?></td>
                             <td><?= $value["tempat_lahir"] ?></td>
-                            <td> <?= $value["tanggal_lahir"] ?></td>
+                            <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                             <td><?= $value["nama_ibu"] ?></td>
                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
                             <td> Kelas <?= $value["tingkat"] ?></td>
@@ -105,8 +105,6 @@ if (!empty($session->getFlashdata('sukses'))) {
         </div>
     </div>
 </div>
-
-
 
 
 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
