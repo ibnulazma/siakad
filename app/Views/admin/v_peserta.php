@@ -81,9 +81,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
                             <td> Kelas <?= $value["tingkat"] ?></td>
 
-
                             <td class="text-center">
-
                                 <?php if ($value['status_daftar'] == 0) { ?>
                                     <span class="btn btn-danger btn-xs ">belum aktif</span>
 
@@ -108,8 +106,7 @@ if (!empty($session->getFlashdata('sukses'))) {
 
 
 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Peserta Didik</h5>
@@ -119,30 +116,52 @@ if (!empty($session->getFlashdata('sukses'))) {
             </div>
             <div class="modal-body">
                 <?= form_open_multipart('peserta/add') ?>
-                <div class="form-group">
-                    <label for="">Nama Siswa</label>
-                    <input type="text" class="form-control" name="nama_siswa">
-                </div>
-                <div class="form-group">
-                    <label for="">NISN</label>
-                    <input type="text" class="form-control" name="nisn">
-                </div>
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="">Foto</label>
-                    <input type="file" class="form-control" name="foto">
-                </div>
-                <div class="form-group">
-                    <label for="">Tingkat</label>
-                    <select name="id_tingkat" id="" class="form-control">
-                        <option value="">Pilih Tingkat</option>
-                        <?php foreach ($tingkat as $key => $value) { ?>
-                            <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
-                        <?php } ?>
-                    </select>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Nama Siswa</label>
+                            <input type="text" class="form-control" name="nama_siswa">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jenis Kelamin</label>
+                            <input type="text" class="form-control" name="jenis_kelamin">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tempat</label>
+                            <input type="text" class="form-control" name="tempat_lahir">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tanggal Lahir</label>
+                            <input type="text" class="form-control" name="tanggal_lahir" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                        </div>
+                        <div class="form-group">
+                            <label for="">NISN</label>
+                            <input type="text" class="form-control" name="nisn">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">NIK</label>
+                            <input type="text" class="form-control" name="nik">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nama Ibu</label>
+                            <input type="text" class="form-control" name="nama_ibu">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tingkat</label>
+                            <select name="id_tingkat" id="" class="form-control">
+                                <option value="">Pilih Tingkat</option>
+                                <?php foreach ($tingkat as $key => $value) { ?>
+                                    <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -153,7 +172,6 @@ if (!empty($session->getFlashdata('sukses'))) {
 
     </div>
 </div>
-
 
 <!-- Edit -->
 

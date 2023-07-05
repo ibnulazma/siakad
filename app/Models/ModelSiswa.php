@@ -109,7 +109,9 @@ class ModelSiswa extends Model
     public function jumlahAktif()
     {
         return $this->db->table('tbl_siswa')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->where('status_daftar', '2')
+            ->where('status', '1')
             ->countAllResults();
     }
     public function jumlahNonAktif()

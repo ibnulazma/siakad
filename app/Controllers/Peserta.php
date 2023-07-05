@@ -59,33 +59,20 @@ class Peserta extends BaseController
                     'required' => '{field} Wajib Di Isi !!!!'
                 ]
             ],
-            'foto' => [
-                'label' => 'Foto',
-                'rules' => 'uploaded[foto]|max_size[foto,1024]|mime_in[foto,image/png,image/jpg,image/gif,image/jpeg,image/ico]',
-                'errors' => [
-                    'uploaded' => '{field} Wajib Di Isi !!!!',
-                    'max_size' => '{field} Max 1024 KB !!!!',
-                    'mime_in' => 'Format {field} Harus PNG, JPG, JPEG, GIF, ICO !!!!'
-                ]
-            ],
+
         ])) {
-
-            //masukan foto ke input
-            $foto = $this->request->getFile('foto');
-
-            //merename 
-            $nama_file = $foto->getRandomName();
-            //jika valid
-
             $data = array(
-                'nama_siswa' => $this->request->getPost('nama_siswa'),
-                'nisn'     => $this->request->getPost('nisn'),
-                'password'  => $this->request->getPost('password'),
-                'foto'      => $nama_file,
-                'id_tingkat'      =>  $this->request->getPost('id_tingkat'),
+                'nama_siswa'        => $this->request->getPost('nama_siswa'),
+                'jenis_kelamin'     => $this->request->getPost('jenis_kelamin'),
+                'nik'               => $this->request->getPost('nik'),
+                'nama_ibu'          => $this->request->getPost('nama_ibu'),
+                'tempat_lahir'      => $this->request->getPost('tempat_lahir'),
+                'tanggal_lahir'     => $this->request->getPost('tanggal_lahir'),
+                'tempat_lahir'      => $this->request->getPost('tempat_lahir'),
+                'nisn'              => $this->request->getPost('nisn'),
+                'password'          => $this->request->getPost('password'),
+                'id_tingkat'        =>  $this->request->getPost('id_tingkat'),
             );
-
-            $foto->move('foto_siswa', $nama_file);
             $this->ModelPeserta->add($data);
             session()->setFlashdata('pesan', 'Peserta Berhasil Ditambah !!!');
             return redirect()->to(base_url('peserta'));
@@ -112,8 +99,6 @@ class Peserta extends BaseController
 
     public function upload()
     {
-
-
 
         $validation = \Config\Services::validation();
         $valid = $this->validate(
