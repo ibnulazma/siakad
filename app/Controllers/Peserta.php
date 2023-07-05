@@ -61,6 +61,14 @@ class Peserta extends BaseController
             ],
 
         ])) {
+
+
+            $db     = \Config\Database::connect();
+
+            $ta = $db->table('tbl_ta')
+                ->where('status', '1')
+                ->get()->getRowArray();
+
             $data = array(
                 'nama_siswa'        => $this->request->getPost('nama_siswa'),
                 'jenis_kelamin'     => $this->request->getPost('jenis_kelamin'),
@@ -72,6 +80,8 @@ class Peserta extends BaseController
                 'nisn'              => $this->request->getPost('nisn'),
                 'password'          => $this->request->getPost('password'),
                 'id_tingkat'        =>  $this->request->getPost('id_tingkat'),
+                'id_ta'        =>  $ta['id_ta'],
+
             );
             $this->ModelPeserta->add($data);
             session()->setFlashdata('pesan', 'Peserta Berhasil Ditambah !!!');
@@ -81,7 +91,6 @@ class Peserta extends BaseController
             return redirect()->to(base_url('peserta'));
         }
     }
-
 
 
     public function detail_siswa($id_siswa)
@@ -99,6 +108,12 @@ class Peserta extends BaseController
 
     public function upload()
     {
+
+        $db     = \Config\Database::connect();
+
+        $ta = $db->table('tbl_ta')
+            ->where('status', '1')
+            ->get()->getRowArray();
 
         $validation = \Config\Services::validation();
         $valid = $this->validate(
@@ -147,7 +162,7 @@ class Peserta extends BaseController
                 $tempat_lahir   = $row[4];
                 $tanggal_lahir  = $row[5];
                 $nama_ibu       = $row[6];
-                $status         = $row[7];
+                $nik         = $row[7];
                 $password       = $row[8];
                 $tingkat        = $row[9];
                 $db = \Config\Database::connect();
@@ -165,8 +180,9 @@ class Peserta extends BaseController
                         'nama_ibu'              => $nama_ibu,
                         'tempat_lahir'          => $tempat_lahir,
                         'tanggal_lahir'         => $tanggal_lahir,
-                        'status_daftar'         => $status,
+                        'nik'                   => $nik,
                         'id_tingkat'            => $tingkat,
+                        'id_ta'                 => $ta['id_ta'],
                     ];
 
                     $db->table('tbl_siswa')->insert($datasimpan);
@@ -176,5 +192,16 @@ class Peserta extends BaseController
             $this->session->setFlashdata('sukses', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
             return redirect()->to('peserta');
         }
+    }
+
+    public function reset($id_siswa)
+    {
+        $data = [
+            'id_siswa' => $id_siswa,
+            'status_daftar' => 0
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Reset Berhasil !!!');
+        return redirect()->to(base_url('peserta'));
     }
 }

@@ -83,12 +83,13 @@ if (!empty($session->getFlashdata('sukses'))) {
 
                             <td class="text-center">
                                 <?php if ($value['status_daftar'] == 0) { ?>
-                                    <span class="btn btn-danger btn-xs ">belum aktif</span>
+                                    <span class="badge bg-danger  ">belum aktif</span>
 
                                 <?php } else if ($value['status_daftar'] == 1) { ?>
-                                    <button data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>" class="btn btn-danger btn-xs ">verifikasi</button>
+                                    <button data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>" class="btn btn-warning btn-xs ">verifikasi</button>
+                                    <a href="<?= base_url('peserta/reset/' . $value['id_siswa']) ?>" class="btn btn-danger btn-xs">reset</a>
                                 <?php } else if ($value['status_daftar'] == 2) { ?>
-                                    <a href="" class="btn btn-danger btn-xs ">aktif</a>
+                                    <span class="badge bg-success  ">aktif</span>
                                 <?php } ?>
                             </td>
 
@@ -104,6 +105,7 @@ if (!empty($session->getFlashdata('sukses'))) {
     </div>
 </div>
 
+<!-- Modal TambahManual -->
 
 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -169,11 +171,10 @@ if (!empty($session->getFlashdata('sukses'))) {
             </div>
             <?= form_close() ?>
         </div>
-
     </div>
 </div>
 
-<!-- Edit -->
+<!-- VerifikasiData -->
 
 <?php foreach ($siswa as $key => $value) { ?>
     <div class="modal fade" id="edit<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,11 +190,15 @@ if (!empty($session->getFlashdata('sukses'))) {
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama Siswa</label>
-                        <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
+                        <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="">NISN</label>
-                        <input type="text" class="form-control" name="password">
+                        <label for="">Tempat Lahir</label>
+                        <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tanggal Lahir</label>
+                        <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d M Y', strtotime($value['tanggal_lahir'])) ?>" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">

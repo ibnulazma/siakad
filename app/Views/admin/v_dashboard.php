@@ -73,21 +73,7 @@ $ta = $db->table('tbl_ta')
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $db = \Config\Database::connect();
 
-                        $query = $db->table('tbl_kelas')
-                            ->join('tbl_siswa', 'tbl_siswa.id_kelas = tbl_kelas.id_kelas')
-                            ->select('tbl_siswa.jenis_kelamin, COUNT(DISTINCT tbl_kelas.id_kelas) as total_kelas')
-                            ->groupBy('tbl_siswa.jenis_kelamin')
-                            ->get();
-
-                        $results = $query->getResult();
-
-                        foreach ($results as $row) {
-                            echo "Jenis Kelamin: " . $row->jenis_kelamin . ", Jumlah Kelas: " . $row->total_kelas . "<br>";
-                        }
-                        ?>
                     </tbody>
                 </table>
             </div>

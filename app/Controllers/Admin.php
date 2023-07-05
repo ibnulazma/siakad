@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\ModelPpdb;
+
 use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
@@ -16,7 +16,7 @@ class Admin extends BaseController
     {
 
         helper('form', 'download', 'file');
-        $this->ModelPpdb    = new ModelPpdb();
+
         $this->ModelTa      = new ModelTa();
         $this->ModelSekolah = new ModelSekolah();
         $this->ModelJenjang = new ModelJenjang();
@@ -29,10 +29,10 @@ class Admin extends BaseController
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Dashboard',
             'menu'          => 'admin',
-            'submenu'          => 'admin',
-            'jumlahaktif' => $this->ModelSiswa->jumlahAktif(),
+            'submenu'       => 'admin',
+            'jumlahaktif'   => $this->ModelSiswa->jumlahAktif(),
             'jumlahtidakaktif' => $this->ModelSiswa->jumlahNonAktif(),
-            'datarombel' => $this->ModelSiswa->group_by()
+            // 'datarombel'        => $this->ModelSiswa->group_by()
 
         ];
         return view('admin/v_dashboard', $data);
@@ -183,8 +183,6 @@ class Admin extends BaseController
         return redirect()->to(base_url('ppdb'));
     }
 
-
-
     public function delete($id_ppdb)
     {
         $data = [
@@ -195,7 +193,6 @@ class Admin extends BaseController
         return redirect()->to(base_url('ppdb'));
     }
     public function siswaMI()
-
 
     {
         $data = [
