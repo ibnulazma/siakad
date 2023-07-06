@@ -14,11 +14,10 @@
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">Kelas</th>
-                        <th class="text-center">Nama Wali Kelas</th>
-                        <th class="text-center">Tingkat</th>
-                        <th class="text-center">Detail</th>
-                        <th class="text-center">Aksi</th>
+                        <th class="text-center">Nama Siswa</th>
+                        <th class="text-center">No. Telp Orang Tua</th>
+                        <th class="text-center">Alamat</th>
+                        <th class="text-center">Nama Orang Tua</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,15 +29,11 @@
                     ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
-                            <td class="text-center"><?= $value['kelas'] ?></td>
                             <td class="text-center"><?= $value['nama_siswa'] ?></td>
+                            <td class="text-center"><?= $value['no_telp'] ?></td>
+                            <td class="text-center"><?= $value['alamat'] ?> RT <?= $value['rt'] ?> / RW <?= $value['rw'] ?></td>
+                            <td class="text-center"><?= $value['nama_ibu'] ?></td>
 
-
-
-                            <td>
-                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $value['id_kelas'] ?>"><i class="fas fa-trash"></i></button>
-
-                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
