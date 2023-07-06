@@ -179,31 +179,58 @@ if (!empty($session->getFlashdata('sukses'))) {
 <?php foreach ($siswa as $key => $value) { ?>
     <div class="modal fade" id="edit<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <?php echo form_open('siswa/edit/' . $value['id_siswa']); ?>
+            <?php echo form_open('peserta/verifikasi/' . $value['id_siswa']); ?>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Sekolah</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Verifikasi Ijazah Tingkat <?= $value['tingkat'] ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="">Nama Siswa</label>
-                        <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tempat Lahir</label>
-                        <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Tanggal Lahir</label>
-                        <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d M Y', strtotime($value['tanggal_lahir'])) ?>" readonly>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nama Siswa</label>
+                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tempat Lahir</label>
+                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tanggal Lahir</label>
+                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d M Y', strtotime($value['tanggal_lahir'])) ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Nama Ayah</label>
+                                <input type="text" class="form-control" name="nama_ayah" value="<?= $value['nama_ayah'] ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">NISN</label>
+                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">No Seri Ijazah</label>
+                                <input type="text" class="form-control" name="seri_ijazah" value="<?= $value['seri_ijazah'] ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kelas</label>
+                                <select name="id_kelas" id="" class="form-control">
+                                    <option value="">--Pilih Kelas--</option>
+                                    <?php foreach ($kelas as $row) { ?>
+                                        <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
+                                    <?php }  ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
                 </div>
             </div>
             <?php echo form_close() ?>

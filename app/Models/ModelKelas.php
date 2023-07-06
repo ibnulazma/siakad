@@ -89,6 +89,16 @@ class ModelKelas extends Model
             ->getResultArray();
     }
 
+    public function kelas()
+    {
+        return $this->db->table('tbl_kelas')
+            // ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_kelas.id_tingkat')
+            // ->where('tbl_kelas.id_tingkat',)
+            ->orderBy('kelas', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
 
 
     // siswa yang belum dapet kelas
@@ -118,7 +128,6 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-
             ->get()
             ->getResultArray();
     }
@@ -156,6 +165,7 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->where('id_siswa', $id_siswa)
             ->where('id_siswa', $id_siswa)
@@ -166,7 +176,6 @@ class ModelKelas extends Model
     public function BukuInduk($id_siswa)
     {
         return $this->db->table('tbl_siswa')
-            ->where('id_siswa', $id_siswa)
             ->where('id_siswa', $id_siswa)
             ->get()->getRowArray();
     }

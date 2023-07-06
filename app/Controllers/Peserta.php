@@ -27,7 +27,8 @@ class Peserta extends BaseController
             'menu'      => 'akademik',
             'submenu'      => 'peserta',
             'siswa'  => $this->ModelPeserta->AllData(),
-            'tingkat'  => $this->ModelKelas->Tingkat()
+            'tingkat'  => $this->ModelKelas->Tingkat(),
+            'kelas'  => $this->ModelKelas->kelas()
 
         ];
         return view('admin/v_peserta', $data);
@@ -202,6 +203,26 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
+        return redirect()->to(base_url('peserta'));
+    }
+
+
+
+    public function verifikasi($id_siswa)
+
+    {
+        $data = [
+            'id_siswa'      => $id_siswa,
+            'nama_siswa'    => $this->request->getPost('nama_siswa'),
+            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'nisn'          => $this->request->getPost('nisn'),
+            'seri_ijazah'   => $this->request->getPost('seri_ijazah'),
+            'id_kelas'      => $this->request->getPost('id_kelas'),
+            'status_daftar' => 2,
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
         return redirect()->to(base_url('peserta'));
     }
 }
