@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -166,6 +167,22 @@
                                 </a>
                             </li>
                         </ul>
+                    <?php } elseif (session()->get('level') == 2) { ?>
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-header">MENU</li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('guru') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    <p>
+                                        Dashboard
+
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-header">EXAMPLES</li>
+                        </ul>
+
                     <?php } elseif (session()->get('level') == 3) { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">Profil</li>

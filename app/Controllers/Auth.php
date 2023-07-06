@@ -74,7 +74,7 @@ class Auth extends BaseController
             } elseif ($level == 2) {
                 $cekguru = $this->ModelAuth->loginguru($username, $password);
                 if ($cekguru) {
-                    session()->set('username', $cekguru['nuptk']);
+                    session()->set('username', $cekguru['niy']);
                     session()->set('nama', $cekguru['nama_guru']);
                     // session()->set('foto', $cekguru['foto_siswa']);
                     session()->set('level', $level);

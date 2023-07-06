@@ -27,7 +27,7 @@ class ModelAuth extends Model
     {
         return $this->db->table('tbl_guru')
             ->where([
-                'username' => $username,
+                'niy' => $username,
                 'password' => $password,
             ])->get()->getRowArray();
     }

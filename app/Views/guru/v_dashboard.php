@@ -25,31 +25,13 @@
                 <a href=" #" class="btn btn-primary btn-block"><b>Follow</b></a>
             </div>
         </div>
-        <div class=" card">
-            <div class="card-body box-profile">
-                <div id="map" style="width: 400px; height: 400px;"></div>
-            </div>
-
-
-
-        </div>
-
     </div>
 
 
 
 
 
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-    <script>
-        const map = L.map('map').setView([51.505, -0.09], 13);
-
-        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-    </script>
 
 
 

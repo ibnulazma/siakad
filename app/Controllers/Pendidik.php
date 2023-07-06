@@ -20,14 +20,12 @@ class Pendidik extends BaseController
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
-
+            'menu'          => 'pendidik',
+            'submenu'       => 'pendidik',
             'guru' => $this->ModelPendidik->DataGuru()
         ];
         return view('guru/v_dashboard', $data);
     }
-
-
-
 
     public function jadwal()
     {
@@ -35,9 +33,23 @@ class Pendidik extends BaseController
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Jadwal Mengajar',
+            'menu'          => 'pendidik',
+            'submenu'       => 'pendidik',
             'jadwal' => $this->ModelPendidik->Jadwal($guru['id_guru'])
         ];
         return view('guru/jadwal', $data);
+    }
+    public function walas()
+    {
+        $guru = $this->ModelPendidik->DataGuru();
+        $data = [
+            'title' => 'SIAKAD',
+            'subtitle' => 'Jadwal Mengajar',
+            'menu'          => 'pendidik',
+            'submenu'       => 'pendidik',
+            'walas' => $this->ModelPendidik->walas($guru['id_guru'])
+        ];
+        return view('guru/walas', $data);
     }
 
     public function PresensiKelas()
@@ -47,6 +59,8 @@ class Pendidik extends BaseController
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Absen Kelas',
+            'menu'          => 'pendidik',
+            'submenu'       => 'pendidik',
             'absen' => $this->ModelPendidik->Mapel($guru['id_guru'])
         ];
         return view('guru/absen/absenkelas', $data);
@@ -59,6 +73,8 @@ class Pendidik extends BaseController
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Presensi Peserta Didik',
+            'menu'          => 'pendidik',
+            'submenu'       => 'pendidik',
             'absen' => $this->ModelPendidik->Kelas($id_mapel)
         ];
         return view('guru/absen/presensi', $data);
