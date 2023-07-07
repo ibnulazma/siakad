@@ -169,7 +169,7 @@ class Siswa extends BaseController
         echo '<option>--Pilih Desa/Kelurahan--</option>';
 
         foreach ($data as $value) {
-            echo '<option value="' . $value['id_desa'] . '">' . $value['nama_desa'] . '</option>
+            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>
            ';
         }
     }
