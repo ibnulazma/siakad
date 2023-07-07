@@ -187,7 +187,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">Profil</li>
                             <li class="nav-item">
-                                <a href="<?= base_url('siswa') ?>" class="nav-link ">
+                                <a href="<?= base_url('siswa') ?>" class="nav-link <?= $menu == 'siswa' ? 'active' : '' ?> ">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         Dashboard
@@ -206,7 +206,6 @@
         </aside>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -222,21 +221,15 @@
                     </div>
                 </div>
             </div>
-
-
             <section class="content">
                 <div class="container-fluid">
                     <?= $this->renderSection('content') ?>
                 </div>
             </section>
-
         </div>
-
         <footer class="main-footer">
-            <strong>Design by AdminLTE</strong> @SIAKADINKA <?= date('Y') ?>
-
+            <strong>Design by IbnulWafa</strong> @SIAKADINKA <?= date('Y') ?>
         </footer>
-
     </div>
 
 
@@ -417,11 +410,6 @@
             });
         }, 2000);
     </script>
-
-
-
-
-
 
     <script>
         function opsi(value) {

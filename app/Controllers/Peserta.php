@@ -20,6 +20,8 @@ class Peserta extends BaseController
 
     public function index()
     {
+        session();
+
 
         $data = [
             'title'      => 'SIAKADINKA',
@@ -37,6 +39,8 @@ class Peserta extends BaseController
 
     public function add()
     {
+        session();
+
         if ($this->validate([
             'nama_siswa' => [
                 'label' => 'Nama Lengkap',
@@ -206,10 +210,7 @@ class Peserta extends BaseController
         return redirect()->to(base_url('peserta'));
     }
 
-
-
     public function verifikasi($id_siswa)
-
     {
         $data = [
             'id_siswa'      => $id_siswa,

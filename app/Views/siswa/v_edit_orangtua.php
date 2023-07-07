@@ -44,6 +44,15 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="col-md-6 mb-2">
+                    <label for="inputAddress2" class="form-label">Penghasilan</label>
+                    <select name="kerja_ayah" class="form-control select2bs4" style="width: 100%;" id="">
+                        <option value="">--Penghasilan Ayah--</option>
+                        <?php foreach ($kerja as $key => $value) { ?>
+                            <option value="<?= $value['pekerjaan'] ?>"><?= $value['pekerjaan'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
 
                 <div class="col-md-6 mb-2">
                     <label for="inputAddress2" class="form-label">No Telp/Wa Ayah</label>
