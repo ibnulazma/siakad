@@ -82,7 +82,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-3 mb-4">
                 <h5>Alamat Lengkap/Domisili</h5>
             </div>
@@ -147,53 +147,48 @@
                 </div>
             </div>
         </div>
-        <div class="card card-danger">
-            <div class="card-header">
-                <h5 class="card-title">
-                    Kesehatan
-                </h5>
+
+
+
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <h5>Alamat Lengkap/Domisili</h5>
             </div>
-            <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-md-4 mb-2">
-                        <label for="">Tinggi Badan</label>
-                        <input type="text" class="form-control" name="tinggi" value="<?= $siswa['tinggi'] ?>">
+            <div class="col-md-9">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Tinggi Badan</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="tinggi" value="<?= $siswa['tinggi'] ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Berat Badan</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="berat" value="<?= $siswa['berat'] ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Penyakit Yang Pernah Diderita/Yang Sedang Dialami</label>
+                            <div class="col-sm-10">
+                                <select name="" id="" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="">--Pilih Penyakit--</option>
+                                    <option value="Asma">Asma</option>
+                                    <option value="Maag Kronis">Maag Kronis</option>
+                                    <option value="Bronkitis">Bronkitis</option>
+                                    <option value="Anemia">Anemia</option>
+                                    <option value="Dll">Dll</option>
+                                    <option value="Tidak Pernah">Tidak Pernah</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 mb-2">
-                        <label for="inputPassword4">Berat Badan</label>
-                        <input type="text" class="form-control" name="berat" value="<?= $siswa['berat'] ?>">
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <label for="inputAddress" class="form-label">Lingkar Kepala</label>
-                        <input type="text" class="form-control" name="lingkar" value="<?= $siswa['lingkar'] ?>">
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="inputAddress2" class="form-label">Penyakit Yang Pernah Diderita/Yang Sedang Dialami</label>
-                        <select name="" id="" class="form-control select2bs4" style="width: 100%;">
-                            <option value="">--Pilih Penyakit--</option>
-                            <option value="Asma">Asma</option>
-                            <option value="Maag Kronis">Maag Kronis</option>
-                            <option value="Bronkitis">Bronkitis</option>
-                            <option value="Anemia">Anemia</option>
-                            <option value="Dll">Dll</option>
-                            <option value="Tidak Pernah">Tidak Pernah</option>
-
-                        </select>
-                    </div>
-
                 </div>
+                <button class=" btn btn-block btn-primary mt-2" type="submit"> Submit</button>
             </div>
         </div>
-        <button class=" btn btn-block btn-primary mt-2" type="submit"> Submit</button>
     </form>
-
-
-    <form action="">
-
-
-    </form>
-
-
 
     <script>
         $(document).ready(function() {
