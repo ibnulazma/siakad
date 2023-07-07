@@ -313,6 +313,9 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+    <!-- Validation -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
 
 
 
@@ -413,6 +416,22 @@
                 $(this).remove();
             });
         }, 2000);
+    </script>
+
+
+
+
+
+
+    <script>
+        function opsi(value) {
+            var st = $("#ok").val();
+            if (st == "Ya") {
+                document.getElementById("inputku").disabled = false;
+            } else {
+                document.getElementById("inputku").disabled = true;
+            }
+        }
     </script>
 </body>
 

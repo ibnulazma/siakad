@@ -16,7 +16,8 @@
 
 
 
-<div class="col-md-12">
+
+<div class="col-md-8">
     <div class="card card-primary">
         <div class="card-header">
             <h5 class="float-left">Data Tahun Akademik</h5>
@@ -65,6 +66,12 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
 <!-- modalAdd -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -159,6 +166,11 @@
     </div>
 <?php } ?>
 <!-- Modaledit -->
+
+
+
+
+
 
 
 <?= $this->endSection() ?>
