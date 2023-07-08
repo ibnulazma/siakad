@@ -70,7 +70,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="<?= base_url('foto/' . session()->get('foto')) ?>" alt="" class="brand-image img-circle elevation-3" height="30" width="30">
+                        Ibnul Wafa
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -238,9 +238,7 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
+
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -307,11 +305,13 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     <!-- Validation -->
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
 
-
-
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
     <!-- DatTables -->
 
     <script>
@@ -410,17 +410,54 @@
             });
         }, 2000);
     </script>
+    <script>
+        $(document).ready(function() {
+            $("#provinsi").change(function() {
+                var id_kabupaten = $("#provinsi").val();
+                $.ajax({
+                    type: 'GET',
+                    url: '<?= base_url('Siswa/dataKabupaten') ?>/' + id_kabupaten,
+                    success: function(html) {
+                        $("#kabupaten").html(html);
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
-        function opsi(value) {
-            var st = $("#ok").val();
-            if (st == "Ya") {
-                document.getElementById("inputku").disabled = false;
-            } else {
-                document.getElementById("inputku").disabled = true;
-            }
-        }
+        $(document).ready(function() {
+            $("#kabupaten").change(function() {
+                var id_kecamatan = $("#kabupaten").val();
+                $.ajax({
+                    type: 'GET',
+                    url: '<?= base_url('Siswa/dataKecamatan') ?>/' + id_kecamatan,
+                    success: function(html) {
+                        $("#kecamatan").html(html);
+                    }
+                });
+            });
+        });
     </script>
+    <script>
+        $(document).ready(function() {
+            $("#kecamatan").change(function() {
+                var id_desa = $("#kecamatan").val();
+                $.ajax({
+                    type: 'GET',
+                    url: '<?= base_url('Siswa/dataDesa') ?>/' + id_desa,
+                    success: function(html) {
+                        $("#desa").html(html);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
 </body>
 
 </html>
