@@ -41,7 +41,7 @@ class ModelSiswa extends Model
     }
 
 
-    public function editdata($data)
+    public function edit($data)
     {
         $this->db->table('tbl_siswa')
             ->where('id_siswa', $data['id_siswa'])
