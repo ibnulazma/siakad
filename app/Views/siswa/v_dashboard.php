@@ -57,7 +57,12 @@
 
                         </ul>
                     </ul>
-
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Mutasi
+                    </button>
+                    <a href="" type="button" class="btn btn-danger">
+                        Reset
+                    </a>
                 </div>
             </div>
             <div class="card">
@@ -178,6 +183,49 @@
 
         </div>
     </div>
+
+
+    <!-- ModalMutasi -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> Adapun syarat untuk mutasi/pindah dari SMP INSAN KAMIL sebagai berikut:</p>
+                    <ul>
+                        <li>Melunasi pembayaran sampai bulan berjalan sebelum tanggal 10</li>
+                        <li>Surat Keterangan Diterima Dari Sekolah Yang Di Tuju</li>
+                        <li>Cetak surat permohonan melalui wali kelas masing masing</li>
+                        <li>Klik tombol submit untuk melakukan pengajuan mutasi</li>
+                    </ul>
+                </div>
+                <?= form_open('siswa/ajuan/' . $siswa['id_siswa']); ?>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+
+
+<?php } elseif ($siswa['status_daftar'] == 4) { ?>
+
+
+    <div class="container text-center fw-bold">
+
+        <h1> <i class="fa-solid fa-paper-plane fa-beat-fade"></i></h1>
+        <h3>Terima kasih sudah melakukan pengajuan mutasi. Permohonan anda kami segera proses!!</h3>
+
+    </div>
+
+
 <?php } ?>
 
 

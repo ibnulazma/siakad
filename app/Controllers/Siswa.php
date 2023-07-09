@@ -386,4 +386,35 @@ class Siswa extends BaseController
            ';
         }
     }
+
+
+    public function pengajuan()
+    {
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Pengajuan',
+            'menu'          => 'pengajuan',
+            'submenu'       => 'pengajuan',
+            'siswa'     => $this->ModelSiswa->DataSiswa(),
+
+        ];
+        return view('siswa/v_pengajuan', $data);
+    }
+
+
+    public function ajuan($id_siswa)
+    {
+        $data = [
+            'id_siswa'       => $id_siswa,
+            'status_daftar' => 4,
+
+
+        ];
+        $this->ModelSiswa->edit($data);
+        return redirect()->to('siswa');
+        // } else {
+        //     $validation =  \Config\Services::validation();
+        //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
+        // }
+    }
 }

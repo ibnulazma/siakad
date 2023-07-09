@@ -6,7 +6,7 @@
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Klik Syarat Mutasi/Pindah
+    Pengajuan Mutasi
 </button>
 
 <!-- Modal -->
@@ -20,11 +20,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                ....
+                <p> Adapun syarat untuk mutasi/pindah dari SMP INSAN KAMIL sebagai berikut:</p>
+                <ul>
+                    <li>Melunasi pembayaran sampai bulan berjalan sebelum tanggal 10</li>
+                    <li>Surat Keterangan Diterima Dari Sekolah Yang Di Tuju</li>
+                    <li>Cetak surat permohonan melalui wali kelas masing masing</li>
+                    <li>Klik tombol submit untuk melakukan pengajuan mutasi</li>
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
