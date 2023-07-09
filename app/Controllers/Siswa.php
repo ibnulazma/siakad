@@ -13,6 +13,7 @@ use App\Models\ModelPenghasilan;
 
 
 
+
 class Siswa extends BaseController
 {
 
@@ -34,6 +35,7 @@ class Siswa extends BaseController
     public function index()
     {
         session();
+
 
         $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
