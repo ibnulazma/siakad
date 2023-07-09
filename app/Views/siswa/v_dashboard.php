@@ -55,7 +55,7 @@
                                 <b>Tempat Lahir</b> <span class="float-right"><?= $siswa['tempat_lahir'] ?></span>
                             </li>
                             <li class="list-group-item">
-                                <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d F Y', strtotime($siswa['tanggal_lahir']))  ?></span>
+                                <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d M Y', strtotime($siswa['tanggal_lahir']))  ?></span>
                             </li>
                             <li class="list-group-item">
                                 <b> Ibu Kandung</b> <span class="float-right"><?= $siswa['nama_ibu'] ?> </span>
@@ -69,7 +69,7 @@
             <div class="card">
                 <div class="card-header">
                     <p class="card-title">
-                        <i class="fas fa-pencil"></i> <b> Pembelajaran</b>
+                        <i class="fas fa-pencil"></i> <b> Pembelajaran Tahun Pelajaran <?= $siswa['ta'] ?></b>
                     </p>
                 </div>
                 <div class="card-body">
@@ -148,8 +148,6 @@
                                         <li class="list-group-item">
                                             <b>Handphone</b>: <?= $siswa['no_telp'] ?> </span>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -165,9 +163,6 @@
                                         </li>
                                         <li class="list-group-item">
                                             <b>Telpon Ibu</b>: <?= $siswa['telp_ayah'] ?></span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Telpon Ibu</b>: <?= $siswa['nama_guru'] ?></span>
                                         </li>
                                     </ul>
                                 </div>
