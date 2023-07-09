@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 
-<?php if ($siswa['status_daftar'] == 0) { ?>
+<?php if ($siswa['status_daftar'] == 1) { ?>
 
     <div class="card">
         <div class="card-body text-center">
@@ -13,7 +13,13 @@
         </div>
     </div>
 
-<?php } else if ($siswa['status_daftar'] == 1) { ?>
+
+
+
+<?php } elseif ($siswa['status_daftar'] == 2) { ?>
+    verifikasi data
+
+<?php } elseif ($siswa['status_daftar'] == 3) { ?>
 
     <div class="row">
         <div class="col-lg-4">

@@ -2,119 +2,144 @@
 <?= $this->section('content') ?>
 
 
+<?php if ($siswa['status_daftar'] == 0) { ?>
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h5>Biodata Orang Tua</h5>
+            </div>
+            <?= form_open('siswa/editortu/' . $siswa['id_siswa']); ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Nama Ayah</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['nama_ayah'] ?>" name="nama_ayah" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Tahun Lahir</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['tahun_ayah'] ?>" name="tahun_ayah" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['nik_ayah'] ?>" name="nik_ayah" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Pendidikan</label>
+                            <div class="col-sm-10">
+                                <select name="didik_ayah" id="" class="form-control" required>
+                                    <option value="">Pilih Pendidikan</option>
+                                    <?php foreach ($didik as $key => $value) { ?>
+                                        <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ayah'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Pekerjaan</label>
+                            <div class="col-sm-10">
+                                <select name="kerja_ayah" id="" class="form-control" required>
+                                    <option value="">Pilih Pekerjaan</option>
+                                    <?php foreach ($kerja as $key => $value) { ?>
+                                        <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Penghasilan</label>
+                            <div class="col-sm-10">
+                                <select name="hasil_ayah" id="" class="form-control" required>
+                                    <option value="">Pilih Penghasilan</option>
+                                    <?php foreach ($hasil as $key => $value) { ?>
+                                        <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ayah'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Telepon/Hp</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" required>
+                            </div>
+                        </div>
 
-<div class="card card-warning">
-    <div class="card-header">
-        <h5 class="card-title">
-            Biodata Orangtua
-        </h5>
-    </div>
-    <form class="">
-        <div class="card-body">
-            <h5>Biodata Ayah</h5>
-            <div class="row g-3">
-                <div class="col-md-6 mb-2">
-                    <label for="">Nama Ayah</label>
-                    <input type="text" class="form-control" name="nama_ayah" value="<?= $siswa['nama_ayah'] ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Nama Ibu</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['nama_ibu'] ?>" name="nama_ibu" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Tahun Lahir</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['tahun_ibu'] ?>" name="tahun_ibu" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['nik_ibu'] ?>" name="nik_ibu" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Pendidikan</label>
+                            <div class="col-sm-10">
+                                <select name="didik_ibu" id="" class="form-control" required>
+                                    <option value="">Pilih Pendidikan</option>
+                                    <?php foreach ($didik as $key => $value) { ?>
+                                        <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ibu'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Pekerjaan</label>
+                            <div class="col-sm-10">
+                                <select name="kerja_ibu" id="" class="form-control" required>
+                                    <option value="">Pilih Pekerjaan</option>
+                                    <?php foreach ($kerja as $key => $value) { ?>
+                                        <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ibu'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Penghasilan</label>
+                            <div class="col-sm-10">
+                                <select name="hasil_ibu" id="" class="form-control" required>
+                                    <option value="">Pilih Penghasilan</option>
+                                    <?php foreach ($hasil as $key => $value) { ?>
+                                        <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Telepon/Hp</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputPassword4" class="form-label">NIK Ayah</label>
-                    <input type="text" class="form-control" name="nik_ayah" value="<?= $siswa['nik_ayah'] ?>">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress" class="form-label">Tahun Ayah</label>
-                    <input type="text" class="form-control" name="tahun_ayah" value="<?= $siswa['tahun_ayah'] ?>">
-                </div>
-
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Pendidikan Ayah</label>
-                    <select name="didik_ayah" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option value="">--Pilih Pendidikan--</option>
-                        <?php foreach ($didik as $key => $value) { ?>
-                            <option value="<?= $value['pendidikan'] ?>"><?= $value['pendidikan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Pekerjaan Ayah</label>
-                    <select name="kerja_ayah" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option value="">--Pilih Pekerjaan--</option>
-                        <?php foreach ($kerja as $key => $value) { ?>
-                            <option value="<?= $value['pekerjaan'] ?>"><?= $value['pekerjaan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Penghasilan</label>
-                    <select name="kerja_ayah" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option value="">--Penghasilan Ayah--</option>
-                        <?php foreach ($kerja as $key => $value) { ?>
-                            <option value="<?= $value['pekerjaan'] ?>"><?= $value['pekerjaan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">No Telp/Wa Ayah</label>
-                    <input type="text" class="form-control" name="telp_ayah" value="<?= $siswa['telp_ayah'] ?>">
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-warning btn-block"> Submit</button>
                 </div>
             </div>
-
-            <hr>
-
-            <h5>Biodata Ibu</h5>
-            <!-- ibu -->
-            <div class="row g-3">
-                <div class="col-md-6 mb-2">
-                    <label for="">Nama Ibu</label>
-                    <input type="text" class="form-control" name="nama_ibu" value="<?= $siswa['nama_ibu'] ?>">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputPassword4" class="form-label">NIK Ibu</label>
-                    <input type="text" class="form-control" name="nik_ibu" value="<?= $siswa['nik_ibu'] ?>">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress" class="form-label">Tahun Ibu</label>
-                    <input type="text" class="form-control" name="tahun_ibu" value="<?= $siswa['tahun_ibu'] ?>">
-                </div>
-
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Pendidikan Ibu</label>
-                    <select name="didik_ibu" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option selected="<?= $siswa['didik_ibu'] ?>"><?= $siswa['didik_ibu'] ?></option>
-                        <?php foreach ($didik as $key => $value) { ?>
-                            <option value="<?= $value['pendidikan'] ?>"><?= $value['pendidikan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Pekerjaan ibu</label>
-                    <select name="kerja_ibu" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option selected="<?= $siswa['kerja_ibu'] ?>"><?= $siswa['kerja_ibu'] ?></option>
-                        <?php foreach ($kerja as $key => $value) { ?>
-                            <option value="<?= $value['pekerjaan'] ?>"><?= $value['pekerjaan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">Penghasilan Ibu</label>
-                    <select name="kerja_ibu" class="form-control select2bs4" style="width: 100%;" id="">
-                        <option value="">--Pilih Pekerjaan--</option>
-                        <?php foreach ($kerja as $key => $value) { ?>
-                            <option value="<?= $value['pekerjaan'] ?>"><?= $value['pekerjaan'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <label for="inputAddress2" class="form-label">No Telp/Wa Ibu</label>
-                    <input type="text" class="form-control" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>">
-                </div>
-            </div>
-            <button class="btn btn-warning btn-block">Submit</button>
         </div>
 
-    </form>
-</div>
+        <?php echo form_close() ?>
+    </div>
+<?php } ?>
 
 
 

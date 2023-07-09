@@ -10,15 +10,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/jqvmap/jqvmap.min.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/calendar.css">
@@ -28,17 +22,6 @@
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-
-
-
-
-    <!-- 
-        map
-     -->
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-
-    <!-- Akhirmap -->
 
 
     <!-- DataTables -->
@@ -55,9 +38,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        </div> -->
 
         <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
@@ -453,6 +436,127 @@
             });
         });
     </script>
+
+
+
+    <!-- <script>
+        $(document).ready(function() {
+            $('.formsimpan').submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "post",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('.tombolSimpan').prop('disabled', false);
+                        $('.tombolSimpan').html('Simpan');
+
+                    },
+                    success: function(response) {
+
+                    },
+                    error: function(xhr, thrownError) {
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+                return false;
+            });
+
+        });
+    </script> -->
+
+    <!-- <script>
+        $(function() {
+            $.validator.setDefaults({
+                submitHandler: function() {
+                    alert("Form successful submitted!");
+                }
+            });
+            $('#quickForm').validate({
+                rules: {
+                    nama_siswa: {
+                        required: true,
+                        nama_siswa: true,
+                    },
+                    jenis_kelamin: {
+                        required: true,
+                        jenis_kelamin: true,
+                    },
+                    tempat_lahir: {
+                        required: true,
+                        tempat_lahir: true,
+                    },
+
+                    no_telp: {
+                        required: true,
+                        no_telp: true,
+                    },
+
+                    anak_ke: {
+                        required: true,
+                        anak_ke: true,
+                    },
+
+                    // terms: {
+                    //     required: true
+                    // },
+                },
+                messages: {
+                    nama_siswa: {
+                        required: "Silahkan isi dengan benar",
+                    },
+                    jenis_kelamin: {
+                        required: "Silahkan isi dengan benar",
+                    },
+                    tempat_lahir: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    no_telp: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    anak_ke: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    // password: {
+                    //     required: "Please provide a password",
+                    //     minlength: "Your password must be at least 5 characters long"
+                    // },
+                    // terms: "Please accept our terms"
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

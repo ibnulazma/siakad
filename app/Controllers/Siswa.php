@@ -9,6 +9,7 @@ use App\Models\ModelPekerjaan;
 use App\Models\ModelPendidikan;
 use App\Models\ModelTinggal;
 use App\Models\ModelTransportasi;
+use App\Models\ModelPenghasilan;
 
 
 
@@ -26,6 +27,7 @@ class Siswa extends BaseController
         $this->ModelPekerjaan = new ModelPekerjaan();
         $this->ModelTinggal = new ModelTinggal();
         $this->ModelTransportasi = new ModelTransportasi();
+        $this->ModelPenghasilan = new ModelPenghasilan();
     }
 
 
@@ -210,6 +212,11 @@ class Siswa extends BaseController
             'tinggi'        => $this->request->getPost('tinggi'),
             'berat'         => $this->request->getPost('berat'),
             'penyakit'      => $this->request->getPost('penyakit'),
+            'lingkar'      => $this->request->getPost('lingkar'),
+            'hobi'         => $this->request->getPost('hobi'),
+            'cita_cita'    => $this->request->getPost('cita_cita'),
+            'seri_ijazah'  => $this->request->getPost('seri_ijazah'),
+
         ];
         $this->ModelSiswa->edit($data);
         return redirect()->to('siswa/edit_orangtua/' . $id_siswa);
@@ -222,6 +229,7 @@ class Siswa extends BaseController
     // biodata siswa
 
 
+    //Orang Tua
 
     public function edit_orangtua($id_siswa)
     {
@@ -234,11 +242,44 @@ class Siswa extends BaseController
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
             'kerja'     => $this->ModelPekerjaan->AllData(),
-            'didik'     => $this->ModelPendidikan->AllData()
+            'didik'     => $this->ModelPendidikan->AllData(),
+            'hasil'     => $this->ModelPenghasilan->AllData()
         ];
         return view('siswa/v_edit_orangtua', $data);
     }
 
+    public function editortu($id_siswa)
+    {
+
+
+        $data = [
+            'id_siswa'          => $id_siswa,
+            'nama_ayah'         => $this->request->getPost('nama_ayah'),
+            'nama_ibu'          => $this->request->getPost('nama_ibu'),
+            'didik_ibu'         => $this->request->getPost('didik_ibu'),
+            'didik_ayah'        => $this->request->getPost('didik_ayah'),
+            'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
+            'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
+            'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
+            'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
+            'telp_ayah'         => $this->request->getPost('telp_ayah'),
+            'telp_ibu'          => $this->request->getPost('telp_ibu'),
+            'nik_ibu'           => $this->request->getPost('nik_ibu'),
+            'nik_ayah'          => $this->request->getPost('nik_ayah'),
+            'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
+            'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
+            'status_daftar'     => 1
+
+
+        ];
+        $this->ModelSiswa->edit($data);
+        return redirect()->to('siswa');
+        // } else {
+        //     $validation =  \Config\Services::validation();
+        //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
+        // }
+    }
+    //Orangtua
 
     public function jadwal()
     {
