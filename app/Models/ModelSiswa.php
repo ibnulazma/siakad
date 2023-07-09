@@ -10,8 +10,12 @@ class ModelSiswa extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->where('nisn', session()->get('username'))
             ->get()->getRowArray();
     }
@@ -40,16 +44,12 @@ class ModelSiswa extends Model
             ->get()->getRowArray();
     }
 
-
     public function edit($data)
     {
         $this->db->table('tbl_siswa')
             ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
-
-
-
 
     //PerTingkat
     public function Jadwal($id_kelas)
@@ -117,14 +117,14 @@ class ModelSiswa extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-            ->where('status_daftar', '2')
+            ->where('status_daftar', '3')
             ->where('status', '1')
             ->countAllResults();
     }
     public function jumlahNonAktif()
     {
         return $this->db->table('tbl_siswa')
-            ->where('status_daftar', '0')
+            ->where('status_daftar', '1')
             ->countAllResults();
     }
 }

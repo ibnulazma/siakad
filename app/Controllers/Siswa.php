@@ -35,7 +35,6 @@ class Siswa extends BaseController
     {
         session();
 
-        // $mhs = $this->ModelSiswa->Siswa();
         $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',

@@ -203,7 +203,7 @@ class Peserta extends BaseController
     {
         $data = [
             'id_siswa' => $id_siswa,
-            'status_daftar' => 0
+            'status_daftar' => 1
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
@@ -220,7 +220,7 @@ class Peserta extends BaseController
             'nisn'          => $this->request->getPost('nisn'),
             'seri_ijazah'   => $this->request->getPost('seri_ijazah'),
             'id_kelas'      => $this->request->getPost('id_kelas'),
-            'status_daftar' => 2,
+            'status_daftar' => 3,
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');

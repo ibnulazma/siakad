@@ -21,12 +21,25 @@
 
 <?php } elseif ($siswa['status_daftar'] == 3) { ?>
 
+
+
+
+
+
+
     <div class="row">
         <div class="col-lg-4">
             <div class=" card">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/' . session()->get('foto')) ?>" alt="User profile picture">
+                        <?php
+                        $gender = "Laki-laki";
+                        if ($gender == $siswa['jenis_kelamin']) { ?>
+                            <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/muslim.png') ?>" alt="User profile picture">
+                        <?php } else { ?>
+                            <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/woman.png') ?>" alt="User profile picture">
+                        <?php  } ?>
+
                     </div>
                     <h3 class="profile-username text-center"><?= session()->get('nama') ?></h3>
                     <p class="text-muted text-center">(<?= session()->get('username') ?>)
@@ -86,8 +99,8 @@
                     <p>
                         <?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?>
                     </p>
-                    <p> Desa/Kel. <?= $siswa['desa'] ?> Kecamatan <?= $siswa['kecamatan'] ?></p>
-                    <p>Kab/Kota <?= $siswa['kabupaten'] ?> Provinsi <?= $siswa['provinsi'] ?></p>
+                    <p> Desa/Kel. <?= $siswa['desa'] ?> Kecamatan <?= $siswa['nama_kecamatan'] ?></p>
+                    <p>Kab/Kota <?= $siswa['city_name'] ?> Provinsi <?= $siswa['prov_name'] ?></p>
                 </div>
             </div>
         </div>
@@ -109,16 +122,16 @@
                                     <h6>IDENTITAS</h6>
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>NIK</b>:<?= $siswa['nik'] ?></span>
+                                            <b>NIK</b>: <?= $siswa['nik'] ?></span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Agama</b>:Islam </span>
+                                            <b>Agama</b>: Islam </span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Kebutuhan Khusus</b>:Tidak Ada </span>
+                                            <b>Kebutuhan Khusus</b>: Tidak Ada </span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Alat Transportasi</b>:Sepeda Motor</span>
+                                            <b>Alat Transportasi</b>: Sepeda Motor</span>
                                         </li>
 
                                     </ul>
@@ -127,17 +140,15 @@
                                     <h6>KONTAK</h6>
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>Jenis Tinggal</b>:Bersama Orang Tua</span>
+                                            <b>Jenis Tinggal</b>: <?= $siswa['tinggal'] ?></span>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Nomor Telepon</b>: </span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Handphone</b>:Tidak Ada </span>
+                                            <b>Handphone</b>: <?= $siswa['no_telp'] ?> </span>
                                         </li>
-                                        <li class="list-group-item">
-                                            <b>Email</b>:Sepeda Motor</span>
-                                        </li>
+
 
                                     </ul>
                                 </div>
@@ -147,13 +158,16 @@
                                     <h6>Orang Tua</h6>
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>Nama Ayah</b>:<?= $siswa['nama_ayah'] ?></span>
+                                            <b>Nama Ayah</b>: <?= $siswa['nama_ayah'] ?></span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Telpon Ayah</b>:<?= $siswa['telp_ayah'] ?></span>
+                                            <b>Telpon Ayah</b>: <?= $siswa['telp_ayah'] ?></span>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Telpon Ibu</b>:<?= $siswa['telp_ibu'] ?></span>
+                                            <b>Telpon Ibu</b>: <?= $siswa['telp_ayah'] ?></span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Telpon Ibu</b>: <?= $siswa['nama_guru'] ?></span>
                                         </li>
                                     </ul>
                                 </div>

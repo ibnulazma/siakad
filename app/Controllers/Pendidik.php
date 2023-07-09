@@ -43,8 +43,8 @@ class Pendidik extends BaseController
     {
         $guru = $this->ModelPendidik->DataGuru();
         $data = [
-            'title' => 'SIAKAD',
-            'subtitle' => 'Rombongan Belajar',
+            'title'         => 'SIAKAD',
+            'subtitle'      => 'Rombongan Belajar',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
             'walas' => $this->ModelPendidik->walas($guru['id_guru'])
