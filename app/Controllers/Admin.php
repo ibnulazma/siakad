@@ -26,12 +26,12 @@ class Admin extends BaseController
     public function index()
     {
         $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Dashboard',
-            'menu'          => 'admin',
-            'submenu'       => 'admin',
-            'jumlahaktif'   => $this->ModelSiswa->jumlahAktif(),
-            'jumlahtidakaktif' => $this->ModelSiswa->jumlahNonAktif(),
+            'title'             => 'SIAKADINKA',
+            'subtitle'          => 'Dashboard',
+            'menu'              => 'admin',
+            'submenu'           => 'admin',
+            'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
+            'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
             // 'datarombel'        => $this->ModelSiswa->group_by()
 
         ];

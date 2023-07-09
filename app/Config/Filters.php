@@ -86,6 +86,7 @@ class Filters extends BaseConfig
                     'siswa', 'siswa/*',
                     'presensi', 'presensi/*',
                     'pelajaran', 'pelajaran/*',
+                    'pengajuan', 'pengajuan/*',
 
 
                 ]

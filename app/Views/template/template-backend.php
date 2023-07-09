@@ -53,7 +53,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        Ibnul Wafa
+                        <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="25px">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -87,7 +87,6 @@
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
                                         Dashboard
-
                                     </p>
                                 </a>
                             </li>
@@ -158,7 +157,6 @@
                                     <i class="fas fa-tachometer-alt nav-icon"></i>
                                     <p>
                                         Dashboard
-
                                     </p>
                                 </a>
                             </li>
@@ -168,24 +166,37 @@
 
                     <?php } elseif (session()->get('level') == 3) { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <li class="nav-header">Profil</li>
+                            <li class="nav-header">Menu</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('siswa') ?>" class="nav-link <?= $menu == 'siswa' ? 'active' : '' ?> ">
-                                    <i class="nav-icon fas fa-user"></i>
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
 
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?> ">
+                                    <i class="nav-icon fas fa-paper-plane"></i>
+                                    <p>
+                                        Pengajuan
 
-                            <li class="nav-header">EXAMPLES</li>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('auth/logout') ?>" class="nav-link  ">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>
+                                        Logout
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
                     <?php } ?>
                 </nav>
-
             </div>
-
         </aside>
 
         <div class="content-wrapper">
@@ -193,7 +204,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0"><?= $subtitle ?></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
