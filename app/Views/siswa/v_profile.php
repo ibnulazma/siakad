@@ -2,200 +2,169 @@
 <?= $this->section('content') ?>
 
 
-<form action="<?= base_url('siswa/edit_siswa/' . $siswa['id_siswa']) ?>" id="quickForm" method="post">
+<div class="row">
+    <div class="col-lg-4">
+        <div class=" card">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <?php
+                    $gender = "Laki-laki";
+                    if ($gender == $siswa['jenis_kelamin']) { ?>
+                        <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/muslim.png') ?>" alt="User profile picture">
+                    <?php } else { ?>
+                        <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/woman.png') ?>" alt="User profile picture">
+                    <?php  } ?>
 
-
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group ">
-                        <label for="">Nama Lengkap</label>
-                        <input type="text" class="form-control " name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>" required>
-                    </div>
-                    <div class="form-group ">
-                        <label for="">Jenis Kelamin</label>
-                        <input type="text" class="form-control" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>" required>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress">Tempat</label>
-                        <input type="text" class="form-control" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Tanggal Lahir</label>
-
-                        <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d/m/Y', strtotime($siswa['tanggal_lahir'])) ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">NIK</label>
-                        <input type="text" class="form-control" name="nik" value="<?= $siswa['nik'] ?>" readonly>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">NISN</label>
-                        <input type="text" class="form-control" name="nisn" value="<?= $siswa['nisn'] ?>" readonly>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Seri Ijazah</label>
-                        <input type="text" class="form-control" name="seri_ijazah" value="<?= $siswa['seri_ijazah'] ?>" required>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">No Wa</label>
-                        <input type="text" class="form-control" name="no_telp" value="<?= $siswa['no_telp'] ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Punya Kartu PIP ?</label>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <select id="ok" onChange="opsi(this)" class="form-control" name="kip" required>
-                                    <option value="Ya">Ya</option>
-                                    <option value="Tidak">Tidak</option>
-                                </select>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="text" id="inputku" placeholder="input" class="form-control" name="no_kip" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Anak Ke</label>
-                        <input type="text" name="anak_ke" class="form-control " value="<?= $siswa['anak_ke'] ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Hobi</label>
-                        <input type="text" name="hobi" class="form-control " value="<?= $siswa['hobi'] ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Cita Cita</label>
-                        <input type="text" name="cita_cita" class="form-control " value="<?= $siswa['cita_cita'] ?>" required>
-                    </div>
                 </div>
+                <h3 class="profile-username text-center"><?= session()->get('nama') ?></h3>
+                <p class="text-muted text-center">(<?= session()->get('username') ?>)
+                </p>
 
+                <ul class="list-group  mb-3">
+
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">
+                            <b>Jenis Kelamin</b> <span class="float-right"><?= $siswa['jenis_kelamin'] ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Tempat Lahir</b> <span class="float-right"><?= $siswa['tempat_lahir'] ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d M Y', strtotime($siswa['tanggal_lahir']))  ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            <b> Ibu Kandung</b> <span class="float-right"><?= $siswa['nama_ibu'] ?> </span>
+                        </li>
+
+                    </ul>
+                </ul>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Mutasi
+                </button>
+                <a href="" type="button" class="btn btn-danger">
+                    Reset
+                </a>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <p class="card-title">
+                    <i class="fas fa-pencil"></i> <b> Pembelajaran Tahun Pelajaran <?= $siswa['ta'] ?></b>
+                </p>
+            </div>
+            <div class="card-body">
+                <ul style="list-style:none;">
+                    <li>
+                        <p class="text-muted">
+                            Rombongan Belajar : Kelas <?= $siswa['kelas'] ?>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="text-muted">
+                            Tingkat Pendidikan : Tingkat <?= $siswa['tingkat'] ?>
+                        </p>
+                    </li>
 
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group ">
-                        <label for="inputAddress2">Provinsi</label>
-
-                        <select name="provinsi" class="form-control select2bs4" style="width: 100%;" id="provinsi" required>
-                            <option value="">--Pilih Provinsi--</option>
-                            <?php foreach ($provinsi as $row) { ?>
-                                <option value="<?= $row['id_provinsi'] ?>"><?= $row['prov_name'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Kabupaten</label>
-
-                        <select name="kabupaten" class="form-control select2bs4 " style="width: 100%;" id="kabupaten" required>
-                        </select>
-
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Kecamatan</label>
-                        <select name="kecamatan" class="form-control select2bs4" style="width: 100%;" id="kecamatan" required>
-                        </select>
-
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Desa/Kel</label>
-
-                        <select name="desa" class="form-control select2bs4" style="width: 100%;" id="desa" required>
-                        </select>
-
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Alamat Domisili</label>
-
-                        <input type="text" name="alamat" class="form-control" value="<?= $siswa['alamat'] ?>" required>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group ">
-                                <label for="inputAddress2">RT</label>
-                                <input type="text" name="rt" class="form-control " data-inputmask="'mask': ['99']" data-mask value="<?= $siswa['rt'] ?>" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group ">
-                                <label for="inputAddress2">RW</label>
-                                <input type="text" name="rw" class="form-control " data-inputmask="'mask': ['99']" data-mask value="<?= $siswa['rw'] ?>" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="inputAddress2">Tinggal </label>
-                        <select name="tinggal" class="form-control select2bs4" style="width: 100%;" required>
-                            <option value="">Tinggal</option>
-                            <?php foreach ($tinggal as $key => $value) { ?>
-                                <option value="<?= $value['tinggal'] ?>" <?= $siswa['tinggal'] == $value['tinggal'] ? 'selected' : '' ?>> <?= $value['tinggal'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group ">
-                        <label for="inputAddress2">Transportasi Ke Sekolah </label>
-                        <select name="transportasi" class="form-control select2bs4 <?= ($validation->hasError('transportasi')) ? 'is-invalid' : ''; ?>" style="width: 100%;" required>
-                            <option value="">--Transportasi--</option>
-                            <?php foreach ($transportasi as $key => $value) { ?>
-                                <option value="<?= $value['transportasi'] ?>" <?= $siswa['transportasi'] == $value['transportasi'] ? 'selected' : '' ?>> <?= $value['transportasi'] ?></option>
-                            <?php } ?>
-
-                        </select>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <p class="card-title">
+                    <i class="fas fa-map-marker-alt"></i> <b> Tempat Tinggal</b>
+                </p>
+            </div>
+            <div class="card-body">
 
-        <div class="col-md-4">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="form-group ">
-                        <label for="">Tinggi Badan</label>
-                        <input type="text" class="form-control" name="tinggi" value="<?= $siswa['tinggi'] ?>" required>
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="">Berat Badan</label>
-                        <input type="text" class="form-control" name="berat" value="<?= $siswa['berat'] ?>" required>
-                    </div>
-                    <div class="form-group ">
-                        <label for="">Lingkar Kepala</label>
-                        <input type="text" class="form-control" name="lingkar" value="<?= $siswa['berat'] ?>" required>
-                    </div>
-                    <div class="form-group ">
-                        <label for="">Penyakit Yang Pernah Diderita/Yang Sedang Dialami</label>
-                        <select name="penyakit" id="" class="form-control select2bs4" style="width: 100%;" required>
-                            <option value="">--Pilih Penyakit--</option>
-                            <option value="Asma">Asma</option>
-                            <option value="Maag Kronis">Maag Kronis</option>
-                            <option value="Bronkitis">Bronkitis</option>
-                            <option value="Anemia">Anemia</option>
-                            <option value="Dll">Dll</option>
-                            <option value="Tidak Pernah">Tidak Pernah/Tidak Punya</option>
-                        </select>
-                    </div>
-                </div>
+                <p>
+                    <?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?>
+                </p>
+                <p> Desa/Kel. <?= $siswa['desa'] ?> Kecamatan <?= $siswa['nama_kecamatan'] ?></p>
+                <p>Kab/Kota <?= $siswa['city_name'] ?> Provinsi <?= $siswa['prov_name'] ?></p>
             </div>
         </div>
-        <button class=" btn btn-block btn-primary" type="submit"> Submit</button>
     </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#biodata" data-toggle="tab">Biodata</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#absen" data-toggle="tab">Presensi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nilai" data-toggle="tab">Nilai</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="biodata">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>IDENTITAS</h6>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>NIK</b>: <?= $siswa['nik'] ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Agama</b>: Islam </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Kebutuhan Khusus</b>: Tidak Ada </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Alat Transportasi</b>: Sepeda Motor</span>
+                                    </li>
 
-</form>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>KONTAK</h6>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>Jenis Tinggal</b>: <?= $siswa['tinggal'] ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Nomor Telepon</b>: </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Handphone</b>: <?= $siswa['no_telp'] ?> </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Orang Tua</h6>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>Nama Ayah</b>: <?= $siswa['nama_ayah'] ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Telpon Ayah</b>: <?= $siswa['telp_ayah'] ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Telpon Ibu</b>: <?= $siswa['telp_ayah'] ?></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="absen">
+
+                    </div>
+
+                    <div class="tab-pane" id="settings">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
-<script>
-    function opsi(value) {
-        var st = $("#ok").val();
-        if (st == "Ya") {
-            document.getElementById("inputku").disabled = false;
-        } else {
-            document.getElementById("inputku").disabled = true;
-        }
-    }
-</script>
 
 <?= $this->endSection() ?>

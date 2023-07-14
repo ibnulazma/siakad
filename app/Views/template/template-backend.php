@@ -176,6 +176,15 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('siswa/profile') ?>" class="nav-link <?= $menu == 'profile' ? 'active' : '' ?> ">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        Profil
+
+                                    </p>
+                                </a>
+                            </li>
                             <!-- <li class="nav-item">
                                 <a href="<?= base_url('siswa/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?> ">
                                     <i class="nav-icon fas fa-paper-plane"></i>

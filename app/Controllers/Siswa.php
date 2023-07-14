@@ -40,7 +40,7 @@ class Siswa extends BaseController
         $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',
-            'subtitle'  => 'Siswa',
+            'subtitle'  => 'Dashboard',
             'menu'      => 'siswa',
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
@@ -49,6 +49,27 @@ class Siswa extends BaseController
 
         ];
         return view('siswa/v_dashboard', $data);
+    }
+    public function profile()
+    {
+        session();
+
+
+        $siswa = $this->ModelSiswa->DataSiswa();
+        $data = [
+            'title'     => 'SIAKADINKA',
+            'subtitle'  => ' Profile',
+            'menu'      => 'profile',
+            'submenu' => 'profile',
+            'siswa'     => $this->ModelSiswa->DataSiswa(),
+            // 'absen'         => $this->ModelSiswa->DataAbsen($mhs['id_siswa']),
+            'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
+            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'tinggal'  => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+        ];
+        return view('siswa/v_profile', $data);
     }
 
 
@@ -67,7 +88,7 @@ class Siswa extends BaseController
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
         ];
-        return view('siswa/v_profile', $data);
+        return view('siswa/edit_profile', $data);
     }
 
 
