@@ -87,6 +87,9 @@ class Siswa extends BaseController
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
+            'kerja'     => $this->ModelPekerjaan->AllData(),
+            'didik'     => $this->ModelPendidikan->AllData(),
+            'hasil'     => $this->ModelPenghasilan->AllData()
         ];
         return view('siswa/edit_profile', $data);
     }
@@ -263,9 +266,7 @@ class Siswa extends BaseController
             'menu'      => 'siswa',
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
-            'kerja'     => $this->ModelPekerjaan->AllData(),
-            'didik'     => $this->ModelPendidikan->AllData(),
-            'hasil'     => $this->ModelPenghasilan->AllData()
+
         ];
         return view('siswa/v_edit_orangtua', $data);
     }
