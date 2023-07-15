@@ -31,16 +31,17 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/css/bs-stepper.min.css">
 </head>
+
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+        <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+        </div>
 
         <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
@@ -70,7 +71,6 @@
                 </li>
             </ul>
         </nav>
-
 
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <a href="index3.html" class="brand-link">
@@ -284,7 +284,7 @@
     <!-- Bootstrap Switch -->
     <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <!-- BS-Stepper -->
-    <script src="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+
     <!-- dropzonejs -->
     <script src="<?= base_url() ?>/AdminLTE/plugins/dropzone/min/dropzone.min.js"></script>
 
@@ -308,7 +308,7 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     <!-- Validation -->
-
+    <script src="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/js/bs-stepper.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
 
