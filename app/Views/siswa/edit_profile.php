@@ -117,7 +117,7 @@
                                 </select>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" id="inputku" placeholder="input" class="form-control" name="no_kip" required>
+                                <input type="text" id="inputku" placeholder="input" class="form-control" name="no_kip" value="<?= $siswa['no_kip'] ?>" required>
                             </div>
                         </div>
                     </div>
@@ -125,13 +125,10 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary float-right"><i class="fa-solid fa-floppy-disk mr-2"></i> Submit</button>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary text-center"><i class="fa-solid fa-floppy-disk mr-2"></i>Submit</button>
+    </div>
 </form>
-
-
-
-
-
 
 
 

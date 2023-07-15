@@ -234,13 +234,7 @@ class Siswa extends BaseController
             'desa'          => $this->request->getPost('desa'),
             'tinggal'       => $this->request->getPost('tinggal'),
             'transportasi'  => $this->request->getPost('transportasi'),
-            'tinggi'        => $this->request->getPost('tinggi'),
-            'berat'         => $this->request->getPost('berat'),
-            'penyakit'      => $this->request->getPost('penyakit'),
-            'lingkar'      => $this->request->getPost('lingkar'),
-            'hobi'         => $this->request->getPost('hobi'),
-            'cita_cita'    => $this->request->getPost('cita_cita'),
-            'seri_ijazah'  => $this->request->getPost('seri_ijazah'),
+            'kodepos'  => $this->request->getPost('kodepos'),
 
         ];
         $this->ModelSiswa->edit($data);
@@ -299,14 +293,57 @@ class Siswa extends BaseController
 
         ];
         $this->ModelSiswa->edit($data);
+        return redirect()->to('siswa/edit_periodik/' . $id_siswa);
+        // } else {
+        //     $validation =  \Config\Services::validation();
+        //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
+        // }
+    }
+
+    public function editperiodik($id_siswa)
+    {
+
+
+        $data = [
+            'id_siswa'          => $id_siswa,
+            'maps'              => $this->request->getPost('maps'),
+            'lingkar'           => $this->request->getPost('lingkar'),
+            'no_telp'           => $this->request->getPost('no_telp'),
+            'lingkar'           => $this->request->getPost('lingkar'),
+            'berat'           => $this->request->getPost('berat'),
+            'tinggi'           => $this->request->getPost('tinggi'),
+            'hobi'              => $this->request->getPost('hobi'),
+            'cita_cita'         => $this->request->getPost('cita_cita'),
+            'maps'              => $this->request->getPost('maps'),
+            'seri_ijazah'       => $this->request->getPost('seri_ijazah'),
+            'status_daftar'     => 2
+
+
+        ];
+        $this->ModelSiswa->edit($data);
         return redirect()->to('siswa');
         // } else {
         //     $validation =  \Config\Services::validation();
         //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
         // }
     }
-    //Orangtua
 
+
+
+
+
+    //Orangtua
+    public function edit_periodik($id_siswa)
+    {
+        $data = [
+            'title'     => 'SIAKADINKA',
+            'subtitle'  => 'Update Profile',
+            'menu'      => 'siswa',
+            'submenu' => 'siswa',
+            'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
+        ];
+        return view('siswa/edit_periodik', $data);
+    }
     public function jadwal()
     {
 

@@ -9,10 +9,7 @@
             <div class="card-header bg-light">
                 <h5>Biodata Orang Tua</h5>
             </div>
-            <?= form_open('siswa/editortu/' . $siswa['id_siswa']); ?>
             <div class="card-body">
-                <!-- Ayah -->
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -141,13 +138,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="form-group ">
+        <div class="text-center mb-3">
             <a href="<?= base_url('siswa/edit_profile/' . $siswa['id_siswa']) ?>" class="btn btn-danger"> <i class="fa-solid fa-backward mr-2"></i> Kembali</a>
-            <button type="submit" class="btn btn-primary float-right"> <i class="fa-solid fa-floppy-disk mr-2"></i> Submit</button>
+            <button type="submit" class="btn btn-primary"> <i class="fa-solid fa-floppy-disk mr-2"></i> Submit</button>
         </div>
-
     </div>
 </div>
 
