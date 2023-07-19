@@ -188,6 +188,7 @@ class Peserta extends BaseController
                         'nik'                   => $nik,
                         'id_tingkat'            => $tingkat,
                         'id_ta'                 => $ta['id_ta'],
+                        'status_daftar'         => 1,
                     ];
 
                     $db->table('tbl_siswa')->insert($datasimpan);

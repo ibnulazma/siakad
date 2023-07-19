@@ -245,8 +245,6 @@
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="<?= base_url() ?>/AdminLTE/plugins/chart.js/Chart.min.js"></script>
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/sparklines/sparkline.js"></script>
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>

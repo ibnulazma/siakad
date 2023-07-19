@@ -82,13 +82,13 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td> Kelas <?= $value["tingkat"] ?></td>
 
                             <td class="text-center">
-                                <?php if ($value['status_daftar'] == 0) { ?>
+                                <?php if ($value['status_daftar'] == 1) { ?>
                                     <span class="badge bg-danger  ">belum aktif</span>
 
-                                <?php } else if ($value['status_daftar'] == 1) { ?>
+                                <?php } else if ($value['status_daftar'] == 2) { ?>
                                     <button data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>" class="btn btn-warning btn-xs ">verifikasi</button>
                                     <a href="<?= base_url('peserta/reset/' . $value['id_siswa']) ?>" class="btn btn-danger btn-xs">reset</a>
-                                <?php } else if ($value['status_daftar'] == 2) { ?>
+                                <?php } else if ($value['status_daftar'] == 3) { ?>
                                     <span class="badge bg-success  ">aktif</span>
                                 <?php } ?>
                             </td>
