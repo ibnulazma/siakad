@@ -16,13 +16,14 @@
                 </p>
 
                 <ul class="list-group list-group-unbordered mb-3">
-
-
                     <li class="list-group-item">
                         <?= $guru['telp_guru'] ?></a>
                     </li>
                 </ul>
-                <a href=" #" class="btn btn-primary btn-block"><b>Follow</b></a>
+                <?php if ($guru['walas'] == 1) { ?>
+                    <a href="<?= base_url('pendidik/walas') ?>" class="btn btn-primary btn-block"><b>Rombel</b></a>
+                <?php } elseif ($guru['walas'] == 0) { ?>
+                <?php } ?>
             </div>
         </div>
     </div>

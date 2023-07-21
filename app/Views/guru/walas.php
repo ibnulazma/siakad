@@ -3,6 +3,22 @@
 
 <!-- Main content -->
 
+<?php
+
+use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
+
+$db     = \Config\Database::connect();
+
+
+$guru = $db->table('tbl_guru')
+    ->where('walas', '1')
+    ->get()->getRowArray();
+
+?>
+
+
+
+
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header">
@@ -33,7 +49,6 @@
                             <td class="text-center"><?= $value['no_telp'] ?></td>
                             <td class="text-center"><?= $value['alamat'] ?> RT <?= $value['rt'] ?> / RW <?= $value['rw'] ?></td>
                             <td class="text-center"><?= $value['nama_ibu'] ?></td>
-
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -41,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 
 

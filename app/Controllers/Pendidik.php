@@ -47,7 +47,7 @@ class Pendidik extends BaseController
             'subtitle'      => 'Rombongan Belajar',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
-            'walas' => $this->ModelPendidik->walas($guru['id_guru'])
+            'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
         ];
         return view('guru/walas', $data);
     }

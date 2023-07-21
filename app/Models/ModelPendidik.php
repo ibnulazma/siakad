@@ -31,6 +31,7 @@ class ModelPendidik extends Model
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->where('tbl_kelas.id_guru', $id_guru)
+            ->where('walas', '1')
             ->get()->getResultArray();
     }
 
