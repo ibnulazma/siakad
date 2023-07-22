@@ -49,8 +49,6 @@
                                 <a href="" class="btn btn-success btn-xs"><i class="fas fa-search"></i></a>
                                 <a href="" class="btn btn-danger btn-xs"><i class=" fas fa-trash-alt"></i></a>
                             </td>
-
-
                         </tr>
                     <?php } ?>
                 </tbody>
