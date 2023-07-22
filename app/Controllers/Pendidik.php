@@ -16,13 +16,14 @@ class Pendidik extends BaseController
 
     public function index()
     {
-
+        $guru = $this->ModelPendidik->DataGuru();
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
-            'guru' => $this->ModelPendidik->DataGuru()
+            'guru'          => $guru,
+            'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
         ];
         return view('guru/v_dashboard', $data);
     }
