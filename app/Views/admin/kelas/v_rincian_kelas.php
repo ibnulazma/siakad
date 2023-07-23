@@ -37,14 +37,14 @@
                 echo ' </div>';
             } ?>
 
-            <table class="table table-bordered mt-5">
+            <table class="table table-bordered mt-5" width="100%">
                 <thead>
-                    <tr class="bg-primary" width="100%">
+                    <tr class="bg-primary">
                         <th class="text-center" width="20px">#</th>
-                        <th class="text-center">NISN</th>
+                        <th class="text-center" width="20px">NISN</th>
                         <th>Nama Peserta Didik</th>
                         <th>Jenis Kelamin</th>
-                        <th width="20%">Aksi</th>
+                        <th width="20%" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,14 +58,9 @@
                             <td><?= $value['jenis_kelamin'] ?></td>
                             <td>
                                 <div class="text-center">
-
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detail<?= $value['id_siswa'] ?>">
-                                        Launch demo modal
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detail<?= $value['id_siswa'] ?>">
+                                        <i class="fas fa-book"></i>
                                     </button>
-
-
-
-                                    <a href="<?= base_url('kelas/bukuinduk/' . $value['id_siswa']) ?>" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
                                     <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                 </div>
                             </td>
@@ -111,7 +106,7 @@
                                     <td><?= $no++ ?></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
-                                    <td><?= $value['tingkat'] ?></td>
+                                    <td></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
                                     <td>
                                         <a href="<?= base_url('kelas/addanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>
@@ -132,7 +127,7 @@
 
 
 
-
+<!-- Buku Induk -->
 
 <?php foreach ($datasiswa as $key => $value) { ?>
 
@@ -495,7 +490,7 @@
 
 
 
-<!-- Edit -->
+<!-- AkhirBukuInduk -->
 
 
 

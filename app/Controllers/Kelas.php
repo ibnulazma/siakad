@@ -119,19 +119,10 @@ class Kelas extends BaseController
         $data = [
             'title'     => 'SIAKAD',
             'menu'      => 'akademik',
-            'submenu'       => 'kelas',
+            'submenu'   => 'kelas',
             'subtitle'  => 'Profil Siswa',
             'siswa'     => $this->ModelKelas->DataPeserta($id_siswa)
         ];
         return view('admin/kelas/v_detail_siswa', $data);
-    }
-
-    public function bukuinduk($id_siswa)
-
-    {
-        $data = [
-            'siswa'     => $this->ModelKelas->BukuInduk($id_siswa)
-        ];
-        return view('admin/kelas/buku_induk', $data);
     }
 }
