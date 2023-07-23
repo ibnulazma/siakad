@@ -216,10 +216,6 @@ class Peserta extends BaseController
         $data = [
             'id_siswa'      => $id_siswa,
             'nama_siswa'    => $this->request->getPost('nama_siswa'),
-            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
-            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-            'nisn'          => $this->request->getPost('nisn'),
-            'seri_ijazah'   => $this->request->getPost('seri_ijazah'),
             'id_kelas'      => $this->request->getPost('id_kelas'),
             'status_daftar' => 3,
         ];

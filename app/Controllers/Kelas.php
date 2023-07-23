@@ -28,6 +28,7 @@ class Kelas extends BaseController
             'kelas'         => $this->ModelKelas->AllData(),
             'guru'          => $this->ModelGuru->AllData(),
             'tingkat'         => $this->ModelKelas->Tingkat(),
+
         ];
         return view('admin/kelas/v_rombel', $data);
     }
@@ -48,6 +49,8 @@ class Kelas extends BaseController
     {
         $data = [
             'id_kelas'  => $id_kelas,
+            'id_guru'     => $this->request->getPost('id_guru'),
+            'id_tingkat'     => $this->request->getPost('id_tingkat'),
             'kelas'     => $this->request->getPost('kelas'),
         ];
         $this->ModelKelas->edit($data);
@@ -110,16 +113,14 @@ class Kelas extends BaseController
     }
 
 
-
-
     public function detail_siswa($id_siswa)
     {
 
         $data = [
-            'title' => 'SIAKAD',
-            'menu'          => 'akademik',
+            'title'     => 'SIAKAD',
+            'menu'      => 'akademik',
             'submenu'       => 'kelas',
-            'subtitle' => 'Profil Siswa',
+            'subtitle'  => 'Profil Siswa',
             'siswa'     => $this->ModelKelas->DataPeserta($id_siswa)
         ];
         return view('admin/kelas/v_detail_siswa', $data);

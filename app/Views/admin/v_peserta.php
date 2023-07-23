@@ -191,114 +191,88 @@ if (!empty($session->getFlashdata('sukses'))) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Nama Siswa</label>
-                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>" readonly>
+                    <div class="form-group">
+                        <label for="">Nama Siswa</label>
+                        <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Kelas</label>
+                        <select name="id_kelas" id="" class="form-control">
+                            <option value="">--Pilih Kelas--</option>
+                            <?php foreach ($kelas as $row) { ?>
+                                <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
+                            <?php }  ?>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
+                    </div>
+                </div>
+                <?php echo form_close() ?>
+            </div>
+        </div>
+    <?php } ?>
+
+
+
+
+
+    <!-- Editbiodata -->
+    <?php foreach ($siswa as $key => $value) { ?>
+        <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <?php echo form_open('peserta/editbiodata/' . $value['id_siswa']); ?>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Biodata <?= $value['tingkat'] ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Nama Siswa</label>
+                                    <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tempat Lahir</label>
+                                    <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tanggal Lahir</label>
+                                    <input type="text" class="form-control" name="tanggal_lahir" value="<?= $value['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tanggal Lahir</label>
-                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d M Y', strtotime($value['tanggal_lahir'])) ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Nama Ayah</label>
-                                <input type="text" class="form-control" name="nama_ayah" value="<?= $value['nama_ayah'] ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">NISN</label>
-                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">No Seri Ijazah</label>
-                                <input type="text" class="form-control" name="seri_ijazah" value="<?= $value['seri_ijazah'] ?>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Kelas</label>
-                                <select name="id_kelas" id="" class="form-control">
-                                    <option value="">--Pilih Kelas--</option>
-                                    <?php foreach ($kelas as $row) { ?>
-                                        <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
-                                    <?php }  ?>
-                                </select>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="">Nama Ibu</label>
+                                    <input type="text" class="form-control" name="nama_ibu" value="<?= $value['nama_ibu'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Username/NISN</label>
+                                    <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            <?php echo form_close() ?>
-        </div>
-    </div>
-<?php } ?>
-
-
-
-
-
-<!-- Editbiodata -->
-<?php foreach ($siswa as $key => $value) { ?>
-    <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <?php echo form_open('peserta/editbiodata/' . $value['id_siswa']); ?>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Biodata <?= $value['tingkat'] ?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Nama Siswa</label>
-                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tanggal Lahir</label>
-                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= $value['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label for="">Nama Ibu</label>
-                                <input type="text" class="form-control" name="nama_ibu" value="<?= $value['nama_ibu'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Username/NISN</label>
-                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>">
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
-                </div>
+                <?php echo form_close() ?>
             </div>
-            <?php echo form_close() ?>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>
 
 
 
 
 
 
-<?= $this->endSection() ?>
+    <?= $this->endSection() ?>

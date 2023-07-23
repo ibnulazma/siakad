@@ -119,7 +119,7 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_siswa')
             ->where('id_kelas', $id_kelas)
-            ->where('jenis_kelamin', 'Laki-laki')
+            // ->where('jenis_kelamin', 'Laki-laki')
             ->countAllResults();
     }
 
