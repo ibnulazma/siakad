@@ -95,7 +95,8 @@ if (!empty($session->getFlashdata('sukses'))) {
 
                             <td class="text-center">
                                 <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
-                                <button class="btn btn-xs btn-danger"> <i class="fas fa-trash-alt"></i></button>
+                                <a class="btn btn-xs btn-info" href=""> <i class="fas fa-book"></i> </a>
+
                             </td>
                         </tr>
                     <?php } ?>

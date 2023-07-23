@@ -17,7 +17,7 @@
 
                             <h3 class="timeline-header">Login Ke Aplikasi</h3>
                             <div class="timeline-body">
-                                Untuk login ke aplikasi silahkan isikan NISN (Nomor Induk Siswa Nasional) yang tertera di Ijazah SD. Apabila tidak bisa silahkan hubungi bagian Admin SIAKAD INKA. Dan Password defaultnya "Kamil123"
+                                Untuk login ke aplikasi silahkan isikan NISN (Nomor Induk Siswa Nasional) yang tertera di Ijazah SD/MI. Apabila tidak bisa silahkan hubungi bagian Admin SIAKAD INKA. Dan Password defaultnya "Kamil123"
                             </div>
                         </div>
                     </div>
@@ -33,8 +33,7 @@
                         <div class="timeline-item">
                             <h3 class="timeline-header">Verifikasi Selesai</h3>
                             <div class="timeline-body">
-                                Silahkan menunggu verifikasi dari Admin dengan persyaratan Melunasi Pembayaran dan Fotocopy Berkas (Ijazah dan KK) @ 1 lembar.
-                                Peserta didik atau orang tua bisa melihat presensi kehadiran, nilai dan sikap selama KBM di SMPS INSAN KAMIL
+                                Silahkan menunggu verifikasi data dari Admin dengan persyaratan memberikan Fotocopy Ijazah dan Kartu Keluarga masing-masing 1 lembar.
                             </div>
                         </div>
                     </div>
@@ -76,6 +75,13 @@
                         <?= $validation->getError('username'); ?>
                     </div>
                 </div>
+
+                <div class=" mb-2">
+                    <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="Show" placeholder="Password" name="password" value="<?= old('password') ?>">
+                    <div class=" invalid-feedback">
+                        <?= $validation->getError('password'); ?>
+                    </div>
+                </div>
                 <div class="mb-4">
                     <select name="level" id="" class="form-control <?= ($validation->hasError('level')) ? 'is-invalid' : ''; ?>">
                         <option value="">--Pilih Level--</option>
@@ -86,12 +92,6 @@
                     </select>
                     <div class=" invalid-feedback">
                         <?= $validation->getError('level'); ?>
-                    </div>
-                </div>
-                <div class=" mb-2">
-                    <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="Show" placeholder="Password" name="password" value="<?= old('password') ?>">
-                    <div class=" invalid-feedback">
-                        <?= $validation->getError('password'); ?>
                     </div>
                 </div>
                 <div class="mb-3">

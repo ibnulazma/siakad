@@ -17,7 +17,7 @@
                         <th class="text-center">Kelas</th>
                         <th class="text-center">Nama Wali Kelas</th>
                         <th class="text-center">Tingkat</th>
-                        <th class="text-center">Detail</th>
+
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -26,7 +26,6 @@
                     <?php
                     $no = 1;
                     foreach ($kelas as $key => $value) {
-
                     ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
@@ -34,11 +33,9 @@
                             <td class="text-center"><?= $value['nama_guru'] ?></td>
                             <td class="text-center"><?= $value['tingkat'] ?></td>
 
-                            <td class="text-center">
+                            <td>
                                 <a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i></a>
                                 <a href="<?= base_url('kelas/rincian_jadwal/' . $value['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-calendar"></i></a>
-                            </td>
-                            <td>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $value['id_kelas'] ?>"><i class="fas fa-trash"></i></button>
 
                             </td>

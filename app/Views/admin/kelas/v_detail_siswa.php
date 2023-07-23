@@ -1,7 +1,3 @@
-<?= $this->extend('template/template-backend') ?>
-<?= $this->section('content') ?>
-
-
 <div class="row">
     <div class="col-lg-4">
         <div class=" card">

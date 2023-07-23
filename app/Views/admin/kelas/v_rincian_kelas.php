@@ -57,8 +57,10 @@
                             <td><?= $value['nama_siswa'] ?></td>
                             <td><?= $value['jenis_kelamin'] ?></td>
                             <td>
-
-                                <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                <div class="text-center">
+                                    <a href="<?= base_url('kelas/bukuinduk/' . $value['id_siswa']) ?>" class="btn btn-info btn-sm"><i class="fas fa-book"></i></a>
+                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                </div>
                             </td>
                         </tr>
                     <?php } ?>

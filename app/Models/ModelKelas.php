@@ -176,6 +176,10 @@ class ModelKelas extends Model
     public function BukuInduk($id_siswa)
     {
         return $this->db->table('tbl_siswa')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa')
             ->where('id_siswa', $id_siswa)
             ->get()->getRowArray();
     }

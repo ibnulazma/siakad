@@ -12,6 +12,7 @@ class ModelAuth extends Model
             ->where([
                 'username' => $username,
                 'password' => $password,
+
             ])->get()->getRowArray();
     }
     public function loginsiswa($username, $password)
@@ -20,6 +21,7 @@ class ModelAuth extends Model
             ->where([
                 'nisn' => $username,
                 'password' => $password,
+                'status_daftar' => 1,
             ])->get()->getRowArray();
     }
 
