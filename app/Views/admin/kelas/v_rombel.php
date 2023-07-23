@@ -33,10 +33,12 @@
                             <td class="text-center"><?= $value['nama_guru'] ?></td>
                             <td class="text-center"><?= $value['tingkat'] ?></td>
 
-                            <td>
+                            <td class="text-center">
                                 <a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i></a>
                                 <a href="<?= base_url('kelas/rincian_jadwal/' . $value['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-calendar"></i></a>
-                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $value['id_kelas'] ?>"><i class="fas fa-trash"></i></button>
+                                <a href="<?= base_url('kelas/delete/' . $value['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit<?= $value['id_kelas'] ?>"><i class="fas fa-pencil"></i></button>
 
                             </td>
                         </tr>
@@ -91,6 +93,51 @@
         </div>
     </div>
 </div>
-</div>
+
+
+
+<?php foreach ($kelas as $key => $value) { ?>
+    <div class="modal fade" id="edit<?= $value['id_kelas'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Rombel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= form_open('kelas/edit/' . $value['id_kelas']); ?>
+                    <div class="form-group">
+                        <label for="">Nama Kelas</label>
+                        <input type="text" class="form-control" name="kelas" value="<?= $value['kelas'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Wali Kelas</label>
+                        <select name="id_guru" id="" class="form-control">
+                            <option value="">Pilih Guru</option>
+                            <?php foreach ($guru as $key => $value) { ?>
+                                <option value="<?= $value['id_guru'] ?>"><?= $value['nama_guru'] ?></option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tingkat</label>
+                        <select name="id_tingkat" id="" class="form-control">
+                            <option value="">Pilih Tingkat</option>
+                            <?php foreach ($tingkat as $key => $value) { ?>
+                                <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
+                            <?php  } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary pull-left">Simpan</button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 
 <?= $this->endSection() ?>
