@@ -75,26 +75,28 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center"><?= $value["nisn"] ?></td>
                             <td class="text-center"><?= $value["nik"] ?></td>
                             <td><?= $value["nama_siswa"] ?></td>
-                            <td><?= $value["tempat_lahir"] ?></td>
+                            <td class="text-center"><?= $value["tempat_lahir"] ?></td>
                             <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                             <td><?= $value["nama_ibu"] ?></td>
                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
                             <td> Kelas <?= $value["tingkat"] ?></td>
 
                             <td class="text-center">
-                                <?php if ($value['status_daftar'] == 1) { ?>
-                                    <span class="badge bg-danger  ">belum aktif</span>
+                                <?php if ($value['status_daftar'] <= 0) { ?>
+                                    <span class="badge bg-danger">keluar</span>
 
-                                <?php } else if ($value['status_daftar'] == 2) { ?>
-                                    <button data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>" class="btn btn-warning btn-xs ">verifikasi</button>
+                                <?php } elseif ($value['status_daftar'] == 1) { ?>
+                                    <span class="badge bg-warning">belum aktif</span>
+                                <?php } elseif ($value['status_daftar'] == 2) { ?>
+                                    <button data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>" class="btn btn-info btn-xs ">verifikasi</button>
                                     <a href="<?= base_url('peserta/reset/' . $value['id_siswa']) ?>" class="btn btn-danger btn-xs">reset</a>
-                                <?php } else if ($value['status_daftar'] == 3) { ?>
-                                    <span class="badge bg-success  ">aktif</span>
+                                <?php } elseif ($value['status_daftar'] == 3) { ?>
+                                    <span class="badge bg-success">aktif</span>
                                 <?php } ?>
                             </td>
 
                             <td class="text-center">
-                                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
+                                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
                                 <a class="btn btn-xs btn-info" href=""> <i class="fas fa-book"></i> </a>
 
                             </td>
@@ -135,7 +137,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                         </div>
                         <div class="form-group">
                             <label for="">Tanggal Lahir</label>
-                            <input type="text" class="form-control" name="tanggal_lahir" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                            <input type="text" class="form-control" name="tanggal_lahir" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
                         </div>
                         <div class="form-group">
                             <label for="">NISN</label>
@@ -238,6 +240,65 @@ if (!empty($session->getFlashdata('sukses'))) {
         </div>
     </div>
 <?php } ?>
+
+
+
+
+
+<!-- Editbiodata -->
+<?php foreach ($siswa as $key => $value) { ?>
+    <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <?php echo form_open('peserta/editbiodata/' . $value['id_siswa']); ?>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Biodata <?= $value['tingkat'] ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nama Siswa</label>
+                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tempat Lahir</label>
+                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tanggal Lahir</label>
+                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= $value['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="">Nama Ibu</label>
+                                <input type="text" class="form-control" name="nama_ibu" value="<?= $value['nama_ibu'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Username/NISN</label>
+                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
+                </div>
+            </div>
+            <?php echo form_close() ?>
+        </div>
+    </div>
+<?php } ?>
+
+
+
+
 
 
 <?= $this->endSection() ?>

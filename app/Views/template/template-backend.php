@@ -343,6 +343,10 @@
             $('#datemask2').inputmask('mm/dd/yyyy', {
                 'placeholder': 'mm/dd/yyyy'
             })
+
+            $('#datemask3').inputmask('yyyy/mm/dd', {
+                'placeholder': 'yyyy/mmmm/dd'
+            })
             //Money Euro
             $('[data-mask]').inputmask()
 

@@ -227,4 +227,20 @@ class Peserta extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
         return redirect()->to(base_url('peserta'));
     }
+
+
+    public function editbiodata($id_siswa)
+    {
+        $data = [
+            'id_siswa'      => $id_siswa,
+            'nama_siswa'    => $this->request->getPost('nama_siswa'),
+            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'nisn'          => $this->request->getPost('nisn'),
+            'nama_ibu'   => $this->request->getPost('nama_ibu'),
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
+        return redirect()->to(base_url('peserta'));
+    }
 }
