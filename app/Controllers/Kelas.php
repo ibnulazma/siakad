@@ -95,6 +95,7 @@ class Kelas extends BaseController
         $data = [
             'id_siswa' => $id_siswa,
             'id_kelas' => $id_kelas,
+            'status_daftar' => 3,
         ];
         $this->ModelKelas->add_data($data);
         session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');

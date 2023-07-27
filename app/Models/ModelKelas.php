@@ -93,7 +93,8 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_kelas')
             // ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_kelas.id_tingkat')
-            // ->where('tbl_kelas.id_tingkat',)
+            // ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_siswa.id_tingkat')
+            // ->where('id_tingkat')
             ->orderBy('kelas', 'DESC')
             ->get()
             ->getResultArray();
@@ -174,7 +175,6 @@ class ModelKelas extends Model
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('id_siswa', $id_siswa)
             ->where('id_siswa', $id_siswa)
             ->get()->getRowArray();
     }

@@ -106,7 +106,7 @@ class Peserta extends BaseController
             'subtitle' => 'Profil Siswa',
             'menu'      => 'akademik',
             'submenu'      => 'peserta',
-            'siswa'     => $this->ModelKelas->DataPeserta($id_siswa)
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
         ];
         return view('admin/kelas/v_detail_siswa', $data);
     }

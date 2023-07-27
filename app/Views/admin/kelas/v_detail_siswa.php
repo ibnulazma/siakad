@@ -17,8 +17,8 @@
                     <?php  } ?>
 
                 </div>
-                <h3 class="profile-username text-center"><?= session()->get('nama') ?></h3>
-                <p class="text-muted text-center">(<?= session()->get('username') ?>)
+                <h3 class="profile-username text-center"><?= $siswa['nama_siswa'] ?></h3>
+                <p class="text-muted text-center">(<?= $siswa['nisn'] ?> / <?= $siswa['nis'] ?>)
                 </p>
 
                 <ul class="list-group  mb-3">
@@ -76,7 +76,7 @@
                 </p>
                 <p> Desa/Kel. <?= $siswa['desa'] ?> Kecamatan <?= $siswa['nama_kecamatan'] ?></p>
                 <p>Kab/Kota <?= $siswa['city_name'] ?> Provinsi <?= $siswa['prov_name'] ?></p>
-                <p><a href="<?= $siswa['maps'] ?>">Alamat Rumah Sesuai Maps</a></p>
+                <p><a href="<?= $siswa['maps'] ?>" target="_blank">Alamat Rumah Sesuai Maps</a></p>
             </div>
         </div>
     </div>
