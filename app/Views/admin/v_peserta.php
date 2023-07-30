@@ -35,7 +35,7 @@ if (!empty($session->getFlashdata('sukses'))) {
     <div class="col-md-7">
         <div class="input-group-append">
             <button class="input-group-text bg-success mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
-            <button class="input-group-text bg-warning mb-3"> <i class="fas fa-print mr-2"></i> Print</button>
+            <button class="input-group-text bg-danger mb-3" id="delete-selected"> <i class="fas fa-trash-alt mr-2"></i> Hapus Banyak</button>
         </div>
 
     </div>
@@ -53,6 +53,9 @@ if (!empty($session->getFlashdata('sukses'))) {
             <table class="table table-bordered" id="example2">
                 <thead>
                     <tr class="text-center">
+                        <th>
+                            <input type="checkbox">
+                        </th>
                         <th>#</th>
                         <th>NISN</th>
                         <th>NIK</th>
@@ -71,6 +74,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                     <?php $no = 1;
                     foreach ($siswa as $key => $value) { ?>
                         <tr>
+
                             <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
                             <td class="text-center"><?= $value["nisn"] ?></td>
                             <td class="text-center"><?= $value["nik"] ?></td>
@@ -95,8 +99,8 @@ if (!empty($session->getFlashdata('sukses'))) {
                             </td>
                             <td class="text-center">
                                 <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
+                                <form action="/peserta/<?= $value['id_siswa'] ?>" method="post"></form>
                                 <a class="btn btn-xs btn-info" href=""> <i class="fas fa-book"></i> </a>
-
                             </td>
                         </tr>
                     <?php } ?>
@@ -214,9 +218,6 @@ if (!empty($session->getFlashdata('sukses'))) {
 <?php } ?>
 
 
-
-
-
 <!-- Editbiodata -->
 <?php foreach ($siswa as $key => $value) { ?>
     <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -267,6 +268,10 @@ if (!empty($session->getFlashdata('sukses'))) {
         </div>
     </div>
 <?php } ?>
+
+
+
+
 
 
 

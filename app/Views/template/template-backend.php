@@ -452,33 +452,7 @@
 
 
 
-    <!-- <script>
-        $(document).ready(function() {
-            $('.formsimpan').submit(function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    type: "post",
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    dataType: "json",
-                    beforeSend: function() {
-                        $('.tombolSimpan').prop('disabled', false);
-                        $('.tombolSimpan').html('Simpan');
-
-                    },
-                    success: function(response) {
-
-                    },
-                    error: function(xhr, thrownError) {
-                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                    }
-                });
-                return false;
-            });
-
-        });
-    </script> -->
+ 
 
     <!-- <script>
         $(function() {
