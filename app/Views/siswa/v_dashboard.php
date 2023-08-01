@@ -13,7 +13,7 @@
         <?php  } else if ($siswa['status_daftar'] == 2) { ?>
 
             <div class="callout callout-warning">
-                <h5>Hi <b><?= $siswa['nama_siswa'] ?></b></h5>
+                <h5>Hi <b><?= $siswa['nama_siswa'] ?></b> terima kasih telah melakukan update data.</h5>
                 <h5> Data Anda Sedang Kami Verifikasi. <i class="fa-solid fa-rotate-right fa-spin"></i></h5>
             </div>
 
@@ -21,7 +21,7 @@
         <?php  } else if ($siswa['status_daftar'] == 3) { ?>
 
             <div class="callout callout-success">
-                <h5>Hi <b><?= $siswa['nama_siswa'] ?></b></h5>
+                <h5>Hi <b><?= $siswa['nama_siswa'] ?> </b></h5>
                 <h5> Data Anda Telah Aktif. <i class="fa-solid fa-circle-check fa-beat" style="color: #17e614;"></i></h5>
             </div>
 

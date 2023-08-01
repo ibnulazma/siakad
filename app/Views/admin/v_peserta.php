@@ -64,7 +64,6 @@ if (!empty($session->getFlashdata('sukses'))) {
                         <th>Tanggal Lahir</th>
                         <th>Ibu Kandung</th>
                         <th>Jenis Kelamin</th>
-                        <th>Tingkat</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -83,7 +82,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                             <td><?= $value["nama_ibu"] ?></td>
                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-                            <td> Kelas <?= $value["tingkat"] ?></td>
+                            <td> </td>
 
                             <td class="text-center">
                                 <?php if ($value['status_daftar'] <= 0) { ?>
@@ -99,8 +98,8 @@ if (!empty($session->getFlashdata('sukses'))) {
                             </td>
                             <td class="text-center">
                                 <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
-                                <form action="/peserta/<?= $value['id_siswa'] ?>" method="post"></form>
-                                <a class="btn btn-xs btn-info" href=""> <i class="fas fa-book"></i> </a>
+
+                                <a class="btn btn-xs btn-info" href="/peserta/<?= $value['slug']; ?>"> <i class="fas fa-book"></i> </a>
                             </td>
                         </tr>
                     <?php } ?>

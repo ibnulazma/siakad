@@ -21,7 +21,7 @@ class ModelAuth extends Model
             ->where([
                 'nisn' => $username,
                 'password' => $password,
-                'status_daftar' => 1,
+                'aktif' => 1,
             ])->get()->getRowArray();
     }
 

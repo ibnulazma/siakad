@@ -98,17 +98,17 @@ class Peserta extends BaseController
     }
 
 
-    public function detail_siswa($id_siswa)
+    public function detail($slug)
     {
-
-        $data = [
-            'title' => 'SIAKAD',
-            'subtitle' => 'Profil Siswa',
-            'menu'      => 'akademik',
-            'submenu'      => 'peserta',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
-        ];
-        return view('admin/kelas/v_detail_siswa', $data);
+        echo $slug;
+        // $data = [
+        //     'title' => 'SIAKAD',
+        //     'subtitle' => 'Profil Siswa',
+        //     'menu'      => 'akademik',
+        //     'submenu'      => 'peserta',
+        //     'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        // ];
+        // return view('admin/kelas/v_detail_siswa', $data);
     }
 
     public function upload()

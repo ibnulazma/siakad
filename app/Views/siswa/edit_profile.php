@@ -16,27 +16,27 @@
             <div class="col-md-4">
                 <div class="form-group ">
                     <label for="">Nama Lengkap</label>
-                    <input type="text" class="form-control " name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>" required>
+                    <input type="text" class="form-control-plaintext " name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>" required>
                 </div>
                 <div class="form-group ">
                     <label for="">Jenis Kelamin</label>
-                    <input type="text" class="form-control" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>" required>
+                    <input type="text" class="form-control-plaintext" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>" required>
                 </div>
                 <div class="form-group ">
                     <label for="inputAddress2">NISN</label>
-                    <input type="text" class="form-control" name="nisn" value="<?= $siswa['nisn'] ?>" readonly>
+                    <input type="text" class="form-control-plaintext" name="nisn" value="<?= $siswa['nisn'] ?>">
                 </div>
                 <div class="form-group ">
                     <label for="inputAddress2">NIK</label>
-                    <input type="text" class="form-control" name="nik" value="<?= $siswa['nik'] ?>" readonly>
+                    <input type="text" class="form-control-plaintext" name="nik" value="<?= $siswa['nik'] ?>">
                 </div>
                 <div class="form-group ">
                     <label for="inputAddress">Tempat Lahir</label>
-                    <input type="text" class="form-control" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>" required>
+                    <input type="text" class="form-control-plaintext" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress2">Tanggal Lahir</label>
-                    <input type="text" class="form-control" name="tanggal_lahir" value="<?= date('d/m/Y', strtotime($siswa['tanggal_lahir'])) ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    <input type="text" class="form-control-plaintext" name="tanggal_lahir" value="<?= $siswa['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
                 </div>
             </div>
             <div class="col-md-4">

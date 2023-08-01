@@ -36,8 +36,6 @@ class Siswa extends BaseController
     {
         session();
 
-
-        $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',
             'subtitle'  => 'Dashboard',
@@ -45,7 +43,7 @@ class Siswa extends BaseController
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
             // 'absen'         => $this->ModelSiswa->DataAbsen($mhs['id_siswa']),
-            'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
+            // 'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
 
         ];
         return view('siswa/v_dashboard', $data);
@@ -97,121 +95,6 @@ class Siswa extends BaseController
 
     public function edit_siswa($id_siswa)
     {
-        // if ($this->validate([
-        //     'nama_siswa' => [
-        //         'label' => 'Nama Siswa',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'tempat_lahir' => [
-        //         'label' => 'Tempat Lahir',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'tanggal_lahir' => [
-        //         'label' => 'Tanggal Lahir',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'alamat' => [
-        //         'label' => 'Alamat',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     // 'provinsi' => [
-        //     //     'label' => 'Provinsi',
-        //     //     'rules' => 'required',
-        //     //     'errors' => [
-        //     //         'required' => '{field} harus dipilih'
-        //     //     ]
-        //     // ],
-        //     // 'kabupaten' => [
-        //     //     'label' => 'Kabupaten',
-        //     //     'rules' => 'required',
-        //     //     'errors' => [
-        //     //         'required' => '{field} harus pilih'
-        //     //     ]
-        //     // ],
-        //     // 'kecamatan' => [
-        //     //     'label' => 'Kecamatan',
-        //     //     'rules' => 'required',
-        //     //     'errors' => [
-        //     //         'required' => '{field} harus diisi'
-        //     //     ]
-        //     // ],
-        //     // 'desa' => [
-        //     //     'label' => 'Desa/Kel',
-        //     //     'rules' => 'required',
-        //     //     'errors' => [
-        //     //         'required' => '{field} harus dipilih'
-        //     //     ]
-        //     // ],
-        //     'no_telp' => [
-        //         'label' => 'No Telp',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-
-        //     'kip' => [
-        //         'label' => 'Pilih Punya KIP',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'tinggi' => [
-        //         'label' => 'Tinggi Badan',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'berat' => [
-        //         'label' => 'Berat',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'penyakit' => [
-        //         'label' => 'Penyakit',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'tinggal' => [
-        //         'label' => 'Tinggal',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'transportasi' => [
-        //         'label' => 'Transportasi',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        //     'anak_ke' => [
-        //         'label' => 'Anak Ke',
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => '{field} harus diisi'
-        //         ]
-        //     ],
-        // ])) {
 
         $data = [
             'id_siswa'       => $id_siswa,
@@ -221,7 +104,6 @@ class Siswa extends BaseController
             'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
             'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
             'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-            'no_telp'       => $this->request->getPost('no_telp'),
             'no_kip'        => $this->request->getPost('no_kip'),
             'kip'           => $this->request->getPost('kip'),
             'anak_ke'       => $this->request->getPost('anak_ke'),
@@ -271,7 +153,6 @@ class Siswa extends BaseController
     public function editortu($id_siswa)
     {
 
-
         $data = [
             'id_siswa'          => $id_siswa,
             'nama_ayah'         => $this->request->getPost('nama_ayah'),
@@ -288,9 +169,6 @@ class Siswa extends BaseController
             'nik_ayah'          => $this->request->getPost('nik_ayah'),
             'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
             'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
-            'status_daftar'     => 1
-
-
         ];
         $this->ModelSiswa->edit($data);
         return redirect()->to('siswa/edit_periodik/' . $id_siswa);
@@ -308,7 +186,7 @@ class Siswa extends BaseController
             'id_siswa'          => $id_siswa,
             'maps'              => $this->request->getPost('maps'),
             'lingkar'           => $this->request->getPost('lingkar'),
-            'no_telp'           => $this->request->getPost('no_telp'),
+            'telp_anak'           => $this->request->getPost('telp_anak'),
             'lingkar'           => $this->request->getPost('lingkar'),
             'berat'           => $this->request->getPost('berat'),
             'tinggi'           => $this->request->getPost('tinggi'),
@@ -327,11 +205,6 @@ class Siswa extends BaseController
         //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
         // }
     }
-
-
-
-
-
     //Orangtua
     public function edit_periodik($id_siswa)
     {

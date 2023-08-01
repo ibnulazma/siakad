@@ -2,11 +2,8 @@
 <?= $this->section('content') ?>
 
 <?php if ($siswa['status_daftar'] == 1) { ?>
-
-
     <form action="<?= base_url('siswa/editperiodik/' . $siswa['id_siswa']) ?>" id="quickForm" method="post">
-
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-light">
@@ -17,7 +14,7 @@
                     <div class="card-body">
                         <div class="form-group ">
                             <label for="">No Hp</label>
-                            <input type="text" class="form-control " name="no_telp" value="<?= $siswa['no_telp'] ?>" required>
+                            <input type="text" class="form-control " name="telp_anak" value="<?= $siswa['telp_anak'] ?>" required>
                         </div>
                         <div class="form-group ">
                             <label for="">Maps</label>
@@ -74,27 +71,19 @@
 
                     </div>
                 </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                    <label class="form-check-label" for="exampleCheck1"><strong>Dengan ini saya menyatakan data yang saya input sudah benar.</strong></label>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-            <label class="form-check-label" for="exampleCheck1"><strong>Dengan ini saya menyatakan data yang saya input sudah benar.</strong></label>
         </div>
         <div class="text-center mb-3">
             <a href="<?= base_url('siswa/edit_orangtua/' . $siswa['id_siswa']) ?>" class="btn btn-danger"> <i class="fa-solid fa-backward mr-2"></i> Kembali</a>
             <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-floppy-disk mr-2"></i>Submit</button>
         </div>
+
     </form>
-
-
-
-
-
-<?php  } else if ($siswa['status_daftar'] == 2) { ?>
-
-
-
-<?php } ?>
+<?php  } ?>
 
 
 
