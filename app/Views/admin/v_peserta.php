@@ -99,7 +99,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center">
                                 <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
 
-                                <a class="btn btn-xs btn-info" href="/peserta/<?= $value['slug']; ?>"> <i class="fas fa-book"></i> </a>
+                                <a class="btn btn-xs btn-info" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
                             </td>
                         </tr>
                     <?php } ?>

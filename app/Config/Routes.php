@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
 
-$routes->get('/peserta/(:segment)', 'Peserta::detail/$1');
+// $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');
 
 /*
  * --------------------------------------------------------------------

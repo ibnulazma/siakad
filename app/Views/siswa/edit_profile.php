@@ -16,11 +16,11 @@
             <div class="col-md-4">
                 <div class="form-group ">
                     <label for="">Nama Lengkap</label>
-                    <input type="text" class="form-control-plaintext " name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>" required>
+                    <input type="text" class="form-control-plaintext " name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>">
                 </div>
                 <div class="form-group ">
                     <label for="">Jenis Kelamin</label>
-                    <input type="text" class="form-control-plaintext" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>" required>
+                    <input type="text" class="form-control-plaintext" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>">
                 </div>
                 <div class="form-group ">
                     <label for="inputAddress2">NISN</label>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group ">
                     <label for="inputAddress">Tempat Lahir</label>
-                    <input type="text" class="form-control-plaintext" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>" required>
+                    <input type="text" class="form-control-plaintext" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
                 </div>
                 <div class="form-group">
                     <label for="inputAddress2">Tanggal Lahir</label>

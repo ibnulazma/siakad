@@ -3,6 +3,33 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="row">
     <div class="col-lg-4">
         <div class=" card">
@@ -119,7 +146,7 @@
                                         <span> Jenis Tinggal: <?= $siswa['tinggal'] ?></span>
                                     </li>
                                     <li class="list-group-item">
-                                        <span> Telpn/Hp: <?= $siswa['no_telp'] ?> </span>
+                                        <span> Telpn/Hp: <?= $siswa['telp_anak'] ?> </span>
                                     </li>
                                 </ul>
                             </div>

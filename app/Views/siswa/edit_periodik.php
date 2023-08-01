@@ -68,6 +68,10 @@
                             <label for="">Lingkar Kepala (cm)</label>
                             <input type="text" class="form-control " name="lingkar" value="<?= $siswa['lingkar'] ?>" required>
                         </div>
+                        <div class="form-group ">
+                            <label for="">Jumlah Saudara Kandung</label>
+                            <input type="text" class="form-control " name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>" required>
+                        </div>
 
                     </div>
                 </div>
