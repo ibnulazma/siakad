@@ -78,6 +78,13 @@ $ta = $db->table('tbl_ta')
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<?php
+
+foreach ($datatahun->getResult() as $row) {
+    $thun[] = $row->ta;
+    $jmlah[] = $row->jumlah;
+}
+?>
 <script>
     const ctx = document.getElementById('dognut');
 
@@ -86,8 +93,8 @@ $ta = $db->table('tbl_ta')
         data: {
             labels: ['Aktif', ' Belum Aktif'],
             datasets: [{
-                label: '# of Votes',
-                data: [30, 30],
+                label: '',
+                data: [<?= json_encode($jumlahaktif) ?>, <?= json_encode($jumlahtidakaktif) ?>],
                 backgroundColor: [
                     'rgb(54, 162, 235)',
                     'rgb(255, 99, 132)',
@@ -107,27 +114,27 @@ $ta = $db->table('tbl_ta')
     new Chart(abc, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: <?= json_encode($thun) ?>,
             datasets: [{
-                label: '#Aktif',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '#Data Siswa Berdasarkan Tahun Ajaran <?= json_encode($thun) ?>',
+                data: <?= json_encode($jmlah) ?>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
+                    // 'rgba(255, 205, 86, 0.2)',
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(54, 162, 235, 0.2)',
+                    // 'rgba(153, 102, 255, 0.2)',
+                    // 'rgba(201, 203, 207, 0.2)'
                 ],
                 borderColor: [
                     'rgb(255, 99, 132)',
                     'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
+                    // 'rgb(255, 205, 86)',
+                    // 'rgb(75, 192, 192)',
+                    // 'rgb(54, 162, 235)',
+                    // 'rgb(153, 102, 255)',
+                    // 'rgb(201, 203, 207)'
                 ],
                 borderWidth: 1,
 

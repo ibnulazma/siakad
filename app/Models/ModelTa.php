@@ -51,9 +51,10 @@ class ModelTa extends Model
 
     public function group_tahun()
     {
-        $builder = $this->db->table('tbl_ppdb');
-        $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_ppdb.id_tahun', 'left');
+        $builder = $this->db->table('tbl_siswa');
+        $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
         $builder->select('ta, COUNT("ta") AS jumlah');
+        $builder->where('status_daftar', '3');
         $builder->groupBy('ta');
         $query = $builder->get();
         return $query;

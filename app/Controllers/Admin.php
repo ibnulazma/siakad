@@ -32,7 +32,7 @@ class Admin extends BaseController
             'submenu'           => 'admin',
             'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
-            // 'datarombel'        => $this->ModelSiswa->group_by()
+            'datatahun'        => $this->ModelTa->group_tahun()
 
         ];
         return view('admin/v_dashboard', $data);
