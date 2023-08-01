@@ -53,9 +53,6 @@ if (!empty($session->getFlashdata('sukses'))) {
             <table class="table table-bordered" id="example2">
                 <thead>
                     <tr class="text-center">
-                        <th>
-                            <input type="checkbox">
-                        </th>
                         <th>#</th>
                         <th>NISN</th>
                         <th>NIK</th>
@@ -82,7 +79,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                             <td><?= $value["nama_ibu"] ?></td>
                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-                            <td> </td>
+
 
                             <td class="text-center">
                                 <?php if ($value['status_daftar'] <= 0) { ?>
