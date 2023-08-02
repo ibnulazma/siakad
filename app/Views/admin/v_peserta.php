@@ -1,6 +1,20 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
 $session = \Config\Services::session();
 if (!empty($session->getFlashdata('pesan'))) {
@@ -50,58 +64,70 @@ if (!empty($session->getFlashdata('sukses'))) {
             </h3>
         </div>
         <div class="card-body">
-            <table class="table table-bordered" id="example2">
-                <thead>
-                    <tr class="text-center">
-                        <th>#</th>
-                        <th>NISN</th>
-                        <th>NIK</th>
-                        <th>Nama Siswa</th>
-                        <th>Tempat Lahir</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Ibu Kandung</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php $no = 1;
-                    foreach ($siswa as $key => $value) { ?>
-                        <tr>
-
-                            <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
-                            <td class="text-center"><?= $value["nisn"] ?></td>
-                            <td class="text-center"><?= $value["nik"] ?></td>
-                            <td><?= $value["nama_siswa"] ?></td>
-                            <td class="text-center"><?= $value["tempat_lahir"] ?></td>
-                            <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
-                            <td><?= $value["nama_ibu"] ?></td>
-                            <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-
-
-                            <td class="text-center">
-                                <?php if ($value['status_daftar'] <= 0) { ?>
-                                    <span class="badge bg-danger">keluar</span>
-
-                                <?php } elseif ($value['status_daftar'] == 1) { ?>
-                                    <span class="badge bg-warning">belum aktif</span>
-                                <?php } elseif ($value['status_daftar'] == 2) { ?>
-                                    <span class="badge bg-info">pilih rombel</span>
-                                <?php } elseif ($value['status_daftar'] == 3) { ?>
-                                    <span class="badge bg-success">aktif</span>
-                                <?php } ?>
-                            </td>
-                            <td class="text-center">
-                                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
-
-                                <a class="btn btn-xs btn-info" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
-                            </td>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="example2">
+                    <thead>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th>NISN</th>
+                            <th>NIK</th>
+                            <th>Nama Siswa</th>
+                            <th>Tempat Lahir</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Ibu Kandung</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                        <?php $no = 1;
+                        foreach ($siswa as $key => $value) { ?>
+                            <tr class="
+                        <?php
+                            $hasil = "Sudah Meninggal";
+                            if ($hasil == $value['kerja_ayah']) { ?>
+                        echo bg-lightblue
+                        <?php } else { ?>
+                            
+                        <?php  } ?>
+
+
+                        ">
+
+                                <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
+                                <td class="text-center"><?= $value["nisn"] ?></td>
+                                <td class="text-center"><?= $value["nik"] ?></td>
+                                <td><?= $value["nama_siswa"] ?></td>
+                                <td class="text-center"><?= $value["tempat_lahir"] ?></td>
+                                <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
+                                <td><?= $value["nama_ibu"] ?></td>
+                                <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
+
+
+                                <td class="text-center">
+                                    <?php if ($value['status_daftar'] <= 0) { ?>
+                                        <span class="badge bg-danger">keluar</span>
+
+                                    <?php } elseif ($value['status_daftar'] == 1) { ?>
+                                        <span class="badge bg-warning">belum aktif</span>
+                                    <?php } elseif ($value['status_daftar'] == 2) { ?>
+                                        <span class="badge bg-info">pilih rombel</span>
+                                    <?php } elseif ($value['status_daftar'] == 3) { ?>
+                                        <span class="badge bg-success">aktif</span>
+                                    <?php } ?>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
+
+                                    <a class="btn btn-xs btn-info" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -46,22 +46,41 @@
 
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Pekerjaan</label>
-                                            <select name="kerja_ayah" id="" class="form-control" required>
-                                                <option value="">Pilih Pekerjaan</option>
-                                                <?php foreach ($kerja as $key => $value) { ?>
-                                                    <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
-                                                <?php } ?>
+                                            <select name="kerja_ayah" class="form-control" id="dropdown" onChange="opsi(this)">
+                                                <option value="">--Pilih Pekerjaan--</option>
+                                                <option value="Pedangang Kecil">Pedangang Kecil</option>
+                                                <option value="Pedangan_Besar">Pedangan Besar</option>
+                                                <option value="Wirausaha">Wirausaha</option>
+                                                <option value="Wiraswasta">Wiraswasta</option>
+                                                <option value="Petani">Petani</option>
+                                                <option value="Buruh">Buruh</option>
+                                                <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
+                                                <option value="Karyawan Swasta">Karyawan Swasta</option>
+                                                <option value="Tidak Bekerja">Tidak Bekerja</option>
+                                                <option value="Sudah Meninggal">Sudah Meninggal</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Penghasilan</label>
-                                            <select name="hasil_ayah" id="" class="form-control" required>
-                                                <option value="">Pilih Penghasilan</option>
-                                                <?php foreach ($hasil as $key => $value) { ?>
-                                                    <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ayah'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
-                                                <?php } ?>
+                                            <select name="hasil_ayah" class="form-control" id="dipilih" required>
+                                                <option value="">--Pilih Penghasilan--</option>
+                                                <option value="Rp. 500.000 - Rp 1 juta">Rp. 500.000 - Rp 1 juta</option>
+                                                <option value="Rp. 1 juta - Rp. 4 juta">Rp. 1 juta - Rp. 4 juta</option>
+                                                <option value="Rp. 4 juta - Rp 10.000">Rp. 4 juta - Rp 10.000</option>
+                                                <option value="Rp. 10 juta lebih">Rp. 10 juta lebih</option>
+                                                <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
                                             </select>
                                         </div>
+
+                                        <!-- <select id="dropdown" style="width:200px;">
+                                            <option value="after" name="aft_qst">After Quest</option>
+                                            <option value="after" name="aft_exm">After Exam</option>
+                                        </select> -->
+
+                                        <input type="checkbox" id="chkdwn2" value="feedback" />
+
+
+
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Telepon/Hp</label>
                                             <input type="text" class="form-control" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" required>
@@ -152,6 +171,28 @@
 
 
 <?php echo form_close() ?>
+
+
+
+
+<script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script>
+    function opsi(value) {
+        var st = $("#dropdown").val();
+        if (st == "Sudah Meninggal") {
+            document.getElementById("dipilih").disabled = true;
+        } else {
+            document.getElementById("dipilih").disabled = false;
+        }
+    }
+</script>
+
+<!-- <script>
+    $("#chkdwn2").change(function() {
+        if (this.checked) $("#dropdown").prop("disabled", true);
+        else $("#dropdown").prop("disabled", false);
+    })
+</script> -->
 
 
 

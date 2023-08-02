@@ -10,6 +10,8 @@ class ModelPeserta extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->where('status', '1')
             ->get()
             ->getResultArray();
     }

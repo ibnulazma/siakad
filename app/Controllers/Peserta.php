@@ -111,6 +111,9 @@ class Peserta extends BaseController
         return view('admin/kelas/v_detail_siswa', $data);
     }
 
+
+
+
     public function upload()
     {
 
@@ -181,14 +184,15 @@ class Peserta extends BaseController
                         'nisn'                  => $nis,
                         'nama_siswa'            => $nama,
                         'jenis_kelamin'         => $jk,
-                        'password'              => $password,
-                        'nama_ibu'              => $nama_ibu,
                         'tempat_lahir'          => $tempat_lahir,
                         'tanggal_lahir'         => $tanggal_lahir,
+                        'nama_ibu'              => $nama_ibu,
                         'nik'                   => $nik,
+                        'password'              => $password,
                         'id_tingkat'            => $tingkat,
                         'id_ta'                 => $ta['id_ta'],
                         'status_daftar'         => 1,
+                        'aktif'                 => 1,
                     ];
 
                     $db->table('tbl_siswa')->insert($datasimpan);

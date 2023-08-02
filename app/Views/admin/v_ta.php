@@ -48,6 +48,10 @@
                             <td class="text-center"><?= $value['ta'] ?></td>
                             <td class="text-center"><?= $value['semester'] ?></td>
                             <td class="text-center"><?= ($value['status'] == 1) ? '<span class="right badge badge-success">Aktif</span>' : '<span class="right badge badge-danger">Non Aktif</span>'  ?></td>
+
+
+
+
                             <td class="text-center"><?php if ($value['status'] == 1) { ?>
                                     <a href="<?= base_url('ta/statusNonaktif/' . $value['id_ta']) ?>" class="btn btn-danger btn-xs ">Non Aktif</a>
 
@@ -59,6 +63,10 @@
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $value['id_ta'] ?>"><i class="fas fa-pencil-alt"></i></button>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $value['id_ta'] ?>"><i class="fas fa-trash"></i></button>
                             </td>
+                            <!-- <td>
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch> 
+                            <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                            </td> -->
                         </tr>
                     <?php } ?>
                 </tbody>

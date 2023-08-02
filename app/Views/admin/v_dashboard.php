@@ -114,9 +114,9 @@ foreach ($datatahun->getResult() as $row) {
     new Chart(abc, {
         type: 'bar',
         data: {
-            labels: <?= json_encode($thun) ?>,
+            labels: [],
             datasets: [{
-                label: '#Data Siswa Berdasarkan Tahun Ajaran <?= json_encode($thun) ?>',
+                label: '#Data Siswa Berdasarkan Tahun Ajaran ',
                 data: <?= json_encode($jmlah) ?>,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

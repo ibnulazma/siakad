@@ -40,7 +40,7 @@ class Guru extends BaseController
                     'required' => '{field} Wajib Di Isi !!!!'
                 ]
             ],
-            'nuptk' => [
+            'niy' => [
                 'label' => 'Email',
                 'rules' => 'required',
                 'errors' => [
@@ -55,29 +55,15 @@ class Guru extends BaseController
                     'required' => '{field} Wajib Di Isi !!!!'
                 ]
             ],
-            'foto' => [
-                'label' => 'Foto',
-                'rules' => 'uploaded[foto]|max_size[foto,1024]|mime_in[foto,image/png,image/jpg,image/gif,image/jpeg,image/ico]',
-                'errors' => [
-                    'uploaded' => '{field} Wajib Di Isi !!!!',
-                    'max_size' => '{field} Max 1024 KB !!!!',
-                    'mime_in' => 'Format {field} Harus PNG, JPG, JPEG, GIF, ICO !!!!'
-                ]
-            ],
+
         ])) {
 
-            //masukan foto ke input
-            $foto = $this->request->getFile('foto');
-
-            //merename 
-            $nama_file = $foto->getRandomName();
-            //jika valid
 
             $data = array(
                 'nama_guru' => $this->request->getPost('nama_guru'),
-                'nuptk'     => $this->request->getPost('nuptk'),
+                'niy'     => $this->request->getPost('niy'),
                 'password'  => $this->request->getPost('password'),
-                'foto'      => $nama_file,
+
             );
 
             $foto->move('foto', $nama_file);
@@ -94,7 +80,11 @@ class Guru extends BaseController
     public function upload()
     {
 
+        $db     = \Config\Database::connect();
 
+        $ta = $db->table('tbl_ta')
+            ->where('status', '1')
+            ->get()->getRowArray();
 
         $validation = \Config\Services::validation();
         $valid = $this->validate(
@@ -137,29 +127,22 @@ class Guru extends BaseController
                     continue;
                 }
 
-                $nuptk              = $row[1];
-                $nik                = $row[2];
-                $nama               = $row[3];
-                $jp                 = $row[4];
-                $username           = $row[5];
-                $password           = $row[6];
-                $status             = $row[7];
+                $niy            = $row[1];
+                $nama           = $row[2];
+                $password       = $row[3];
 
                 $db = \Config\Database::connect();
 
-                $ceknonis = $db->table('tbl_guru')->getWhere(['nuptk' => $nuptk])->getResult();
+                $ceknonis = $db->table('tbl_guru')->getWhere(['niy' => $niy])->getResult();
 
                 if (count($ceknonis) > 0) {
                     $jumlaherror++;
                 } else {
                     $datasimpan = [
-                        'nuptk'                 => $nuptk,
-                        'nik'                   => $nik,
-                        'nama_guru'             => $nama,
-                        'jenis_guru'             => $jp,
-                        'username'              => $username,
+                        'niy'                  => $niy,
+                        'nama_guru'            => $nama,
                         'password'              => $password,
-                        'status_daftar'         => $status,
+                        'id_ta'                 => $ta['id_ta'],
                     ];
 
                     $db->table('tbl_guru')->insert($datasimpan);

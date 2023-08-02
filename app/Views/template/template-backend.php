@@ -394,7 +394,10 @@
             $('#timepicker').datetimepicker({
                 format: 'LT'
             })
-
+            // bootsrapswitch
+            $("input[data-bootstrap-switch]").each(function() {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            })
 
         })
     </script>

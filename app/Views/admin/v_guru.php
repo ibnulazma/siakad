@@ -56,10 +56,8 @@ if (!empty($session->getFlashdata('sukses'))) {
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
-                        <th>NUPTK</th>
-                        <th>NIK</th>
+                        <th>NIY</th>
                         <th>NAMA</th>
-                        <th>JENIS PTK</th>
                         <th>STATUS</th>
                         <th>ACTION</th>
                     </tr>
@@ -70,10 +68,8 @@ if (!empty($session->getFlashdata('sukses'))) {
                     foreach ($guru as $key => $value) { ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
-                            <td class="text-center"><?= $value["nik"] ?></td>
-                            <td class="text-center"><?= $value["nuptk"] ?></td>
+                            <td class="text-center"><?= $value["niy"] ?></td>
                             <td><?= $value["nama_guru"] ?></td>
-                            <td><?= $value["jenis_guru"] ?></td>
                             <td class="text-center">
 
                                 <?php if ($value['status_daftar'] == 0) { ?>
@@ -118,16 +114,12 @@ if (!empty($session->getFlashdata('sukses'))) {
                     <input type="text" class="form-control" name="nama_guru">
                 </div>
                 <div class="form-group">
-                    <label for="">NUPTK</label>
-                    <input type="text" class="form-control" name="nuptk">
+                    <label for="">NIY</label>
+                    <input type="text" class="form-control" name="niy">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
                     <input type="password" class="form-control" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="">Foto</label>
-                    <input type="file" class="form-control" name="foto">
                 </div>
             </div>
             <div class="modal-footer">
