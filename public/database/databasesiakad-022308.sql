@@ -3,7 +3,7 @@
 -- Host: localhost	Database: db_siakad
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.4.22-MariaDB
--- Date: Wed, 02 Aug 2023 21:34:20 +0700
+-- Date: Wed, 02 Aug 2023 21:58:39 +0700
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -637,7 +637,7 @@ CREATE TABLE `tbl_siswa` (
   `maps` text NOT NULL,
   `password` varchar(20) DEFAULT NULL,
   `id_kelas` int(5) DEFAULT NULL,
-  `id_ta` int(11) NOT NULL,
+  `id_ta` int(11) DEFAULT NULL,
   `id_tingkat` int(11) DEFAULT NULL,
   `status_ajuan` int(11) NOT NULL,
   `status_daftar` int(1) NOT NULL,
@@ -818,4 +818,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Wed, 02 Aug 2023 21:34:21 +0700
+-- Dump completed on: Wed, 02 Aug 2023 21:58:39 +0700

@@ -190,4 +190,18 @@ class ModelKelas extends Model
             ->where('id_siswa', $id_siswa)
             ->get()->getRowArray();
     }
+
+    // public function kelas_grup()
+    // {
+    //     $builder = $this->db->table('tbl_siswa');
+    //     $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
+    //     $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left');
+    //     $builder->select('kelas, COUNT("kelas") AS jumlah');
+    //     // $builder->select('jenis_kelamin, COUNT("L") AS jkL');
+    //     // $builder->select('jenis_kelamin, COUNT("P") AS jkP');
+    //     $builder->where('status', '1');
+    //     $builder->groupBy('ta');
+    //     $query = $builder->get();
+    //     return $query;
+    // }
 }

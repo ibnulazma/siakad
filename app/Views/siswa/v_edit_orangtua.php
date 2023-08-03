@@ -72,15 +72,6 @@
                                             </select>
                                         </div>
 
-                                        <!-- <select id="dropdown" style="width:200px;">
-                                            <option value="after" name="aft_qst">After Quest</option>
-                                            <option value="after" name="aft_exm">After Exam</option>
-                                        </select> -->
-
-                                        <input type="checkbox" id="chkdwn2" value="feedback" />
-
-
-
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Telepon/Hp</label>
                                             <input type="text" class="form-control" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" required>

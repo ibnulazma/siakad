@@ -7,6 +7,7 @@ use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
 use App\Models\ModelSiswa;
+
 use Ifsnop\Mysqldump\Mysqldump;
 
 class Admin extends BaseController
@@ -32,7 +33,7 @@ class Admin extends BaseController
             'submenu'           => 'admin',
             'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
-            'datatahun'        => $this->ModelTa->group_tahun()
+            'datatahun'        => $this->ModelTa->group_tahun(),
 
         ];
         return view('admin/v_dashboard', $data);

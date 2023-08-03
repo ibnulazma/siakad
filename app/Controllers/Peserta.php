@@ -252,4 +252,17 @@ class Peserta extends BaseController
         ];
         return view('admin/bukuinduk', $data);
     }
+
+    public function delete($id_siswa)
+    {
+        $db     = \Config\Database::connect();
+
+        $data = [
+            'id_siswa' => $id_siswa,
+        ];
+        $db->table('tbl_siswa')->delete($data);
+
+        session()->setFlashdata('pesan', 'Peserta Didik Berhasil Di Hapus !!!');
+        return redirect()->to(base_url('peserta'));
+    }
 }

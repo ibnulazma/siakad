@@ -3,40 +3,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="row">
     <div class="col-lg-4">
         <div class=" card">
             <div class="card-body box-profile">
                 <div class="text-center">
                     <?php
-                    $gender = "Laki-laki";
+                    $gender = "L";
                     if ($gender == $siswa['jenis_kelamin']) { ?>
                         <img class="profile-user-img img-fluid img-circle" src="<?= base_url('foto/muslim.png') ?>" alt="User profile picture">
                     <?php } else { ?>
