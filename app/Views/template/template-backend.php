@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-
+    <link rel="stylesheet" href="<?= base_url() ?>/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/calendar.css">
 
@@ -138,6 +138,15 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('surat') ?>" class="nav-link <?= $menu == 'surat' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-home"></i>
+                                    <p>
+                                        Surat
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/backup') ?>" class="nav-link">
@@ -225,6 +234,7 @@
             <strong>Design by IbnulWafa</strong> @SIAKADINKA <?= date('Y') ?>
         </footer>
     </div>
+
 
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
