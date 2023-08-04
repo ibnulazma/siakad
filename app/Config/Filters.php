@@ -40,7 +40,7 @@ class Filters extends BaseConfig
             [
                 'except' => [
                     'auth', 'auth/*',
-                    'home', 'home/*',
+
                     '/'
 
                 ]
@@ -49,7 +49,7 @@ class Filters extends BaseConfig
             [
                 'except' => [
                     'auth', 'auth/*',
-                    'home', 'home/*',
+                    // 'home', 'home/*',
                     '/'
 
                 ]

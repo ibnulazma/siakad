@@ -2,11 +2,11 @@
 
 namespace App\Controllers\Api;
 
-use App\Models\Surat;
+use App\Models\Siswa;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
-class Home extends ResourceController
+class Surat extends ResourceController
 {
     use ResponseTrait;
 

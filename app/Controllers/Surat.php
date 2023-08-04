@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\Surat;
+use App\Models\Siswa;
 
-class Home extends BaseController
+class Surat extends BaseController
 {
 
 
     public function index()
     {
-        $model = new Surat();
+        $model = new Siswa();
         $data = $model->findAll();
 
         return view('surat', [
