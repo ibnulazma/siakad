@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
 
-$routes->resource('api/surat', ['controller' => 'Api\Surat']);
+$routes->resource('api/homesiswa', ['controller' => 'Api\Homesiswa']);
 // $routes->get('/', 'Home::index');
 
 // $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');

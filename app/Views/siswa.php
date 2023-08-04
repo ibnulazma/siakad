@@ -68,7 +68,7 @@
                 $('#nisn').val(tbl_siswa.nisn);
                 $('#tempat_lahir').val(tbl_siswa.tempat_lahir);
                 $('#tanggal_lahir').val(tbl_siswa.tanggal_lahir);
-                $('#nama_ibu').val(tbl_siswa.nama_ibu);
+                // $('#nama_ibu').val(tbl_siswa.nama_ibu);
                 // $('#size').val(barang.size);
                 // $('#harga').val(barang.harga);
             });

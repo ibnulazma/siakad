@@ -76,7 +76,7 @@ class Filters extends BaseConfig
                     'ta', 'ta/*',
                     'user', 'user/*',
                     'peserta', 'peserta/*',
-                    'surat', 'surat/*',
+                    'homesiswa', 'homesiswa/*',
 
 
                 ]

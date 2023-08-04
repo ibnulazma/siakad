@@ -11,6 +11,10 @@ class Siswa extends Model
     protected $allowedFields        = [
         'nama_siswa',
         'nisn',
+        'nama_ibu',
+        'nik',
+        'tempat_lahir',
+        'tanggal_lahir',
 
     ];
 }

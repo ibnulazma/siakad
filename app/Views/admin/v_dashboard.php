@@ -1,11 +1,3 @@
-<?php
-$db     = \Config\Database::connect();
-
-$ta = $db->table('tbl_ta')
-    ->where('status', '1')
-    ->get()->getRowArray();
-?>
-
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
@@ -53,8 +45,6 @@ $ta = $db->table('tbl_ta')
             </div>
         </div>
     </div>
-
-
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -154,33 +144,6 @@ foreach ($datatahun->getResult() as $row) {
     });
 </script>
 
-
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Rombel Tahun <?= $ta['ta'] ?></h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Kelas</th>
-                            <th>L</th>
-                            <th>P</th>
-                            <th>Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 
 
