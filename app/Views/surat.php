@@ -7,14 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="<?= base_url() ?>/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="<?= base_url() ?>/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/bootstrap/css/bootstrap.css">
     <script src="<?= base_url() ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
     <title>AJAX</title>
 </head>
 
 <body>
-
-
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -34,10 +31,9 @@
     </div>
 
 
-
     <script>
         $('#nama-siswa').on('change', (event) => {
-            getSiswa(event.target.value).then(tbl_siswa => {
+            getSurat(event.target.value).then(tbl_siswa => {
                 $('#nisn').val(tbl_siswa.nisn);
                 // $('#nama_ibu').val(tbl_siswa.nama_ibu);
                 // $('#size').val(barang.size);
@@ -45,8 +41,8 @@
             });
         });
 
-        async function getSiswa(id) {
-            let response = await fetch('<?= base_url() ?>/api/surat/' + id)
+        async function getSurat(id) {
+            let response = await fetch('/api/surat/' + id)
             let data = await response.json();
 
             return data;
