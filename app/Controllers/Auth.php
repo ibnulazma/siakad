@@ -49,7 +49,6 @@ class Auth extends BaseController
                     'errors' => [
                         'required' => '{field} harus diisi'
                     ]
-
                 ],
             ]
 
@@ -68,7 +67,7 @@ class Auth extends BaseController
                     session()->set('level', $level);
                     return redirect()->to(base_url('admin'));
                 } else {
-                    session()->setFlashdata('error', 'Username or Password is Wrong');
+                    session()->setFlashdata('error', 'Username atau Password Salah');
                     return redirect()->to(base_url('auth'));
                 }
             } elseif ($level == 2) {
@@ -80,7 +79,7 @@ class Auth extends BaseController
                     session()->set('level', $level);
                     return redirect()->to(base_url('pendidik'));
                 } else {
-                    session()->setFlashdata('error', 'Username or Password is Wrong');
+                    session()->setFlashdata('error', 'Username or Password is Salah');
                     return redirect()->to(base_url('auth'));
                 }
             } elseif ($level == 3) {
@@ -92,7 +91,7 @@ class Auth extends BaseController
                     session()->set('level', $level);
                     return redirect()->to(base_url('siswa'));
                 } else {
-                    session()->setFlashdata('error', 'Username or Password is Wrong');
+                    session()->setFlashdata('error', 'Username or Password is Salah');
                     return redirect()->to(base_url('auth'));
                 }
             } elseif ($level == 4) {

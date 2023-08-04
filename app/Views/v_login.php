@@ -1,47 +1,32 @@
-<?= $this->extend('template/template-frontend') ?>
-<?= $this->section('content') ?>
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?= $title ?>| <?= $subtitle ?> </title>
 
 
-<div class="row justify-content-between" style="margin-top: -100px;">
-    <div class="col">
-        <div class="card card-light">
-            <div class="card-header">
-                <h3 class="card-title fw-10"><i class="fa-solid fa-bullhorn"></i> Informasi Tentang SIAKAD</h3>
-            </div>
-            <div class="card-body">
-                <p> Rangkaian kegiatan pembelajaran dari mulai presensi sampai penilaian peserta didik bisa dimonitoring oleh orang tua. Oleh karena itu peserta didik wajib aktif dalam pengupdatetan data secara berkala sesuai dengan arahan Bidang Kurikulum dan Kesiswaan.</p>
-                <p> Berikut informasi terkait update data peserta didik Tahun Pelajaran 2023-2024 </p>
-                <div class="timeline">
-                    <div> <i class="fas fa-key bg-danger"></i>
-                        <div class="timeline-item">
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-                            <h3 class="timeline-header">Login Ke Aplikasi</h3>
-                            <div class="timeline-body">
-                                Untuk login ke aplikasi silahkan isikan NISN (Nomor Induk Siswa Nasional) yang tertera di Ijazah SD/MI. Apabila tidak bisa silahkan hubungi bagian Admin SIAKAD INKA. Dan Password defaultnya "Kamil123"
-                            </div>
-                        </div>
-                    </div>
-                    <div> <i class="fas fa-user bg-warning"></i>
-                        <div class="timeline-item">
-                            <h3 class="timeline-header">Update Data Peserta Didik</h3>
-                            <div class="timeline-body">
-                                Silahkan update data sesuai arahan yang ada di dashboard masing-masing. Data harus sesuai dengan berkas (Kartu Keluarga dan Ijazah).
-                            </div>
-                        </div>
-                    </div>
-                    <div> <i class="fas fa-check bg-success"></i>
-                        <div class="timeline-item">
-                            <h3 class="timeline-header">Verifikasi Selesai</h3>
-                            <div class="timeline-body">
-                                Silahkan menunggu verifikasi data dari Admin dengan persyaratan memberikan Fotocopy Ijazah dan Kartu Keluarga masing-masing 1 lembar.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/solid.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
+
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+
         <div class="card card-outline card-primary">
             <div class="card-body login-card-body">
                 <h3 class="login-box-msg"><b>Login Siakad </b> </h3>
@@ -104,45 +89,35 @@
                 <?= form_close() ?>
             </div>
         </div>
-        <div class="card card-danger">
-            <div class="card-header">
-                <h3 class="card-title"><i class="fa-solid fa-headset"></i> Hotline</h3>
-            </div>
-            <div class="card-body">
-                <ul>
-                    <li>
-                        Ibnul Wafa
-                        <p><i class="fa-brands fa-whatsapp"></i> 089643124964</p>
-                    </li>
-                    <li>
-                        Fajar Mu'allim
-                        <p><i class="fa-brands fa-whatsapp"></i> </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <i class="fa-solid fa-clock"></i> Hari Kerja
-                <p> Senin-Jum'at Pukul 08:00-14:00 WIB</p>
-            </div>
-        </div>
+
     </div>
-</div>
 
 
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
 
 
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideDown(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
 
-
-<script type="text/javascript">
-    function myFunction() {
-        var show = document.getElementById('Show');
-        if (show.type == 'password') {
-            show.type = 'text';
-        } else {
-            show.type = 'password';
+    <script type="text/javascript">
+        function myFunction() {
+            var show = document.getElementById('Show');
+            if (show.type == 'password') {
+                show.type = 'text';
+            } else {
+                show.type = 'password';
+            }
         }
-    }
-</script>
+    </script>
 
 
 
@@ -150,4 +125,6 @@
 
 
 
-<?= $this->endSection() ?>
+</body>
+
+</html>
