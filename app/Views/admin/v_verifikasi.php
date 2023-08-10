@@ -1,95 +1,148 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-<div class="col-md-12">
-    <!-- USERS LIST -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Verifikasi Daftar Ulang</h3>
 
-            <div class="card-tools">
-                <span class="badge badge-danger"><?= $jumlahData ?> New Members</span>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+$session = \Config\Services::session();
+if (!empty($session->getFlashdata('pesan'))) {
+    echo  '<div class="alert alert-danger" role="alert">
+                       
+            ' . $session->getFlashdata('pesan') . '
+            </div>';
+}
+if (!empty($session->getFlashdata('sukses'))) {
+    echo  '<div class="alert alert-success" role="alert">
+                       
+            ' . $session->getFlashdata('sukses') . '
+            </div>';
+}
+?>
+
+<div class="row">
+    <div class="col-md-5">
+
+        <?= form_open_multipart('peserta/upload') ?>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="file" class="form-control" name="fileimport" id="exampleInputFile">
+                <div class="input-group-append">
+                    <button class="input-group-text bg-primary" type="submit">Upload</button>
+                </div>
             </div>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body p-0">
-            <ul class="users-list clearfix">
-                <?php foreach ($daftar as $key => $value) { ?>
-                    <li>
-                        <img src="<?= base_url() ?>/AdminLTE/dist/img/user1-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="" data-target="#detail<?= $value['id_daftar'] ?>" data-toggle="modal"></i><?= $value['nama_lengkap'] ?></a>
-                        <span class="users-list-date">Today</span>
-                    </li>
-                <?php } ?>
-            </ul>
-            <!-- /.users-list -->
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer text-center">
-            <a href="javascript:">View All Users</a>
-        </div>
-        <!-- /.card-footer -->
+        <?= form_close() ?>
     </div>
-    <!--/.card -->
+
+    <div class="col-md-7">
+        <div class="input-group-append">
+            <button class="input-group-text bg-success mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
+            <button class="input-group-text bg-danger mb-3" id="delete-selected"> <i class="fas fa-trash-alt mr-2"></i> Hapus Banyak</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-sm">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">
+                Data <?= $subtitle ?>
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="example2">
+                    <thead>
+                        <tr class="text-center">
+                            <th>No</th>
+                            <th>#</th>
+                            <th>NISN</th>
+                            <th>NIK</th>
+                            <th>Nama Siswa</th>
+                            <th>Tempat Lahir</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Ibu Kandung</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $no = 1;
+                        foreach ($siswa as $key => $value) { ?>
+                            <tr class="
+                        <?php
+                            $hasil = "Sudah Meninggal";
+                            if ($hasil == $value['kerja_ayah']) { ?>
+                        echo bg-lightblue
+                        <?php } else { ?>
+                            
+                        <?php  } ?>
+
+
+                        ">
+                                <td><?= $key + 1 ?></td>
+                                <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
+                                <td class="text-center"><?= $value["nisn"] ?></td>
+                                <td class="text-center"><?= $value["nik"] ?></td>
+                                <td><?= $value["nama_siswa"] ?></td>
+                                <td class="text-center"><?= $value["tempat_lahir"] ?></td>
+                                <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
+                                <td><?= $value["nama_ibu"] ?></td>
+                                <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
+
+
+                                <td class="text-center">
+                                    <?php if ($value['status_daftar'] <= 0) { ?>
+                                        <span class="badge bg-danger">keluar</span>
+
+                                    <?php } elseif ($value['status_daftar'] == 1) { ?>
+                                        <span class="badge bg-warning">belum aktif</span>
+                                    <?php } elseif ($value['status_daftar'] == 2) { ?>
+                                        <span class="badge bg-info">pilih rombel</span>
+                                    <?php } elseif ($value['status_daftar'] == 3) { ?>
+                                        <span class="badge bg-success">aktif</span>
+                                    <?php } ?>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
+                                    <a class="btn btn-xs btn-info" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
+                                    <a class="btn btn-xs btn-danger" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
-<?php foreach ($daftar as $key => $row) { ?>
-    <div class="modal fade" id="detail<?= $row['id_daftar'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <?php echo form_open('admin/validasi/' . $row['id_daftar']); ?>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Verifikasi Data PD</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-6">
-                        <strong>Nama Lengkap</strong>
-                        <p><?= $row['nama_lengkap'] ?></p>
-                        <strong>Tempat Tanggal Lahir</strong>
-                        <p><?= $row['tempat_lahir'] ?> , <?= $row['tanggal_lahir'] ?></p>
-                        <strong>NISN</strong>
-                        <p><?= $row['nisn'] ?></p>
-                        <strong>Nama Ayah</strong>
-                        <p><?= $row['nama_ayah'] ?></p>
-                        <strong>No Seri Ijazah</strong>
-                        <p><?= $row['seri_ijazah'] ?></p>
 
-                        <label>Kelas</label>
-                        <select name="id_kelas" class="form-control">
-                            <option value="">Pilih Kelas</option>
-                            <?php foreach ($kelas as $key => $value) { ?>
-                                <option value="<?= $value['id_kelas'] ?>"><?= $value['kelas'] ?></option>
-                            <?php } ?>
-                        </select>
-                        <label for="">Verval</label>
-                        <select name="status_daftar" class="form-control">
-                            <option value="">Pilih Kelas</option>
-                            <option value="2">Validasi</option>
-                            <option value="3">Ditolak</option>
 
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Submit</button>
-                </div>
-            </div>
-            <?php echo form_close() ?>
-        </div>
-    </div>
-<?php } ?>
+
+
+
+
+
+
 
 
 

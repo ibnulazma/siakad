@@ -7,6 +7,7 @@ use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
 use App\Models\ModelSiswa;
+use App\Models\ModelPeserta;
 
 use Ifsnop\Mysqldump\Mysqldump;
 
@@ -22,6 +23,7 @@ class Admin extends BaseController
         $this->ModelSekolah = new ModelSekolah();
         $this->ModelJenjang = new ModelJenjang();
         $this->ModelSiswa = new ModelSiswa();
+        $this->ModelPeserta = new ModelPeserta();
     }
 
     public function index()
@@ -34,6 +36,7 @@ class Admin extends BaseController
             'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
             'datatahun'        => $this->ModelTa->group_tahun(),
+            'siswa'  => $this->ModelPeserta->AllData(),
 
         ];
         return view('admin/v_dashboard', $data);

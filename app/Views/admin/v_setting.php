@@ -80,14 +80,4 @@
     <!-- /.card -->
 </div>
 
-
-
-
-
-
-
-
-
-
-
 <?= $this->endSection() ?>

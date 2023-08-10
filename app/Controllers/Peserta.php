@@ -214,14 +214,21 @@ class Peserta extends BaseController
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
         return redirect()->to(base_url('peserta'));
     }
-
     public function verifikasi($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        ];
+        return view('admin', $data);
+    }
+    public function verifikasi_data($id_siswa)
     {
         $data = [
             'id_siswa'      => $id_siswa,
             'nama_siswa'    => $this->request->getPost('nama_siswa'),
             'id_kelas'      => $this->request->getPost('id_kelas'),
-            'status_daftar' => 3,
+            'status_daftar' => $this->request->getPost('status_daftar'),
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
@@ -252,6 +259,8 @@ class Peserta extends BaseController
         ];
         return view('admin/bukuinduk', $data);
     }
+
+
 
     public function delete($id_siswa)
     {

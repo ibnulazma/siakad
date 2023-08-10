@@ -5,7 +5,8 @@
     echo '<div class="alert alert-success" role="alert">';
     echo session()->getFlashdata('pesan');
     echo ' </div>';
-} ?>
+}
+?>
 
 
 <div class="row">
@@ -45,6 +46,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -66,7 +69,9 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
 
 <?php
 
@@ -74,7 +79,10 @@ foreach ($datatahun->getResult() as $row) {
     $thun[] = $row->ta;
     $jmlah[] = $row->jumlah;
 }
+
 ?>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('dognut');
 
@@ -143,6 +151,8 @@ foreach ($datatahun->getResult() as $row) {
         }
     });
 </script>
+
+
 
 
 

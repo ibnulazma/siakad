@@ -59,7 +59,7 @@
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 ">
+                    <div class="col-md-6">
                         <div class="table-responsive">
                             <table class="table table-bordered" width="100px">
                                 <tr>
@@ -79,7 +79,6 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center" colspan="2">DATA ASLI </td>
-                                    <td class="text-center">UBAH </td>
                                 </tr>
                                 <tr>
                                     <td widtd="100px">1. Nama Lengkap</td>
@@ -216,6 +215,18 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="form-group">
+                            <label for="">Verifikasi</label>
+                            <select id="ok" onChange="opsi(this)" class="form-control" name="kip" required>
+                                <option value="1">Ditolak</option>
+                                <option value="2">Diterima</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Catatan</label>
+                            <textarea name="" id="inputku" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -223,7 +234,16 @@
     </div>
 
 
-
+    <script>
+        function opsi(value) {
+            var st = $("#ok").val();
+            if (st == "1") {
+                document.getElementById("inputku").disabled = false;
+            } else {
+                document.getElementById("inputku").disabled = true;
+            }
+        }
+    </script>
 
 
 

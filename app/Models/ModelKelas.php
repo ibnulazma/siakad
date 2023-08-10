@@ -109,7 +109,7 @@ class ModelKelas extends Model
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             // ->orderBy('id_kelas', 'DESC')
-            ->where('id_kelas = 0')
+            // ->where('id_kelas = 0')
             ->where('tbl_ta.status', '1')
             ->where('status_daftar', '2')
             ->get()

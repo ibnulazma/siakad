@@ -39,9 +39,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+
 
         <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
@@ -140,10 +138,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="<?= base_url('surat') ?>" class="nav-link <?= $menu == 'surat' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-home"></i>
+                                <a href="<?= base_url('verifikasi') ?>" class="nav-link <?= $menu == 'surat' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-clipboard-list"></i>
                                     <p>
-                                        Surat
+                                        Verifikasi
+                                        <span class="right badge badge-danger">New</span>
                                     </p>
                                 </a>
                             </li>
@@ -448,6 +447,7 @@
             });
         });
     </script>
+
     <script>
         $(document).ready(function() {
             $("#kecamatan").change(function() {
@@ -462,102 +462,6 @@
             });
         });
     </script>
-
-
-
-
-
-    <!-- <script>
-        $(function() {
-            $.validator.setDefaults({
-                submitHandler: function() {
-                    alert("Form successful submitted!");
-                }
-            });
-            $('#quickForm').validate({
-                rules: {
-                    nama_siswa: {
-                        required: true,
-                        nama_siswa: true,
-                    },
-                    jenis_kelamin: {
-                        required: true,
-                        jenis_kelamin: true,
-                    },
-                    tempat_lahir: {
-                        required: true,
-                        tempat_lahir: true,
-                    },
-
-                    no_telp: {
-                        required: true,
-                        no_telp: true,
-                    },
-
-                    anak_ke: {
-                        required: true,
-                        anak_ke: true,
-                    },
-
-                    // terms: {
-                    //     required: true
-                    // },
-                },
-                messages: {
-                    nama_siswa: {
-                        required: "Silahkan isi dengan benar",
-                    },
-                    jenis_kelamin: {
-                        required: "Silahkan isi dengan benar",
-                    },
-                    tempat_lahir: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    no_telp: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    anak_ke: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    // password: {
-                    //     required: "Please provide a password",
-                    //     minlength: "Your password must be at least 5 characters long"
-                    // },
-                    // terms: "Please accept our terms"
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });
-    </script> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

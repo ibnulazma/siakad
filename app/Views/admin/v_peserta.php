@@ -244,43 +244,118 @@ if (!empty($session->getFlashdata('sukses'))) {
 <!-- Editbiodata -->
 <?php foreach ($siswa as $key => $value) { ?>
     <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <?php echo form_open('peserta/editbiodata/' . $value['id_siswa']); ?>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Biodata <?= $value['tingkat'] ?></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Verifikasi Biodata <?= $value['nama_siswa'] ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Nama Siswa</label>
-                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tanggal Lahir</label>
-                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= $value['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label for="">Nama Ibu</label>
-                                <input type="text" class="form-control" name="nama_ibu" value="<?= $value['nama_ibu'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Username/NISN</label>
-                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <input type="text" name="" value="<?= $value['nama_siswa'] ?>" id="">
                     </div>
+
+                    <tr>
+                        <td colspan="2"><b>B. KONTAK </b></td>
+                    </tr>
+                    <tr>
+                        <td>10. Alamat</td>
+                        <td><?= $value['alamat'] ?> RT <?= $value['rt'] ?> RW <?= $value['rw'] ?> Desa/Kel. <?= $value['desa'] ?> Kec. <?= $value['kecamatan'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>11. Nomor Telepon</td>
+                        <td><?= $value['telp_anak'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>12. Tinggal Bersama</td>
+                        <td><?= $value['tinggal'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>13. Jarak Tempat tinggal Ke Sekolah</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><b>C. DATA AYAH </b></td>
+                    </tr>
+                    <tr>
+                        <td>14. Nama</td>
+                        <td><?= $value['nama_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>15. Tahun Lahir</td>
+                        <td><?= $value['tahun_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>16. NIK </td>
+                        <td><?= $value['nik_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>17. Pendidikan Terakhir</td>
+                        <td><?= $value['didik_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>18. Pekerjaan </td>
+                        <td><?= $value['kerja_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>19. Penghasilan</td>
+                        <td><?= $value['hasil_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>20. Telepon</td>
+                        <td><?= $value['telp_ayah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>D. DATA IBU </b></td>
+                    </tr>
+                    <tr>
+                        <td>21. Nama</td>
+                        <td><?= $value['nama_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>22. Tahun Lahir</td>
+                        <td><?= $value['tahun_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>23. NIK </td>
+                        <td><?= $value['nik_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>24. Pendidikan Terakhir</td>
+                        <td><?= $value['didik_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>25. Pekerjaan </td>
+                        <td><?= $value['kerja_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>26. Penghasilan</td>
+                        <td><?= $value['hasil_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>27. Telepon</td>
+                        <td><?= $value['telp_ibu'] ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>E. KESEHATAN </b></td>
+                    </tr>
+                    <tr>
+                        <td>28. Tinggi Badan</td>
+                        <td><?= $value['tinggi'] ?> cm</td>
+                    </tr>
+                    <tr>
+                        <td>28. Berat Badan</td>
+                        <td><?= $value['berat'] ?> kg</td>
+                    </tr>
+                    <tr>
+                        <td>28. Lingkar Kepala</td>
+                        <td><?= $value['lingkar'] ?> cm</td>
+                    </tr>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
