@@ -26,7 +26,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName">Tahun Lahir</label>
-                                            <input type="text" class="form-control" value="<?= $siswa['tahun_ayah'] ?>" name="tahun_ayah" required>
+                                            <input type="text" class="form-control" value="<?= $siswa['tahun_ayah'] ?>" name="tahun_ayah" data-inputmask="'mask': ['9999']" data-mask required>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName">NIK</label>
@@ -43,32 +43,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Pekerjaan</label>
                                             <select name="kerja_ayah" class="form-control" id="dropdown" onChange="opsi(this)">
-                                                <option value="">--Pilih Pekerjaan--</option>
-                                                <option value="Pedangang Kecil">Pedangang Kecil</option>
-                                                <option value="Pedangan_Besar">Pedangan Besar</option>
-                                                <option value="Wirausaha">Wirausaha</option>
-                                                <option value="Wiraswasta">Wiraswasta</option>
-                                                <option value="Petani">Petani</option>
-                                                <option value="Buruh">Buruh</option>
-                                                <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
-                                                <option value="Karyawan Swasta">Karyawan Swasta</option>
-                                                <option value="Tidak Bekerja">Tidak Bekerja</option>
-                                                <option value="Sudah Meninggal">Sudah Meninggal</option>
+                                                <?php foreach ($kerja as $key => $value) { ?>
+                                                    <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Penghasilan</label>
                                             <select name="hasil_ayah" class="form-control" id="dipilih" required>
-                                                <option value="">--Pilih Penghasilan--</option>
-                                                <option value="Rp. 500.000 - Rp 1 juta">Rp. 500.000 - Rp 1 juta</option>
-                                                <option value="Rp. 1 juta - Rp. 4 juta">Rp. 1 juta - Rp. 4 juta</option>
-                                                <option value="Rp. 4 juta - Rp 10 juta">Rp. 4 juta - Rp 10 juta</option>
-                                                <option value="Rp. 10 juta lebih">Rp. 10 juta lebih</option>
-                                                <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+                                                <?php foreach ($hasil as $key => $value) { ?>
+                                                    <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
 
@@ -100,7 +88,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="inputName" class="col-form-label">Tahun Lahir</label>
-                                            <input type="text" class="form-control" value="<?= $siswa['tahun_ibu'] ?>" name="tahun_ibu" required>
+                                            <input type="text" class="form-control" value="<?= $siswa['tahun_ibu'] ?>" name="tahun_ibu" data-inputmask="'mask': ['9999']" data-mask required>
 
                                         </div>
                                         <div class="form-group">

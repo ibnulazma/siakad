@@ -186,7 +186,6 @@ class Siswa extends BaseController
             'tinggi'           => $this->request->getPost('tinggi'),
             'hobi'              => $this->request->getPost('hobi'),
             'cita_cita'         => $this->request->getPost('cita_cita'),
-            'maps'              => $this->request->getPost('maps'),
             'seri_ijazah'       => $this->request->getPost('seri_ijazah'),
             'jml_saudara'       => $this->request->getPost('jml_saudara'),
             'status_daftar'     => 2

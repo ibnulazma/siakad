@@ -86,9 +86,6 @@
     </div>
 
 
-
-
-
     <div class="col-lg-8">
         <?php if ($siswa['status_daftar'] == 1) { ?>
 

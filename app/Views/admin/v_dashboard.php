@@ -184,7 +184,13 @@ foreach ($datatahun->getResult() as $row) {
 
 
 
-
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideDown(500, function() {
+            $(this).remove();
+        });
+    }, 2000);
+</script>
 
 
 <?= $this->endSection() ?>
