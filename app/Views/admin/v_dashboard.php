@@ -67,8 +67,37 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Verifikasi Siswa</h5>
+                <span class=" float-right badge badge-danger">8 New Members</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <?php
+                    foreach ($siswa as $key => $value) { ?>
+                        <div class="col-3 text-center">
+                            <div class="gambar ">
+                                <?php
+                                $gender = "L";
+                                if ($gender == $value['jenis_kelamin']) { ?>
+                                    <img class="img-fluid img-circle" src="<?= base_url('foto/muslim.png') ?>" alt="User profile picture" width="50px">
+                                <?php } else { ?>
+                                    <img class=" img-fluid img-circle" src="<?= base_url('foto/woman.png') ?>" alt="User profile picture" width="50px">
+                                <?php  } ?>
+                            </div>
+                            <div class="text-center text-sm"><a href="<?= base_url('peserta/verifikasi/' .  $value['id_siswa']) ?>"><?= $value['nama_siswa'] ?></a></div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
 
 
 

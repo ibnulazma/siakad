@@ -136,16 +136,6 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="<?= base_url('verifikasi') ?>" class="nav-link <?= $menu == 'surat' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-clipboard-list"></i>
-                                    <p>
-                                        Verifikasi
-                                        <span class="right badge badge-danger">New</span>
-                                    </p>
-                                </a>
-                            </li>
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/backup') ?>" class="nav-link">
@@ -411,13 +401,13 @@
         })
     </script>
 
-    <script>
+    <!-- <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideDown(500, function() {
                 $(this).remove();
             });
         }, 2000);
-    </script>
+    </script> -->
     <script>
         $(document).ready(function() {
             $("#provinsi").change(function() {

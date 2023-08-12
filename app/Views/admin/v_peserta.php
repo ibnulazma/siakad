@@ -2,19 +2,6 @@
 <?= $this->section('content') ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $session = \Config\Services::session();
 if (!empty($session->getFlashdata('pesan'))) {

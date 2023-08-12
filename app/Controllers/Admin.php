@@ -36,7 +36,7 @@ class Admin extends BaseController
             'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
             'datatahun'        => $this->ModelTa->group_tahun(),
-            'siswa'  => $this->ModelPeserta->AllData(),
+            'siswa'            => $this->ModelPeserta->verifikasi(),
 
         ];
         return view('admin/v_dashboard', $data);

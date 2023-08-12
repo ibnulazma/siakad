@@ -98,12 +98,6 @@ class Siswa extends BaseController
 
         $data = [
             'id_siswa'       => $id_siswa,
-            'nik'           => $this->request->getPost('nik'),
-            'nisn'          => $this->request->getPost('nisn'),
-            'nama_siswa'    => $this->request->getPost('nama_siswa'),
-            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-            'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
-            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
             'no_kip'        => $this->request->getPost('no_kip'),
             'kip'           => $this->request->getPost('kip'),
             'anak_ke'       => $this->request->getPost('anak_ke'),

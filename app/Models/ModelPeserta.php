@@ -21,6 +21,7 @@ class ModelPeserta extends Model
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->where('status_daftar', '2')
+            ->limit(8, 0)
             ->get()
             ->getResultArray();
     }

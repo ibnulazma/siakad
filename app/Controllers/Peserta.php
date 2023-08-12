@@ -218,17 +218,18 @@ class Peserta extends BaseController
     {
         $data = [
             'title' => 'Buku Induk Siswa-SIAKAD',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'kelas'     => $this->ModelKelas->AllData()
         ];
-        return view('admin', $data);
+        return view('admin/verifikasi', $data);
     }
     public function verifikasi_data($id_siswa)
     {
         $data = [
             'id_siswa'      => $id_siswa,
-            'nama_siswa'    => $this->request->getPost('nama_siswa'),
             'id_kelas'      => $this->request->getPost('id_kelas'),
             'status_daftar' => $this->request->getPost('status_daftar'),
+            'catatan' => $this->request->getPost('catatan'),
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');

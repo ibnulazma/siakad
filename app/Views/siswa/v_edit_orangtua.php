@@ -66,7 +66,7 @@
                                                 <option value="">--Pilih Penghasilan--</option>
                                                 <option value="Rp. 500.000 - Rp 1 juta">Rp. 500.000 - Rp 1 juta</option>
                                                 <option value="Rp. 1 juta - Rp. 4 juta">Rp. 1 juta - Rp. 4 juta</option>
-                                                <option value="Rp. 4 juta - Rp 10.000">Rp. 4 juta - Rp 10.000</option>
+                                                <option value="Rp. 4 juta - Rp 10 juta">Rp. 4 juta - Rp 10 juta</option>
                                                 <option value="Rp. 10 juta lebih">Rp. 10 juta lebih</option>
                                                 <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
                                             </select>

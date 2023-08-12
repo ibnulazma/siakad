@@ -215,18 +215,31 @@
                                 </tr>
                             </table>
                         </div>
+                        <?= form_open('peserta/verifikasi_data/' . $siswa['id_siswa']) ?>
                         <div class="form-group">
                             <label for="">Verifikasi</label>
-                            <select id="ok" onChange="opsi(this)" class="form-control" name="kip" required>
-                                <option value="1">Ditolak</option>
-                                <option value="2">Diterima</option>
+                            <select id="ok" onChange="opsi(this)" class="form-control" name="status_daftar" required>
+                                <option value="4">Ditolak</option>
+                                <option value="3">Diterima</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Catatan</label>
-                            <textarea name="" id="inputku" class="form-control" cols="30" rows="10"></textarea>
+                            <textarea name="catatan" id="inputku" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Pilih Kelas</label>
+                            <select name="id_kelas" id="pilihan" class="form-control">
+                                <option value="0">Ditolak</option>
+                                <?php foreach ($kelas as $key => $row) { ?>
+                                    <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
 
+                        <button type="submit" class="btn btn-success"><i class="fas fa-plane"></i> Submit</button>
+
+                        <?= form_close() ?>
                     </div>
                 </div>
             </div>
