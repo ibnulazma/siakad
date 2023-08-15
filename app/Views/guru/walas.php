@@ -46,7 +46,7 @@ $guru = $db->table('tbl_guru')
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
                             <td class="text-center"><?= $value['nama_siswa'] ?></td>
-                            <td class="text-center"><?= $value['no_telp'] ?></td>
+                            <td class="text-center"><?= $value['telp_anak'] ?></td>
                             <td class="text-center"><?= $value['alamat'] ?> RT <?= $value['rt'] ?> / RW <?= $value['rw'] ?></td>
                             <td class="text-center"><?= $value['nama_ibu'] ?></td>
                         </tr>

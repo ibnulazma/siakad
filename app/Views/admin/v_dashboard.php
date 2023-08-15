@@ -70,10 +70,11 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Verifikasi Siswa</h5>
-                <span class=" float-right badge badge-danger">8 New Members</span>
+                <span class=" float-right badge badge-danger"><?= $baru ?> New Members</span>
             </div>
             <div class="card-body">
                 <div class="row">
+
                     <?php
                     foreach ($siswa as $key => $value) { ?>
                         <div class="col-3 text-center">
@@ -90,6 +91,9 @@
                         </div>
                     <?php } ?>
                 </div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="<?= base_url('peserta') ?>">View All Data</a>
             </div>
         </div>
     </div>
