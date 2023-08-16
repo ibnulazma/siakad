@@ -112,4 +112,17 @@ class Admin extends BaseController
             return redirect()->to('admin');
         }
     }
+
+    public function lembaran()
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Add Siswa',
+
+
+        ];
+        return view('admin/lembaran1', $data);
+    }
 }
