@@ -17,30 +17,33 @@ $tahun = $db->table('tbl_ta')
     <div class="col-md-12">
         <?php if ($siswa['status_daftar'] == 1) { ?>
 
-            <div class="alert alert-danger">
+            <div class="bg-danger p-2">
+
                 Perhatian: Silahkan Update Data !!!!
+
             </div>
 
         <?php  } else if ($siswa['status_daftar'] == 2) { ?>
 
-            <div class="alert alert-warning">
-                Verifikasi : Silahkan Kumpulkan Fotocopy Ijazah dan Kartu Keluarga !!!
+            <div class="bg-warning p-2">
+                Verifikasi :Silahkan Kumpulkan Fotocopy Ijazah dan Kartu Keluarga !!!
+
             </div>
 
         <?php  } else if ($siswa['status_daftar'] == 3) { ?>
-            <div class="alert alert-success">
+            <div class="bg-success p-2">
                 Final: Data Anda Sudah Aktif !!!
             </div>
 
         <?php } else if ($siswa['status_daftar'] == 4) { ?>
-            <div class="alert alert-danger">
+            <div class="small-box bg-danger">
                 Perhatian: Data Anda Silahkan Perbaiki Data Yang Salah !!!!
             </div>
         <?php } ?>
 
 
 
-        <div class="card">
+        <div class="card mt-2">
             <div class="card-header">
                 <p class="card-title">
                     Selamat Datang
@@ -72,20 +75,6 @@ $tahun = $db->table('tbl_ta')
         <?php } ?>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
