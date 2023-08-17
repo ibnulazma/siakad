@@ -3,7 +3,6 @@
 
 
 
-<button onclick="Swal.fire()">Swall</button>
 <div class="swal" data-swal="<?= session()->getFlashdata('pesan'); ?>"></div>
 
 
@@ -176,7 +175,7 @@
     </div>
 </div>
 
-<!-- VerifikasiData -->
+
 
 
 
