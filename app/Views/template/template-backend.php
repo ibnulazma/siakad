@@ -224,7 +224,7 @@
         </footer>
     </div>
 
-
+    <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.js"></script>
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
 
@@ -453,7 +453,35 @@
         });
     </script>
 
+    <script>
+        const swal = $('.swal').data('swal');
+        if (swal) {
+            Swal.fire({
+                title: 'Data Berhasil',
+                text: swal,
+                icon: 'success'
+            })
+        }
 
+        $(document).on('click', '.btn-hapus', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Apakah anda yakin akan dihapus',
+                text: "Data Akan Hilang",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = href;
+                }
+            })
+        })
+    </script>
 
 
 </body>

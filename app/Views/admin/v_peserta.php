@@ -2,21 +2,10 @@
 <?= $this->section('content') ?>
 
 
-<?php
-$session = \Config\Services::session();
-if (!empty($session->getFlashdata('pesan'))) {
-    echo  '<div class="alert alert-danger" role="alert">
-                       
-            ' . $session->getFlashdata('pesan') . '
-            </div>';
-}
-if (!empty($session->getFlashdata('sukses'))) {
-    echo  '<div class="alert alert-success" role="alert">
-                       
-            ' . $session->getFlashdata('sukses') . '
-            </div>';
-}
-?>
+
+<button onclick="Swal.fire()">Swall</button>
+<div class="swal" data-swal="<?= session()->getFlashdata('pesan'); ?>"></div>
+
 
 <div class="row">
     <div class="col-md-5">
@@ -107,7 +96,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center">
                                 <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
                                 <a class="btn btn-xs btn-info" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
-                                <a class="btn btn-xs btn-danger" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
+                                <a href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>" class="btn btn-xs btn-danger btn-hapus"> <i class="fas fa-trash-alt"></i> </a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -196,6 +185,15 @@ if (!empty($session->getFlashdata('sukses'))) {
 
 
 
+
+
+
+
+
+
+
+<?= $this->endSection() ?>
+
 <script>
     window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideDown(500, function() {
@@ -203,9 +201,3 @@ if (!empty($session->getFlashdata('sukses'))) {
         });
     }, 2000);
 </script>
-
-
-
-
-
-<?= $this->endSection() ?>
