@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\ModelKelas;
 use App\Models\ModelGuru;
 use App\Models\ModelTa;
+use \Dompdf\Dompdf;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf as PdfDompdf;
 
 class Kelas extends BaseController
 {
@@ -125,5 +127,29 @@ class Kelas extends BaseController
             'siswa'     => $this->ModelKelas->DataPeserta($id_siswa)
         ];
         return view('admin/kelas/v_detail_siswa', $data);
+    }
+
+
+
+    public function print($id_kelas)
+    {
+
+        $dompdf = new Dompdf();
+        $kelas = $this->ModelKelas->detail($id_kelas);
+        $data = [
+            'title'         =>   $kelas,
+            'kelas'         => $kelas,
+            'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
+
+
+            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
+        ];
+        $html = view('admin/kelas/print', $data);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
     }
 }
