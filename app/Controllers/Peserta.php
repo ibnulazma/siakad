@@ -232,8 +232,8 @@ class Peserta extends BaseController
             'catatan' => $this->request->getPost('catatan'),
         ];
         $this->ModelPeserta->edit($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
-        return redirect()->to(base_url('admin'));
+        session()->setFlashdata('pesan', 'Data Berhasil Di Verifikasi !!!');
+        return redirect()->to(base_url('peserta'));
     }
 
 

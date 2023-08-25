@@ -121,7 +121,7 @@
                                 </tr>
                                 <tr>
                                     <td>10. Alamat</td>
-                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['kecamatan'] ?></td>
+                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></td>
                                 </tr>
                                 <tr>
                                     <td>11. Nomor Telepon</td>
@@ -202,17 +202,22 @@
                                     <td colspan="2"><b>E. KESEHATAN </b></td>
                                 </tr>
                                 <tr>
-                                    <td>28. Tinggi Badan</td>
+                                    <td>29. Tinggi Badan</td>
                                     <td><?= $siswa['tinggi'] ?> cm</td>
                                 </tr>
                                 <tr>
-                                    <td>28. Berat Badan</td>
+                                    <td>30. Berat Badan</td>
                                     <td><?= $siswa['berat'] ?> kg</td>
                                 </tr>
                                 <tr>
-                                    <td>28. Lingkar Kepala</td>
+                                    <td>31. Lingkar Kepala</td>
                                     <td><?= $siswa['lingkar'] ?> cm</td>
                                 </tr>
+                                <tr>
+                                    <td>31. No Seri Ijazah</td>
+                                    <td><?= $siswa['seri_ijazah'] ?></td>
+                                </tr>
+
                             </table>
                         </div>
                         <?= form_open('peserta/verifikasi_data/' . $siswa['id_siswa']) ?>
