@@ -146,7 +146,7 @@ class Kelas extends BaseController
         ];
         $html = view('admin/kelas/print', $data);
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->setPaper('Legal', 'potrait');
         $dompdf->render();
         $dompdf->stream('data siswa kelas.pdf', array(
             "Attachment" => false

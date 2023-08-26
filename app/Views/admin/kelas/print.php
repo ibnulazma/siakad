@@ -11,8 +11,11 @@
 
 <style>
     .content {
-        margin-bottom: 50%;
+        margin-bottom: 30%;
+        margin-right: 20px;
     }
+
+
 
     .judul {
         font-size: 12pt;
@@ -25,11 +28,19 @@
         margin-bottom: 5px;
     }
 
+
+
     table {
         margin-left: 50px;
         font-size: 12pt;
         /* margin-bottom: 50%; */
         /* width: 100%; */
+
+    }
+
+    .tabel2 {
+        width: 100%;
+        line-height: 1.8em;
     }
 
     /* tr {
@@ -65,6 +76,10 @@
     .ttd {
         margin-top: 50px;
     }
+
+    .left tr {
+        margin-left: 10px;
+    }
 </style>
 
 <body>
@@ -73,14 +88,14 @@
 
         <div class="content">
             <div class="container">
-                <h5 class="judul text-center"> KETERANGAN DIRI PESERTA DIDIK</h5>
+                <h5 class="judul text-center"> KETERANGAN TENTANG DIRI PESERTA DIDIK</h5>
             </div>
             <div class="tabel">
-                <table>
+                <table class="tabel2">
                     <tr>
-                        <td>1. Nama Lengkap</td>
-                        <td class="titik">:</td>
-                        <td><?= $value['nama_siswa'] ?></td>
+                        <td width="30%">1. Nama Lengkap</td>
+                        <td width="1%">:</td>
+                        <td width="60%"><?= $value['nama_siswa'] ?></td>
                     </tr>
                     <tr>
                         <td>2. No Induk Siswa</td>
@@ -98,9 +113,9 @@
                         <td>
                             <?php $jk = 'Laki-laki';
                             if ($jk == $value['jenis_kelamin']) { ?>
-                                Laki-laki
+                                <?= strtoupper('Laki-laki') ?>
                             <?php } else { ?>
-                                Perempuan
+                                <?= strtoupper('Perempuan') ?>
                             <?php  } ?>
                         </td>
                     </tr>
@@ -112,20 +127,33 @@
                     <tr>
                         <td>6. Alamat Lengkap</td>
                         <td>:</td>
-                        <td><?= $value['alamat'] ?> RT. <?= $value['rt'] ?> RW. <?= $value['rw'] ?> Desa/Kel.</span> <?= $value['desa'] ?>
-                            Kec. <?= $value['kecamatan'] ?>
-                        </td>
+                        <td><?= $value['alamat'] ?> </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;a. RT/RW</td>
+                        <td>:</td>
+                        <td><?= $value['rt'] ?>/<?= $value['rw'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;b. Desa/Kel</td>
+                        <td>:</td>
+                        <td><?= $value['desa'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;c. Kecamatan</td>
+                        <td>:</td>
+                        <td><?= $value['kecamatan'] ?></td>
                     </tr>
                     <tr>
                         <td>7. Diterima di sekolah ini</td>
                     </tr>
                     <tr class="left">
-                        <td>a. Di kelas</td>
+                        <td> &nbsp;&nbsp;&nbsp;a. Di kelas</td>
                         <td>:</td>
                         <td>7.1 </td>
                     </tr>
                     <tr class="left">
-                        <td>b. Pada Tanggal</td>
+                        <td>&nbsp;&nbsp;&nbsp;b. Pada Tanggal</td>
                         <td>:</td>
                         <td>17 Juli 2023 </td>
                     </tr>
@@ -133,12 +161,12 @@
                         <td>8. Orang Tua</td>
                     </tr>
                     <tr class="">
-                        <td>a. Ayah</td>
+                        <td>&nbsp;&nbsp;&nbsp;a. Ayah</td>
                         <td>:</td>
                         <td><?= $value['nama_ayah'] ?></td>
                     </tr>
                     <tr class="">
-                        <td>b. Ibu</td>
+                        <td>&nbsp;&nbsp;&nbsp;b. Ibu</td>
                         <td>:</td>
                         <td><?= $value['nama_ibu'] ?></td>
                     </tr>
