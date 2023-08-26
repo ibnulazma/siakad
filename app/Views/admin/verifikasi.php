@@ -217,7 +217,6 @@
                                     <td>31. No Seri Ijazah</td>
                                     <td><?= $siswa['seri_ijazah'] ?></td>
                                 </tr>
-
                             </table>
                         </div>
                         <?= form_open('peserta/verifikasi_data/' . $siswa['id_siswa']) ?>
