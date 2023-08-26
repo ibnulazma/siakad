@@ -24,7 +24,7 @@
             <span class="info-box-icon bg-warning"><i class="fas fa-user-tie"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">PTK</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number"><?= $jumlahptk ?></span>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <span class="info-box-icon bg-success"><i class="fas fa-school"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Rombel</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number"><?= $jumlahkelas ?></span>
             </div>
         </div>
     </div>
@@ -46,9 +46,37 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="<?= base_url() ?>/foto/logo.png" alt="" width="150px">
+
+                    <h4><b>SMP INSAN KAMIL</b></h4>
+                    <p>Jalan Raya Legok-Karawaci No 89 Rt 07 Rw 02 Legok</p>
+                    <p></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
 <div class="row">
     <div class="col-md-6">
         <div class="card">
@@ -67,40 +95,12 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Verifikasi Siswa</h5>
-                <span class=" float-right badge badge-danger"><?= $baru ?> New Members</span>
-            </div>
-            <div class="card-body">
-                <div class="row">
 
-                    <?php
-                    foreach ($siswa as $key => $value) { ?>
-                        <div class="col-3 text-center">
-                            <div class="gambar ">
-                                <?php
-                                $gender = "L";
-                                if ($gender == $value['jenis_kelamin']) { ?>
-                                    <img class="img-fluid img-circle" src="<?= base_url('foto/muslim.png') ?>" alt="User profile picture" width="50px">
-                                <?php } else { ?>
-                                    <img class=" img-fluid img-circle" src="<?= base_url('foto/woman.png') ?>" alt="User profile picture" width="50px">
-                                <?php  } ?>
-                            </div>
-                            <div class="text-center text-sm"><a href="<?= base_url('peserta/verifikasi/' .  $value['id_siswa']) ?>"><?= $value['nama_siswa'] ?></a></div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="card-footer text-center">
-                <a href="<?= base_url('peserta') ?>">View All Data</a>
-            </div>
-        </div>
     </div>
 </div>
 
 
-<button onclick="Swal.fire()">Swall</button>
+
 
 
 
