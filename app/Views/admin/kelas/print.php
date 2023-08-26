@@ -113,7 +113,7 @@
                         <td>6. Alamat Lengkap</td>
                         <td>:</td>
                         <td><?= $value['alamat'] ?> RT. <?= $value['rt'] ?> RW. <?= $value['rw'] ?> Desa/Kel.</span> <?= $value['desa'] ?>
-                            <span class="block"> Kec.</span> <?= $value['kecamatan'] ?>
+                            Kec. <?= $value['kecamatan'] ?>
                         </td>
                     </tr>
                     <tr>
