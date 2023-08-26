@@ -12,6 +12,17 @@ class ModelGuru extends Model
             ->get()
             ->getResultArray();
     }
+    public function jumlahGuru()
+    {
+        return $this->db->table('tbl_guru')
+            ->countAllResults();
+    }
+
+
+
+
+
+
     public function detail($id_kelas)
     {
         return $this->db->table('tbl_guru')

@@ -17,6 +17,24 @@ class ModelKelas extends Model
             ->getResultArray();
     }
 
+    public function jumlahkelas()
+    {
+        return $this->db->table('tbl_kelas')->countAllResults();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function DataKelas($id_kelas)
     {
