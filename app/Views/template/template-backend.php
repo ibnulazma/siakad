@@ -230,22 +230,11 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-
-
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/sparklines/sparkline.js"></script>
-
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
-
     <script src="<?= base_url() ?>/AdminLTE/dist/js/adminlte.js?v=3.2.0"></script>
-
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
-
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- date-range-picker -->
 
