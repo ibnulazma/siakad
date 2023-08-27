@@ -15,15 +15,8 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/calendar.css">
-
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.css">
-
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-
-
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -31,7 +24,7 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/css/bs-stepper.min.css">
+
 </head>
 
 
@@ -234,9 +227,7 @@
     </div>
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.js"></script>
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 
@@ -246,33 +237,17 @@
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/sparklines/sparkline.js"></script>
 
-    <script src="<?= base_url() ?>/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="<?= base_url() ?>/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-
-
-    <script src="<?= base_url() ?>/AdminLTE/plugins/moment/moment.min.js"></script>
-    <script src="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
-
-    <script src="<?= base_url() ?>/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <script src="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
-
-    <script src="<?= base_url() ?>/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
     <script src="<?= base_url() ?>/AdminLTE/dist/js/adminlte.js?v=3.2.0"></script>
 
 
-
-
-
     <script src="<?= base_url() ?>/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
-    <!-- Bootstrap4 Duallistbox -->
-    <!-- InputMask -->
-    <script src="<?= base_url() ?>/AdminLTE/plugins/moment/moment.min.js"></script>
+
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- date-range-picker -->
-    <script src="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
-
 
 
 
@@ -296,10 +271,7 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
 
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- DatTables -->
+
 
     <script>
         $(function() {
@@ -345,65 +317,10 @@
             //Money Euro
             $('[data-mask]').inputmask()
 
-            //Date picker
-            $('#reservationdate').datetimepicker({
-                format: 'L'
-            });
-
-            //Date and time picker
-            $('#reservationdatetime').datetimepicker({
-                icons: {
-                    time: 'far fa-clock'
-                }
-            });
-
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker({
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                }
-            )
-
-            //Timepicker
-            $('#timepicker').datetimepicker({
-                format: 'LT'
-            })
-            // bootsrapswitch
-            $("input[data-bootstrap-switch]").each(function() {
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
-            })
 
         })
     </script>
 
-    <!-- <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideDown(500, function() {
-                $(this).remove();
-            });
-        }, 2000);
-    </script> -->
     <script>
         $(document).ready(function() {
             $("#provinsi").change(function() {
@@ -448,6 +365,8 @@
             });
         });
     </script>
+    <!-- //Data Wilayah  -->
+
 
     <script>
         const swal = $('.swal').data('swal');

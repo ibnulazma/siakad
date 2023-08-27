@@ -1,4 +1,4 @@
-<?= $this->extend('template/template-backend') ?>
+<?= $this->extend('layout/default') ?>
 <?= $this->section('content') ?>
 
 
@@ -19,8 +19,8 @@
                             <form action="<?= base_url('home/save') ?>" method="post">
                                 <div class="form-group">
                                     <label for="nama-barang">Nama Siswa</label>
-                                    <select name="nama-siswa" id="nama-siswa" class="form-control" required>
-                                        <option value="">-- Pilih Siswa --</option>
+                                    <select name="nama-siswa" id="nama-siswa" class="form-control select2" required>
+                                        <option value="" selected disabled>-- Pilih Siswa --</option>
                                         <?php foreach ($siswa as $value) : ?>
                                             <option value="<?= $value['id_siswa'] ?>"><?= $value['nama_siswa'] ?></option>
                                         <?php endforeach ?>
@@ -73,8 +73,9 @@
         </div>
     </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+<script src="<?= base_url() ?>/node_modules/jquery/dist/jquery.js"></script>
 <script>
     $('#nama-siswa').on('change', (event) => {
         getSiswa(event.target.value).then(tbl_siswa => {
@@ -84,6 +85,7 @@
             $('#nama_ibu').val(tbl_siswa.nama_ibu);
 
         });
+
     });
 
     async function getSiswa(id) {
