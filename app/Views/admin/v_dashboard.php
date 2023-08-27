@@ -1,12 +1,7 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-<?php if (session()->getFlashdata('pesan')) {
-    echo '<div class="alert alert-success" role="alert">';
-    echo session()->getFlashdata('pesan');
-    echo ' </div>';
-}
-?>
+
 
 
 <div class="row">

@@ -6,7 +6,7 @@ use App\Models\ModelKelas;
 use App\Models\ModelGuru;
 use App\Models\ModelTa;
 use \Dompdf\Dompdf;
-use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf as PdfDompdf;
+
 
 class Kelas extends BaseController
 {

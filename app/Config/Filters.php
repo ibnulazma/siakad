@@ -79,6 +79,7 @@ class Filters extends BaseConfig
                     'homesiswa', 'homesiswa/*',
 
 
+
                 ]
             ],
             'filterpeserta' =>

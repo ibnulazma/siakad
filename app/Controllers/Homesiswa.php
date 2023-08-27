@@ -9,11 +9,16 @@ class Homesiswa extends BaseController
     public function index()
     {
         $model = new Siswa();
-        $data = $model->findAll();
+        $siswa = $model->findAll();
 
-        return view('siswa', [
-            'siswa' => $data
-        ]);
+        $data = [
+            'siswa' => $siswa,
+            'title' => 'Surat',
+            'subtitle' => 'Surat',
+            'menu' => 'surat',
+            'submenu' => 'surat'
+        ];
+        return view('admin/surat', $data);
     }
 
     public function save()
