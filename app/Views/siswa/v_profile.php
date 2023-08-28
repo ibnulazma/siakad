@@ -32,10 +32,6 @@
                         <li class="list-group-item">
                             <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d M Y', strtotime($siswa['tanggal_lahir']))  ?></span>
                         </li>
-                        <li class="list-group-item">
-                            <b> Ibu Kandung</b> <span class="float-right"><?= $siswa['nama_ibu'] ?> </span>
-                        </li>
-
                     </ul>
                 </ul>
             </div>
@@ -66,22 +62,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <p class="card-title">
-                        <i class="fas fa-map-marker-alt"></i> <b> Tempat Tinggal</b>
-                    </p>
-                </div>
-                <div class="card-body">
-
-                    <p>
-                        <?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?>
-                    </p>
-                    <p> Desa/Kel. <?= $siswa['desa'] ?> Kecamatan <?= $siswa['nama_kecamatan'] ?></p>
-                    <p>Kab/Kota <?= $siswa['city_name'] ?> Provinsi <?= $siswa['prov_name'] ?></p>
-                    <p><a href="<?= $siswa['maps'] ?>">Alamat Rumah Sesuai Maps</a></p>
-                </div>
-            </div>
         <?php } ?>
     </div>
 
@@ -105,90 +85,97 @@
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#biodata" data-toggle="tab">Biodata</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#absen" data-toggle="tab">Presensi</a></li>
                         <li class="nav-item"><a class="nav-link" href="#nilai" data-toggle="tab">Nilai</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="active tab-pane" id="biodata">
+                        <div class="tab-pane active" id="biodata">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5><strong>IDENTITAS</strong></h5>
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item">
-                                            <span>NIK: <?= $siswa['nik'] ?></span>
+                                        <li class="list-group">
+                                            <b>Alamat Domisili</b>
+                                            <p class="text-muted"><?= $siswa['alamat'] ?>, RT <?= $siswa['rt'] ?>/ RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?>, Kec. <?= $siswa['nama_kecamatan'] ?> Kab/Kota <?= $siswa['kabupaten'] ?> Kode Pos <?= $siswa['kodepos'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            <span>Agama: Islam </span>
+                                            <b>Tinggal Bersama</b><br>
+                                            <p class="text-muted"><?= $siswa['tinggal'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            <span>Kebutuhan Khusus: Tidak Ada </span>
+                                            <b>Anak Ke</b>
+                                            <p class="text-muted"><?= $siswa['anak_ke'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            <span>Alat Transportasi: <?= $siswa['transportasi'] ?></span>
+                                            <b>Jumlah Saudara</b>
+                                            <p><?= $siswa['jml_saudara'] ?></p>
                                         </li>
-
+                                        <li class="list-group-item">
+                                            <b>Cita-cita</b>
+                                            <p class="text-muted"><?= $siswa['cita_cita'] ?></p>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <h5><strong>KONTAK</strong></h5>
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item">
-                                            <span> Jenis Tinggal: <?= $siswa['tinggal'] ?></span>
+                                        <li class="list-group">
+                                            <b>Hobi</b><br>
+                                            <p class="text-muted"><?= $siswa['hobi'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            <span> Telpn/Hp: <?= $siswa['telp_anak'] ?> </span>
+                                            <b>Tinggi Badan</b>
+                                            <p class="text-muted"><?= $siswa['tinggi'] ?> cm</p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Berat Badan</b>
+                                            <p><?= $siswa['berat'] ?> kg</p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Transportasi</b>
+                                            <p class="text-muted"><?= $siswa['transportasi'] ?></p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>No Hp</b>
+                                            <p class="text-muted"><?= $siswa['telp_anak'] ?></p>
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
+                            <h5>Biodata Orang Tua</h5>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5><strong>DATA ORANG TUA</strong></h5>
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item">
-                                            <span> Nama Ayah: <?= $siswa['nama_ayah'] ?></span>
+                                        <li class="list-group">
+                                            <b>Nama Ayah</b>
+                                            <p class="text-muted"><?= $siswa['nama_ayah'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            Telpon Ayah: <?= $siswa['telp_ayah'] ?></span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Telpon Ibu: <?= $siswa['telp_ayah'] ?></span>
+                                            <b>No Telp</b>
+                                            <p class="text-muted"><?= $siswa['telp_ayah'] ?></p>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <h5><strong>DATA LAINNYA</strong></h5>
                                     <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item">
-                                            <span> Tinggi Badan: <?= $siswa['tinggi'] ?> cm</span>
+                                        <li class="list-group">
+                                            <b>Nama Ibu</b><br>
+                                            <p class="text-muted"><?= $siswa['nama_ibu'] ?></p>
                                         </li>
                                         <li class="list-group-item">
-                                            Tinggi Badan: <?= $siswa['berat'] ?> kg</span>
+                                            <b>Telp Ibu</b>
+                                            <p class="text-muted"><?= $siswa['telp_ibu'] ?></p>
                                         </li>
-                                        <li class="list-group-item">
-                                            Lingkar Kepala: <?= $siswa['lingkar'] ?></span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Hobi: <?= $siswa['hobi'] ?></span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            Cita-cita: <?= $siswa['cita_cita'] ?></span>
-                                        </li>
-
                                     </ul>
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="tab-pane" id="absen">
-                            <div class="text-center text-danger">
-                                Maaf fitur ini dalam tahap pengembangan !!
-                            </div>
-                        </div>
+                            <a href="<?= base_url('siswa/resetdata/' . $siswa['id_siswa']) ?>" class="btn btn-danger float-right">Reset</a>
 
+
+
+                        </div>
                         <div class="tab-pane" id="nilai">
                             <div class="text-center text-danger">
                                 Maaf fitur ini dalam tahap pengembangan !!
@@ -196,7 +183,6 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
         <?php } ?>

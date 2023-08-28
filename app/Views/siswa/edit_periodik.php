@@ -53,19 +53,19 @@
 
                     <div class="form-group ">
                         <label for="">Tinggi Badan (cm)</label>
-                        <input type="text" class="form-control " name="tinggi" value="<?= $siswa['tinggi'] ?>" data-inputmask="'mask': ['999']" data-mask required>
+                        <input type="number" class="form-control " name="tinggi" value="<?= $siswa['tinggi'] ?>" required>
                     </div>
                     <div class="form-group ">
                         <label for="">Berat Badan (kg)</label>
-                        <input type="text" class="form-control " name="berat" value="<?= $siswa['berat'] ?>" data-inputmask="'mask': ['999']" data-mask required>
+                        <input type="number" class="form-control " name="berat" value="<?= $siswa['berat'] ?>" required>
                     </div>
                     <div class="form-group ">
                         <label for="">Lingkar Kepala (cm)</label>
-                        <input type="text" class="form-control " name="lingkar" value="<?= $siswa['lingkar'] ?> " data-inputmask="'mask': ['99']" data-mask required>
+                        <input type="number" class="form-control " name="lingkar" value="<?= $siswa['lingkar'] ?> " required>
                     </div>
                     <div class="form-group ">
                         <label for="">Jumlah Saudara Kandung</label>
-                        <input type="text" class="form-control " name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>" required>
+                        <input type="number" class="form-control " name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>" required>
                     </div>
 
                 </div>
@@ -82,11 +82,6 @@
     </div>
 
 </form>
-
-
-
-
-
 
 <script>
     function opsi(value) {

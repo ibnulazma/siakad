@@ -31,7 +31,7 @@ $tahun = $db->table('tbl_ta')
             </div>
 
         <?php  } else if ($siswa['status_daftar'] == 3) { ?>
-            <div class="bg-success p-2">
+            <div class="bg-primary p-2">
                 Final: Data Anda Sudah Aktif !!!
             </div>
 
@@ -59,7 +59,7 @@ $tahun = $db->table('tbl_ta')
                 <?php  } else if ($siswa['status_daftar'] == 2) { ?>
                     <span class="btn btn-warning"><i class="fas fa-clipboard-list"></i> Verifikasi</span>
                 <?php  } else if ($siswa['status_daftar'] == 3) { ?>
-                    <a href="" class="btn btn-info"><i class="fas fa-pencil"></i> Rangkuman Data</a>
+                    <a href="<?= base_url('siswa/portofolio') ?>" class="btn btn-primary"><i class="fas fa-pencil"></i> Rangkuman Data</a>
 
                 <?php } else if ($siswa['status_daftar'] == 4) { ?>
                     <a href="<?= base_url('siswa/edit_profile/' . $siswa['id_siswa']) ?>" class="btn btn-danger"><i class="fas fa-edit"></i> Update Data</a>
@@ -75,16 +75,6 @@ $tahun = $db->table('tbl_ta')
         <?php } ?>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 

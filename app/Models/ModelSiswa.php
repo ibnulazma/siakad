@@ -51,6 +51,13 @@ class ModelSiswa extends Model
             ->update($data);
     }
 
+    public function reset($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->where('id_siswa', $data['id_siswa'])
+            ->update($data);
+    }
+
     //PerTingkat
     public function Jadwal($id_kelas)
     {

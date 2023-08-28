@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Pendidikan</label>
                                             <select name="didik_ayah" id="" class="form-control" required>
-                                                <option value="">Pilih Pendidikan</option>
+                                                <option value="">-- Pilih Pendidikan --</option>
                                                 <?php foreach ($didik as $key => $value) { ?>
                                                     <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ayah'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
                                                 <?php } ?>
@@ -45,7 +45,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Pekerjaan</label>
-                                            <select name="kerja_ayah" class="form-control" id="dropdown" onChange="opsi(this)">
+                                            <select name="kerja_ayah" class="form-control" id="dropdown" onChange="opsi(this)" required>
+                                                <option value="">--Pilih Pekerjaan--</option>
                                                 <?php foreach ($kerja as $key => $value) { ?>
                                                     <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
                                                 <?php } ?>
@@ -54,6 +55,7 @@
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 col-form-label">Penghasilan</label>
                                             <select name="hasil_ayah" class="form-control" id="dipilih" required>
+                                                <option value="">--Pilih Penghasilan--</option>
                                                 <?php foreach ($hasil as $key => $value) { ?>
                                                     <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
                                                 <?php } ?>
@@ -99,7 +101,7 @@
                                         <div class="form-group">
                                             <label for="inputName" class="col-form-label">Pendidikan</label>
                                             <select name="didik_ibu" id="" class="form-control" required>
-                                                <option value="">Pilih Pendidikan</option>
+                                                <option value="">-- Pilih Pendidikan --</option>
                                                 <?php foreach ($didik as $key => $value) { ?>
                                                     <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ibu'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
                                                 <?php } ?>
@@ -110,7 +112,7 @@
                                         <div class="form-group">
                                             <label for="inputName" class="col-form-label">Pekerjaan</label>
                                             <select name="kerja_ibu" id="" class="form-control" required>
-                                                <option value="">Pilih Pekerjaan</option>
+                                                <option value="">-- Pilih Pekerjaan --</option>
                                                 <?php foreach ($kerja as $key => $value) { ?>
                                                     <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ibu'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
                                                 <?php } ?>
@@ -119,7 +121,7 @@
                                         <div class="form-group">
                                             <label for="inputName" class="col-form-label">Penghasilan</label>
                                             <select name="hasil_ibu" id="" class="form-control" required>
-                                                <option value="">Pilih Penghasilan</option>
+                                                <option value="">-- Pilih Penghasilan --</option>
                                                 <?php foreach ($hasil as $key => $value) { ?>
                                                     <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
                                                 <?php } ?>
