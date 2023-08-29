@@ -67,4 +67,28 @@ class Mapel extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
         return redirect()->to(base_url('mapel/rincian_mapel/' . $id_tingkat));
     }
+
+
+    public function addmapelsiswa()
+    {
+        // application/controllers/Controller.php
+
+
+        {
+            $items = $this->input->post('items'); // Get selected items from form
+
+            if (!empty($items)) {
+                foreach ($items as $item) {
+                    $data = array(
+                        'item_name' => $item,
+                        // Add other data fields as needed
+                    );
+
+                    $this->data_model->insert_data($data); // Call the model to insert data
+                }
+            }
+
+            redirect('controller'); // Redirect back to the form
+        }
+    }
 }

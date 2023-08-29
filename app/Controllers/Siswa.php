@@ -42,6 +42,7 @@ class Siswa extends BaseController
             'menu'      => 'siswa',
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
+
             // 'absen'         => $this->ModelSiswa->DataAbsen($mhs['id_siswa']),
             // 'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
 
@@ -99,6 +100,9 @@ class Siswa extends BaseController
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
+            'kerja'     => $this->ModelPekerjaan->AllData(),
+            'didik'     => $this->ModelPendidikan->AllData(),
+            'hasil'     => $this->ModelPenghasilan->AllData()
         ];
         return view('siswa/v_profile', $data);
     }
@@ -463,6 +467,6 @@ class Siswa extends BaseController
         ];
         $this->ModelSiswa->reset($data);
         session()->setFlashdata('pesan', 'Status Tahun Ajaran Berhasil Diganti !!!');
-        return redirect()->to(base_url('siswa/edit_profile/' . $id_siswa));
+        return redirect()->to(base_url('siswa/profile'));
     }
 }
