@@ -109,263 +109,299 @@
 
         <?php if ($siswa['status_daftar'] == 1) { ?>
 
+            <?= form_open('siswa/edit_siswa/' . $siswa['id_siswa']) ?>
+            <?= csrf_field() ?>
+
             <div class="card">
                 <div class="card-header p-2">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#alamat" data-toggle="tab">Alamat Domisili</a></li>
                         <li class="nav-item"><a class="nav-link" href="#orangtua" data-toggle="tab">Orang Tua</a></li>
                         <li class="nav-item"><a class="nav-link" href="#periodik" data-toggle="tab">Periodik</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#lainnya" data-toggle="tab">Registrasi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#registrasi" data-toggle="tab">Registrasi</a></li>
                     </ul>
                 </div>
+
                 <div class="card-body">
-                    <form action="">
-                        <div class="tab-content">
-                            <div class="active tab-pane" id="alamat">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <table width="50%" class="table">
-                                            <tr>
-                                                <td width="30%"><b>Alamat</b></td>
-                                                <td><input type="text" class="form-control" name="alamat" value="<?= $siswa['alamat'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>RT</b></td>
-                                                <td><input type="number" class="form-control" name="rt" value="<?= $siswa['rt'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>RW</b></td>
-                                                <td><input type="number" class="form-control" name="rw" value="<?= $siswa['rw'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Provinsi</b></td>
-                                                <td> <select name="provinsi" class="form-control select2bs4" style="width: 100%;" id="provinsi" required>
-                                                        <option value="">--Pilih Provinsi--</option>
-                                                        <?php foreach ($provinsi as $row) { ?>
-                                                            <option value="<?= $row['id_provinsi'] ?>"><?= $row['prov_name'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Kab/Kota</b></td>
-                                                <td>
-                                                    <select name="kabupaten" class="form-control select2bs4 " style="width: 100%;" id="kabupaten" required>
-                                                    </select>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <table class="table" width="50%">
-                                            <tr>
-                                                <td width="30%"><b>Kecamatan</b></td>
-                                                <td>
-                                                    <select name="kecamatan" class="form-control select2bs4 " style="width: 100%;" id="kecamatan" required>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Desa/Kel</b></td>
-                                                <td>
-                                                    <select name="desa" class="form-control select2bs4 " style="width: 100%;" id="desa" required>
-                                                    </select>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="orangtua">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <table width="50%" class="table">
-                                            <tr>
-                                                <td><b>Nama Ayah</b></td>
-                                                <td><input type="text" class="form-control" name="nama_ayah" value="<?= $siswa['nama_ayah'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Tahun Lahir</b></td>
-                                                <td><input type="number" class="form-control" name="tahun_ayah" value="<?= $siswa['tahun_ayah'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Pendidikan</b></td>
-                                                <td>
-                                                    <select name="didik_ayah" class="form-control" required>
-                                                        <option value="">-- Pilih Pendidikan --</option>
-                                                        <?php foreach ($didik as $key => $value) { ?>
-                                                            <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ayah'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Pekerjaan</b></td>
-                                                <td>
-                                                    <select name="kerja_ayah" class="form-control" id="dropdown" onChange="opsi(this)" required>
-                                                        <option value="">--Pilih Pekerjaan--</option>
-                                                        <?php foreach ($kerja as $key => $value) { ?>
-                                                            <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Pengasilan</b></td>
-                                                <td>
-                                                    <select name="hasil_ayah" class="form-control" id="dipilih" onChange="opsi(this)" required>
-                                                        <option value="">--Pilih Penghasilan--</option>
-                                                        <?php foreach ($hasil as $key => $value) { ?>
-                                                            <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ayah'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>No Hp Ayah</b></td>
-                                                <td><input type="number" class="form-control" name="telp_ayah" value="<?= $siswa['telp_ayah'] ?>" required></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <table width="50%" class="table">
-                                            <tr>
-                                                <td><b>Nama Ibu</b></td>
-                                                <td>
-                                                    <input type="text" class="form-control" name="nama_ibu" value="<?= $siswa['nama_ibu'] ?>" readonly>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td><b>Tahun Lahir</b></td>
-                                                <td><input type="number" class="form-control" name="tahun_ibu" value="<?= $siswa['tahun_ibu'] ?>"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Pendidikan</b></td>
-                                                <td>
-                                                    <select name="didik_ibu" class="form-control" required>
-                                                        <option value="">-- Pilih Pendidikan --</option>
-                                                        <?php foreach ($didik as $key => $value) { ?>
-                                                            <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ibu'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Pekerjaan</b></td>
-                                                <td>
-                                                    <select name="kerja_ibu" class="form-control" id="dropdown" onChange="opsi(this)" required>
-                                                        <option value="">--Pilih Pekerjaan--</option>
-                                                        <?php foreach ($kerja as $key => $value) { ?>
-                                                            <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ibu'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <td><b>Pengasilan</b></td>
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="alamat">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td width="30%"><b>Alamat</b></td>
                                             <td>
-                                                <select name="hasil_ibu" class="form-control" id="dipilih" onChange="opsi(this)" required>
-                                                    <option value="">--Pilih Penghasilan--</option>
-                                                    <?php foreach ($hasil as $key => $value) { ?>
-                                                        <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                                <input type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" value="<?= old('alamat') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('alamat'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>RT</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('rt')) ? 'is-invalid' : ''; ?>" name="rt" value="<?= old('rt') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('rt'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>RW</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('rw')) ? 'is-invalid' : ''; ?>" name="rw" value="<?= old('rw') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('rw'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Provinsi</b></td>
+                                            <td>
+                                                <select name="provinsi" class="form-control  select2bs4" style="width: 100%;" id="provinsi">
+
+                                                    <option value="">--Pilih Provinsi--</option>
+                                                    <?php foreach ($provinsi as $row) { ?>
+                                                        <option value=" <?= $row['id_provinsi'] ?>"><?= $row['prov_name'] ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </td>
-                                            <tr>
-                                                <td><b>No Hp Ibu</b></td>
-                                                <td><input type="number" class="form-control" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>" required></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Kab/Kota</b></td>
+                                            <td>
+                                                <select name="kabupaten" class="form-control select2bs4" style="width: 100%;" id="kabupaten">
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
+                                <div class="col-md-6">
+                                    <table class="table" width="50%">
+                                        <tr>
+                                            <td width="30%"><b>Kecamatan</b></td>
+                                            <td>
+                                                <select name="kecamatan" class="form-control select2bs4" style="width: 100%;" id="kecamatan">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kecamatan'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Desa/Kel</b></td>
+                                            <td>
+                                                <select name="desa" class="form-control select2bs4 <?= ($validation->hasError('desa')) ? 'is-invalid' : ''; ?>" style="width: 100%;" id="desa">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('desa'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Kode Pos</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('kodepos')) ? 'is-invalid' : ''; ?>" name="kodepos" value="<?= old('kodepos') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kodepos'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
 
-                            </div>
-                            <div class="tab-pane" id="periodik">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <table class="table">
-                                            <tr>
-                                                <td><b>Berat Badan</b></td>
-                                                <td><input type="number" class="form-control" name="berat" value="<?= $siswa['berat'] ?>" required> </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Tinggi Badan</b></td>
-                                                <td><input type="number" class="form-control" name="tinggi" value="<?= $siswa['tinggi'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Lingkar Kepala</b></td>
-                                                <td><input type="number" class="form-control" name="lingkar" value="<?= $siswa['lingkar'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Jumlah Saudara Kandung</b></td>
-                                                <td><input type="number" class="form-control" name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>" required></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class=" col-md-6">
-                                        <table class="table">
-                                            <tr>
-                                                <td><b>Tinggal Bersama</b></td>
-                                                <td>
-                                                    <select name="tinggal" class="form-control select2bs4" style="width: 100%;" required>
-                                                        <option value="">--Tinggal Bersama--</option>
-                                                        <?php foreach ($tinggal as $key => $value) { ?>
-                                                            <option value="<?= $value['tinggal'] ?>" <?= $siswa['tinggal'] == $value['tinggal'] ? 'selected' : '' ?>> <?= $value['tinggal'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Transportasi</b></td>
-                                                <td>
-                                                    <select name="transportasi" class="form-control select2bs4" style="width: 100%;" required>
-                                                        <option value="">--Pilih--</option>
-                                                        <?php foreach ($transportasi as $key => $value) { ?>
-                                                            <option value="<?= $value['transportasi'] ?>" <?= $siswa['transportasi'] == $value['transportasi'] ? 'selected' : '' ?>> <?= $value['transportasi'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="lainnya">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <table class="table">
-                                            <tr>
-                                                <td><b>No Seri Ijazah</b></td>
-                                                <td><input type="text" class="form-control" name="seri_ijazah" value="<?= $siswa['seri_ijazah'] ?>" required> </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Hobi</b></td>
-                                                <td><input type="text" class="form-control" name="hobi" value="<?= $siswa['hobi'] ?>" required></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <table class="table">
-                                            <tr>
-                                                <td><b>Cita-cita</b></td>
-                                                <td><input type="text" class="form-control" name="cita_cita" value="<?= $siswa['cita_cita'] ?>" required></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>No Hp/Wa</b></td>
-                                                <td><input type="number" class="form-control" name="telp_anak" value="<?= $siswa['telp_anak'] ?>" required> </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    </table>
+
                                 </div>
                             </div>
                         </div>
-                        <button type="submit">Simpan</button>
-                    </form>
+                        <div class=" tab-pane" id="orangtua">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td><b>Nama Ayah</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('nama_ayah')) ? 'is-invalid' : ''; ?>" name="nama_ayah" value="<?= old('nama_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nama_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tahun Lahir</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= old('tahun_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('tahun_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pendidikan</b></td>
+                                            <td>
+                                                <select name="didik_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>">
+                                                    <option value="">-- Pilih Pendidikan --</option>
+                                                    <?php foreach ($didik as $key => $value) { ?>
+                                                        <option value="<?= $value['pendidikan'] ?>"> <?= $value['pendidikan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('didik_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pekerjaan</b></td>
+                                            <td>
+                                                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                                                    <option value="">--Pilih Pekerjaan--</option>
+                                                    <?php foreach ($kerja as $key => $value) { ?>
+                                                        <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
+                                                        <div class="invalid-feedback">
+                                                            <?= $validation->getError('kerja_ayah'); ?>
+                                                        </div>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Penghasilan</b></td>
+                                            <td>
+                                                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                                                    <option value="">--Pilih Penghasilan--</option>
+                                                    <?php foreach ($hasil as $key => $value) { ?>
+                                                        <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('hasil_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>No Hp Ayah</b></td>
+                                            <td>
+                                                <input type="text" class="form-control" name="telp_ayah <?= ($validation->hasError('telp_ayah')) ? 'is-invalid' : ''; ?>" value="<?= old($siswa['telp_ayah']) ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('telp_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td><b>Nama Ibu</b></td>
+                                            <td>
+                                                <input type="text" class="form-control" name="nama_ibu" value="<?= $siswa['nama_ibu'] ?>" readonly>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tahun Lahir</b></td>
+                                            <td><input type="number" class="form-control" name="tahun_ibu" value="<?= $siswa['tahun_ibu'] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pendidikan</b></td>
+                                            <td>
+                                                <select name="didik_ibu" class="form-control">
+                                                    <option value="">-- Pilih Pendidikan --</option>
+                                                    <?php foreach ($didik as $key => $value) { ?>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pekerjaan</b></td>
+                                            <td>
+                                                <select name="kerja_ibu" class="form-control" id="dropdown" onChange="opsi(this)">
+                                                    <option value="">--Pilih Pekerjaan--</option>
+                                                    <?php foreach ($kerja as $key => $value) { ?>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <td><b>Pengasilan</b></td>
+                                        <td>
+                                            <select name="hasil_ibu" class="form-control" id="dipilih" onChange="opsi(this)">
+                                                <option value="">--Pilih Penghasilan--</option>
+                                                <?php foreach ($hasil as $key => $value) { ?>
+
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <tr>
+                                            <td><b>No Hp Ibu</b></td>
+                                            <td><input type="number" class="form-control" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="periodik">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Berat Badan</b></td>
+                                            <td><input type="number" class="form-control" name="berat" value="<?= $siswa['berat'] ?>"> </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tinggi Badan</b></td>
+                                            <td><input type="number" class="form-control" name="tinggi" value="<?= $siswa['tinggi'] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Lingkar Kepala</b></td>
+                                            <td><input type="number" class="form-control" name="lingkar" value="<?= $siswa['lingkar'] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Anak Ke</b></td>
+                                            <td><input type="number" class="form-control" name="anak_ke" value="<?= $siswa['anak_ke'] ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Jumlah Saudara Kandung</b></td>
+                                            <td><input type="number" class="form-control" name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class=" col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Tinggal Bersama</b></td>
+                                            <td>
+                                                <select name="tinggal" class="form-control select2bs4" style="width: 100%;">
+                                                    <option value="">--Tinggal Bersama--</option>
+                                                    <?php foreach ($tinggal as $key => $value) { ?>
+                                                        <option value="<?= $value['tinggal'] ?>" <?= $siswa['tinggal'] == $value['tinggal'] ? 'selected' : '' ?>> <?= $value['tinggal'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Transportasi</b></td>
+                                            <td>
+                                                <select name="transportasi" class="form-control select2bs4" style="width: 100%;">
+                                                    <option value="">--Pilih--</option>
+                                                    <?php foreach ($transportasi as $key => $value) { ?>
+                                                        <option value="<?= $value['transportasi'] ?>" <?= $siswa['transportasi'] == $value['transportasi'] ? 'selected' : '' ?>> <?= $value['transportasi'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="registrasi">
+
+                        </div>
+                    </div>
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary mb-3 btn-block">Simpan</button>
+            <?= form_close() ?>
+
 
         <?php  } else if ($siswa['status_daftar'] == 2) { ?>
 
@@ -497,7 +533,7 @@
                         <div class="tab-pane" id="periodik">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <table width="50%" class="table">
+                                    <!-- <table width="50%" class="table">
                                         <tr>
                                             <td><b>Berat Badan</b></td>
                                             <td><?= $siswa['berat'] ?> kg</td>
@@ -514,7 +550,7 @@
                                             <td><b>Jumlah Saudara Kandung</b></td>
                                             <td><?= $siswa['jml_saudara'] ?></td>
                                         </tr>
-                                    </table>
+                                    </table> -->
                                 </div>
                                 <div class="col-md-6">
                                     <table width="50%" class="table">
@@ -530,13 +566,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="lainnya">
+                        <div class="tab-pane" id="registrasi">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <table width="50%" class="table">
+                                    <!-- <table width="50%" class="table">
                                         <tr>
                                             <td><b>Status Pendaftaran</b></td>
-                                            <td><?= $siswa['berat'] ?> Pindahan</td>
+                                            <td><?= $siswa['berat'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>No Seri Ijazah</b></td>
@@ -547,7 +583,7 @@
                                             <td><?= $siswa['hobi'] ?> cm</td>
                                         </tr>
 
-                                    </table>
+                                    </table> -->
                                 </div>
                                 <div class="col-md-6">
                                     <table width="50%" class="table">
@@ -582,5 +618,10 @@
         }
     }
 </script>
+
+
+
+<!-- //Data Wilayah  -->
+
 
 <?= $this->endSection() ?>
