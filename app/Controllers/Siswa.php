@@ -70,18 +70,6 @@ class Siswa extends BaseController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public function profile()
     {
         session();
@@ -150,7 +138,7 @@ class Siswa extends BaseController
             ],
 
             'rw' => [
-                'label' => 'Jenis Kelamin',
+                'label' => 'RW',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} harus dipilih'
@@ -178,7 +166,7 @@ class Siswa extends BaseController
                 ]
             ],
             'provinsi' => [
-                'label' => 'Kabupaten',
+                'label' => 'Provinsi',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} harus diisi'
@@ -199,36 +187,112 @@ class Siswa extends BaseController
                 ]
             ],
             'kodepos' => [
-                'label' => 'kode Pos',
+                'label' => 'Kode Pos',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} harus diisi'
                 ]
             ],
+            'berat' => [
+                'label' => 'Berat Badan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'nama_ayah' => [
+                'label' => 'Nama',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'tahun_ayah' => [
+                'label' => 'Tahun Lahir',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'didik_ayah' => [
+                'label' => 'Pendidikan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kerja_ayah' => [
+                'label' => 'Kerja',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'hasil_ayah' => [
+                'label' => 'Penghasilan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'telp_ayah' => [
+                'label' => 'Telepon',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
         ])) {
             $data = [
-                'id_siswa'       => $id_siswa,
-                'no_kip'        => $this->request->getPost('no_kip'),
-                'kip'           => $this->request->getPost('kip'),
-                'anak_ke'       => $this->request->getPost('anak_ke'),
-                'alamat'        => $this->request->getPost('alamat'),
-                'rt'            => $this->request->getPost('rt'),
-                'rw'            => $this->request->getPost('rw'),
-                'provinsi'      => $this->request->getPost('provinsi'),
-                'kabupaten'     => $this->request->getPost('kabupaten'),
-                'kecamatan'     => $this->request->getPost('kecamatan'),
-                'desa'          => $this->request->getPost('desa'),
-                'tinggal'       => $this->request->getPost('tinggal'),
-                'transportasi'  => $this->request->getPost('transportasi'),
-                'kodepos'  => $this->request->getPost('kodepos'),
+                'id_siswa'          => $id_siswa,
+                'no_kip'            => $this->request->getPost('no_kip'),
+                'kip'               => $this->request->getPost('kip'),
+                'anak_ke'           => $this->request->getPost('anak_ke'),
+                'alamat'            => $this->request->getPost('alamat'),
+                'rt'                => $this->request->getPost('rt'),
+                'rw'                => $this->request->getPost('rw'),
+                'provinsi'          => $this->request->getPost('provinsi'),
+                'kabupaten'         => $this->request->getPost('kabupaten'),
+                'kecamatan'         => $this->request->getPost('kecamatan'),
+                'desa'              => $this->request->getPost('desa'),
+                'tinggal'           => $this->request->getPost('tinggal'),
+                'transportasi'      => $this->request->getPost('transportasi'),
+                'kodepos'           => $this->request->getPost('kodepos'),
+                'nama_ayah'         => $this->request->getPost('nama_ayah'),
+                'nama_ibu'          => $this->request->getPost('nama_ibu'),
+                'didik_ibu'         => $this->request->getPost('didik_ibu'),
+                'didik_ayah'        => $this->request->getPost('didik_ayah'),
+                'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
+                'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
+                'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
+                'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
+                'telp_ayah'         => $this->request->getPost('telp_ayah'),
+                'telp_ibu'          => $this->request->getPost('telp_ibu'),
+                'nik_ibu'           => $this->request->getPost('nik_ibu'),
+                'nik_ayah'          => $this->request->getPost('nik_ayah'),
+                'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
+                'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
+                'lingkar'           => $this->request->getPost('lingkar'),
+                'telp_anak'         => $this->request->getPost('telp_anak'),
+                'lingkar'           => $this->request->getPost('lingkar'),
+                'berat'             => $this->request->getPost('berat'),
+                'tinggi'            => $this->request->getPost('tinggi'),
+                'hobi'              => $this->request->getPost('hobi'),
+                'cita_cita'         => $this->request->getPost('cita_cita'),
+                'seri_ijazah'       => $this->request->getPost('seri_ijazah'),
+                'jml_saudara'       => $this->request->getPost('jml_saudara'),
+                'status_daftar'     => 2
 
             ];
             $this->ModelSiswa->edit($data);
             session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-            return redirect()->to('siswa/edit_orangtua/' . $id_siswa);
+            return redirect()->to('siswa/profile');
         } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
             $validation =  \Config\Services::validation();
-            return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
+            return redirect()->to('siswa/profile')->withInput()->with('validation', $validation);
+            // return redirect()->to('siswa/profile');
         }
     }
 
@@ -260,20 +324,7 @@ class Siswa extends BaseController
 
         $data = [
             'id_siswa'          => $id_siswa,
-            'nama_ayah'         => $this->request->getPost('nama_ayah'),
-            'nama_ibu'          => $this->request->getPost('nama_ibu'),
-            'didik_ibu'         => $this->request->getPost('didik_ibu'),
-            'didik_ayah'        => $this->request->getPost('didik_ayah'),
-            'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
-            'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
-            'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
-            'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
-            'telp_ayah'         => $this->request->getPost('telp_ayah'),
-            'telp_ibu'          => $this->request->getPost('telp_ibu'),
-            'nik_ibu'           => $this->request->getPost('nik_ibu'),
-            'nik_ayah'          => $this->request->getPost('nik_ayah'),
-            'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
-            'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
+
         ];
         $this->ModelSiswa->edit($data);
         return redirect()->to('siswa/edit_periodik/' . $id_siswa);
@@ -290,16 +341,7 @@ class Siswa extends BaseController
         $data = [
             'id_siswa'          => $id_siswa,
             'maps'              => $this->request->getPost('maps'),
-            'lingkar'           => $this->request->getPost('lingkar'),
-            'telp_anak'           => $this->request->getPost('telp_anak'),
-            'lingkar'           => $this->request->getPost('lingkar'),
-            'berat'           => $this->request->getPost('berat'),
-            'tinggi'           => $this->request->getPost('tinggi'),
-            'hobi'              => $this->request->getPost('hobi'),
-            'cita_cita'         => $this->request->getPost('cita_cita'),
-            'seri_ijazah'       => $this->request->getPost('seri_ijazah'),
-            'jml_saudara'       => $this->request->getPost('jml_saudara'),
-            'status_daftar'     => 2
+
 
 
         ];
@@ -361,69 +403,42 @@ class Siswa extends BaseController
     }
 
 
-    public function AddAbsen($id_mapel)
-    {
-        $siswa = $this->ModelSiswa->DataSiswa();
-        $data = [
-            'id_jadwal' => $id_mapel,
-            'id_siswa' => $siswa['id_siswa']
-        ];
+    // public function AddAbsen($id_mapel)
+    // {
+    //     $siswa = $this->ModelSiswa->DataSiswa();
+    //     $data = [
+    //         'id_jadwal' => $id_mapel,
+    //         'id_siswa' => $siswa['id_siswa']
+    //     ];
 
-        $this->ModelSiswa->TambahJadwal($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
-        return redirect()->to(base_url('siswa'));
-    }
-
-
-    public function nilai()
-    {
-
-        // $mhs = $this->ModelSiswa->Siswa();
-        // $siswa = $this->ModelSiswa->DataSiswa();
-        $data = [
-            'title'     => 'SIAKADINKA',
-            'subtitle'  => 'Hasil Study',
-
-
-        ];
-        return view('siswa/v_nilai', $data);
-    }
+    //     $this->ModelSiswa->TambahJadwal($data);
+    //     session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
+    //     return redirect()->to(base_url('siswa'));
+    // }
 
 
     public function dataKabupaten($id_provinsi)
     {
         $data = $this->ModelWilayah->getKabupaten($id_provinsi);
-
-
         echo '<option>--Pilih Kabupaten--</option>';
-
         foreach ($data as $value) {
-            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>
-           ';
+            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
         }
     }
     public function dataKecamatan($id_kabupaten)
     {
         $data = $this->ModelWilayah->getKecamatan($id_kabupaten);
-
-
         echo '<option>--Pilih Kecamatan--</option>';
-
         foreach ($data as $value) {
-            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>
-           ';
+            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
         }
     }
     public function dataDesa($id_kecamatan)
     {
         $data = $this->ModelWilayah->getDesa($id_kecamatan);
-
-
         echo '<option>--Pilih Desa/Kelurahan--</option>';
-
         foreach ($data as $value) {
-            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>
-           ';
+            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
         }
     }
 

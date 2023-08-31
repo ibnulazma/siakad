@@ -91,4 +91,20 @@ class Mapel extends BaseController
             redirect('controller'); // Redirect back to the form
         }
     }
+
+    public function contohadd()
+    {
+
+        $student_id = $this->input->post('student_id'); //here i am getting student id from the checkbox
+
+        for ($i = 0; $i < sizeof($student_id); $i++) {
+            $data = array('student_id' => $student_id[$i]);
+            $this->db->insert('added_student', $data);
+        }
+
+        $this->session->set_flashdata('msg', "Students details has been added successfully");
+        $this->session->set_flashdata('msg_class', 'alert-success');
+
+        return redirect('students');
+    }
 }
