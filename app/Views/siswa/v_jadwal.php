@@ -25,9 +25,8 @@
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $value['mapel'] ?></td>
-                        <td><?= $value['nama_guru'] ?></td>
                         <td><?= $value['kelas'] ?></td>
-                        <td><?= $value['hari'] ?>/<?= $value['waktu'] ?></td>
+
 
                     </tr>
                 <?php } ?>

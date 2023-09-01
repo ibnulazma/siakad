@@ -7,6 +7,7 @@
 <div class="card ">
 
     <div class="card-body">
+
         <table class="table table-bordered">
             <thead class="text-center bg-primary">
                 <tr>
@@ -14,7 +15,7 @@
                     <th>Kode Mapel</th>
                     <th>Mata Pelajaran</th>
                     <th>Kelas</th>
-                    <th>Absen</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -27,7 +28,7 @@
                         <td><?= $value['mapel'] ?></td>
                         <td><?= $value['kelas'] ?></td>
                         <td>
-                            <a href="<?= base_url('pendidik/nilaisiswa/' . $value['id_mapel']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Presensi</a>
+                            <a href="<?= base_url('pendidik/nilaisiswa/' . $value['id_mapel']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Nilai</a>
                         </td>
                     </tr>
                 <?php } ?>

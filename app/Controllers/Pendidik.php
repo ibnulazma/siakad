@@ -53,7 +53,7 @@ class Pendidik extends BaseController
         return view('guru/walas', $data);
     }
 
-    public function PresensiKelas()
+    public function presensiKelas()
     {
 
         $guru = $this->ModelPendidik->DataGuru();
@@ -81,12 +81,14 @@ class Pendidik extends BaseController
         return view('guru/absen/presensi', $data);
     }
 
-    public function Nilai()
+    public function nilai()
     {
 
         $guru = $this->ModelPendidik->DataGuru();
         $data = [
             'title' => 'SIAKAD',
+            'menu' => 'nilai',
+            'submenu' => 'nilai',
             'subtitle' => 'Penilaian ',
             'absen' => $this->ModelPendidik->Mapel($guru['id_guru'])
         ];
@@ -99,8 +101,10 @@ class Pendidik extends BaseController
 
         $data = [
             'title' => 'SIAKAD',
+            'menu' => 'nilai',
+            'submenu' => 'nilai',
             'subtitle' => 'Penilaian Peserta Didik',
-            'absen' => $this->ModelPendidik->Kelas($id_mapel)
+            'nilai' => $this->ModelPendidik->nilaimapel($id_mapel)
         ];
         return view('guru/nilai/nilaisiswa', $data);
     }

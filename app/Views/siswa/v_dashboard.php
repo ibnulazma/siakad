@@ -54,16 +54,7 @@ $tahun = $db->table('tbl_ta')
                 <h5>TAHUN PELAJARAN AKTIF : Semester <?= $siswa['semester'] ?> <?= $siswa['ta'] ?></h5>
             </div>
             <div class="card-footer">
-                <?php if ($siswa['status_daftar'] == 1) { ?>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fas fa-edit"></i> Update Data</button>
-                <?php  } else if ($siswa['status_daftar'] == 2) { ?>
-                    <span class="btn btn-warning"><i class="fas fa-clipboard-list"></i> Verifikasi</span>
-                <?php  } else if ($siswa['status_daftar'] == 3) { ?>
-                    <a href="<?= base_url('siswa/portofolio') ?>" class="btn btn-primary"><i class="fas fa-pencil"></i> Rangkuman Data</a>
-
-                <?php } else if ($siswa['status_daftar'] == 4) { ?>
-                    <a href="<?= base_url('siswa/edit_profile/' . $siswa['id_siswa']) ?>" class="btn btn-danger"><i class="fas fa-edit"></i> Update Data</a>
-                <?php } ?>
+                <a href="<?= base_url('siswa/portofolio') ?>" class="btn btn-primary"><i class="fas fa-pencil"></i> Rangkuman Data</a>
 
             </div>
         </div>

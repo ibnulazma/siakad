@@ -86,10 +86,9 @@ class ModelSiswa extends Model
 
     public function AmbilMapel($id_mapel)
     {
-        return $this->db->table('tbl_jadwal')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_jadwal.id_kelas', 'left')
-            ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_jadwal.id_mapel', 'left')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_jadwal.id_guru', 'left')
+        return $this->db->table('tbl_mapel')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_mapel.id_guru', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_mapel.id_kelas', 'left')
             ->where('tbl_mapel.id_kelas', $id_mapel)
             ->get()->getResultArray();
     }

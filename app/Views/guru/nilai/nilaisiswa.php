@@ -86,10 +86,10 @@
     </div>
     <div class="card-body">
 
-        <div class="div1">
-            <table>
+        <div class="table-responsive">
+            <table class="text-sm table table-bordered" width="100%">
 
-                <tr>
+                <tr class="text-center">
                     <th class="no">No</th>
                     <th>Nama Siswa</th>
                     <th> NISN</th>
@@ -110,88 +110,51 @@
                 </tr>
 
                 <?php $no = 1;
-                foreach ($absen as $key => $value) { ?>
+                foreach ($nilai as $key => $value) { ?>
 
-                    <tr class="text-center">
+                    <tr class="text-center text-sm">
                         <td> <?= $no++ ?></td>
-                        <td> <?= $value['nama_siswa'] ?></td>
+                        <td width="10%"> <?= $value['nama_siswa'] ?></td>
                         <td> <?= $value['nisn'] ?></td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control">
-                        </td>
                         <td class="text-center">
-
-                            <?php
-                            $absensi = round(
-                                ($value['p1'] +
-                                    $value['p2'] +
-                                    $value['p3'] +
-                                    $value['p4'] +
-                                    $value['p5'] +
-                                    $value['p6'] +
-                                    $value['p7'] +
-                                    $value['p8'] +
-                                    $value['p9'] +
-                                    $value['p10'] +
-                                    $value['p11'] +
-                                    $value['p12'] +
-                                    $value['p13'] +
-                                    $value['p14'] +
-                                    $value['p15'] +
-                                    $value['p16'] +
-                                    $value['p17'] +
-                                    $value['p18'] +
-                                    $value['p19'] +
-                                    $value['p20'] +
-                                    $value['p21'] +
-                                    $value['p22'] +
-                                    $value['p23'] +
-                                    $value['p24'] +
-                                    $value['p25'] +
-                                    $value['p26'] +
-                                    $value['p27'] +
-                                    $value['p28'] +
-                                    $value['p29'] +
-                                    $value['p30'] +
-                                    $value['p31']) / 62 * 100
-                            );
-
-                            echo $absensi;
-
-                            ?>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh1'] ?>">
                         </td>
                         <td>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh2'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh3'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh4'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh5'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh6'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh7'] ?>">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh8'] ?>">
+                        </td>
+                        <td>
+                            <input type=" text" class="form-control form-control-sm" value="<?= $value['uh9'] ?>">
+                        </td>
+                        <td>
+                            <input type=" text" class="form-control form-control-sm" value="<?= $value['uh10'] ?>">
+                        </td>
+                        <td class=" text-center">
+
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" value="<?= $value['uh7'] ?>">
                         </td>
 
-                        <td><input type="text" class="form-control"></td>
+                        <td><input type=" text" class="form-control form-control-sm">
+                        </td>
                         <td>0</td>
 
                     </tr>

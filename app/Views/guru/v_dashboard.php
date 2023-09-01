@@ -75,12 +75,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="telp_guru" value=<?= $guru['telp_guru'] ?>>
+                                            <input type="text" class="form-control" name="telp_guru" value=<?= $guru['telp_guru'] ?>>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="telp_guru" value=<?= $guru['alamat_guru'] ?>>
-                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -95,10 +92,6 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane" id="rombel">
-
-                        </div>
-
                         <div class="tab-pane" id="nilai">
                             <div class="text-center text-danger">
                                 Maaf fitur ini dalam tahap pengembangan !!

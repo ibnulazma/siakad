@@ -153,10 +153,18 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
                             <li class="nav-item">
-                                <a href="<?= base_url('guru') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
+                                <a href="<?= base_url('pendidik') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
                                     <i class="fas fa-tachometer-alt nav-icon"></i>
                                     <p>
                                         Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('pendidik/nilai') ?>" class="nav-link <?= $menu == 'nilai' ? 'active' : '' ?>">
+                                    <i class="fas fa-tachometer-alt nav-icon"></i>
+                                    <p>
+                                        Penilaian
                                     </p>
                                 </a>
                             </li>
