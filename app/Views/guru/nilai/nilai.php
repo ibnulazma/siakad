@@ -21,7 +21,7 @@
             <tbody class="text-center">
 
                 <?php $no = 1;
-                foreach ($absen as $key => $value) { ?>
+                foreach ($ambilmapel as $key => $value) { ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $value['kode_mapel'] ?></td>

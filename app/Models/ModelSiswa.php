@@ -101,14 +101,23 @@ class ModelSiswa extends Model
             ->insert($data);
     }
 
-    // public function DataAbsen($id_siswa)
-    // {
-    //     return $this->db->table('tbl_absen')
-    //         ->join('tbl_jadwal', 'tbl_jadwal.id_jadwal = tbl_absen.id_jadwal', 'left')
-    //         ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_jadwal.id_mapel', 'left')
-    //         ->where('id_siswa', $id_siswa)
-    //         ->get()->getResultArray();
-    // }
+    public function DataAbsen($id_siswa)
+    {
+        return $this->db->table('tbl_absen')
+            ->join('tbl_jadwal', 'tbl_jadwal.id_jadwal = tbl_absen.id_jadwal', 'left')
+            ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_jadwal.id_mapel', 'left')
+            ->where('id_siswa', $id_siswa)
+            ->get()->getResultArray();
+    }
+
+    public function DaftaNilai($id_siswa)
+    {
+        return $this->db->table('tbl_nilai')
+            ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_nilai.id_mapel', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.id_siswa', 'left')
+            ->where('tbl_siswa.id_siswa', $id_siswa)
+            ->get()->getResultArray();
+    }
 
     public function Siswa()
     {

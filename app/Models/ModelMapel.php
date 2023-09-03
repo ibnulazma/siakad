@@ -11,7 +11,9 @@ class ModelMapel extends Model
     {
         return $this->db->table('tbl_mapel')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_mapel.id_guru', 'left')
-            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_mapel.id_tingkat', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_mapel.id_kelas', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_mapel.id_tahun', 'left')
+            ->where('tbl_ta.status', '1')
             ->get()->getResultArray();
     }
 
@@ -36,6 +38,29 @@ class ModelMapel extends Model
     {
         $this->db->table('tbl_mapel')
             ->insert($data);
+    }
+
+
+
+    public function addnilai($data)
+    {
+        $this->db->table('tbl_nilai')
+            ->insert($data);
+    }
+
+    public function edit($data)
+    {
+        $this->db->table('tbl_mapel')
+            ->where('id_mapel', $data['id_mapel'])
+            ->update($data);
+    }
+
+
+    public function delet($data)
+    {
+        $this->db->table('tbl_mapel')
+            ->where('id_mapel', $data['id_mapel'])
+            ->delete($data);
     }
 
 

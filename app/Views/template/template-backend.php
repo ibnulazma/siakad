@@ -394,7 +394,17 @@
         });
     </script>
 
-
+    <script>
+        $(document).ready(function() {
+            $('#centangSemua').click(function(e) {
+                if ($(this).is(":checked")) {
+                    $('.centangForm').prop('checked', true);
+                } else {
+                    $('.centangForm').prop('checked', false);
+                }
+            });
+        })
+    </script>
 
 </body>
 

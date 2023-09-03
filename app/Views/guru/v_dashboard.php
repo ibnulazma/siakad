@@ -97,9 +97,7 @@
                                 Maaf fitur ini dalam tahap pengembangan !!
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

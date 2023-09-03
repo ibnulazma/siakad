@@ -29,7 +29,7 @@ class Kelas extends BaseController
             'submenu'       => 'kelas',
             'kelas'         => $this->ModelKelas->AllData(),
             'guru'          => $this->ModelGuru->AllData(),
-            'tingkat'         => $this->ModelKelas->Tingkat(),
+            'tingkat'       => $this->ModelKelas->Tingkat(),
 
         ];
         return view('admin/kelas/v_rombel', $data);

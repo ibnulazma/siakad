@@ -98,7 +98,7 @@
                     <tr class="text-center">
                         <th class="no">No</th>
                         <th>Nama Siswa</th>
-                        <th> NISN</th>
+                        <th>NISN</th>
                         <th>UH1</th>
                         <th>UH2</th>
                         <th>UH3</th>
@@ -123,41 +123,43 @@
                             <td width="10%"> <?= $value['nama_siswa'] ?></td>
                             <td> <?= $value['nisn'] ?></td>
                             <td class="text-center">
-                                <?= $value['uh1'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh1'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh2'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh2'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh3'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh3'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh4'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh4'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh5'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh5'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh6'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh6'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh7'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh7'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh8'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh8'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh9'] ?>
+                                <input type=" text" class="form-control form-control-sm" value="<?= $value['uh9'] ?>">
                             </td>
                             <td>
-                                <?= $value['uh10'] ?>
+                                <input type=" text" class="form-control form-control-sm" value="<?= $value['uh10'] ?>">
                             </td>
-                            <td></td>
+                            <td class=" text-center">
+
+                            </td>
                             <td>
-                                <?= $value['uh7'] ?>
+                                <input type="text" class="form-control form-control-sm" value="<?= $value['uh7'] ?>">
                             </td>
 
-                            <td>
+                            <td><input type=" text" class="form-control form-control-sm">
                             </td>
                             <td>0</td>
 

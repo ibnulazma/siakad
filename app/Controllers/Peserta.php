@@ -163,7 +163,6 @@ class Peserta extends BaseController
                 if ($x == 0) {
                     continue;
                 }
-
                 $nis            = $row[1];
                 $nama           = $row[2];
                 $jk             = $row[3];

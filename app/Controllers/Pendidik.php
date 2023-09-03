@@ -104,7 +104,8 @@ class Pendidik extends BaseController
             'menu' => 'nilai',
             'submenu' => 'nilai',
             'subtitle' => 'Penilaian Peserta Didik',
-            'nilai' => $this->ModelPendidik->nilaimapel($id_mapel)
+            'nilai' => $this->ModelPendidik->nilaimapel($id_mapel),
+
         ];
         return view('guru/nilai/nilaisiswa', $data);
     }

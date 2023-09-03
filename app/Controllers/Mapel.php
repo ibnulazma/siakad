@@ -28,8 +28,9 @@ class Mapel extends BaseController
             'subtitle'      => 'Mata Pelajaran',
             'menu'          => 'akademik',
             'submenu'       => 'mapel',
-            'tingkat'       => $this->ModelKelas->Tingkat(),
-
+            'mapel' => $this->ModelMapel->AllData(),
+            'guru' => $this->ModelGuru->AllData(),
+            'kelas' => $this->ModelKelas->AllData()
         ];
 
         return view('admin/mapel/v_mapel', $data);
@@ -52,59 +53,54 @@ class Mapel extends BaseController
 
 
     //Tambah Mapel
-    public function add($id_tingkat)
+    public function add()
     {
+        $db     = \Config\Database::connect();
 
+        $ta = $db->table('tbl_ta')
+            ->where('status', '1')
+            ->get()->getRowArray();
         $data = [
 
-            'kode_mapel' => $this->request->getPost('kode_mapel'),
-            'mapel' => $this->request->getPost('mapel'),
-            'kkm' => $this->request->getPost('kkm'),
-            'kelompok' => $this->request->getPost('kelompok'),
-            'id_tingkat' => $id_tingkat,
+            'kode_mapel'    => $this->request->getPost('kode_mapel'),
+            'mapel'         => $this->request->getPost('mapel'),
+            'kkm'           => $this->request->getPost('kkm'),
+            'id_kelas'      => $this->request->getPost('id_kelas'),
+            'id_guru'       => $this->request->getPost('id_guru'),
+            'id_tahun'         =>  $ta['id_ta'],
         ];
         $this->ModelMapel->add($data);
         session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
-        return redirect()->to(base_url('mapel/rincian_mapel/' . $id_tingkat));
+        return redirect()->to(base_url('mapel'));
     }
 
 
-    public function addmapelsiswa()
+    public function edit($id_mapel)
     {
-        // application/controllers/Controller.php
 
-
-        {
-            $items = $this->input->post('items'); // Get selected items from form
-
-            if (!empty($items)) {
-                foreach ($items as $item) {
-                    $data = array(
-                        'item_name' => $item,
-                        // Add other data fields as needed
-                    );
-
-                    $this->data_model->insert_data($data); // Call the model to insert data
-                }
-            }
-
-            redirect('controller'); // Redirect back to the form
-        }
+        $data = [
+            'id_mapel' => $id_mapel,
+            'kode_mapel' => $this->request->getPost('kode_mapel'),
+            'mapel' => $this->request->getPost('mapel'),
+            'kkm' => $this->request->getPost('kkm'),
+            'id_kelas' => $this->request->getPost('id_kelas'),
+            'id_guru' => $this->request->getPost('id_guru'),
+        ];
+        $this->ModelMapel->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
+        return redirect()->to(base_url('mapel'));
     }
 
-    public function contohadd()
+
+
+    public function delete($id_mapel)
     {
 
-        $student_id = $this->input->post('student_id'); //here i am getting student id from the checkbox
-
-        for ($i = 0; $i < sizeof($student_id); $i++) {
-            $data = array('student_id' => $student_id[$i]);
-            $this->db->insert('added_student', $data);
-        }
-
-        $this->session->set_flashdata('msg', "Students details has been added successfully");
-        $this->session->set_flashdata('msg_class', 'alert-success');
-
-        return redirect('students');
+        $data = [
+            'id_mapel' => $id_mapel,
+        ];
+        $this->ModelMapel->delet($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
+        return redirect()->to(base_url('mapel'));
     }
 }
