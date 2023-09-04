@@ -31,7 +31,7 @@
                         <a href="<?= base_url('siswa/resetdata/' . $siswa['id_siswa']) ?>" class="btn btn-danger btn-sm"><i class="fa-regular fa-pen-to-square fa-beat"></i> Update</a>
                     <?php } else if ($siswa['status_daftar'] == 2) { ?>
                     <?php } else if ($siswa['status_daftar'] == 3) { ?>
-                        <a href="<?= base_url('siswa/updatedata/' . $siswa['id_siswa']) ?>" class="btn btn-danger btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
+                        <a href="<?= base_url('siswa/resetdata/' . $siswa['id_siswa']) ?>" class="btn btn-danger btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                     <?php } ?>
                 </div>
             </div>

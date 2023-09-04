@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Models\ModelPendidik;
 use App\Models\ModelJadwal;
+use App\Models\ModelSiswa;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Pendidik extends BaseController
 {
@@ -12,6 +15,8 @@ class Pendidik extends BaseController
     {
         $this->ModelPendidik = new ModelPendidik();
         $this->ModelJadwal = new ModelJadwal();
+
+        $this->siswa = new ModelSiswa();
     }
 
     public function index()
@@ -90,7 +95,7 @@ class Pendidik extends BaseController
             'menu' => 'nilai',
             'submenu' => 'nilai',
             'subtitle' => 'Penilaian ',
-            'absen' => $this->ModelPendidik->Mapel($guru['id_guru'])
+            'ambilmapel' => $this->ModelPendidik->Mapel($guru['id_guru'])
         ];
         return view('guru/nilai/nilai', $data);
     }
@@ -108,5 +113,42 @@ class Pendidik extends BaseController
 
         ];
         return view('guru/nilai/nilaisiswa', $data);
+    }
+
+    public function unduhberkas()
+    {
+
+
+
+        $siswa =   $this->siswa->AllData();
+
+
+        $spreadsheet = new Spreadsheet();
+        $activeWorksheet = $spreadsheet->getActiveSheet();
+        $activeWorksheet->setCellValue('A1', 'No');
+        $activeWorksheet->setCellValue('B1', 'Nama');
+        $activeWorksheet->setCellValue('C1', 'Jenis Kelamin');
+        $activeWorksheet->setCellValue('D1', 'Tanggal Lahir');
+
+
+        $column = 2;
+        foreach ($siswa as $key => $value) {
+            $sheet->setCellValue('A' . $column, ($column - 1));
+            $sheet->setCellValue('B' . $column, $value->nama_siswa);
+            $sheet->setCellValue('C' . $column, $value->jenis_kelamin);
+            $sheet->setCellValue('D' . $column, $value->tanggal_lahir);
+
+            $column++;
+        }
+
+
+
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition:attachment;filename=data anak.xlsx');
+        header('Cache-Control:max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

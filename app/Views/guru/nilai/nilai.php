@@ -29,6 +29,7 @@
                         <td><?= $value['kelas'] ?></td>
                         <td>
                             <a href="<?= base_url('pendidik/nilaisiswa/' . $value['id_mapel']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Nilai</a>
+                            <a href="<?= base_url('pendidik/unduhberkas') ?>" class="btn btn-info btn-sm"> <i class="fa-solid fa-download"></i> Unduh</a>
                         </td>
                     </tr>
                 <?php } ?>

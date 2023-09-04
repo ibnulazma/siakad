@@ -11,9 +11,7 @@ use App\Models\ModelTinggal;
 use App\Models\ModelTransportasi;
 use App\Models\ModelPenghasilan;
 use App\Models\ModelMapel;
-
-
-
+use mysqli;
 
 class Siswa extends BaseController
 {
@@ -880,19 +878,36 @@ class Siswa extends BaseController
     }
 
 
+    //Rumus1 MAnual
+    // public function mapeladd()
+    // {
+    //     $data = [
+    //         'id_mapel'       => $this->request->getPost('id_mapel'),
+    //         'id_siswa'        => $this->request->getPost('id_siswa'),
+
+    //     ];
+    //     $this->ModelMapel->addnilai($data);
+    //     return redirect()->to('siswa/nilai');
+    // }
 
     public function mapeladd()
     {
-        $data = [
-            'id_mapel'       => $this->request->getPost('id_mapel'),
-            'id_siswa'        => $this->request->getPost('id_siswa'),
+        if (isset($_POST['submit'])) {
+            $check_array = $_POST['id_siswa'];
+            foreach ($_POST['id_siswa'] as $key => $value) {
+                if (in_array($_POST['mapel'][$key], $check_array)) {
+                    echo $_POST['mapel'][$key];
+                    echo '<br>';
+                }
 
-        ];
-        $this->ModelMapel->addnilai($data);
-        return redirect()->to('siswa/nilai');
+
+
+                // $db = \Config\Database::connect();
+                // $insert = "INSERT INTO `tbl_nilai`(`id_siswa`, `id_mapel`) VALUES ('$id_siswa','$id_mapel')";
+                // mysqli_query($db, $insert);
+            }
+        }
     }
-
-
 
 
     public function dataKabupaten($id_provinsi)
@@ -958,8 +973,9 @@ class Siswa extends BaseController
             'id_siswa' => $id_siswa,
             'status_daftar' => 1
         ];
-        $this->ModelSiswa->reset($data);
-        session()->setFlashdata('pesan', 'Status Tahun Ajaran Berhasil Diganti !!!');
+        $this->ModelSiswa->resetstatus();
+        $this->ModelSiswa->edit($data);
+        session()->setFlashdata('pesan', 'Silahkan Edit Kembali !!!');
         return redirect()->to(base_url('siswa/profile'));
     }
 
