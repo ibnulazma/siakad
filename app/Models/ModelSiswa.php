@@ -19,6 +19,18 @@ class ModelSiswa extends Model
             ->where('nisn', session()->get('username'))
             ->get()->getRowArray();
     }
+    public function AllData()
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->get()->getResultArray();
+    }
 
     public function Profile()
     {
