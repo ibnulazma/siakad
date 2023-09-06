@@ -138,6 +138,30 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-item <?= $menu == 'surat' ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= $menu == 'surat' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-envelope"></i>
+                                    <p>
+                                        Administrasi
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('surat') ?>" class="nav-link <?= $submenu == 'terima' ? 'active' : '' ?>">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Surat Penerimaan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('surat/mutasi') ?>" class="nav-link <?= $submenu == 'mutasi' ? 'active' : '' ?>">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Surat Mutasi</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/backup') ?>" class="nav-link">
@@ -456,82 +480,6 @@
 
 
 
-
-    <!-- <script>
-        $(function() {
-            $.validator.setDefaults({
-                submitHandler: function() {
-                    alert("Form successful submitted!");
-                }
-            });
-            $('#quickForm').validate({
-                rules: {
-                    nama_siswa: {
-                        required: true,
-                        nama_siswa: true,
-                    },
-                    jenis_kelamin: {
-                        required: true,
-                        jenis_kelamin: true,
-                    },
-                    tempat_lahir: {
-                        required: true,
-                        tempat_lahir: true,
-                    },
-
-                    no_telp: {
-                        required: true,
-                        no_telp: true,
-                    },
-
-                    anak_ke: {
-                        required: true,
-                        anak_ke: true,
-                    },
-
-                    // terms: {
-                    //     required: true
-                    // },
-                },
-                messages: {
-                    nama_siswa: {
-                        required: "Silahkan isi dengan benar",
-                    },
-                    jenis_kelamin: {
-                        required: "Silahkan isi dengan benar",
-                    },
-                    tempat_lahir: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    no_telp: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    anak_ke: {
-                        required: "Silahkan isi dengan benar",
-                    },
-
-                    // password: {
-                    //     required: "Please provide a password",
-                    //     minlength: "Your password must be at least 5 characters long"
-                    // },
-                    // terms: "Please accept our terms"
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });
-    </script> -->
 
 
 
