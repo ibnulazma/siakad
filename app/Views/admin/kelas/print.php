@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
-    <title>Print Rapot</title>
+    <title>Biodata Rapot</title>
 </head>
 
 
@@ -74,7 +74,7 @@
     }
 
     .ttd {
-        margin-top: 50px;
+        margin-top: 100px;
     }
 
     .left tr {
@@ -177,11 +177,11 @@
                         <tr>
                             <td style="border: 1px solid black;text-align:center;" width="17%"> 3x4
                             </td>
-                            <td width="5%"></td>
+                            <td width="10%"></td>
                             <td>
-                                Tangerang, <?= date('d F Y') ?><br>
+                                Tangerang, 17 Juli 2023<br>
                                 Kepala Sekolah <br><br><br><br><br><br>
-                                Fadilah, S.Ag
+                                <span style="text-decoration: underline; font-weight:bold; "> Fadilah, S.Ag</span>
                             </td>
                         </tr>
                         <tr>

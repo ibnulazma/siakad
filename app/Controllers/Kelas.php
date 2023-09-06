@@ -152,4 +152,25 @@ class Kelas extends BaseController
             "Attachment" => false
         ));
     }
+    public function halaman($id_kelas)
+    {
+
+        $dompdf = new Dompdf();
+        $kelas = $this->ModelKelas->detail($id_kelas);
+        $data = [
+            'title'         =>   $kelas,
+            'kelas'         => $kelas,
+            'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
+
+
+            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
+        ];
+        $html = view('admin/kelas/halaman', $data);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('Legal', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+    }
 }
