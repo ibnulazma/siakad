@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <div class="container mx-auto text-center" style="height:max-content; margin-top:150px">
-        <img src="<?= base_url('foto/web.png') ?>" width="500px">
+    <div class="container mx-auto text-center" style="margin-top:150px">
+        <img src="<?= base_url('foto/web.png') ?>" width="100px">
         <h1>MOHON MAAF WEBSITE INI SEDANG DALAM PERBAIKAN</h1>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->

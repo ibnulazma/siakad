@@ -40,29 +40,32 @@ class Filters extends BaseConfig
             [
                 'except' => [
                     'auth', 'auth/*',
-
-                    '/'
-
+                    'home', 'home/*',
+                    'loginsiswa', 'loginsiswa/*',
+                    '/',
+                    // 
                 ]
             ],
             'filterpeserta' =>
             [
                 'except' => [
                     'auth', 'auth/*',
-                    // 'home', 'home/*',
-                    '/'
-
-                ]
-            ],
-            'filterpendidik' =>
-            [
-                'except' => [
-                    'auth', 'auth/*',
                     'home', 'home/*',
-                    '/'
+                    'loginsiswa', 'loginsiswa/*',
+                    '/',
+
 
                 ]
             ],
+            // 'filterpendidik' =>
+            // [
+            //     'except' => [
+            //         'auth', 'auth/*',
+            //         'home', 'home/*',
+            //         '/'
+
+            //     ]
+            // ],
         ],
         'after' => [
             'filteradmin' =>
@@ -76,7 +79,7 @@ class Filters extends BaseConfig
                     'ta', 'ta/*',
                     'user', 'user/*',
                     'peserta', 'peserta/*',
-                    'homesiswa', 'homesiswa/*',
+
 
 
 

@@ -13,10 +13,17 @@
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="<?= base_url() ?>/bootstrap/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/calendar.css">
+
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.css">
+
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.css">
+
+
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -24,7 +31,7 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
+    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/css/bs-stepper.min.css">
 </head>
 
 
@@ -32,7 +39,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-
+        <!--<div class="preloader flex-column justify-content-center align-items-center">-->
+        <!--    <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">-->
+        <!--</div>-->
 
         <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
@@ -131,15 +140,6 @@
                             </li>
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
-                                <a href="<?= base_url('homesiswa') ?>" class="nav-link">
-                                    <i class="nav-icon fas fa-database"></i>
-                                    <p>
-                                        Surat
-
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="<?= base_url('admin/backup') ?>" class="nav-link">
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
@@ -153,18 +153,10 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
                             <li class="nav-item">
-                                <a href="<?= base_url('pendidik') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
+                                <a href="<?= base_url('guru') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
                                     <i class="fas fa-tachometer-alt nav-icon"></i>
                                     <p>
                                         Dashboard
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('pendidik/nilai') ?>" class="nav-link <?= $menu == 'nilai' ? 'active' : '' ?>">
-                                    <i class="fas fa-tachometer-alt nav-icon"></i>
-                                    <p>
-                                        Penilaian
                                     </p>
                                 </a>
                             </li>
@@ -234,17 +226,58 @@
         </footer>
     </div>
 
-    <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.js"></script>
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
 
+
+
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/sparklines/sparkline.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-knob/jquery.knob.min.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/moment/moment.min.js"></script>
+    <script src="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
     <script src="<?= base_url() ?>/AdminLTE/dist/js/adminlte.js?v=3.2.0"></script>
+
+
+
+
+
     <script src="<?= base_url() ?>/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/moment/moment.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- date-range-picker -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+
+    <!-- dropzonejs -->
+    <script src="<?= base_url() ?>/AdminLTE/plugins/dropzone/min/dropzone.min.js"></script>
+
+    <!-- AkhirForm -->
 
 
 
@@ -268,7 +301,10 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
 
-
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- DatTables -->
 
     <script>
         $(function() {
@@ -314,41 +350,65 @@
             //Money Euro
             $('[data-mask]').inputmask()
 
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
 
-        })
-    </script>
+            //Date and time picker
+            $('#reservationdatetime').datetimepicker({
+                icons: {
+                    time: 'far fa-clock'
+                }
+            });
 
-
-    <script>
-        const swal = $('.swal').data('swal');
-        if (swal) {
-            Swal.fire({
-                title: 'Data Berhasil',
-                text: swal,
-                icon: 'success'
-            })
-        }
-
-        $(document).on('click', '.btn-hapus', function(e) {
-            e.preventDefault();
-            const href = $(this).attr('href');
-
-            Swal.fire({
-                title: 'Apakah anda yakin akan dihapus',
-                text: "Data Akan Hilang",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                if (result.value) {
-                    document.location.href = href;
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
                 }
             })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker({
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+            // bootsrapswitch
+            $("input[data-bootstrap-switch]").each(function() {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            })
+
         })
     </script>
 
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideDown(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
     <script>
         $(document).ready(function() {
             $("#provinsi").change(function() {
@@ -378,7 +438,6 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function() {
             $("#kecamatan").change(function() {
@@ -394,17 +453,104 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#centangSemua').click(function(e) {
-                if ($(this).is(":checked")) {
-                    $('.centangForm').prop('checked', true);
-                } else {
-                    $('.centangForm').prop('checked', false);
+
+
+
+
+    <!-- <script>
+        $(function() {
+            $.validator.setDefaults({
+                submitHandler: function() {
+                    alert("Form successful submitted!");
                 }
             });
-        })
-    </script>
+            $('#quickForm').validate({
+                rules: {
+                    nama_siswa: {
+                        required: true,
+                        nama_siswa: true,
+                    },
+                    jenis_kelamin: {
+                        required: true,
+                        jenis_kelamin: true,
+                    },
+                    tempat_lahir: {
+                        required: true,
+                        tempat_lahir: true,
+                    },
+
+                    no_telp: {
+                        required: true,
+                        no_telp: true,
+                    },
+
+                    anak_ke: {
+                        required: true,
+                        anak_ke: true,
+                    },
+
+                    // terms: {
+                    //     required: true
+                    // },
+                },
+                messages: {
+                    nama_siswa: {
+                        required: "Silahkan isi dengan benar",
+                    },
+                    jenis_kelamin: {
+                        required: "Silahkan isi dengan benar",
+                    },
+                    tempat_lahir: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    no_telp: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    anak_ke: {
+                        required: "Silahkan isi dengan benar",
+                    },
+
+                    // password: {
+                    //     required: "Please provide a password",
+                    //     minlength: "Your password must be at least 5 characters long"
+                    // },
+                    // terms: "Please accept our terms"
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

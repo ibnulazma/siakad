@@ -59,7 +59,9 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-
+                <div width="50%">
+                    <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
             </div>
         </div>
 
@@ -71,9 +73,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <div width="50%">
-                    <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
+
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@ foreach ($datatahun->getResult() as $row) {
 
 ?>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('dognut');
 
@@ -126,10 +126,10 @@ foreach ($datatahun->getResult() as $row) {
         },
 
     });
-</script> -->
+</script>
 
 <!-- tabel -->
-<!-- <script>
+<script>
     const abc = document.getElementById('myChart');
 
     new Chart(abc, {
@@ -173,7 +173,7 @@ foreach ($datatahun->getResult() as $row) {
             }
         }
     });
-</script> -->
+</script>
 
 
 
