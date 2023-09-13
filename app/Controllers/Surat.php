@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ModelSiswa;
+use App\Models\ModelSurat;
 
 use App\Controllers\BaseController;
 
@@ -13,6 +14,7 @@ class Surat extends BaseController
     {
         helper('form');
         $this->ModelSiswa = new ModelSiswa;
+        $this->ModelSurat = new ModelSurat;
     }
     public function index()
     {
@@ -32,7 +34,8 @@ class Surat extends BaseController
             'subtitle'  => 'Surat',
             'menu'      => 'surat',
             'submenu'   => 'mutasi',
-            'siswa'     => $this->ModelSiswa->AllData()
+            'siswa'     => $this->ModelSiswa->AllData(),
+            'mutasi'    => $this->ModelSiswa->mutasi()
         ];
 
         return view('admin/surat/mutasi', $data);

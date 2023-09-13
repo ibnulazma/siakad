@@ -54,26 +54,25 @@
                     </div>
                     <div class="kembali">
                         <a href="<?= base_url('peserta') ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-backward fa-beat-fade"></i> Kembali</a>
-                        <a href="<?= base_url('peserta/editdata/' . $siswa['id_siswa']) ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil fa-beat-fade"></i> Edit Data</a>
-
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 ">
+                    <div class="col-md-10">
                         <div class="table-responsive">
-                            <table class="table table-bordered" width="100px">
+                            <table class="table table-bordered" width="100%">
                                 <tr>
                                     <th colspan="3" class="text-center">
-                                        Lembar Induk Siswa
-                                    </th>
+                                        EDIT DATA </th>
                                 </tr>
                                 <tr>
                                     <td class="text-center" colspan="2">Nomor Induk Siswa :</td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['nis'] ?>"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center" colspan="2">Nomor Induk Siswa Nasional : <?= $siswa['nisn'] ?></td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['nisn'] ?>"></td>
                                 </tr>
 
                                 <tr>
@@ -81,11 +80,11 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center" colspan="2">DATA ASLI </td>
-                                    <td class="text-center">UBAH </td>
                                 </tr>
                                 <tr>
                                     <td widtd="100px">1. Nama Lengkap</td>
                                     <td widtd="100px"><?= $siswa['nama_siswa'] ?></td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['nama_siswa'] ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>2. Jenis Kelamin</td>
@@ -124,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <td>10. Alamat</td>
-                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['kecamatan'] ?></td>
+                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></td>
                                 </tr>
                                 <tr>
                                     <td>11. Nomor Telepon</td>
@@ -176,6 +175,7 @@
                                 <tr>
                                     <td>21. Nama</td>
                                     <td><?= $siswa['nama_ibu'] ?></td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['nama_ibu'] ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>22. Tahun Lahir</td>
@@ -205,19 +205,28 @@
                                     <td colspan="2"><b>E. KESEHATAN </b></td>
                                 </tr>
                                 <tr>
-                                    <td>28. Tinggi Badan</td>
+                                    <td>29. Tinggi Badan</td>
                                     <td><?= $siswa['tinggi'] ?> cm</td>
+                                    <td><input type="text" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td>28. Berat Badan</td>
+                                    <td>30. Berat Badan</td>
                                     <td><?= $siswa['berat'] ?> kg</td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['berat'] ?>"></td>
                                 </tr>
                                 <tr>
-                                    <td>28. Lingkar Kepala</td>
+                                    <td>31. Lingkar Kepala</td>
                                     <td><?= $siswa['lingkar'] ?> cm</td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['lingkar'] ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td>31. No Seri Ijazah</td>
+                                    <td><?= $siswa['seri_ijazah'] ?></td>
+                                    <td><input type="text" class="form-control" value="<?= $siswa['seri_ijazah'] ?>"></td>
                                 </tr>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -225,7 +234,16 @@
     </div>
 
 
-
+    <script>
+        function opsi(value) {
+            var st = $(" #ok").val();
+            if (st == "1") {
+                document.getElementById("inputku").disabled = false;
+            } else {
+                document.getElementById("inputku").disabled = true;
+            }
+        }
+    </script>
 
 
 

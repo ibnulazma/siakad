@@ -11,7 +11,7 @@ use App\Models\ModelTinggal;
 use App\Models\ModelTransportasi;
 use App\Models\ModelPenghasilan;
 use App\Models\ModelMapel;
-use mysqli;
+
 
 class Siswa extends BaseController
 {
@@ -890,6 +890,7 @@ class Siswa extends BaseController
     //     return redirect()->to('siswa/nilai');
     // }
 
+
     public function mapeladd()
     {
         if (isset($_POST['submit'])) {
@@ -899,8 +900,6 @@ class Siswa extends BaseController
                     echo $_POST['mapel'][$key];
                     echo '<br>';
                 }
-
-
 
                 // $db = \Config\Database::connect();
                 // $insert = "INSERT INTO `tbl_nilai`(`id_siswa`, `id_mapel`) VALUES ('$id_siswa','$id_mapel')";
@@ -938,28 +937,29 @@ class Siswa extends BaseController
 
     public function pengajuan()
     {
+        $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Pengajuan',
             'menu'          => 'pengajuan',
             'submenu'       => 'pengajuan',
-            'siswa'     => $this->ModelSiswa->DataSiswa(),
+            'mutasi'     => $this->ModelSiswa->mutasi($siswa['id_siswa']),
+            'siswa'     => $siswa,
+            'pengajuan'     => $this->ModelSiswa->pengajuan(),
 
         ];
         return view('siswa/v_pengajuan', $data);
     }
 
-
     public function ajuan($id_siswa)
     {
         $data = [
             'id_siswa'       => $id_siswa,
-            'status_daftar' => 4,
-
-
+            'alasan'         => $this->request->getPost('alasan'),
+            'status' => 1,
         ];
-        $this->ModelSiswa->edit($data);
-        return redirect()->to('siswa');
+        $this->ModelSiswa->insertpengajuan($data);
+        return redirect()->to('siswa/pengajuan');
         // } else {
         //     $validation =  \Config\Services::validation();
         //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
@@ -978,8 +978,6 @@ class Siswa extends BaseController
         session()->setFlashdata('pesan', 'Silahkan Edit Kembali !!!');
         return redirect()->to(base_url('siswa/profile'));
     }
-
-
 
 
     public function updatedata($id_siswa)

@@ -6,37 +6,8 @@
 
 <h5>Surat Penerimaan PD Pindahan</h5>
 <div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <form action="">
-                    <div class="form-group">
-                        <label for="">Pilih Siswa</label>
-                        <select name="" id="" class="form-control select2bs4" width="100%">
-                            <?php foreach ($siswa as $key => $value) { ?>
-                                <option value=""><?= $value['nama_siswa'] ?> | <?= $value['nisn'] ?> </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Alasan Pindah</label>
-                        <select name="" id="" class="form-control select2bs4" width="100%">
-                            <option value="">--Alasan--</option>
-                            <option value="Pindah Rumah">Pindah Rumah</option>
-                            <option value="Keinginan Anak">Keinginan Anak</option>
-                            <option value="Sambil Pondok">Sambil Pondok</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">No Surat</label>
-                        <input type="text" class="form-control">
-                    </div>
 
-                    <button class="btn btn-primary"> Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
+
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
@@ -50,10 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <?php foreach ($mutasi as $key => $value) { ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                                <td><?= $value['nama_siswa'] ?></td>
+                                <td><?= $value['nisn'] ?></td>
+                                <td><a href="" class="btn btn-success"><i class="fas fa-print"></i></a></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

@@ -208,6 +208,15 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('siswa/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?> ">
+                                    <i class="nav-icon fas fa-envelope"></i>
+                                    <p>
+                                        Pengajuan
+
+                                    </p>
+                                </a>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="<?= base_url('auth/logout') ?>" class="nav-link  ">

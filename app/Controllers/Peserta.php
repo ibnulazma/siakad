@@ -260,6 +260,15 @@ class Peserta extends BaseController
         return view('admin/bukuinduk', $data);
     }
 
+    public function editdata($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        ];
+        return view('admin/editdata', $data);
+    }
+
 
 
     public function delete($id_siswa)

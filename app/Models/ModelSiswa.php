@@ -82,20 +82,6 @@ class ModelSiswa extends Model
             ->get()->getResultArray();
     }
 
-    //Perkelas
-    // public function AmbilMapel($id_mapel)
-    // {
-    //     return $this->db->table('tbl_mapel')
-    //         ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_mapel.id_kelas', 'left')
-    //         ->join('tbl_guru', 'tbl_guru.id_guru = tbl_mapel.id_guru', 'left')
-    //         ->where('tbl_mapel.id_kelas', $id_mapel)
-    //         ->get()->getResultArray();
-    // }
-    //Perkelas
-
-
-
-
     public function AmbilMapel($id_mapel)
     {
         return $this->db->table('tbl_mapel')
@@ -162,5 +148,27 @@ class ModelSiswa extends Model
         return $this->db->table('tbl_siswa')
             ->where('status_daftar', '1')
             ->countAllResults();
+    }
+
+
+    public function mutasi($id_siswa)
+    {
+        return $this->db->table('tbl_mutasi')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_mutasi.id_siswa', 'left')
+            ->where('tbl_siswa.id_siswa', $id_siswa)
+            ->get()->getResultArray();
+    }
+
+    public function pengajuan()
+    {
+        return $this->db->table('tbl_mutasi')
+            ->where('id_mutasi')
+            ->get()->getRowArray();
+    }
+
+    public function insertpengajuan($data)
+    {
+        $this->db->table('tbl_mutasi')
+            ->insert($data);
     }
 }

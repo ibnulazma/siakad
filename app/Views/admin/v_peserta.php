@@ -74,13 +74,19 @@
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
-                                    <?php if ($value['status_daftar'] == 2) { ?>
+                                    <?php if ($value['status_daftar'] == 1) { ?>
+                                        <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
 
-                                        <a class="btn btn-xs btn-info" href="<?= base_url('peserta/verifikasi/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
-                                    <?php } ?>
-                                    <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
+
+                                    <?php } elseif ($value['status_daftar'] == 2) { ?>
+
+                                        <a class="btn btn-xs btn-info" href="<?= base_url('peserta/verifikasi/' .  $value['id_siswa']) ?>"> <i class="fas fa-clipboard-list"></i> </a>
+                                    <?php } elseif ($value['status_daftar'] == 3) { ?>
+
+                                        <a class="btn btn-xs btn-info btn-hapus" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book-open"></i> </a>
+                                        <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
                                 </td>
+                            <?php } ?>
                             </tr>
                         <?php } ?>
                     </tbody>
