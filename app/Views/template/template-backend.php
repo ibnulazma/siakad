@@ -39,9 +39,9 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!--<div class="preloader flex-column justify-content-center align-items-center">-->
-        <!--    <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">-->
-        <!--</div>-->
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="<?= base_url() ?>/logo/logo.png" alt="AdminLTELogo" height="60" width="60">
+        </div> -->
 
         <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
@@ -73,12 +73,27 @@
         </nav>
 
         <aside class="main-sidebar sidebar-light-primary elevation-4">
-            <a href="index3.html" class="brand-link">
-                <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">SIAKAD INKA</span>
-            </a>
+            <div class=" row d-flex justify-content-start p-2 ml-2 mt-3">
+                <a href="" class="mr-3">
+                    <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:50px">
+                </a>
+                <div class="nama">
+                    <h5 class=" font-weight-bolder">SIAKAD INKA <br>
+
+                        <?php if (session()->get('level') == 1) { ?>
+                            <span style="font-weight: 50;">Administrator</span>
+
+                        <?php } else if (session()->get('level') == 2) { ?>
+                            <span style="font-weight: 50;">PTK</span>
+                        <?php } else if (session()->get('level') == 3) { ?>
+                            <span style="font-weight: 50;">Siswa</span>
+                        <?php } ?>
+                    </h5>
+                </div>
+            </div>
+            <hr>
             <div class="sidebar">
-                <nav class="mt-2">
+                <nav class="">
                     <?php if (session()->get('level') == 1) { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
@@ -90,11 +105,11 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item <?= $menu == 'akademik' ? 'menu-open' : '' ?>">
-                                <a href="#" class="nav-link <?= $menu == 'akademik' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-graduation-cap"></i>
+                            <li class="nav-item <?= $menu == 'setting' ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= $menu == 'setting' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-cogs"></i>
                                     <p>
-                                        Akademik
+                                        Setting
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
@@ -105,6 +120,26 @@
                                             <p>Tahun Pelajaran</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('surat/mutasi') ?>" class="nav-link <?= $submenu == 'mutasi' ? 'active' : '' ?>">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Profile Sekolah</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item <?= $menu == 'akademik' ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= $menu == 'akademik' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-graduation-cap"></i>
+                                    <p>
+                                        Akademik
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
                                     <li class="nav-item">
                                         <a href="<?= base_url('peserta') ?>" class="nav-link <?= $submenu == 'peserta' ? 'active' : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
@@ -162,6 +197,7 @@
 
                                 </ul>
                             </li>
+
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/backup') ?>" class="nav-link">
@@ -177,14 +213,38 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
                             <li class="nav-item">
-                                <a href="<?= base_url('guru') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
+                                <a href="<?= base_url('pendidik') ?>" class="nav-link <?= $menu == 'pendidik' ? 'active' : '' ?>">
                                     <i class="fas fa-tachometer-alt nav-icon"></i>
                                     <p>
                                         Dashboard
                                     </p>
                                 </a>
                             </li>
+                            <?php $db     = \Config\Database::connect();
+
+                            $kelas = $db->table('tbl_kelas')
+                                // ->where('status', '1')
+                                ->get()->getRowArray();
+
+                            ?>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('pendidik/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
+                                    <i class="fas fa-paper-plane nav-icon"></i>
+                                    <p>
+                                        Pengajuan
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-header">EXAMPLES</li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('auth/logout') ?>" class="nav-link  ">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>
+                                        Logout
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                     <?php } elseif (session()->get('level') == 3) { ?>
@@ -485,29 +545,6 @@
             });
         });
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

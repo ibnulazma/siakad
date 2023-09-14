@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\ModelPendidik;
 use App\Models\ModelJadwal;
 use App\Models\ModelSiswa;
+use App\Models\ModelKelas;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -15,7 +16,7 @@ class Pendidik extends BaseController
     {
         $this->ModelPendidik = new ModelPendidik();
         $this->ModelJadwal = new ModelJadwal();
-
+        $this->ModelKelas = new ModelKelas();
         $this->siswa = new ModelSiswa();
     }
 
@@ -63,11 +64,11 @@ class Pendidik extends BaseController
 
         $guru = $this->ModelPendidik->DataGuru();
         $data = [
-            'title' => 'SIAKAD',
-            'subtitle' => 'Absen Kelas',
+            'title'         => 'SIAKAD',
+            'subtitle'      => 'Absen Kelas',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
-            'absen' => $this->ModelPendidik->Mapel($guru['id_guru'])
+            'absen'         => $this->ModelPendidik->Mapel($guru['id_guru'])
         ];
         return view('guru/absen/absenkelas', $data);
     }
@@ -83,7 +84,7 @@ class Pendidik extends BaseController
             'submenu'       => 'pendidik',
             'absen' => $this->ModelPendidik->Kelas($id_mapel)
         ];
-        return view('guru/absen/presensi', $data);
+        return view('guru/pengajuan', $data);
     }
 
     public function nilai()
@@ -150,5 +151,19 @@ class Pendidik extends BaseController
         header('Cache-Control:max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function pengajuan()
+    {
+        $guru = $this->ModelPendidik->DataGuru();
+        $data = [
+            'title' => 'SIAKAD',
+            'menu' => 'pengajuan',
+            'submenu' => 'pengajuan',
+            'subtitle' => 'Pengajuan Mutasi Peserta Didik',
+            'pengajuan' => $this->ModelPendidik->mutasi($guru['id_guru']),
+
+        ];
+        return view('guru/pengajuan', $data);
     }
 }

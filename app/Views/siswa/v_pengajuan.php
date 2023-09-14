@@ -69,6 +69,10 @@
                         <option value="Sambil Pondok">Sambil Pondok</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="">Pindah Ke Sekolah</label>
+                    <input type="text" name="sekolah" class="form-control">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

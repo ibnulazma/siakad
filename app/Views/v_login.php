@@ -24,6 +24,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
 
 
+    <style>
+        body {
+            background-image: url('<?= base_url() ?>/foto/skul.jpg');
+            background-size: cover;
+        }
+    </style>
+
+
 <body class="hold-transition login-page">
 
 
@@ -32,7 +40,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <div class="card card-outline card-primary">
             <div class="card-body login-card-body">
-                <h3 class="login-box-msg"><b>Login Siakad </b> </h3>
+                <div class="text-center mb-3">
+                    <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" style="opacity: .8;text-align:center;" width="75px">
+                </div>
+                <h3 class="login-box-msg"><b>SIAKAD </b><br>
+                    <span style="font-size: 20px;">SISTEM INFORMASI AKADEMIK</span>
+                </h3>
+
                 <?php
                 $errors = session()->getFlashdata('errors');
 
@@ -121,11 +135,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
         }
     </script>
-
-
-
-
-
 
 
 </body>

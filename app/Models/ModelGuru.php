@@ -19,10 +19,6 @@ class ModelGuru extends Model
     }
 
 
-
-
-
-
     public function detail($id_kelas)
     {
         return $this->db->table('tbl_guru')
