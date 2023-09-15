@@ -10,6 +10,7 @@ use App\Models\ModelSiswa;
 use App\Models\ModelPeserta;
 use App\Models\ModelGuru;
 use App\Models\ModelKelas;
+use App\Models\ModelSetting;
 
 use Ifsnop\Mysqldump\Mysqldump;
 
@@ -28,6 +29,7 @@ class Admin extends BaseController
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelGuru    = new ModelGuru();
         $this->ModelKelas    = new ModelKelas();
+        $this->ModelSetting = new ModelSetting();
     }
 
     public function index()
@@ -46,6 +48,7 @@ class Admin extends BaseController
 
             // 'pager'            => $this->ModelPeserta->pager,
             'baru'            => $this->ModelSiswa->jml_baru(),
+            'profil' => $this->ModelSetting->Profile(),
 
 
         ];

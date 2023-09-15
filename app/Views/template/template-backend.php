@@ -121,7 +121,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<?= base_url('surat/mutasi') ?>" class="nav-link <?= $submenu == 'mutasi' ? 'active' : '' ?>">
+                                        <a href="<?= base_url('setting') ?>" class="nav-link <?= $submenu == 'profil' ? 'active' : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Profile Sekolah</p>
                                         </a>

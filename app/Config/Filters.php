@@ -80,6 +80,7 @@ class Filters extends BaseConfig
                     'user', 'user/*',
                     'peserta', 'peserta/*',
                     'surat', 'surat/*',
+                    'setting', 'setting/*',
 
 
 

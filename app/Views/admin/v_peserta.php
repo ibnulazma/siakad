@@ -36,17 +36,11 @@
 
                         <?php $no = 1;
                         foreach ($siswa as $key => $value) { ?>
-                            <tr class="
-                        <?php
-                            $hasil = "Sudah Meninggal";
-                            if ($hasil == $value['kerja_ayah']) { ?>
+                            <tr class="<?php
+                                        $hasil = "Sudah Meninggal";
+                                        if ($hasil == $value['kerja_ayah']) { ?>
                         echo bg-lightblue
-                        <?php } else { ?>
-                            
-                        <?php  } ?>
-
-
-                        ">
+                        <?php } ?>" data-widget="expandable-table" aria-expanded="false">
 
                                 <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
                                 <td class="text-center"><?= $value["nisn"] ?></td>
@@ -57,7 +51,6 @@
                                 <td><?= $value["nama_ibu"] ?></td>
                                 <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
                                 <td class="text-center"><?= $value["tingkat"] ?></td>
-
 
                                 <td class="text-center">
                                     <?php if ($value['status_daftar'] <= 0) { ?>
@@ -85,9 +78,18 @@
 
                                         <a class="btn btn-xs btn-info btn-hapus" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book-open"></i> </a>
                                         <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
+                                    <?php } ?>
                                 </td>
-                            <?php } ?>
                             </tr>
+                            <tr class="expandable-body">
+                                <td colspan="11">
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    </p>
+                                </td>
+                            </tr>
+
+
                         <?php } ?>
                     </tbody>
                 </table>

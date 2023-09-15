@@ -13,7 +13,6 @@
 
 
 <?php foreach ($mutasi as $value) { ?>
-
     <div class="row mt-5">
         <div class="card">
             <div class="card-body">
