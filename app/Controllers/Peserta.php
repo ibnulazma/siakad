@@ -15,24 +15,31 @@ class Peserta extends BaseController
         helper('form');
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelKelas = new ModelKelas();
+        $this->siswa = new ModelPeserta();
     }
 
 
     public function index()
     {
-        session();
+
+        $keyword = $this->request->getGet('keyword');
+
+        // $data['kelompok'] = $query;
+        // $data['peserta'] = $this->siswa->AllData();
+        $data = $this->siswa->getPaginate(10, $keyword);
+        $data['keyword'] = $keyword;
+        // session();
 
 
-        $data = [
-            'title'      => 'SIAKADINKA',
-            'subtitle'      => 'Peserta Didik',
-            'menu'      => 'akademik',
-            'submenu'      => 'peserta',
-            'siswa'  => $this->ModelPeserta->AllData(),
-            'tingkat'  => $this->ModelKelas->Tingkat(),
-            'kelas'  => $this->ModelKelas->kelas()
+        // $data = [
+        //     'title'      => 'SIAKADINKA',
+        //     'subtitle'      => 'Peserta Didik',
+        //     'menu'      => 'akademik',
+        //     'submenu'      => 'peserta',
+        //     'tingkat'  => $this->ModelKelas->Tingkat(),
+        //     'kelas'  => $this->ModelKelas->kelas()
 
-        ];
+        // ];
         return view('admin/v_peserta', $data);
     }
 
@@ -213,27 +220,27 @@ class Peserta extends BaseController
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
         return redirect()->to(base_url('peserta'));
     }
-    public function verifikasi($id_siswa)
-    {
-        $data = [
-            'title' => 'Buku Induk Siswa-SIAKAD',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
-            'kelas'     => $this->ModelKelas->AllData()
-        ];
-        return view('admin/verifikasi', $data);
-    }
-    public function verifikasi_data($id_siswa)
-    {
-        $data = [
-            'id_siswa'      => $id_siswa,
-            'id_kelas'      => $this->request->getPost('id_kelas'),
-            'status_daftar' => $this->request->getPost('status_daftar'),
-            'catatan' => $this->request->getPost('catatan'),
-        ];
-        $this->ModelPeserta->edit($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Di Verifikasi !!!');
-        return redirect()->to(base_url('peserta'));
-    }
+    // public function verifikasi($id_siswa)
+    // {
+    //     $data = [
+    //         'title' => 'Buku Induk Siswa-SIAKAD',
+    //         'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+    //         'kelas'     => $this->ModelKelas->AllData()
+    //     ];
+    //     return view('admin/verifikasi', $data);
+    // }
+    // public function verifikasi_data($id_siswa)
+    // {
+    //     $data = [
+    //         'id_siswa'      => $id_siswa,
+    //         'id_kelas'      => $this->request->getPost('id_kelas'),
+    //         'status_daftar' => $this->request->getPost('status_daftar'),
+    //         'catatan' => $this->request->getPost('catatan'),
+    //     ];
+    //     $this->ModelPeserta->edit($data);
+    //     session()->setFlashdata('pesan', 'Data Berhasil Di Verifikasi !!!');
+    //     return redirect()->to(base_url('peserta'));
+    // }
 
 
     public function editbiodata($id_siswa)

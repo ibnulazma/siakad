@@ -36,7 +36,7 @@
 
 
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed text-sm">
     <div class="wrapper">
 
         <!-- <div class="preloader flex-column justify-content-center align-items-center">
@@ -73,7 +73,7 @@
         </nav>
 
         <aside class="main-sidebar sidebar-light-primary elevation-4">
-            <div class=" row d-flex justify-content-start p-2 ml-2 mt-3">
+            <div class=" row d-flex justify-content-start p-2 ml-2 mt-3 text-sm">
                 <a href="" class="mr-3">
                     <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:50px">
                 </a>

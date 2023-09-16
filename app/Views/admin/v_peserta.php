@@ -13,42 +13,57 @@
             <h3 class="card-title">
                 Data <?= $subtitle ?>
             </h3>
+            <div class="card-tools">
+
+            </div>
         </div>
         <div class="card-body">
+            <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
+            <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
+            <button>Simpan</button>
+            <button>Simpan</button>
+            <button>Simpan</button>
+            <form action="" method="get" autocomplete="off">
+                <?php $request = \Config\Services::request(); ?>
+                <div class="input-group input-group-sm float-right mb-3" style="width: 150px;">
+                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search" value=" <?= $request->getGet('keyword') ?>">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div class="table-responsive">
-                <table class="table table-bordered" id="example2">
+                <table class="table table-bordered">
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
                             <th>NISN</th>
-                            <th>NIK</th>
                             <th>Nama Siswa</th>
-                            <th>Tempat Lahir</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Ibu Kandung</th>
-                            <th>Jenis Kelamin</th>
+                            <th>TTL</th>
+                            <th>L/P</th>
                             <th>Tingkat</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $no = 1 + (10 * ($page - 1));
 
-                        <?php $no = 1;
-                        foreach ($siswa as $key => $value) { ?>
+
+                        foreach ($peserta as $key => $value) { ?>
                             <tr class="<?php
                                         $hasil = "Sudah Meninggal";
                                         if ($hasil == $value['kerja_ayah']) { ?>
                         echo bg-lightblue
                         <?php } ?>" data-widget="expandable-table" aria-expanded="false">
-
-                                <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
+                                <td><?= $no++ ?></td>
                                 <td class="text-center"><?= $value["nisn"] ?></td>
-                                <td class="text-center"><?= $value["nik"] ?></td>
                                 <td><?= $value["nama_siswa"] ?></td>
-                                <td class="text-center"><?= $value["tempat_lahir"] ?></td>
-                                <td class="text-center"> <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
-                                <td><?= $value["nama_ibu"] ?></td>
+                                <td class="text-center"><?= $value["tempat_lahir"] ?>, <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                                 <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
                                 <td class="text-center"><?= $value["tingkat"] ?></td>
 
@@ -67,32 +82,16 @@
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
-                                    <?php if ($value['status_daftar'] == 1) { ?>
-                                        <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editbiodata<?= $value['id_siswa'] ?>"> <i class="fas fa-pencil"></i> </a>
-
-
-                                    <?php } elseif ($value['status_daftar'] == 2) { ?>
-
-                                        <a class="btn btn-xs btn-info" href="<?= base_url('peserta/verifikasi/' .  $value['id_siswa']) ?>"> <i class="fas fa-clipboard-list"></i> </a>
-                                    <?php } elseif ($value['status_daftar'] == 3) { ?>
-
-                                        <a class="btn btn-xs btn-info btn-hapus" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book-open"></i> </a>
-                                        <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/delete/' .  $value['id_siswa']) ?>"> <i class="fas fa-trash-alt"></i> </a>
-                                    <?php } ?>
+                                    <a class="btn btn-xs btn-info" href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>"> <i class="fa-solid fa-id-card-clip"></i> </a>
+                                    <a class="btn btn-xs btn-success" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
+                                    <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/print/' .  $value['id_siswa']) ?>"> <i class="fas fa-print"></i> </a>
                                 </td>
                             </tr>
-                            <tr class="expandable-body">
-                                <td colspan="11">
-                                    <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    </p>
-                                </td>
-                            </tr>
-
 
                         <?php } ?>
                     </tbody>
                 </table>
+                <?= $pager->links('default', 'siswa_pagination'); ?>
             </div>
         </div>
     </div>
@@ -151,9 +150,7 @@
                             <label for="">Tingkat</label>
                             <select name="id_tingkat" id="" class="form-control">
                                 <option value="">Pilih Tingkat</option>
-                                <?php foreach ($tingkat as $key => $value) { ?>
-                                    <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
-                                <?php } ?>
+
                             </select>
                         </div>
                     </div>
@@ -167,61 +164,9 @@
     </div>
 </div>
 
-<!-- VerifikasiData -->
 
 
 
-
-<!-- Editbiodata -->
-<?php foreach ($siswa as $key => $value) { ?>
-    <div class="modal fade" id="editbiodata<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <?php echo form_open('peserta/editbiodata/' . $value['id_siswa']); ?>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Biodata <?= $value['tingkat'] ?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Nama Siswa</label>
-                                <input type="text" class="form-control" name="nama_siswa" value="<?= $value['nama_siswa'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $value['tempat_lahir'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Tanggal Lahir</label>
-                                <input type="text" class="form-control" name="tanggal_lahir" value="<?= $value['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label for="">Nama Ibu</label>
-                                <input type="text" class="form-control" name="nama_ibu" value="<?= $value['nama_ibu'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Username/NISN</label>
-                                <input type="text" class="form-control" name="nisn" value="<?= $value['nisn'] ?>">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-            <?php echo form_close() ?>
-        </div>
-    </div>
-<?php } ?>
 
 
 

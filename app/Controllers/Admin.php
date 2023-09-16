@@ -43,7 +43,7 @@ class Admin extends BaseController
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
             'datatahun'        => $this->ModelTa->group_tahun(),
-            'siswa'            => $this->ModelPeserta->verifikasi(),
+            // 'siswa'            => $this->ModelPeserta->verifikasi(),
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
