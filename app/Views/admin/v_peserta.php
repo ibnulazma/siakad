@@ -18,22 +18,26 @@
             </div>
         </div>
         <div class="card-body">
-            <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
-            <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
-            <button>Simpan</button>
-            <button>Simpan</button>
-            <button>Simpan</button>
-            <form action="" method="get" autocomplete="off">
-                <?php $request = \Config\Services::request(); ?>
-                <div class="input-group input-group-sm float-right mb-3" style="width: 150px;">
-                    <input type="text" name="keyword" class="form-control float-right" placeholder="Search" value=" <?= $request->getGet('keyword') ?>">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                            <i class="fas fa-search"></i>
-                        </button>
+
+            <div class="float-left">
+                <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
+                <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
+                <a href="" class="btn btn-default"> <i class="fa-regular fa-copy"></i> Copy</a>
+            </div>
+            <div class="search float-right">
+                <form action="" method="get" autocomplete="off">
+                    <?php $request = \Config\Services::request(); ?>
+                    <div class="input-group input-group-sm mb-3" style="width: 150px;">
+                        <input type="text" name="keyword" class="form-control float-right" placeholder="Search" value=" <?= $request->getGet('keyword') ?>">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
