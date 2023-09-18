@@ -8,6 +8,28 @@
 
 <div class="text-sm">
 
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <?= form_open_multipart('peserta/upload') ?>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="fileimport">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Upload</button>
+                    </div>
+                </div>
+            </div>
+            <?= form_close() ?>
+            <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
+            <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
+
+        </div>
+
+    </div>
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
@@ -18,28 +40,8 @@
             </div>
         </div>
         <div class="card-body">
-
-            <div class="float-left">
-                <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
-                <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
-                <a href="" class="btn btn-default"> <i class="fa-regular fa-copy"></i> Copy</a>
-            </div>
-            <div class="search float-right">
-                <form action="" method="get" autocomplete="off">
-                    <?php $request = \Config\Services::request(); ?>
-                    <div class="input-group input-group-sm mb-3" style="width: 150px;">
-                        <input type="text" name="keyword" class="form-control float-right" placeholder="Search" value=" <?= $request->getGet('keyword') ?>">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="example2">
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
@@ -54,9 +56,8 @@
                     </thead>
                     <tbody>
                         <?php
-                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                        $no = 1 + (10 * ($page - 1));
 
+                        $no = 1;
 
                         foreach ($peserta as $key => $value) { ?>
                             <tr class="<?php
@@ -95,7 +96,6 @@
                         <?php } ?>
                     </tbody>
                 </table>
-                <?= $pager->links('default', 'siswa_pagination'); ?>
             </div>
         </div>
     </div>
@@ -117,11 +117,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Nama Siswa</label>
+                            <label for="nama siswa">Nama Siswa</label>
                             <input type="text" class="form-control" name="nama_siswa">
                         </div>
                         <div class="form-group">
-                            <label for="">Jenis Kelamin</label>
+                            <label for="jenis_kelamin">Jenis Kelamin</label>
                             <input type="text" class="form-control" name="jenis_kelamin">
                         </div>
                         <div class="form-group">

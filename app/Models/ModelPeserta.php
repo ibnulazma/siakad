@@ -5,53 +5,52 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class ModelPeserta extends Model
+
 {
-    protected $table                = 'tbl_siswa';
-    protected $primaryKey           = 'id_siswa';
-    protected $allowedFields        = [
-        'nama_siswa',
-        'nisn',
-        'nama_ibu',
-        'nik',
-        'tempat_lahir',
-        'tanggal_lahir',
-
-    ];
-
-    function AllData()
+    public function AllData()
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->where('status', '1')
             ->get()
             ->getResultArray();
     }
-
-
-
-    function getPaginate($num, $keyword = null)
+    public function verifikasi()
     {
-        $builder = $this->db->table('tbl_siswa');
-        $builder = $this->builder();
-        $builder->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left');
-        $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left');
-        $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
-        if ($keyword != '') {
-            $builder->like('nama_siswa', $keyword);
-            $builder->orLike('nisn', $keyword);
-            $builder->orLike('kelas', $keyword);
-        }
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->where('status_daftar', '2')
+            ->limit(8, 0)
+            ->get()
+            ->getResultArray();
+    }
 
-        return [
-            'peserta' => $this->paginate($num),
-            'pager' => $this->pager,
-            'title' => 'Peserta',
-            'subtitle' => 'Daftar Peserta',
-            'menu' => 'akademik',
-            'submenu' => 'peserta',
-        ];
+    public function add($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->insert($data);
+    }
+
+    public function edit($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->where('id_siswa', $data['id_siswa'])
+            ->update($data);
+    }
+
+
+    public function upload($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->insert($data);
+    }
+
+    public function cekdata($nisn)
+    {
+        return $this->db->table('tbl_siswa')
+            ->where('nisn', $nisn)->get()->getRowArray();
     }
     public function DataPeserta($id_siswa)
     {
@@ -82,51 +81,7 @@ class ModelPeserta extends Model
 
 // class ModelPeserta extends Model
 // {
-//     public function AllData()
-//     {
-//         return $this->db->table('tbl_siswa')
-//             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-//             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-//             ->where('status', '1')
-//             ->get()
-//             ->getResultArray();
-//     }
-//     public function verifikasi()
-//     {
-//         return $this->db->table('tbl_siswa')
-//             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-//             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-//             ->where('status_daftar', '2')
-//             ->limit(8, 0)
-//             ->get()
-//             ->getResultArray();
-//     }
-
-//     public function add($data)
-//     {
-//         $this->db->table('tbl_siswa')
-//             ->insert($data);
-//     }
-
-//     public function edit($data)
-//     {
-//         $this->db->table('tbl_siswa')
-//             ->where('id_siswa', $data['id_siswa'])
-//             ->update($data);
-//     }
-
-
-//     public function upload($data)
-//     {
-//         $this->db->table('tbl_siswa')
-//             ->insert($data);
-//     }
-
-//     public function cekdata($nisn)
-//     {
-//         return $this->db->table('tbl_siswa')
-//             ->where('nisn', $nisn)->get()->getRowArray();
-//     }
+//     
 
 //     
 // }

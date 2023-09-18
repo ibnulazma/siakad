@@ -15,31 +15,23 @@ class Peserta extends BaseController
         helper('form');
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelKelas = new ModelKelas();
-        $this->siswa = new ModelPeserta();
     }
 
 
     public function index()
     {
 
-        $keyword = $this->request->getGet('keyword');
+        session();
+        $data = [
+            'title'      => 'SIAKADINKA',
+            'subtitle'      => 'Peserta Didik',
+            'menu'      => 'akademik',
+            'submenu'      => 'peserta',
+            'tingkat'  => $this->ModelKelas->Tingkat(),
+            'kelas'  => $this->ModelKelas->kelas(),
+            'peserta'  => $this->ModelPeserta->AllData()
 
-        // $data['kelompok'] = $query;
-        // $data['peserta'] = $this->siswa->AllData();
-        $data = $this->siswa->getPaginate(10, $keyword);
-        $data['keyword'] = $keyword;
-        // session();
-
-
-        // $data = [
-        //     'title'      => 'SIAKADINKA',
-        //     'subtitle'      => 'Peserta Didik',
-        //     'menu'      => 'akademik',
-        //     'submenu'      => 'peserta',
-        //     'tingkat'  => $this->ModelKelas->Tingkat(),
-        //     'kelas'  => $this->ModelKelas->kelas()
-
-        // ];
+        ];
         return view('admin/v_peserta', $data);
     }
 

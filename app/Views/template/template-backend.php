@@ -393,6 +393,15 @@
     <script src="<?= base_url() ?>/AdminLTE/plugins/bs-stepper/js/bs-stepper.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/AdminLTE/plugins/jquery-validation/additional-methods.min.js"></script>
+    <!-- Sweet Alert -->
+
+    <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+
+    <script>
+        const swal = $('.swal').data('swal');
+    </script>
+
 
     <script>
         $.widget.bridge('uibutton', $.ui.button)
