@@ -29,7 +29,7 @@
                                 <?php if ($row['status'] == 1) { ?>
                                     <a href="<?= base_url('pendidik/konfirmasi/' . $row['id_mutasi']) ?>" class="btn btn-success btn-sm"> <i class="fas fa-check-circle"></i> Konfirmasi</a>
                                 <?php } else if ($row['status'] == 2) { ?>
-                                    <a href="<?= base_url('pendidik/konfirmasi/' . $row['id_mutasi']) ?>" class="btn btn-danger btn-sm"> <i class="fas fa-print"></i> Print</a>
+                                    <a href="<?= base_url('pendidik/printmutasi/' . $row['id_mutasi']) ?>" class="btn btn-danger btn-sm"> <i class="fas fa-print"></i> Print</a>
 
                                 <?php } ?>
                             </td>

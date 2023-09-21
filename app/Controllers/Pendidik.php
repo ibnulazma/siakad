@@ -7,6 +7,7 @@ use App\Models\ModelJadwal;
 use App\Models\ModelSiswa;
 use App\Models\ModelKelas;
 use App\Models\ModelSurat;
+use \Dompdf\Dompdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -175,5 +176,26 @@ class Pendidik extends BaseController
         $this->ModelSurat->konfirmasi($data);
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
         return redirect()->to(base_url('pendidik/pengajuan'));
+    }
+    public function printmutasi($id_mutasi)
+    {
+
+        $dompdf = new Dompdf();
+        // $siswa = $this->ModelSiswa->DataSiswa($id_siswa);
+        $data = [
+            'title'         =>  'Surat Permohonan Mutasi Siswa',
+            'mutasi'     => $this->ModelSurat->detail_data($id_mutasi),
+
+
+            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
+        ];
+        $html = view('guru/print_mutasi', $data);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
     }
 }

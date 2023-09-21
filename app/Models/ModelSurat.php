@@ -15,10 +15,16 @@ class ModelSurat extends Model
             ->get()
             ->getResultArray();
     }
-    public function detail_data($id_sekolah)
+    public function detail_data($id_mutasi)
     {
-        return $this->db->table('tbl_sekolah')
-            ->where('id_sekolah', $id_sekolah)
+        return $this->db->table('tbl_mutasi')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_mutasi.id_siswa', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->where('id_mutasi', $id_mutasi)
             ->get()->getRowArray();
     }
     public function add($data)
