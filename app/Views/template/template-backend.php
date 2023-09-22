@@ -236,6 +236,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('nilai') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
+                                    <i class="fas fa-paper-plane nav-icon"></i>
+                                    <p>
+                                        Penilaian
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
                                 <a href="<?= base_url('auth/logout') ?>" class="nav-link  ">

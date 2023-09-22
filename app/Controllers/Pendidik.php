@@ -119,7 +119,7 @@ class Pendidik extends BaseController
         return view('guru/nilai/nilaisiswa', $data);
     }
 
-    public function unduhberkas()
+    public function eksporexcel()
     {
 
         $siswa =   $this->siswa->AllData();
