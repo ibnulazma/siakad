@@ -105,19 +105,7 @@ class Pendidik extends BaseController
     }
 
 
-    public function nilaisiswa($id_mapel)
-    {
 
-        $data = [
-            'title' => 'SIAKAD',
-            'menu' => 'nilai',
-            'submenu' => 'nilai',
-            'subtitle' => 'Penilaian Peserta Didik',
-            'nilai' => $this->ModelPendidik->nilaimapel($id_mapel),
-
-        ];
-        return view('guru/nilai/nilaisiswa', $data);
-    }
 
     public function eksporexcel()
     {

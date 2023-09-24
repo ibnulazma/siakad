@@ -68,11 +68,12 @@
 <!-- Button trigger modal -->
 
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-       
+        <form action="<?= base_url('siswa/mapeladd/' . $siswa['id_siswa']) ?>" method="post">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -81,37 +82,30 @@
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="centangSemua">
+                                </th>
+                                <th>Mata Pelajaran</th>
+                                <th>Mata Pelajaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($ambilmapel as $row) { ?>
+                                <tr>
+                                    <td> <input type="checkbox" id="centangForm" nama="checksave[]" value="<?= $value['id_siswa'] ?>"></td>
+                                    <td><?= $row['mapel'] ?></td>
+                                    <td><input type="text" name="id_mapel[]" value="<?= $row['id_mapel'] ?>"></td>
+                                    <td><input type="text" name="id_siswa[]" value="<?= $siswa['id_siswa'] ?>"></td>
 
-                        <tr>
-
-                            <th>
-                                <input type="checkbox" id="centangSemua">
-                            </th>
-                            <th>No</th>
-                            <th>Mata Pelajaran</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class=" centangForm" name="id_siswa[]" value="<?= $siswa['id_siswa'] ?>">
-                            </td>
-                            <td>
-                                <input type="hidden" name="mapel" value="1" readonly>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class=" centangForm" name="id_siswa[]" value="<?= $siswa['id_siswa'] ?>">
-                            </td>
-                            <td>
-                                <input type="hidden" name="mapel" value="1" readonly>
-                            </td>
-                        </tr>
-
+                                </tr>
+                            <?php } ?>
+                        </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-primary">Simpan</i></button>
+                    <button type="submit" name="save" class="btn btn-primary">Simpan</i></button>
                 </div>
             </div>
         </form>
@@ -130,7 +124,7 @@
             }
         });
     })
-</script> -->
+</script>
 
 
 <?= $this->endSection() ?>

@@ -220,14 +220,6 @@
                                     </p>
                                 </a>
                             </li>
-                            <?php $db     = \Config\Database::connect();
-
-                            $kelas = $db->table('tbl_kelas')
-                                // ->where('status', '1')
-                                ->get()->getRowArray();
-
-                            ?>
-
                             <li class="nav-item">
                                 <a href="<?= base_url('pendidik/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
                                     <i class="fas fa-paper-plane nav-icon"></i>
@@ -237,7 +229,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('nilai') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
+                                <a href="<?= base_url('nilai') ?>" class="nav-link <?= $menu == 'nilai' ? 'active' : '' ?>">
                                     <i class="fas fa-paper-plane nav-icon"></i>
                                     <p>
                                         Penilaian
@@ -281,6 +273,15 @@
                                     <i class="nav-icon fas fa-envelope"></i>
                                     <p>
                                         Pengajuan
+
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('siswa/nilai') ?>" class="nav-link <?= $menu == 'nilai' ? 'active' : '' ?> ">
+                                    <i class="nav-icon fas fa-paper-plane"></i>
+                                    <p>
+                                        Penilaian
 
                                     </p>
                                 </a>

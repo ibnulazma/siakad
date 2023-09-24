@@ -102,6 +102,7 @@ class Filters extends BaseConfig
             [
                 'except' => [
                     'pendidik', 'pendidik/*',
+                    'nilai', 'nilai/*',
 
                     // '/',
                 ]

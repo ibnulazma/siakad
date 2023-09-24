@@ -24,18 +24,6 @@ class ModelKelas extends Model
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public function DataKelas($id_kelas)
     {
         return $this->db->table('tbl_mapel')
