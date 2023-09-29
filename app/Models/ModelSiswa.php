@@ -124,8 +124,6 @@ class ModelSiswa extends Model
             ->get()->getRowArray();
     }
 
-
-
     public function jumlahAktif()
     {
         return $this->db->table('tbl_siswa')

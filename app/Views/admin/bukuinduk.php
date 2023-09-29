@@ -80,10 +80,6 @@
                                     <td colspan="3"><b>A. KETERANGAN DIRI SISWA </b></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center" colspan="2">DATA ASLI </td>
-                                    <td class="text-center">UBAH </td>
-                                </tr>
-                                <tr>
                                     <td widtd="100px">1. Nama Lengkap</td>
                                     <td widtd="100px"><?= $siswa['nama_siswa'] ?></td>
                                 </tr>

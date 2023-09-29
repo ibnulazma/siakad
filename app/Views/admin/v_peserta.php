@@ -7,7 +7,6 @@
 
 
 <div class="text-sm">
-
     <div class="row mb-4">
         <div class="col-md-4">
             <?= form_open_multipart('peserta/upload') ?>

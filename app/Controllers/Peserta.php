@@ -107,17 +107,25 @@ class Peserta extends BaseController
             'submenu'      => 'peserta',
             'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
         ];
-        return view('admin/kelas/v_detail_siswa', $data);
+        return view('admin/v_detail_siswa', $data);
     }
 
-
+    public function siswa_edit($id_siswa)
+    {
+        $data = [
+            'id_siswa' => $id_siswa,
+            'status_daftar' => 1
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Reset Berhasil !!!');
+        return redirect()->to(base_url('peserta'));
+    }
 
 
     public function upload()
     {
 
         $db     = \Config\Database::connect();
-
         $ta = $db->table('tbl_ta')
             ->where('status', '1')
             ->get()->getRowArray();
@@ -197,7 +205,96 @@ class Peserta extends BaseController
                     $jumlahsukses++;
                 }
             }
-            $this->session->setFlashdata('sukses', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
+            $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
+            return redirect()->to('peserta');
+        }
+    }
+    public function uplodedit($id_siswa)
+    {
+
+        $db     = \Config\Database::connect();
+        $ta = $db->table('tbl_ta')
+            ->where('status', '1')
+            ->get()->getRowArray();
+
+        $validation = \Config\Services::validation();
+        $valid = $this->validate(
+            [
+                'fileimport' => [
+                    'label' => 'Input File',
+                    'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
+                    'error' => [
+                        'uploaded' => '{field} wajib diisi',
+                        'ext_in' => '{field} harus ekstensi xls atau xlsx'
+                    ]
+                ]
+            ]
+        );
+
+        if (!$valid) {
+
+
+            $this->session->setFlashdata('pesan', $validation->getError('fileimport'));
+            return redirect()->to('peserta');
+        } else {
+
+            $file = $this->request->getFile('fileimport');
+            $ext = $file->getClientExtension();
+
+            if ($ext == 'xls') {
+                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            } else {
+                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $spreadsheet = $render->load($file);
+            $data = $spreadsheet->getActiveSheet()->toArray();
+
+
+            $jumlaherror = 0;
+            $jumlahsukses = 0;
+            foreach ($data as $x => $row) {
+                if ($x == 0) {
+                    continue;
+                }
+                $id_siswa = $row[0];
+                $nis            = $row[1];
+                $nama           = $row[2];
+                $jk             = $row[3];
+                $tempat_lahir   = $row[4];
+                $tanggal_lahir  = $row[5];
+                $nama_ibu       = $row[6];
+                $nik            = $row[7];
+                $password       = $row[8];
+                $tingkat        = $row[9];
+                $db = \Config\Database::connect();
+
+                $ceknonis = $db->table('tbl_siswa')->getWhere(['nisn' => $nis])->getResult();
+
+                if (count($ceknonis) > 0) {
+                    $jumlaherror++;
+                } else {
+                    $datasimpan = [
+                        'id_siswa' => $id_siswa,
+                        'nisn'                  => $nis,
+                        'nama_siswa'            => $nama,
+                        'jenis_kelamin'         => $jk,
+                        'tempat_lahir'          => $tempat_lahir,
+                        'tanggal_lahir'         => $tanggal_lahir,
+                        'nama_ibu'              => $nama_ibu,
+                        'nik'                   => $nik,
+                        'password'              => $password,
+                        'id_tingkat'            => $tingkat,
+                        'id_ta'                 => $ta['id_ta'],
+                        'status_daftar'         => 1,
+                        'aktif'                 => 1,
+                    ];
+
+                    $db->table('tbl_siswa')->insert($datasimpan);
+                    $jumlahsukses++;
+                }
+            }
+            $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
             return redirect()->to('peserta');
         }
     }

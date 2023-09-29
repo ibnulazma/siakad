@@ -197,6 +197,30 @@
 
                                 </ul>
                             </li>
+                            <li class="nav-item <?= $menu == 'ppdb' ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link <?= $menu == 'ppdb' ? 'active' : '' ?>">
+                                    <i class="fa-solid fa-table-list nav-icon"></i>
+                                    <p>
+                                        PPDB
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('ppdb') ?>" class="nav-link <?= $submenu == 'ppdb' ? 'active' : '' ?>">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Formulir</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('daftar') ?>" class="nav-link <?= $submenu == 'daftr' ? 'active' : '' ?>">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Daftar Ulang</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
 
                             <li class="nav-header">EXAMPLES</li>
                             <li class="nav-item">
@@ -409,7 +433,34 @@
 
     <script>
         const swal = $('.swal').data('swal');
+        if (swal) {
+            Swal.fire({
+                title: 'Data Berhasil',
+                text: swal,
+                icon: 'success'
+            })
+        }
+
+        $(document).on('click', '.btn-hapus', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Apakah anda yakin akan dihapus',
+                text: "Data Akan Hilang",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.value) {
+                    document.location.href = href;
+                }
+            })
+        })
     </script>
+
 
 
     <script>
@@ -423,7 +474,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
@@ -563,7 +614,32 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        var rupiah = document.getElementById('rupiah');
+        rupiah.addEventListener('keyup', function(e) {
+            // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
 
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    </script>
 </body>
 
 </html>

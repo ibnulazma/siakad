@@ -45,7 +45,7 @@
 
 
 <body>
-    <div class="container-fluid" style="margin-top: 50px; margin-bottom:150px;">
+    <div class="container" style="margin-top: 50px; margin-bottom:150px;">
         <div class="card">
             <div class="card-header fixed">
                 <div class="d-flex justify-content-between">
@@ -59,7 +59,7 @@
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-bordered" width="100%">
                                 <tr>
@@ -94,61 +94,10 @@
                                     <td>3. Tempat dan Tanggal Lahir</td>
                                     <td><?= $siswa['tempat_lahir'] ?>, <?= date('d M Y', strtotime($siswa['tanggal_lahir'])) ?></td>
                                 </tr>
-                                <tr>
-                                    <td>4. Agama</td>
-                                    <td>Islam</td>
-                                </tr>
-                                <tr>
-                                    <td>5. Kewaganegaraan</td>
-                                    <td>Indonesia</td>
-                                </tr>
-                                <tr>
-                                    <td>6. Anak Ke Berapa</td>
-                                    <td><?= $siswa['anak_ke'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>7. Jumlah Saudara Kandung</td>
-                                    <td><?= $siswa['jml_saudara'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>8. Jumlah Saudara Tiri</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>9. Anak Yatim/Piatu/yatim piatu</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><b>B. KONTAK </b></td>
-                                </tr>
-                                <tr>
-                                    <td>10. Alamat</td>
-                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>11. Nomor Telepon</td>
-                                    <td><?= $siswa['telp_anak'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>12. Tinggal Bersama</td>
-                                    <td><?= $siswa['tinggal'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>13. Jarak Tempat tinggal Ke Sekolah</td>
-                                    <td></td>
-                                </tr>
 
-                                <tr>
-                                    <td colspan="2"><b>C. DATA AYAH </b></td>
-                                </tr>
-                                <tr>
-                                    <td>14. Nama</td>
-                                    <td><?= $siswa['nama_ayah'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>15. Tahun Lahir</td>
-                                    <td><?= $siswa['tahun_ayah'] ?></td>
-                                </tr>
+
+
+
                                 <tr>
                                     <td>16. NIK </td>
                                     <td><?= $siswa['nik_ayah'] ?></td>

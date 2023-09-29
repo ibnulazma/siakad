@@ -81,10 +81,7 @@ class Filters extends BaseConfig
                     'peserta', 'peserta/*',
                     'surat', 'surat/*',
                     'setting', 'setting/*',
-
-
-
-
+                    'ppdb', 'ppdb/*',
                 ]
             ],
             'filterpeserta' =>
