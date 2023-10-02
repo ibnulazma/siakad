@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ModelPeserta;
 use App\Models\ModelKelas;
+use App\Models\ModelSetting;
+use \Dompdf\Dompdf;
 
 class Peserta extends BaseController
 {
@@ -15,6 +17,7 @@ class Peserta extends BaseController
         helper('form');
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelKelas = new ModelKelas();
+        $this->ModelSetting = new ModelSetting();
     }
 
 
@@ -365,8 +368,6 @@ class Peserta extends BaseController
         return view('admin/editdata', $data);
     }
 
-
-
     public function delete($id_siswa)
     {
         $db     = \Config\Database::connect();
@@ -378,5 +379,27 @@ class Peserta extends BaseController
 
         session()->setFlashdata('pesan', 'Peserta Didik Berhasil Di Hapus !!!');
         return redirect()->to(base_url('peserta'));
+    }
+
+    public function print($nisn)
+    {
+        $dompdf = new Dompdf();
+
+        $data = [
+            'title'         =>  'Biodata Siswa',
+            'datasekolah'   =>  $this->ModelSetting->Profile(),
+
+            'siswa'     => $this->ModelPeserta->Data($nisn),
+
+
+            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
+        ];
+        $html = view('admin/peserta/print', $data);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
     }
 }

@@ -7,27 +7,27 @@
 
 
 <div class="text-sm">
-    <div class="row mb-4">
-        <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-5">
             <?= form_open_multipart('peserta/upload') ?>
             <div class="form-group">
-                <label for="exampleInputFile">File input</label>
                 <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="fileimport">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div>
+                    <input type="file" class="form-control" name="fileimport" id="exampleInputFile">
                     <div class="input-group-append">
-                        <button type="submit" class="input-group-text">Upload</button>
+                        <button class="input-group-text bg-primary" type="submit">Upload</button>
                     </div>
                 </div>
             </div>
             <?= form_close() ?>
-            <a href="" class="btn btn-default"><i class="fa-solid fa-file-excel"></i> Excel</a>
-            <a href="" class="btn btn-default"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
-
         </div>
 
+        <div class="col-md-7">
+            <div class="input-group-append">
+                <button class="input-group-text bg-success btn-sm mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
+                <a href="" class="input-group-text bg-danger btn-sm mb-3" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
+            </div>
+
+        </div>
     </div>
     <div class="card card-primary">
         <div class="card-header">
@@ -81,14 +81,12 @@
                                         <span class="badge bg-info">verifikasi</span>
                                     <?php } elseif ($value['status_daftar'] == 3) { ?>
                                         <span class="badge bg-success">aktif</span>
-                                    <?php } elseif ($value['status_daftar'] == 4) { ?>
-                                        <span class="badge bg-danger">ditolak</span>
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-xs btn-info" href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>"> <i class="fa-solid fa-id-card-clip"></i> </a>
                                     <a class="btn btn-xs btn-success" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fas fa-book"></i> </a>
-                                    <a class="btn btn-xs btn-danger btn-hapus" href="<?= base_url('peserta/print/' .  $value['id_siswa']) ?>"> <i class="fas fa-print"></i> </a>
+                                    <a class="btn btn-xs btn-danger" href="<?= base_url('peserta/print/' .  $value['nisn']) ?>"> <i class="fas fa-print"></i> </a>
                                 </td>
                             </tr>
 

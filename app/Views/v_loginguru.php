@@ -84,7 +84,6 @@
                         </div>
                     </div>
                 </form>
-                <small> Are You Teacher??? <a href="<?= base_url('auth/loginguru') ?>">Please Login</a></small>
             </div>
         </div>
 
@@ -107,9 +106,6 @@
         }
     </script>
 
-
-
 </body>
-
 
 </html>

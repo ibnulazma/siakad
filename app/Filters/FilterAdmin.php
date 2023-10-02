@@ -45,7 +45,7 @@ class FilterAdmin implements FilterInterface
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        if (session()->get('level') == 1) {
+        if (session()->get('level') == 'admin') {
             return redirect()->to(base_url('admin'));
         }
     }

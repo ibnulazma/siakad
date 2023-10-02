@@ -54,7 +54,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="25px">
+                        <img src="<?= base_url() ?>/foto/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="25px">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -75,17 +75,17 @@
         <aside class="main-sidebar sidebar-light-primary elevation-4">
             <div class=" row d-flex justify-content-start p-2 ml-2 mt-3 text-sm">
                 <a href="" class="mr-3">
-                    <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:50px">
+                    <img src="<?= base_url() ?>/foto/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:50px">
                 </a>
                 <div class="nama">
-                    <h5 class=" font-weight-bolder">SIAKAD INKA <br>
+                    <h5 class="font-weight-bolder">SIAKAD INKA <br>
 
-                        <?php if (session()->get('level') == 1) { ?>
+                        <?php if (session()->get('level') == 'admin') { ?>
                             <span style="font-weight: 50;">Administrator</span>
 
-                        <?php } else if (session()->get('level') == 2) { ?>
+                        <?php } else if (session()->get('level') == 'ptk') { ?>
                             <span style="font-weight: 50;">PTK</span>
-                        <?php } else if (session()->get('level') == 3) { ?>
+                        <?php } else if (session()->get('level') == 'siswa') { ?>
                             <span style="font-weight: 50;">Siswa</span>
                         <?php } ?>
                     </h5>
@@ -94,7 +94,7 @@
             <hr>
             <div class="sidebar">
                 <nav class="">
-                    <?php if (session()->get('level') == 1) { ?>
+                    <?php if (session()->get('level') == 'admin') { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
                             <li class="nav-item">
@@ -233,7 +233,7 @@
                                 </a>
                             </li>
                         </ul>
-                    <?php } elseif (session()->get('level') == 2) { ?>
+                    <?php } elseif (session()->get('level') == 'pendidik') { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">MENU</li>
                             <li class="nav-item">
@@ -246,7 +246,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url('pendidik/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
-                                    <i class="fas fa-paper-plane nav-icon"></i>
+                                    <i class="fas fa-envelope nav-icon"></i>
                                     <p>
                                         Pengajuan
                                     </p>
@@ -271,7 +271,7 @@
                             </li>
                         </ul>
 
-                    <?php } elseif (session()->get('level') == 3) { ?>
+                    <?php } elseif (session()->get('level') == 'siswa') { ?>
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-header">Menu</li>
                             <li class="nav-item">
