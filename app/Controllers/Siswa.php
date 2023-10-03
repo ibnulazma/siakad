@@ -71,8 +71,7 @@ class Siswa extends BaseController
     {
         session();
 
-
-        $siswa = $this->ModelSiswa->DataSiswa();
+        // $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',
             'subtitle'  => ' Profile',
@@ -92,7 +91,7 @@ class Siswa extends BaseController
     }
 
 
-    public function edit_profile($id_siswa)
+    public function edit_alamat($id_siswa)
     {
         session();
 
@@ -100,7 +99,8 @@ class Siswa extends BaseController
             'title'     => 'SIAKADINKA',
             'subtitle'  => 'Update Profile',
             'menu'      => 'siswa',
-            'submenu' => 'siswa',
+            'submenu'   => 'siswa',
+            'nav'       => 'alamat',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'  => $this->ModelWilayah->provinsi(),
             'tinggal'  => $this->ModelTinggal->AllData(),
@@ -110,7 +110,70 @@ class Siswa extends BaseController
             'didik'     => $this->ModelPendidikan->AllData(),
             'hasil'     => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/edit_profile', $data);
+        return view('siswa/edit_alamat', $data);
+    }
+    public function edit_orangtua($id_siswa)
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Update Profile',
+            'menu'          => 'siswa',
+            'submenu'       => 'siswa',
+            'nav'           => 'orangtua',
+            'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
+            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'tinggal'       => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+            'kerja'         => $this->ModelPekerjaan->AllData(),
+            'didik'         => $this->ModelPendidikan->AllData(),
+            'hasil'         => $this->ModelPenghasilan->AllData()
+        ];
+        return view('siswa/edit_orangtua', $data);
+    }
+    public function registrasi($id_siswa)
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Update Profile',
+            'menu'          => 'siswa',
+            'submenu'       => 'siswa',
+            'nav'           => 'registrasi',
+            'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
+            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'tinggal'       => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+            'kerja'         => $this->ModelPekerjaan->AllData(),
+            'didik'         => $this->ModelPendidikan->AllData(),
+            'hasil'         => $this->ModelPenghasilan->AllData()
+        ];
+        return view('siswa/registrasi', $data);
+    }
+    public function periodik($id_siswa)
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Update Profile',
+            'menu'          => 'siswa',
+            'submenu'       => 'siswa',
+            'nav'           => 'periodik',
+            'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
+            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'tinggal'       => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+            'kerja'         => $this->ModelPekerjaan->AllData(),
+            'didik'         => $this->ModelPendidikan->AllData(),
+            'hasil'         => $this->ModelPenghasilan->AllData()
+        ];
+        return view('siswa/periodik', $data);
     }
 
 
@@ -426,6 +489,353 @@ class Siswa extends BaseController
         }
     }
 
+    public function update_alamat($id_siswa)
+    {
+        if ($this->validate([
+            'alamat' => [
+                'label' => 'Alamat',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'rt' => [
+                'label' => 'RT',
+                'rules' => 'required|min_length[2]',
+                'errors' => [
+                    'required'          => '{field} harus diisi',
+                    'min_length'        => ' {field} Harus 2 Digit',
+                ]
+            ],
+
+            'rw' => [
+                'label' => 'RW',
+                'rules' => 'required|min_length[2]',
+                'errors' => [
+                    'required' => '{field} harus dipilih',
+                    'min_length' => ' {field} Harus 2 Digit',
+                ]
+            ],
+            'desa' => [
+                'label' => 'Desa',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kecamatan' => [
+                'label' => 'Kecamatan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kabupaten' => [
+                'label' => 'Kabupaten',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'provinsi' => [
+                'label' => 'Provinsi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kodepos' => [
+                'label' => 'Kode Pos',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+
+        ])) {
+            $data = [
+                'id_siswa'          => $id_siswa,
+                'no_kip'            => $this->request->getPost('no_kip'),
+                'kip'               => $this->request->getPost('kip'),
+                'anak_ke'           => $this->request->getPost('anak_ke'),
+                'alamat'            => $this->request->getPost('alamat'),
+                'rt'                => $this->request->getPost('rt'),
+                'rw'                => $this->request->getPost('rw'),
+                'provinsi'          => $this->request->getPost('provinsi'),
+                'kabupaten'         => $this->request->getPost('kabupaten'),
+                'kecamatan'         => $this->request->getPost('kecamatan'),
+                'desa'              => $this->request->getPost('desa'),
+                'kodepos'           => $this->request->getPost('kodepos'),
+            ];
+            $this->ModelSiswa->edit($data);
+            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+            return redirect()->to('siswa/edit_orangtua/' . $id_siswa);
+        } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            $validation =  \Config\Services::validation();
+            return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
+        }
+    }
+
+
+
+    public function update_orangtua($id_siswa)
+    {
+        if ($this->validate([
+
+            'nama_ayah' => [
+                'label' => 'Nama',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'nik_ayah' => [
+                'label' => 'NIK',
+                'rules' => 'required|min_length[16]',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'tahun_ayah' => [
+                'label' => 'Tahun Lahir',
+                'rules' => 'required|min_length[4]',
+                'errors' => [
+                    'required'          => '{field} harus diisi',
+                    'min_length'        => '{field} Harus 4 Digit',
+                ]
+            ],
+            'didik_ayah' => [
+                'label' => 'Pendidikan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+
+            'telp_ayah' => [
+                'label' => 'Telepon',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+
+            'tahun_ibu' => [
+                'label' => 'Tahun Lahir',
+                'rules' => 'required|min_length[4]',
+                'errors' => [
+                    'required'          => '{field} harus diisi',
+                    'min_length'        => ' {field} Harus 4 Digit',
+
+                ]
+            ],
+            'nik_ibu' => [
+                'label' => 'NIK',
+                'rules' => 'required|min_length[16]',
+                'errors' => [
+                    'required'          => '{field} harus diisi',
+                    'min_length'        => ' {field} Harus 16 Digit',
+                ]
+            ],
+            'didik_ibu' => [
+                'label' => 'Pendidikan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+
+            'kerja_ibu' => [
+                'label' => 'Pekerjaan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+            'telp_ibu' => [
+                'label' => 'Telp/Hp',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+
+
+        ])) {
+            $data = [
+                'id_siswa'          => $id_siswa,
+                'nama_ayah'         => $this->request->getPost('nama_ayah'),
+                'nama_ibu'          => $this->request->getPost('nama_ibu'),
+                'didik_ibu'         => $this->request->getPost('didik_ibu'),
+                'didik_ayah'        => $this->request->getPost('didik_ayah'),
+                'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
+                'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
+                'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
+                'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
+                'telp_ayah'         => $this->request->getPost('telp_ayah'),
+                'telp_ibu'          => $this->request->getPost('telp_ibu'),
+                'nik_ibu'           => $this->request->getPost('nik_ibu'),
+                'nik_ayah'          => $this->request->getPost('nik_ayah'),
+                'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
+                'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
+
+            ];
+            $this->ModelSiswa->edit($data);
+            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+            return redirect()->to('siswa/periodik/' . $id_siswa);
+        } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            $validation =  \Config\Services::validation();
+            return redirect()->to('siswa/edit_orangtua/' . $id_siswa)->withInput()->with('validation', $validation);
+            // return redirect()->to('siswa/profile');
+        }
+    }
+
+
+
+    public function update_periodik($id_siswa)
+    {
+        if ($this->validate([
+
+
+
+            'tinggal' => [
+                'label' => 'Tinggal',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'transportasi' => [
+                'label' => 'Transportasi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+            'berat' => [
+                'label' => 'Berat Badan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'tinggi' => [
+                'label' => 'Tinggi Badan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'lingkar' => [
+                'label' => 'Lingkar',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'anak_ke' => [
+                'label' => 'Anak Ke',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'jml_saudara' => [
+                'label' => 'Jumlah Saudara',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+        ])) {
+            $data = [
+                'id_siswa'          => $id_siswa,
+                'berat'             => $this->request->getPost('berat'),
+                'anak_ke'           => $this->request->getPost('anak_ke'),
+                'tinggal'           => $this->request->getPost('tinggal'),
+                'transportasi'      => $this->request->getPost('transportasi'),
+                'lingkar'           => $this->request->getPost('lingkar'),
+                'tinggi'            => $this->request->getPost('tinggi'),
+                'jml_saudara'       => $this->request->getPost('jml_saudara'),
+
+            ];
+            $this->ModelSiswa->edit($data);
+            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+            return redirect()->to('siswa/registrasi/' . $id_siswa);
+        } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            $validation =  \Config\Services::validation();
+            return redirect()->to('siswa/periodik/' . $id_siswa)->withInput()->with('validation', $validation);
+            // return redirect()->to('siswa/profile');
+        }
+    }
+
+    public function update_registrasi($id_siswa)
+    {
+        if ($this->validate([
+            'cita_cita' => [
+                'label' => 'Cita-cita',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'hobi' => [
+                'label' => 'hobi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+            'seri_ijazah' => [
+                'label' => 'No Seri Ijazah',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+            'telp_anak' => [
+                'label' => 'Telp Anak',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+
+        ])) {
+            $data = [
+                'id_siswa'          => $id_siswa,
+                'hobi'              => $this->request->getPost('hobi'),
+                'cita_cita'         => $this->request->getPost('cita_cita'),
+                'seri_ijazah'       => $this->request->getPost('seri_ijazah'),
+                'telp_anak'         => $this->request->getPost('telp_anak'),
+                'status_daftar'     => 2
+
+
+            ];
+            $this->ModelSiswa->edit($data);
+            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+            return redirect()->to('siswa');
+        } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            $validation =  \Config\Services::validation();
+            return redirect()->to('siswa/registrasi/' . $id_siswa)->withInput()->with('validation', $validation);
+            // return redirect()->to('siswa/profile');
+        }
+    }
     public function update_siswa($id_siswa)
     {
         if ($this->validate([

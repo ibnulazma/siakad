@@ -86,10 +86,10 @@
                         <div class="card-header">
                             <nav class="navigasi">
                                 <ul class="">
-                                    <li class=" mb-2">Alamat Domisili</li>
-                                    <li class="mb-2">Orang Tua</li>
-                                    <li class="aktip mb-2">Periodik</li>
-                                    <li class="mb-2">Registrasi</li>
+                                    <li class=" mb-2 <?= $nav == 'alamat' ? 'aktip' : '' ?>">Alamat Domisili</li>
+                                    <li class="mb-2 <?= $nav == 'orangtua' ? 'aktip' : '' ?>">Orang Tua</li>
+                                    <li class="mb-2 <?= $nav == 'periodik' ? 'aktip' : '' ?>">Periodik</li>
+                                    <li class="mb-2 <?= $nav == 'registrasi' ? 'aktip' : '' ?>">Registrasi</li>
                                 </ul>
                             </nav>
                         </div>
