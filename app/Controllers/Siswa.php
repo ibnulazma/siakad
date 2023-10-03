@@ -788,7 +788,7 @@ class Siswa extends BaseController
             // 'nilai'      => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
             'nilai'         => $this->ModelSiswa->DaftaNilai($siswa['id_siswa']),
         ];
-        return view('siswa/nilai', $data);
+        return view('siswa/v_nilai', $data);
     }
 
     public function absen()

@@ -1,7 +1,6 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-
 <div class="row">
     <div class="col-md-2">
         <div class=" card">
@@ -62,7 +61,6 @@
 
                                             Perempuan
                                         <?php } ?>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -1108,21 +1106,22 @@
             </div>
 
         <?php } ?>
+    </div>
+</div>
+
+
+<script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script>
+    function opsi(value) {
+        var st = $("#dropdown").val();
+        if (st == "Sudah Meninggal") {
+            document.getElementById("dipilih").disabled = true;
+        } else {
+            document.getElementById("dipilih").disabled = false;
+        }
+    }
+</script>
 
 
 
-        <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
-        <script>
-            function opsi(value) {
-                var st = $("#dropdown").val();
-                if (st == "Sudah Meninggal") {
-                    document.getElementById("dipilih").disabled = true;
-                } else {
-                    document.getElementById("dipilih").disabled = false;
-                }
-            }
-        </script>
-
-
-
-        <?= $this->endSection() ?>
+<?= $this->endSection() ?>

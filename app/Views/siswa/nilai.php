@@ -1,4 +1,4 @@
-<?= $this->extend('template/template-backend') ?>
+<?= $this->include('template/template-backend') ?>
 <?= $this->section('content') ?>
 
 

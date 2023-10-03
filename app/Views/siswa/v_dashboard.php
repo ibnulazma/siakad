@@ -1,5 +1,12 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
+
+
+
+
+
+
+
 <?php
 $db     = \Config\Database::connect();
 
@@ -40,7 +47,6 @@ $tahun = $db->table('tbl_ta')
                 Perhatian: Data Anda Silahkan Perbaiki Data Yang Salah !!!!
             </div>
         <?php } ?>
-
 
 
         <div class="card mt-2">
