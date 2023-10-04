@@ -35,6 +35,7 @@
             </div>
         </div>
     </div>
+    d
     <div class="col-md-8">
         <div class="card card-blue">
             <div class="card-header">
