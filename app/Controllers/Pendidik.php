@@ -6,8 +6,6 @@ use App\Models\ModelPendidik;
 use App\Models\ModelJadwal;
 use App\Models\ModelSiswa;
 use App\Models\ModelKelas;
-use App\Models\ModelSurat;
-use \Dompdf\Dompdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -19,7 +17,6 @@ class Pendidik extends BaseController
         $this->ModelPendidik = new ModelPendidik();
         $this->ModelJadwal = new ModelJadwal();
         $this->ModelKelas = new ModelKelas();
-        $this->ModelSurat = new ModelSurat();
         $this->siswa = new ModelSiswa();
     }
 
@@ -105,10 +102,24 @@ class Pendidik extends BaseController
     }
 
 
-
-
-    public function eksporexcel()
+    public function nilaisiswa($id_mapel)
     {
+
+        $data = [
+            'title' => 'SIAKAD',
+            'menu' => 'nilai',
+            'submenu' => 'nilai',
+            'subtitle' => 'Penilaian Peserta Didik',
+            'nilai' => $this->ModelPendidik->nilaimapel($id_mapel),
+
+        ];
+        return view('guru/nilai/nilaisiswa', $data);
+    }
+
+    public function unduhberkas()
+    {
+
+
 
         $siswa =   $this->siswa->AllData();
 
@@ -132,6 +143,8 @@ class Pendidik extends BaseController
         }
 
 
+
+
         $writer = new Xlsx($spreadsheet);
         header('Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition:attachment;filename=data anak.xlsx');
@@ -152,38 +165,5 @@ class Pendidik extends BaseController
 
         ];
         return view('guru/pengajuan', $data);
-    }
-
-
-    public function konfirmasi($id_mutasi)
-    {
-        $data = [
-            'id_mutasi' => $id_mutasi,
-            'status' => 2
-        ];
-        $this->ModelSurat->konfirmasi($data);
-        session()->setFlashdata('pesan', 'Reset Berhasil !!!');
-        return redirect()->to(base_url('pendidik/pengajuan'));
-    }
-    public function printmutasi($id_mutasi)
-    {
-
-        $dompdf = new Dompdf();
-        // $siswa = $this->ModelSiswa->DataSiswa($id_siswa);
-        $data = [
-            'title'         =>  'Surat Permohonan Mutasi Siswa',
-            'mutasi'     => $this->ModelSurat->detail_data($id_mutasi),
-
-
-            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
-        ];
-        $html = view('guru/print_mutasi', $data);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'potrait');
-        $dompdf->render();
-        $dompdf->stream('data siswa kelas.pdf', array(
-            "Attachment" => false
-        ));
-        exit();
     }
 }

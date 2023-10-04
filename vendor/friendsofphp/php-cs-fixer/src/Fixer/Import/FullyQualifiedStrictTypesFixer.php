@@ -20,6 +20,7 @@ use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Analyzer\Analysis\TypeAnalysis;
 use PhpCsFixer\Tokenizer\Analyzer\FunctionsAnalyzer;
+use PhpCsFixer\Tokenizer\Analyzer\NamespacesAnalyzer;
 use PhpCsFixer\Tokenizer\Analyzer\NamespaceUsesAnalyzer;
 use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
@@ -30,6 +31,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class FullyQualifiedStrictTypesFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -77,17 +81,24 @@ class SomeClass
         return 7;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_FUNCTION);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
+        $namespacesAnalyzer = new NamespacesAnalyzer();
         $namespaceUsesAnalyzer = new NamespaceUsesAnalyzer();
         $functionsAnalyzer = new FunctionsAnalyzer();
 
-        foreach ($tokens->getNamespaceDeclarations() as $namespace) {
+        foreach ($namespacesAnalyzer->getDeclarations($tokens) as $namespace) {
             $namespaceName = strtolower($namespace->getFullName());
             $uses = [];
 
@@ -128,6 +139,10 @@ class SomeClass
      */
     private function replaceByShortType(Tokens $tokens, TypeAnalysis $type, array $uses, string $namespaceName): void
     {
+        if ($type->isReservedType()) {
+            return;
+        }
+
         $typeStartIndex = $type->getStartIndex();
 
         if ($tokens[$typeStartIndex]->isGivenKind(CT::T_NULLABLE_TYPE)) {
@@ -138,12 +153,8 @@ class SomeClass
         $types = $this->getTypes($tokens, $typeStartIndex, $type->getEndIndex());
 
         foreach ($types as $typeName => [$startIndex, $endIndex]) {
-            if ((new TypeAnalysis($typeName))->isReservedType()) {
-                return;
-            }
-
             if (!str_starts_with($typeName, '\\')) {
-                continue; // Not a FQCN, no shorter type possible
+                continue; // no shorter type possible
             }
 
             $typeName = substr($typeName, 1);
@@ -161,24 +172,9 @@ class SomeClass
                 }
 
                 $tokens->overrideRange($startIndex, $endIndex, $this->namespacedStringToTokens($typeName));
-            } elseif (!str_contains($typeName, '\\')) {
-                // If we're NOT in the global namespace, there's no related import,
-                // AND used type is from global namespace, then it can't be shortened.
-                continue;
-            } elseif ($typeNameLower !== $namespaceName && str_starts_with($typeNameLower, $namespaceName.'\\')) {
+            } elseif ($typeNameLower !== $namespaceName && str_starts_with($typeNameLower, $namespaceName)) {
                 // if the type starts with namespace and the type is not the same as the namespace it can be shortened
                 $typeNameShort = substr($typeName, $namespaceNameLength + 1);
-
-                // if short names are the same, but long one are different then it cannot be shortened
-                foreach ($uses as $useLongName => $useShortName) {
-                    if (
-                        strtolower($typeNameShort) === strtolower($useShortName)
-                        && strtolower($typeName) !== strtolower($useLongName)
-                    ) {
-                        continue 2;
-                    }
-                }
-
                 $tokens->overrideRange($startIndex, $endIndex, $this->namespacedStringToTokens($typeNameShort));
             }
         }
@@ -189,56 +185,29 @@ class SomeClass
      */
     private function getTypes(Tokens $tokens, int $index, int $endIndex): iterable
     {
-        $skipNextYield = false;
-        $typeStartIndex = $typeEndIndex = null;
-        $type = null;
+        $index = $typeStartIndex = $typeEndIndex = $tokens->getNextMeaningfulToken($index - 1);
+        $type = $tokens[$index]->getContent();
+
         while (true) {
-            if ($tokens[$index]->isGivenKind(CT::T_DISJUNCTIVE_NORMAL_FORM_TYPE_PARENTHESIS_OPEN)) {
-                $index = $tokens->getNextMeaningfulToken($index);
-                $typeStartIndex = $typeEndIndex = null;
-                $type = null;
+            $index = $tokens->getNextMeaningfulToken($index);
+
+            if ($tokens[$index]->isGivenKind([CT::T_TYPE_ALTERNATION, CT::T_TYPE_INTERSECTION])) {
+                yield $type => [$typeStartIndex, $typeEndIndex];
+
+                $index = $typeStartIndex = $typeEndIndex = $tokens->getNextMeaningfulToken($index);
+                $type = $tokens[$index]->getContent();
 
                 continue;
             }
 
-            if (
-                $tokens[$index]->isGivenKind([CT::T_TYPE_ALTERNATION, CT::T_TYPE_INTERSECTION, CT::T_DISJUNCTIVE_NORMAL_FORM_TYPE_PARENTHESIS_CLOSE])
-                || $index > $endIndex
-            ) {
-                if (!$skipNextYield && null !== $typeStartIndex) {
-                    $origCount = \count($tokens);
+            if ($index > $endIndex || !$tokens[$index]->isGivenKind([T_STRING, T_NS_SEPARATOR])) {
+                yield $type => [$typeStartIndex, $typeEndIndex];
 
-                    yield $type => [$typeStartIndex, $typeEndIndex];
-
-                    $endIndex += \count($tokens) - $origCount;
-
-                    // type tokens were possibly updated, restart type match
-                    $skipNextYield = true;
-                    $index = $typeEndIndex = $typeStartIndex;
-                    $type = null;
-                } else {
-                    $skipNextYield = false;
-                    $index = $tokens->getNextMeaningfulToken($index);
-                    $typeStartIndex = $typeEndIndex = null;
-                    $type = null;
-                }
-
-                if ($index > $endIndex) {
-                    break;
-                }
-
-                continue;
-            }
-
-            if (null === $typeStartIndex) {
-                $typeStartIndex = $index;
-                $type = '';
+                break;
             }
 
             $typeEndIndex = $index;
             $type .= $tokens[$index]->getContent();
-
-            $index = $tokens->getNextMeaningfulToken($index);
         }
     }
 

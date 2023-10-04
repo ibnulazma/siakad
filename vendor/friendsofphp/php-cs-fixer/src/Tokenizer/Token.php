@@ -186,7 +186,12 @@ final class Token
         // detect unknown keys
         unset($otherPrototype[0], $otherPrototype[1]);
 
-        return [] === $otherPrototype;
+        /*
+         * @phpstan-ignore-next-line This validation is required when the method
+         *                           is called in a codebase that does not use
+         *                           static analysis.
+         */
+        return empty($otherPrototype);
     }
 
     /**
@@ -406,7 +411,7 @@ final class Token
      */
     public function isKeyword(): bool
     {
-        $keywords = self::getKeywords();
+        $keywords = static::getKeywords();
 
         return $this->isArray && isset($keywords[$this->id]);
     }
@@ -428,7 +433,7 @@ final class Token
      */
     public function isMagicConstant(): bool
     {
-        $magicConstants = self::getMagicConstants();
+        $magicConstants = static::getMagicConstants();
 
         return $this->isArray && isset($magicConstants[$this->id]);
     }

@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace PhpCsFixer\Tokenizer\Analyzer;
 
-use PhpCsFixer\DocBlock\TypeExpression;
 use PhpCsFixer\Preg;
-use PhpCsFixer\Tokenizer\Analyzer\Analysis\DataProviderAnalysis;
 use PhpCsFixer\Tokenizer\Tokens;
 
 /**
@@ -26,11 +24,8 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class DataProviderAnalyzer
 {
-    private const REGEX_CLASS = '(?:\\\\?+'.TypeExpression::REGEX_IDENTIFIER
-        .'(\\\\'.TypeExpression::REGEX_IDENTIFIER.')*+)';
-
     /**
-     * @return array<DataProviderAnalysis>
+     * @return array<int> indices of data provider definitions
      */
     public function getDataProviders(Tokens $tokens, int $startIndex, int $endIndex): array
     {
@@ -48,7 +43,7 @@ final class DataProviderAnalyzer
                 continue;
             }
 
-            Preg::matchAll('/@dataProvider\h+(('.self::REGEX_CLASS.'::)?'.TypeExpression::REGEX_IDENTIFIER.')/', $tokens[$docCommentIndex]->getContent(), $matches);
+            Preg::matchAll('/@dataProvider\s+([a-zA-Z0-9._:-\\\\x7f-\xff]+)/', $tokens[$docCommentIndex]->getContent(), $matches);
 
             /** @var array<string> $matches */
             $matches = $matches[1];
@@ -58,22 +53,18 @@ final class DataProviderAnalyzer
             }
         }
 
-        $dataProviderAnalyses = [];
+        $dataProviderDefinitions = [];
         foreach ($dataProviders as $dataProviderName => $dataProviderUsages) {
             $lowercaseDataProviderName = strtolower($dataProviderName);
             if (!\array_key_exists($lowercaseDataProviderName, $methods)) {
                 continue;
             }
-            $dataProviderAnalyses[$methods[$lowercaseDataProviderName]] = new DataProviderAnalysis(
-                $tokens[$methods[$lowercaseDataProviderName]]->getContent(),
-                $methods[$lowercaseDataProviderName],
-                $dataProviderUsages,
-            );
+            $dataProviderDefinitions[$methods[$lowercaseDataProviderName]] = $methods[$lowercaseDataProviderName];
         }
 
-        ksort($dataProviderAnalyses);
+        ksort($dataProviderDefinitions);
 
-        return array_values($dataProviderAnalyses);
+        return array_values($dataProviderDefinitions);
     }
 
     /**

@@ -32,6 +32,9 @@ use PhpCsFixer\Tokenizer\TokensAnalyzer;
  */
 final class ClassDefinitionFixer extends AbstractFixer implements ConfigurableFixerInterface, WhitespacesAwareFixerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -101,7 +104,7 @@ $foo = new class(){};
     /**
      * {@inheritdoc}
      *
-     * Must run before BracesFixer, SingleLineEmptyBodyFixer.
+     * Must run before BracesFixer.
      * Must run after NewWithBracesFixer.
      */
     public function getPriority(): int
@@ -109,11 +112,17 @@ $foo = new class(){};
         return 36;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound(Token::getClassyTokenKinds());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         // -4, one for count to index, 3 because min. of tokens for a classy location.
@@ -124,6 +133,9 @@ $foo = new class(){};
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([
@@ -306,17 +318,17 @@ $foo = new class(){};
 
         if (!$tokens[$classyIndex]->isGivenKind(T_TRAIT)) {
             $extends = $tokens->findGivenKind(T_EXTENDS, $classyIndex, $openIndex);
-            $def['extends'] = [] !== $extends ? $this->getClassyInheritanceInfo($tokens, key($extends), 'numberOfExtends') : false;
+            $def['extends'] = \count($extends) ? $this->getClassyInheritanceInfo($tokens, key($extends), 'numberOfExtends') : false;
 
             if (!$tokens[$classyIndex]->isGivenKind(T_INTERFACE)) {
                 $implements = $tokens->findGivenKind(T_IMPLEMENTS, $classyIndex, $openIndex);
-                $def['implements'] = [] !== $implements ? $this->getClassyInheritanceInfo($tokens, key($implements), 'numberOfImplements') : false;
+                $def['implements'] = \count($implements) ? $this->getClassyInheritanceInfo($tokens, key($implements), 'numberOfImplements') : false;
                 $def['anonymousClass'] = $tokensAnalyzer->isAnonymousClass($classyIndex);
             }
         }
 
         if ($def['anonymousClass']) {
-            $startIndex = $tokens->getPrevTokenOfKind($classyIndex, [[T_NEW]]); // go to "new" for anonymous class
+            $startIndex = $tokens->getPrevMeaningfulToken($classyIndex); // go to "new" for anonymous class
         } else {
             $modifiers = $tokensAnalyzer->getClassyModifiers($classyIndex);
             $startIndex = $classyIndex;

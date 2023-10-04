@@ -24,11 +24,17 @@ use Symfony\Component\Console\Formatter\OutputFormatter;
  */
 final class JunitReporter implements ReporterInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getFormat(): string
     {
         return 'junit';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate(ReportSummary $reportSummary): string
     {
         if (!\extension_loaded('dom')) {
@@ -38,7 +44,7 @@ final class JunitReporter implements ReporterInterface
         $dom = new \DOMDocument('1.0', 'UTF-8');
         $testsuites = $dom->appendChild($dom->createElement('testsuites'));
 
-        /** @var \DOMElement $testsuite */
+        /** @var \DomElement $testsuite */
         $testsuite = $testsuites->appendChild($dom->createElement('testsuite'));
         $testsuite->setAttribute('name', 'PHP CS Fixer');
 

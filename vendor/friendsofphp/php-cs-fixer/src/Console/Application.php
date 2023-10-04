@@ -39,8 +39,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class Application extends BaseApplication
 {
-    public const VERSION = '3.26.1';
-    public const VERSION_CODENAME = 'Crank Cake';
+    public const VERSION = '3.15.1';
+    public const VERSION_CODENAME = 'BoY42';
 
     private ToolInfo $toolInfo;
 
@@ -67,11 +67,15 @@ final class Application extends BaseApplication
         return (int) explode('.', self::VERSION)[0];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function doRun(InputInterface $input, OutputInterface $output): int
     {
         $stdErr = $output instanceof ConsoleOutputInterface
             ? $output->getErrorOutput()
-            : ($input->hasParameterOption('--format', true) && 'txt' !== $input->getParameterOption('--format', null, true) ? null : $output);
+            : ($input->hasParameterOption('--format', true) && 'txt' !== $input->getParameterOption('--format', null, true) ? null : $output)
+        ;
 
         if (null !== $stdErr) {
             $warningsDetector = new WarningsDetector($this->toolInfo);
@@ -107,6 +111,9 @@ final class Application extends BaseApplication
         return $result;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getLongVersion(): string
     {
         $commit = '@git-commit@';
@@ -125,6 +132,9 @@ final class Application extends BaseApplication
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getDefaultCommands(): array
     {
         return [new HelpCommand(), new ListCommand()];

@@ -27,6 +27,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class BlankLineAfterOpeningTagFixer extends AbstractFixer implements WhitespacesAwareFixerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -38,7 +41,7 @@ final class BlankLineAfterOpeningTagFixer extends AbstractFixer implements White
     /**
      * {@inheritdoc}
      *
-     * Must run before BlankLinesBeforeNamespaceFixer, NoBlankLinesBeforeNamespaceFixer.
+     * Must run before NoBlankLinesBeforeNamespaceFixer.
      * Must run after DeclareStrictTypesFixer.
      */
     public function getPriority(): int
@@ -46,11 +49,17 @@ final class BlankLineAfterOpeningTagFixer extends AbstractFixer implements White
         return 1;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_OPEN_TAG);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $lineEnding = $this->whitespacesConfig->getLineEnding();

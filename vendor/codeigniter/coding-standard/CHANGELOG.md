@@ -4,41 +4,6 @@ All notable changes to this library will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v1.7.8](https://github.com/CodeIgniter/coding-standard/compare/v1.7.7...v1.7.8) - 2023-08-30
-
-- Add `case_sensitive` option to order fixers
-
-## [v1.7.7](https://github.com/CodeIgniter/coding-standard/compare/v1.7.6...v1.7.7) - 2023-08-15
-
-- Specify force option for `php_unit_data_provider_static` fixer
-
-## [v1.7.6](https://github.com/CodeIgniter/coding-standard/compare/v1.7.5...v1.7.6) - 2023-08-15
-
-- Enable 'php_unit_data_provider_static'
-- Add new fixers in php-cs-fixer v3.23
-- Add `yield_from_array_to_yields`
-- Enable `php_unit_data_provider_name`
-- Use all available checked tokens for `no_extra_blank_lines`
-- Configure `php_unit_data_provider_return_type`
-- Remove parallel.timeout in phpstan.neon.dist
-
-## [v1.7.5](https://github.com/CodeIgniter/coding-standard/compare/v1.7.4...v1.7.5) - 2023-07-15
-
-- Configure new fixers in php-cs-fixer v3.20
-
-## [v1.7.4](https://github.com/CodeIgniter/coding-standard/compare/v1.7.3...v1.7.4) - 2023-06-19
-
-- Bump php-cs-fixer to v3.18
-- fix: ruleset deprecated on `v3.18` (#10)
-- Add case_sensitive option to ordered_class_elements
-- Add missing rules
-
-## [v1.7.3](https://github.com/CodeIgniter/coding-standard/compare/v1.7.2...v1.7.3) - 2023-05-05
-
-- Replace `single_space_after_construct` with `single_space_around_construct`
-- Remove deprecated `braces` rules
-- Bump php-cs-fixer to v3.16
-
 ## [v1.7.2](https://github.com/CodeIgniter/coding-standard/compare/v1.7.1...v1.7.2) - 2023-03-05
 
 - Bump php-cs-fixer to v3.14

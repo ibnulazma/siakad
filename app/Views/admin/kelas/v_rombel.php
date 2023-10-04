@@ -35,12 +35,11 @@
 
                             <td class="text-center">
                                 <a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i></a>
-                                <a href="<?= base_url('kelas/nilai/' . $value['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-list"></i></a>
+                                <!-- <a href="<?= base_url('kelas/rincian_jadwal/' . $value['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-calendar"></i></a> -->
                                 <a href="<?= base_url('kelas/delete/' . $value['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit<?= $value['id_kelas'] ?>"><i class="fas fa-pencil"></i></button>
                                 <a href="<?= base_url('kelas/print/' . $value['id_kelas']) ?>" target="_blank" class="btn btn-default btn-sm"><i class="fas fa-print"></i></a>
-                                <a href="<?= base_url('kelas/halaman/' . $value['id_kelas']) ?>" target="_blank" class="btn btn-warning btn-sm"><i class="fa-regular fa-file-lines"></i></a>
-                                <a href="<?= base_url('kelas/label/' . $value['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i></a>
+                                <a href="<?= base_url('kelas/halaman/' . $value['id_kelas']) ?>" target="_blank" class="btn btn-warning btn-sm"><i class="fas fa-print"></i></a>
 
                             </td>
                         </tr>

@@ -34,11 +34,17 @@ abstract class AbstractDoctrineAnnotationFixer extends AbstractFixer implements 
      */
     private array $classyElements;
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_DOC_COMMENT);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         // fetch indices one time, this is safe as we never add or remove a token during fixing
@@ -66,6 +72,9 @@ abstract class AbstractDoctrineAnnotationFixer extends AbstractFixer implements 
      */
     abstract protected function fixAnnotations(DoctrineAnnotationTokens $doctrineAnnotationTokens): void;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([

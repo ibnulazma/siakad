@@ -71,12 +71,14 @@
 
 <div class="row">
     <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
 
-
+            </div>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="card">
-
             <div class="card-body">
                 <div width="50%">
                     <canvas id="dognut" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>

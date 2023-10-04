@@ -23,11 +23,17 @@ use PhpCsFixer\Differ\DiffConsoleFormatter;
  */
 final class TextReporter implements ReporterInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getFormat(): string
     {
         return 'txt';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function generate(ReportSummary $reportSummary): string
     {
         $output = '';

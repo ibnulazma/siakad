@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class ModelDaftar extends Model
 {
 
+   
     public function search($cari)
     {
         $builder   = $this->table('tbl_daftar');

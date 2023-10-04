@@ -43,6 +43,9 @@ final class ArraySyntaxFixer extends AbstractFixer implements ConfigurableFixerI
      */
     private $fixCallback;
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -51,6 +54,9 @@ final class ArraySyntaxFixer extends AbstractFixer implements ConfigurableFixerI
         $this->resolveFixCallback();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -77,11 +83,17 @@ final class ArraySyntaxFixer extends AbstractFixer implements ConfigurableFixerI
         return 1;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound($this->candidateTokenKind);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $callback = $this->fixCallback;
@@ -93,6 +105,9 @@ final class ArraySyntaxFixer extends AbstractFixer implements ConfigurableFixerI
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([

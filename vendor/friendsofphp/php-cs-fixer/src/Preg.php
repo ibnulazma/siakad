@@ -30,16 +30,16 @@ final class Preg
      *
      * @throws PregException
      */
-    public static function match(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): bool
+    public static function match(string $pattern, string $subject, ?array &$matches = null, int $flags = 0, int $offset = 0): int
     {
         $result = @preg_match(self::addUtf8Modifier($pattern), $subject, $matches, $flags, $offset);
         if (false !== $result && PREG_NO_ERROR === preg_last_error()) {
-            return 1 === $result;
+            return $result;
         }
 
         $result = @preg_match(self::removeUtf8Modifier($pattern), $subject, $matches, $flags, $offset);
         if (false !== $result && PREG_NO_ERROR === preg_last_error()) {
-            return 1 === $result;
+            return $result;
         }
 
         throw self::newPregException(preg_last_error(), __METHOD__, (array) $pattern);

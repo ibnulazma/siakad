@@ -98,16 +98,25 @@ final class ProcessLinter implements LinterInterface
         throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isAsync(): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function lintFile(string $path): LintingResultInterface
     {
         return new ProcessLintingResult($this->createProcessForFile($path), $path);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function lintSource(string $source): LintingResultInterface
     {
         return new ProcessLintingResult($this->createProcessForSource($source), $this->temporaryFile);

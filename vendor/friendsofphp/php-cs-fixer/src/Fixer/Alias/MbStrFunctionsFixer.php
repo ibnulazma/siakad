@@ -71,10 +71,15 @@ final class MbStrFunctionsFixer extends AbstractFunctionReferenceFixer
 
         $this->functions = array_filter(
             self::$functionsMap,
-            static fn (array $mapping): bool => (new \ReflectionFunction($mapping['alternativeName']))->isInternal()
+            static function (array $mapping): bool {
+                return (new \ReflectionFunction($mapping['alternativeName']))->isInternal();
+            }
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -102,6 +107,9 @@ $a = substr_count($a, $b);
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $argumentsAnalyzer = new ArgumentsAnalyzer();

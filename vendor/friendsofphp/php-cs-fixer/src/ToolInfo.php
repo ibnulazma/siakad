@@ -46,7 +46,7 @@ final class ToolInfo implements ToolInfoInterface
         }
 
         if (null === $this->composerInstallationDetails) {
-            $composerInstalled = json_decode(file_get_contents($this->getComposerInstalledFile()), true, 512, JSON_THROW_ON_ERROR);
+            $composerInstalled = json_decode(file_get_contents($this->getComposerInstalledFile()), true);
 
             $packages = $composerInstalled['packages'] ?? $composerInstalled;
 

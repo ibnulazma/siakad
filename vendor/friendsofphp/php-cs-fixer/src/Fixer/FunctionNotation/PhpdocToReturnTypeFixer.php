@@ -47,10 +47,13 @@ final class PhpdocToReturnTypeFixer extends AbstractPhpdocToTypeDeclarationFixer
         'null' => true,
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
-            'EXPERIMENTAL: Takes `@return` annotation of non-mixed types and adjusts accordingly the function signature.',
+            'EXPERIMENTAL: Takes `@return` annotation of non-mixed types and adjusts accordingly the function signature. Requires PHP >= 7.0.',
             [
                 new CodeSample(
                     '<?php
@@ -62,11 +65,16 @@ function f1()
 /** @return void */
 function f2()
 {}
+'
+                ),
+                new VersionSpecificCodeSample(
+                    '<?php
 
 /** @return object */
 function my_foo()
 {}
 ',
+                    new VersionSpecification(7_02_00)
                 ),
                 new CodeSample(
                     '<?php
@@ -97,6 +105,9 @@ final class Foo {
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound([T_FUNCTION, T_FN]);
@@ -105,7 +116,7 @@ final class Foo {
     /**
      * {@inheritdoc}
      *
-     * Must run before FullyQualifiedStrictTypesFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAlignFixer, ReturnToYieldFromFixer, ReturnTypeDeclarationFixer.
+     * Must run before FullyQualifiedStrictTypesFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAlignFixer, ReturnTypeDeclarationFixer.
      * Must run after AlignMultilineCommentFixer, CommentToPhpdocFixer, PhpdocIndentFixer, PhpdocScalarFixer, PhpdocToCommentFixer, PhpdocTypesFixer.
      */
     public function getPriority(): int
@@ -118,6 +129,9 @@ final class Foo {
         return isset($this->skippedTypes[$type]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         if (\PHP_VERSION_ID >= 8_00_00) {
