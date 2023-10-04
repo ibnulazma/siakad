@@ -28,8 +28,6 @@ final class PhpCsFixerRiskySet extends AbstractRuleSetDescription
             '@Symfony:risky' => true,
             'comment_to_phpdoc' => true,
             'final_internal_class' => true,
-            'get_class_to_class_keyword' => false,
-            'modernize_strpos' => false,
             // @TODO: consider switching to `true`, like in @Symfony
             'native_constant_invocation' => [
                 'fix_built_in' => false,
@@ -49,14 +47,10 @@ final class PhpCsFixerRiskySet extends AbstractRuleSetDescription
             ],
             'no_unreachable_default_argument_value' => true,
             'no_unset_on_property' => true,
-            'php_unit_data_provider_name' => true,
-            'php_unit_data_provider_return_type' => true,
             'php_unit_strict' => true,
-            'php_unit_test_case_static_method_calls' => ['call_type' => 'self'],
-            'static_lambda' => true,
+            'php_unit_test_case_static_method_calls' => true,
             'strict_comparison' => true,
             'strict_param' => true,
-            'yield_from_array_to_yields' => true,
         ];
     }
 

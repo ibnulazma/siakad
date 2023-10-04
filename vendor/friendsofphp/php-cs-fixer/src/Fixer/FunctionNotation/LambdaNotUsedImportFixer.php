@@ -41,6 +41,9 @@ final class LambdaNotUsedImportFixer extends AbstractFixer
      */
     private $tokensAnalyzer;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -52,13 +55,16 @@ final class LambdaNotUsedImportFixer extends AbstractFixer
     /**
      * {@inheritdoc}
      *
-     * Must run before MethodArgumentSpaceFixer, NoSpacesInsideParenthesisFixer, SpacesInsideParenthesesFixer.
+     * Must run before MethodArgumentSpaceFixer, NoSpacesInsideParenthesisFixer.
      */
     public function getPriority(): int
     {
         return 31;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAllTokenKindsFound([T_FUNCTION, CT::T_USE_LAMBDA]);

@@ -19,6 +19,7 @@ use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\DocBlock\TypeExpression;
 use PhpCsFixer\Fixer\ConfigurableFixerInterface;
 use PhpCsFixer\Fixer\WhitespacesAwareFixerInterface;
+use PhpCsFixer\FixerConfiguration\AllowedValueSubset;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolver;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolverInterface;
 use PhpCsFixer\FixerConfiguration\FixerOptionBuilder;
@@ -48,14 +49,16 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
      */
     public const ALIGN_VERTICAL = 'vertical';
 
-    private const DEFAULT_TAGS = [
-        'method',
+    private const ALIGNABLE_TAGS = [
         'param',
         'property',
+        'property-read',
+        'property-write',
         'return',
         'throws',
         'type',
         'var',
+        'method',
     ];
 
     private const TAGS_WITH_NAME = [
@@ -63,38 +66,30 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
         'property',
         'property-read',
         'property-write',
-        'phpstan-param',
-        'phpstan-property',
-        'phpstan-property-read',
-        'phpstan-property-write',
-        'phpstan-assert',
-        'phpstan-assert-if-true',
-        'phpstan-assert-if-false',
-        'psalm-param',
-        'psalm-param-out',
-        'psalm-property',
-        'psalm-property-read',
-        'psalm-property-write',
-        'psalm-assert',
-        'psalm-assert-if-true',
-        'psalm-assert-if-false',
     ];
 
     private const TAGS_WITH_METHOD_SIGNATURE = [
         'method',
-        'phpstan-method',
-        'psalm-method',
     ];
 
-    private string $regex;
+    /**
+     * @var string
+     */
+    private $regex;
 
-    private string $regexCommentLine;
+    /**
+     * @var string
+     */
+    private $regexCommentLine;
 
     /**
      * @var string
      */
     private $align;
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -102,14 +97,13 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
         $tagsWithNameToAlign = array_intersect($this->configuration['tags'], self::TAGS_WITH_NAME);
         $tagsWithMethodSignatureToAlign = array_intersect($this->configuration['tags'], self::TAGS_WITH_METHOD_SIGNATURE);
         $tagsWithoutNameToAlign = array_diff($this->configuration['tags'], $tagsWithNameToAlign, $tagsWithMethodSignatureToAlign);
-
-        $indentRegex = '^(?P<indent>(?:\ {2}|\t)*)\ ?';
-
         $types = [];
+
+        $indent = '(?P<indent>(?:\ {2}|\t)*)';
 
         // e.g. @param <hint> <$var>
         if ([] !== $tagsWithNameToAlign) {
-            $types[] = '(?P<tag>'.implode('|', $tagsWithNameToAlign).')\s+(?P<hint>(?:'.TypeExpression::REGEX_TYPES.')?)\s*(?P<var>(?:&|\.{3})?\$\S+)';
+            $types[] = '(?P<tag>'.implode('|', $tagsWithNameToAlign).')\s+(?P<hint>(?:'.TypeExpression::REGEX_TYPES.')?)\s+(?P<var>(?:&|\.{3})?\$\S+)';
         }
 
         // e.g. @return <hint>
@@ -119,30 +113,33 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
 
         // e.g. @method <hint> <signature>
         if ([] !== $tagsWithMethodSignatureToAlign) {
-            $types[] = '(?P<tag3>'.implode('|', $tagsWithMethodSignatureToAlign).')(\s+(?P<static>static))?(\s+(?P<hint3>(?:'.TypeExpression::REGEX_TYPES.')?))\s+(?P<signature>.+\))';
+            $types[] = '(?P<tag3>'.implode('|', $tagsWithMethodSignatureToAlign).')(\s+(?P<static>static))?(\s+(?P<hint3>[^\s(]+)|)\s+(?P<signature>.+\))';
         }
 
         // optional <desc>
         $desc = '(?:\s+(?P<desc>\V*))';
 
-        $this->regex = '/'.$indentRegex.'\*\h*@(?J)(?:'.implode('|', $types).')'.$desc.'\h*\r?$/';
-        $this->regexCommentLine = '/'.$indentRegex.'\*(?!\h?+@)(?:\s+(?P<desc>\V+))(?<!\*\/)\r?$/';
+        $this->regex = '/^'.$indent.'\ \*\ @(?J)(?:'.implode('|', $types).')'.$desc.'\s*$/ux';
+        $this->regexCommentLine = '/^'.$indent.' \*(?! @)(?:\s+(?P<desc>\V+))(?<!\*\/)\r?$/u';
         $this->align = $this->configuration['align'];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         $code = <<<'EOF'
-            <?php
-            /**
-             * @param  EngineInterface $templating
-             * @param string      $format
-             * @param  int  $code       an HTTP response status code
-             * @param    bool         $debug
-             * @param  mixed    &$reference     a parameter passed by reference
-             */
+<?php
+/**
+ * @param  EngineInterface $templating
+ * @param string      $format
+ * @param  int  $code       an HTTP response status code
+ * @param    bool         $debug
+ * @param  mixed    &$reference     a parameter passed by reference
+ */
 
-            EOF;
+EOF;
 
         return new FixerDefinition(
             'All items of the given phpdoc tags must be either left-aligned or (by default) aligned vertically.',
@@ -150,14 +147,14 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                 new CodeSample($code),
                 new CodeSample($code, ['align' => self::ALIGN_VERTICAL]),
                 new CodeSample($code, ['align' => self::ALIGN_LEFT]),
-            ],
+            ]
         );
     }
 
     /**
      * {@inheritdoc}
      *
-     * Must run after AlignMultilineCommentFixer, CommentToPhpdocFixer, GeneralPhpdocAnnotationRemoveFixer, GeneralPhpdocTagRenameFixer, NoBlankLinesAfterPhpdocFixer, NoEmptyPhpdocFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAddMissingParamAnnotationFixer, PhpdocAnnotationWithoutDotFixer, PhpdocIndentFixer, PhpdocInlineTagNormalizerFixer, PhpdocLineSpanFixer, PhpdocNoAccessFixer, PhpdocNoAliasTagFixer, PhpdocNoEmptyReturnFixer, PhpdocNoPackageFixer, PhpdocNoUselessInheritdocFixer, PhpdocOrderByValueFixer, PhpdocOrderFixer, PhpdocParamOrderFixer, PhpdocReturnSelfReferenceFixer, PhpdocScalarFixer, PhpdocSeparationFixer, PhpdocSingleLineVarSpacingFixer, PhpdocSummaryFixer, PhpdocTagCasingFixer, PhpdocTagTypeFixer, PhpdocToCommentFixer, PhpdocToParamTypeFixer, PhpdocToPropertyTypeFixer, PhpdocToReturnTypeFixer, PhpdocTrimConsecutiveBlankLineSeparationFixer, PhpdocTrimFixer, PhpdocTypesFixer, PhpdocTypesOrderFixer, PhpdocVarAnnotationCorrectOrderFixer, PhpdocVarWithoutNameFixer.
+     * Must run after AlignMultilineCommentFixer, CommentToPhpdocFixer, GeneralPhpdocAnnotationRemoveFixer, GeneralPhpdocTagRenameFixer, NoBlankLinesAfterPhpdocFixer, NoEmptyPhpdocFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAddMissingParamAnnotationFixer, PhpdocAnnotationWithoutDotFixer, PhpdocIndentFixer, PhpdocInlineTagNormalizerFixer, PhpdocLineSpanFixer, PhpdocNoAccessFixer, PhpdocNoAliasTagFixer, PhpdocNoEmptyReturnFixer, PhpdocNoPackageFixer, PhpdocNoUselessInheritdocFixer, PhpdocOrderByValueFixer, PhpdocOrderFixer, PhpdocReturnSelfReferenceFixer, PhpdocScalarFixer, PhpdocSeparationFixer, PhpdocSingleLineVarSpacingFixer, PhpdocSummaryFixer, PhpdocTagCasingFixer, PhpdocTagTypeFixer, PhpdocToCommentFixer, PhpdocToParamTypeFixer, PhpdocToPropertyTypeFixer, PhpdocToReturnTypeFixer, PhpdocTrimConsecutiveBlankLineSeparationFixer, PhpdocTrimFixer, PhpdocTypesFixer, PhpdocTypesOrderFixer, PhpdocVarAnnotationCorrectOrderFixer, PhpdocVarWithoutNameFixer.
      */
     public function getPriority(): int
     {
@@ -171,11 +168,17 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
         return -42;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_DOC_COMMENT);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         foreach ($tokens as $index => $token) {
@@ -193,18 +196,27 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
-        $tags = new FixerOptionBuilder(
-            'tags',
-            'The tags that should be aligned. Allowed values are tags with name (`\''.implode('\', \'', self::TAGS_WITH_NAME).'\'`), tags with method signature (`\''.implode('\', \'', self::TAGS_WITH_METHOD_SIGNATURE).'\'`) and any custom tag with description (e.g. `@tag <desc>`).'
-        );
+        $tags = new FixerOptionBuilder('tags', 'The tags that should be aligned.');
         $tags
             ->setAllowedTypes(['array'])
-            ->setDefault(self::DEFAULT_TAGS)
+            ->setAllowedValues([new AllowedValueSubset(self::ALIGNABLE_TAGS)])
+            ->setDefault([
+                'method',
+                'param',
+                'property',
+                'return',
+                'throws',
+                'type',
+                'var',
+            ])
         ;
 
-        $align = new FixerOptionBuilder('align', 'How comments should be aligned.');
+        $align = new FixerOptionBuilder('align', 'Align comments');
         $align
             ->setAllowedTypes(['string'])
             ->setAllowedValues([self::ALIGN_LEFT, self::ALIGN_VERTICAL])
@@ -252,7 +264,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                     continue;
                 }
 
-                $hasStatic |= '' !== $item['static'];
+                $hasStatic = $hasStatic || $item['static'];
                 $tagMax = max($tagMax, \strlen($item['tag']));
                 $hintMax = max($hintMax, \strlen($item['hint']));
                 $varMax = max($varMax, \strlen($item['var']));
@@ -264,8 +276,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
             foreach ($items as $j => $item) {
                 if (null === $item['tag']) {
                     if ('@' === $item['desc'][0]) {
-                        $line = $item['indent'].' * '.$item['desc'];
-                        $docBlock->getLine($current + $j)->setContent($line.$lineEnding);
+                        $docBlock->getLine($current + $j)->setContent($item['indent'].' * '.$item['desc'].$lineEnding);
 
                         continue;
                     }
@@ -273,7 +284,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                     $extraIndent = 2;
 
                     if (\in_array($currTag, self::TAGS_WITH_NAME, true) || \in_array($currTag, self::TAGS_WITH_METHOD_SIGNATURE, true)) {
-                        $extraIndent += $varMax + 1;
+                        $extraIndent = 3;
                     }
 
                     if ($hasStatic) {
@@ -284,12 +295,13 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                         $item['indent']
                         .' *  '
                         .$this->getIndent(
-                            $tagMax + $hintMax + $extraIndent,
+                            $tagMax + $hintMax + $varMax + $extraIndent,
                             $this->getLeftAlignedDescriptionIndent($items, $j)
                         )
-                        .$item['desc'];
+                        .$item['desc']
+                        .$lineEnding;
 
-                    $docBlock->getLine($current + $j)->setContent($line.$lineEnding);
+                    $docBlock->getLine($current + $j)->setContent($line);
 
                     continue;
                 }
@@ -299,15 +311,17 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                 $line =
                     $item['indent']
                     .' * @'
-                    .$item['tag'];
+                    .$item['tag']
+                ;
 
                 if ($hasStatic) {
                     $line .=
                         $this->getIndent(
                             $tagMax - \strlen($item['tag']) + 1,
-                            '' !== $item['static'] ? 1 : 0
+                            $item['static'] ? 1 : 0
                         )
-                        .($item['static'] ?: $this->getIndent(6 /* \strlen('static') */, 0));
+                        .($item['static'] ?: $this->getIndent(6 /* \strlen('static') */, 0))
+                    ;
                     $hintVerticalAlignIndent = 1;
                 } else {
                     $hintVerticalAlignIndent = $tagMax - \strlen($item['tag']) + 1;
@@ -316,43 +330,45 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
                 $line .=
                     $this->getIndent(
                         $hintVerticalAlignIndent,
-                        '' !== $item['hint'] ? 1 : 0
+                        $item['hint'] ? 1 : 0
                     )
-                    .$item['hint'];
+                    .$item['hint']
+                ;
 
-                if ('' !== $item['var']) {
+                if (!empty($item['var'])) {
                     $line .=
                         $this->getIndent(($hintMax ?: -1) - \strlen($item['hint']) + 1)
                         .$item['var']
                         .(
-                            '' !== $item['desc']
-                            ? $this->getIndent($varMax - \strlen($item['var']) + 1).$item['desc']
-                            : ''
-                        );
-                } elseif ('' !== $item['desc']) {
-                    $line .= $this->getIndent($hintMax - \strlen($item['hint']) + 1).$item['desc'];
+                            !empty($item['desc'])
+                            ? $this->getIndent($varMax - \strlen($item['var']) + 1).$item['desc'].$lineEnding
+                            : $lineEnding
+                        )
+                    ;
+                } elseif (!empty($item['desc'])) {
+                    $line .= $this->getIndent($hintMax - \strlen($item['hint']) + 1).$item['desc'].$lineEnding;
+                } else {
+                    $line .= $lineEnding;
                 }
 
-                $docBlock->getLine($current + $j)->setContent($line.$lineEnding);
+                $docBlock->getLine($current + $j)->setContent($line);
             }
         }
     }
 
     /**
-     * @TODO Introduce proper DTO instead of an array
-     *
-     * @return null|array{indent: null|string, tag: null|string, hint: string, var: null|string, static: string, desc?: null|string}
+     * @return null|array<string, null|string>
      */
     private function getMatches(string $line, bool $matchCommentOnly = false): ?array
     {
         if (Preg::match($this->regex, $line, $matches)) {
-            if (isset($matches['tag2']) && '' !== $matches['tag2']) {
+            if (!empty($matches['tag2'])) {
                 $matches['tag'] = $matches['tag2'];
                 $matches['hint'] = $matches['hint2'];
                 $matches['var'] = '';
             }
 
-            if (isset($matches['tag3']) && '' !== $matches['tag3']) {
+            if (!empty($matches['tag3'])) {
                 $matches['tag'] = $matches['tag3'];
                 $matches['hint'] = $matches['hint3'];
                 $matches['var'] = $matches['signature'];
@@ -396,7 +412,7 @@ final class PhpdocAlignFixer extends AbstractFixer implements ConfigurableFixerI
     }
 
     /**
-     * @param non-empty-list<array{indent: null|string, tag: null|string, hint: string, var: null|string, static: string, desc?: null|string}> $items
+     * @param array[] $items
      */
     private function getLeftAlignedDescriptionIndent(array $items, int $index): int
     {

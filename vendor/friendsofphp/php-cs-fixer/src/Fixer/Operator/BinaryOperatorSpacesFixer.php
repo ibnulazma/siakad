@@ -27,7 +27,6 @@ use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use PhpCsFixer\Tokenizer\TokensAnalyzer;
-use PhpCsFixer\Utils;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
@@ -39,11 +38,6 @@ final class BinaryOperatorSpacesFixer extends AbstractFixer implements Configura
      * @internal
      */
     public const SINGLE_SPACE = 'single_space';
-
-    /**
-     * @internal
-     */
-    public const AT_LEAST_SINGLE_SPACE = 'at_least_single_space';
 
     /**
      * @internal
@@ -161,7 +155,6 @@ final class BinaryOperatorSpacesFixer extends AbstractFixer implements Configura
         self::ALIGN_SINGLE_SPACE_MINIMAL_BY_SCOPE,
         self::SINGLE_SPACE,
         self::NO_SPACE,
-        self::AT_LEAST_SINGLE_SPACE,
         null,
     ];
 
@@ -177,6 +170,9 @@ final class BinaryOperatorSpacesFixer extends AbstractFixer implements Configura
      */
     private array $operators = [];
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -184,6 +180,9 @@ final class BinaryOperatorSpacesFixer extends AbstractFixer implements Configura
         $this->operators = $this->resolveOperatorsFromConfig();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -315,11 +314,17 @@ $array = [
         return -32;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $this->tokensAnalyzer = new TokensAnalyzer($tokens);
@@ -350,6 +355,9 @@ $array = [
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([
@@ -357,15 +365,15 @@ $array = [
                 ->setDefault(self::SINGLE_SPACE)
                 ->setAllowedValues(self::$allowedValues)
                 ->getOption(),
-            (new FixerOptionBuilder('operators', 'Dictionary of `binary operator` => `fix strategy` values that differ from the default strategy. Supported are: '.Utils::naturalLanguageJoinWithBackticks(self::SUPPORTED_OPERATORS).'.'))
+            (new FixerOptionBuilder('operators', 'Dictionary of `binary operator` => `fix strategy` values that differ from the default strategy. Supported are: `'.implode('`, `', self::SUPPORTED_OPERATORS).'`'))
                 ->setAllowedTypes(['array'])
                 ->setAllowedValues([static function (array $option): bool {
                     foreach ($option as $operator => $value) {
                         if (!\in_array($operator, self::SUPPORTED_OPERATORS, true)) {
                             throw new InvalidOptionsException(
                                 sprintf(
-                                    'Unexpected "operators" key, expected any of %s, got "%s".',
-                                    Utils::naturalLanguageJoin(self::SUPPORTED_OPERATORS),
+                                    'Unexpected "operators" key, expected any of "%s", got "%s".',
+                                    implode('", "', self::SUPPORTED_OPERATORS),
                                     \gettype($operator).'#'.$operator
                                 )
                             );
@@ -374,12 +382,9 @@ $array = [
                         if (!\in_array($value, self::$allowedValues, true)) {
                             throw new InvalidOptionsException(
                                 sprintf(
-                                    'Unexpected value for operator "%s", expected any of %s, got "%s".',
+                                    'Unexpected value for operator "%s", expected any of "%s", got "%s".',
                                     $operator,
-                                    Utils::naturalLanguageJoin(array_map(
-                                        static fn ($value): string => Utils::toString($value),
-                                        self::$allowedValues
-                                    )),
+                                    implode('", "', self::$allowedValues),
                                     \is_object($value) ? \get_class($value) : (null === $value ? 'null' : \gettype($value).'#'.$value)
                                 )
                             );
@@ -403,12 +408,6 @@ $array = [
 
         if (self::SINGLE_SPACE === $this->operators[$tokenContent]) {
             $this->fixWhiteSpaceAroundOperatorToSingleSpace($tokens, $index);
-
-            return;
-        }
-
-        if (self::AT_LEAST_SINGLE_SPACE === $this->operators[$tokenContent]) {
-            $this->fixWhiteSpaceAroundOperatorToAtLeastSingleSpace($tokens, $index);
 
             return;
         }
@@ -463,19 +462,6 @@ $array = [
                 $tokens[$index - 1] = new Token([T_WHITESPACE, ' ']);
             }
         } else {
-            $tokens->insertAt($index, new Token([T_WHITESPACE, ' ']));
-        }
-    }
-
-    private function fixWhiteSpaceAroundOperatorToAtLeastSingleSpace(Tokens $tokens, int $index): void
-    {
-        // fix white space after operator
-        if (!$tokens[$index + 1]->isWhitespace()) {
-            $tokens->insertAt($index + 1, new Token([T_WHITESPACE, ' ']));
-        }
-
-        // fix white space before operator
-        if (!$tokens[$index - 1]->isWhitespace()) {
             $tokens->insertAt($index, new Token([T_WHITESPACE, ' ']));
         }
     }
@@ -785,7 +771,8 @@ $array = [
                     if ($tokens[$i + 1]->isGivenKind([T_ARRAY, CT::T_ARRAY_SQUARE_BRACE_OPEN])) {
                         $arrayStartIndex = $tokens[$i + 1]->isGivenKind(T_ARRAY)
                             ? $tokens->getNextMeaningfulToken($i + 1)
-                            : $i + 1;
+                            : $i + 1
+                        ;
                         $blockType = Tokens::detectBlockType($tokens[$arrayStartIndex]);
                         $arrayEndIndex = $tokens->findBlockEnd($blockType['type'], $arrayStartIndex);
 
@@ -904,7 +891,7 @@ $array = [
                             self::ALIGN_SINGLE_SPACE_MINIMAL === $alignStrategy
                             || self::ALIGN_SINGLE_SPACE_MINIMAL_BY_SCOPE === $alignStrategy
                         ) {
-                            if (!Preg::match('/^\h+$/', $before)) { // if indent; do not move, leave to other fixer
+                            if (1 !== Preg::match('/^\h+$/', $before)) { // if indent; do not move, leave to other fixer
                                 $before = rtrim($before).' ';
                             }
                         }

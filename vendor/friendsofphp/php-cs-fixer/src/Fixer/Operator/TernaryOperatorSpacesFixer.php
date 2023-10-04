@@ -30,6 +30,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class TernaryOperatorSpacesFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -48,11 +51,17 @@ final class TernaryOperatorSpacesFixer extends AbstractFixer
         return 0;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAllTokenKindsFound(['?', ':']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $alternativeSyntaxAnalyzer = new AlternativeSyntaxAnalyzer();

@@ -44,11 +44,17 @@ final class FixerConfigurationResolver implements FixerConfigurationResolverInte
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function resolve(array $configuration): array
     {
         $resolver = new OptionsResolver();
@@ -85,7 +91,9 @@ final class FixerConfigurationResolver implements FixerConfigurationResolverInte
             if (null !== $allowedValues) {
                 foreach ($allowedValues as &$allowedValue) {
                     if (\is_object($allowedValue) && \is_callable($allowedValue)) {
-                        $allowedValue = static fn (/* mixed */ $values) => $allowedValue($values);
+                        $allowedValue = static function (/* mixed */ $values) use ($allowedValue) {
+                            return $allowedValue($values);
+                        };
                     }
                 }
 

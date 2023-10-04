@@ -29,6 +29,7 @@ use PhpCsFixer\Preg;
 use PhpCsFixer\Tokenizer\Analyzer\Analysis\NamespaceUseAnalysis;
 use PhpCsFixer\Tokenizer\Analyzer\ClassyAnalyzer;
 use PhpCsFixer\Tokenizer\Analyzer\FunctionsAnalyzer;
+use PhpCsFixer\Tokenizer\Analyzer\NamespacesAnalyzer;
 use PhpCsFixer\Tokenizer\Analyzer\NamespaceUsesAnalyzer;
 use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
@@ -40,6 +41,9 @@ use PhpCsFixer\Tokenizer\TokensAnalyzer;
  */
 final class GlobalNamespaceImportFixer extends AbstractFixer implements ConfigurableFixerInterface, WhitespacesAwareFixerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -98,6 +102,9 @@ if (count($x)) {
         return 0;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound([T_DOC_COMMENT, T_NS_SEPARATOR, T_USE])
@@ -106,9 +113,12 @@ if (count($x)) {
             && $tokens->isMonolithicPhp();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
-        $namespaceAnalyses = $tokens->getNamespaceDeclarations();
+        $namespaceAnalyses = (new NamespacesAnalyzer())->getDeclarations($tokens);
 
         if (1 !== \count($namespaceAnalyses) || $namespaceAnalyses[0]->isGlobalNamespace()) {
             return;
@@ -168,7 +178,9 @@ if (count($x)) {
      */
     private function importConstants(Tokens $tokens, array $useDeclarations): array
     {
-        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isConstant(), true);
+        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isConstant();
+        }, true);
 
         // find namespaced const declarations (`const FOO = 1`)
         // and add them to the not importable names (already used)
@@ -239,7 +251,9 @@ if (count($x)) {
      */
     private function importFunctions(Tokens $tokens, array $useDeclarations): array
     {
-        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isFunction(), false);
+        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isFunction();
+        }, false);
 
         // find function declarations
         // and add them to the not importable names (already used)
@@ -289,7 +303,9 @@ if (count($x)) {
      */
     private function importClasses(Tokens $tokens, array $useDeclarations): array
     {
-        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isClass(), false);
+        [$global, $other] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isClass();
+        }, false);
 
         /** @var DocBlock[] $docBlocks */
         $docBlocks = [];
@@ -435,7 +451,7 @@ if (count($x)) {
             $useDeclaration = end($useDeclarations);
             $index = $useDeclaration->getEndIndex() + 1;
         } else {
-            $namespace = $tokens->getNamespaceDeclarations()[0];
+            $namespace = (new NamespacesAnalyzer())->getDeclarations($tokens)[0];
             $index = $namespace->getEndIndex() + 1;
         }
 
@@ -478,7 +494,9 @@ if (count($x)) {
             return;
         }
 
-        [$global] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isConstant() && !$declaration->isAliased(), true);
+        [$global] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isConstant() && !$declaration->isAliased();
+        }, true);
 
         if (!$global) {
             return;
@@ -518,7 +536,9 @@ if (count($x)) {
             return;
         }
 
-        [$global] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isFunction() && !$declaration->isAliased(), false);
+        [$global] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isFunction() && !$declaration->isAliased();
+        }, false);
 
         if (!$global) {
             return;
@@ -558,7 +578,9 @@ if (count($x)) {
             return;
         }
 
-        [$global] = $this->filterUseDeclarations($useDeclarations, static fn (NamespaceUseAnalysis $declaration): bool => $declaration->isClass() && !$declaration->isAliased(), false);
+        [$global] = $this->filterUseDeclarations($useDeclarations, static function (NamespaceUseAnalysis $declaration): bool {
+            return $declaration->isClass() && !$declaration->isAliased();
+        }, false);
 
         if (!$global) {
             return;

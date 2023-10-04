@@ -30,7 +30,6 @@ use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use PhpCsFixer\Tokenizer\TokensAnalyzer;
-use PhpCsFixer\Utils;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
@@ -57,6 +56,9 @@ final class ClassAttributesSeparationFixer extends AbstractFixer implements Conf
      */
     private array $classElementTypes = [];
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -68,6 +70,9 @@ final class ClassAttributesSeparationFixer extends AbstractFixer implements Conf
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -159,11 +164,17 @@ class Sample
         return 55;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound(Token::getClassyTokenKinds());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         foreach ($this->getElementsByClass($tokens) as $class) {
@@ -187,6 +198,9 @@ class Sample
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([
@@ -199,8 +213,8 @@ class Sample
                         if (!\in_array($type, $supportedTypes, true)) {
                             throw new InvalidOptionsException(
                                 sprintf(
-                                    'Unexpected element type, expected any of %s, got "%s".',
-                                    Utils::naturalLanguageJoin($supportedTypes),
+                                    'Unexpected element type, expected any of "%s", got "%s".',
+                                    implode('", "', $supportedTypes),
                                     \gettype($type).'#'.$type
                                 )
                             );
@@ -211,9 +225,9 @@ class Sample
                         if (!\in_array($spacing, $supportedSpacings, true)) {
                             throw new InvalidOptionsException(
                                 sprintf(
-                                    'Unexpected spacing for element type "%s", expected any of %s, got "%s".',
+                                    'Unexpected spacing for element type "%s", expected any of "%s", got "%s".',
                                     $spacing,
-                                    Utils::naturalLanguageJoin($supportedSpacings),
+                                    implode('", "', $supportedSpacings),
                                     \is_object($spacing) ? \get_class($spacing) : (null === $spacing ? 'null' : \gettype($spacing).'#'.$spacing)
                                 )
                             );
@@ -238,13 +252,6 @@ class Sample
      *
      * Deals with comments, PHPDocs and spaces above the element with respect to the position of the
      * element within the class, interface or trait.
-     *
-     * @param array{
-     *     index: int,
-     *     open: int,
-     *     close: int,
-     *     elements: non-empty-list<array{token: Token, type: string, index: int, start: int, end: int}>
-     * } $class
      */
     private function fixSpaceAboveClassElement(Tokens $tokens, array $class, int $elementIndex): void
     {
@@ -349,14 +356,6 @@ class Sample
         throw new \RuntimeException(sprintf('Unknown spacing "%s".', $spacing));
     }
 
-    /**
-     * @param array{
-     *     index: int,
-     *     open: int,
-     *     close: int,
-     *     elements: non-empty-list<array{token: Token, type: string, index: int, start: int, end: int}>
-     * } $class
-     */
     private function fixSpaceBelowClassElement(Tokens $tokens, array $class): void
     {
         $element = $class['elements'][0];
@@ -455,16 +454,6 @@ class Sample
         return $start;
     }
 
-    /**
-     * @TODO Introduce proper DTO instead of an array
-     *
-     * @return \Generator<array{
-     *     index: int,
-     *     open: int,
-     *     close: int,
-     *     elements: non-empty-list<array{token: Token, type: string, index: int, start: int, end: int}>
-     * }>
-     */
     private function getElementsByClass(Tokens $tokens): \Generator
     {
         $tokensAnalyzer = new TokensAnalyzer($tokens);

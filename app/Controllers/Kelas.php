@@ -129,22 +129,6 @@ class Kelas extends BaseController
         return view('admin/kelas/v_detail_siswa', $data);
     }
 
-    public function nilai($id_kelas)
-    {
-
-        $kelas = $this->ModelKelas->detail($id_kelas);
-        $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Data Siswa Kelas ' . $kelas['kelas'],
-            'menu'          => 'akademik',
-            'submenu'       => 'kelas',
-            'kelas'         => $kelas,
-            'jml_siswa'     => $this->ModelKelas->jml_siswa($id_kelas),
-            'datanilai'     => $this->ModelKelas->datanilai($id_kelas),
-        ];
-        return view('admin/kelas/v_nilai', $data);
-    }
-
 
 
     public function print($id_kelas)
@@ -188,30 +172,5 @@ class Kelas extends BaseController
         $dompdf->stream('data siswa kelas.pdf', array(
             "Attachment" => false
         ));
-        exit();
-    }
-
-
-    public function label($id_kelas)
-    {
-
-        $dompdf = new Dompdf();
-        $kelas = $this->ModelKelas->detail($id_kelas);
-        $data = [
-            'title'         =>   $kelas,
-            'kelas'         => $kelas,
-            'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
-
-
-            // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
-        ];
-        $html = view('admin/kelas/label', $data);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
-        $dompdf->render();
-        $dompdf->stream('data siswa kelas.pdf', array(
-            "Attachment" => false
-        ));
-        exit();
     }
 }

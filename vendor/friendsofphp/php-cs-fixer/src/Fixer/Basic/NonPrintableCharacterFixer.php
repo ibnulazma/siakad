@@ -64,6 +64,9 @@ final class NonPrintableCharacterFixer extends AbstractFixer implements Configur
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -82,16 +85,25 @@ final class NonPrintableCharacterFixer extends AbstractFixer implements Configur
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isRisky(): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound(self::$tokens);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([
@@ -102,6 +114,9 @@ final class NonPrintableCharacterFixer extends AbstractFixer implements Configur
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $replacements = [];

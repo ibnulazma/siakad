@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace PhpCsFixer\Fixer\Phpdoc;
 
 use PhpCsFixer\AbstractPhpdocTypesFixer;
-use PhpCsFixer\DocBlock\TypeExpression;
 use PhpCsFixer\Fixer\ConfigurableFixerInterface;
 use PhpCsFixer\FixerConfiguration\AllowedValueSubset;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolver;
@@ -51,8 +50,10 @@ final class PhpdocTypesFixer extends AbstractPhpdocTypesFixer implements Configu
         ],
         'alias' => [
             'boolean',
+            'callback',
             'double',
             'integer',
+            'real',
         ],
         'meta' => [
             '$this',
@@ -68,18 +69,36 @@ final class PhpdocTypesFixer extends AbstractPhpdocTypesFixer implements Configu
         ],
     ];
 
-    /** @var array<string, true> */
-    private array $typesSetToFix;
+    private string $patternToFix = '';
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
 
-        $typesToFix = array_merge(...array_map(static fn (string $group): array => self::POSSIBLE_TYPES[$group], $this->configuration['groups']));
+        $typesToFix = array_merge(...array_map(static function (string $group): array {
+            return self::POSSIBLE_TYPES[$group];
+        }, $this->configuration['groups']));
 
-        $this->typesSetToFix = array_combine($typesToFix, array_fill(0, \count($typesToFix), true));
+        $this->patternToFix = sprintf(
+            '/(?<![a-zA-Z0-9_\x80-\xff]\\\\)(\b|.(?=\$))(%s)\b(?!(\\\\|:))/i',
+            implode(
+                '|',
+                array_map(
+                    static function (string $type): string {
+                        return preg_quote($type, '/');
+                    },
+                    $typesToFix
+                )
+            )
+        );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -111,8 +130,8 @@ final class PhpdocTypesFixer extends AbstractPhpdocTypesFixer implements Configu
     /**
      * {@inheritdoc}
      *
-     * Must run before GeneralPhpdocAnnotationRemoveFixer, GeneralPhpdocTagRenameFixer, NoBlankLinesAfterPhpdocFixer, NoEmptyPhpdocFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAddMissingParamAnnotationFixer, PhpdocAlignFixer, PhpdocInlineTagNormalizerFixer, PhpdocLineSpanFixer, PhpdocNoAccessFixer, PhpdocNoAliasTagFixer, PhpdocNoEmptyReturnFixer, PhpdocNoPackageFixer, PhpdocNoUselessInheritdocFixer, PhpdocOrderByValueFixer, PhpdocOrderFixer, PhpdocParamOrderFixer, PhpdocReturnSelfReferenceFixer, PhpdocScalarFixer, PhpdocSeparationFixer, PhpdocSingleLineVarSpacingFixer, PhpdocSummaryFixer, PhpdocTagCasingFixer, PhpdocTagTypeFixer, PhpdocToParamTypeFixer, PhpdocToPropertyTypeFixer, PhpdocToReturnTypeFixer, PhpdocTrimConsecutiveBlankLineSeparationFixer, PhpdocTrimFixer, PhpdocTypesOrderFixer, PhpdocVarAnnotationCorrectOrderFixer, PhpdocVarWithoutNameFixer.
-     * Must run after PhpdocIndentFixer.
+     * Must run before GeneralPhpdocAnnotationRemoveFixer, GeneralPhpdocTagRenameFixer, NoBlankLinesAfterPhpdocFixer, NoEmptyPhpdocFixer, NoSuperfluousPhpdocTagsFixer, PhpdocAddMissingParamAnnotationFixer, PhpdocAlignFixer, PhpdocInlineTagNormalizerFixer, PhpdocLineSpanFixer, PhpdocNoAccessFixer, PhpdocNoAliasTagFixer, PhpdocNoEmptyReturnFixer, PhpdocNoPackageFixer, PhpdocNoUselessInheritdocFixer, PhpdocOrderByValueFixer, PhpdocOrderFixer, PhpdocReturnSelfReferenceFixer, PhpdocScalarFixer, PhpdocSeparationFixer, PhpdocSingleLineVarSpacingFixer, PhpdocSummaryFixer, PhpdocTagCasingFixer, PhpdocTagTypeFixer, PhpdocToParamTypeFixer, PhpdocToPropertyTypeFixer, PhpdocToReturnTypeFixer, PhpdocTrimConsecutiveBlankLineSeparationFixer, PhpdocTrimFixer, PhpdocTypesOrderFixer, PhpdocVarAnnotationCorrectOrderFixer, PhpdocVarWithoutNameFixer.
+     * Must run after PhpdocAnnotationWithoutDotFixer, PhpdocIndentFixer.
      */
     public function getPriority(): int
     {
@@ -127,36 +146,23 @@ final class PhpdocTypesFixer extends AbstractPhpdocTypesFixer implements Configu
         return 16;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function normalize(string $type): string
     {
-        $typeExpression = new TypeExpression($type, null, []);
-
-        $typeExpression->walkTypes(function (TypeExpression $type): void {
-            if (!$type->isUnionType()) {
-                $value = $type->toString();
-                $valueLower = strtolower($value);
-                if (isset($this->typesSetToFix[$valueLower])) {
-                    $value = $valueLower;
-                }
-
-                // normalize shape/callable/generic identifiers too
-                // TODO parse them as inner types and this will be not needed then
-                $value = Preg::replaceCallback(
-                    '/^(\??\s*)([^()[\]{}<>\'"]+)(?<!\s)(\s*[\s()[\]{}<>])/',
-                    fn ($matches) => $matches[1].$this->normalize($matches[2]).$matches[3],
-                    $value
-                );
-
-                // TODO TypeExpression should be immutable and walkTypes method should be changed to mapTypes method
-                \Closure::bind(static function () use ($type, $value): void {
-                    $type->value = $value;
-                }, null, TypeExpression::class)();
-            }
-        });
-
-        return $typeExpression->toString();
+        return Preg::replaceCallback(
+            $this->patternToFix,
+            function (array $matches): string {
+                return strtolower($matches[0]);
+            },
+            $type
+        );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         $possibleGroups = array_keys(self::POSSIBLE_TYPES);

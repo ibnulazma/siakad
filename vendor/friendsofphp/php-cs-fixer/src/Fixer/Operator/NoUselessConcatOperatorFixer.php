@@ -32,6 +32,9 @@ final class NoUselessConcatOperatorFixer extends AbstractFixer implements Config
     private const STR_DOUBLE_QUOTE_VAR = 1;
     private const STR_SINGLE_QUOTE = 2;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -54,11 +57,17 @@ final class NoUselessConcatOperatorFixer extends AbstractFixer implements Config
         return 5;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound('.') && $tokens->isAnyTokenKindsFound([T_CONSTANT_ENCAPSED_STRING, '"']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         for ($index = $tokens->count() - 1; $index > 0; --$index) {
@@ -94,6 +103,9 @@ final class NoUselessConcatOperatorFixer extends AbstractFixer implements Config
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([
@@ -323,7 +335,7 @@ final class NoUselessConcatOperatorFixer extends AbstractFixer implements Config
 
     private function isSimpleQuotedStringContent(string $candidate): bool
     {
-        return !Preg::match('#[\$"\'\\\]#', substr($candidate, 1, -1));
+        return 0 === Preg::match('#[\$"\'\\\]#', substr($candidate, 1, -1));
     }
 
     private function containsLinebreak(Tokens $tokens, int $startIndex, int $endIndex): bool

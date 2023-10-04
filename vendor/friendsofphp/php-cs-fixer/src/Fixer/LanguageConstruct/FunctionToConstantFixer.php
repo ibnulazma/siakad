@@ -64,6 +64,9 @@ final class FunctionToConstantFixer extends AbstractFixer implements Configurabl
         parent::__construct();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -75,6 +78,9 @@ final class FunctionToConstantFixer extends AbstractFixer implements Configurabl
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -97,23 +103,32 @@ final class FunctionToConstantFixer extends AbstractFixer implements Configurabl
      * {@inheritdoc}
      *
      * Must run before NativeFunctionCasingFixer, NoExtraBlankLinesFixer, NoSinglelineWhitespaceBeforeSemicolonsFixer, NoTrailingWhitespaceFixer, NoWhitespaceInBlankLineFixer, SelfStaticAccessorFixer.
-     * Must run after NoSpacesAfterFunctionNameFixer, NoSpacesInsideParenthesisFixer, SpacesInsideParenthesesFixer.
+     * Must run after NoSpacesAfterFunctionNameFixer, NoSpacesInsideParenthesisFixer.
      */
     public function getPriority(): int
     {
         return 1;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_STRING);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isRisky(): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $functionAnalyzer = new FunctionsAnalyzer();
@@ -134,6 +149,9 @@ final class FunctionToConstantFixer extends AbstractFixer implements Configurabl
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         $functionNames = array_keys(self::$availableFunctions);

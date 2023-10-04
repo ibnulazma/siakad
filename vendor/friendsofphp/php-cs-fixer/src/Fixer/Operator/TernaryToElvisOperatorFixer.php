@@ -56,6 +56,9 @@ final class TernaryToElvisOperatorFixer extends AbstractFixer
         [T_XOR_EQUAL],    // ^=
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -83,16 +86,25 @@ final class TernaryToElvisOperatorFixer extends AbstractFixer
         return 1;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound('?');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isRisky(): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $blockEdgeDefinitions = Tokens::getBlockEdgeDefinitions();

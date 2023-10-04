@@ -28,6 +28,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class NoClosingTagFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -36,11 +39,17 @@ final class NoClosingTagFixer extends AbstractFixer
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_CLOSE_TAG);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         if (\count($tokens) < 2 || !$tokens->isMonolithicPhp() || !$tokens->isTokenKindFound(T_CLOSE_TAG)) {

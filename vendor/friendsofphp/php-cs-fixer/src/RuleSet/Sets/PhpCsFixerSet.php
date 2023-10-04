@@ -26,6 +26,7 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
         return [
             '@PER' => true,
             '@Symfony' => true,
+            'align_multiline_comment' => true,
             'array_indentation' => true,
             'blank_line_before_statement' => [
                 'statements' => [
@@ -81,11 +82,8 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
                     'use',
                 ],
             ],
+            'no_null_property_initialization' => true,
             'no_superfluous_elseif' => true,
-            'no_superfluous_phpdoc_tags' => [
-                'allow_mixed' => true,
-                'remove_inheritdoc' => true,
-            ],
             'no_unneeded_control_parentheses' => [
                 'statements' => [
                     'break',
@@ -102,7 +100,9 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
             ],
             'no_useless_else' => true,
             'no_useless_return' => true,
-            'nullable_type_declaration_for_default_null_value' => false,
+            'operator_linebreak' => [
+                'only_booleans' => true,
+            ],
             'ordered_class_elements' => true,
             'php_unit_internal_class' => true,
             'php_unit_test_class_requires_covers' => true,
@@ -111,11 +111,8 @@ final class PhpCsFixerSet extends AbstractRuleSetDescription
             'phpdoc_order_by_value' => true,
             'phpdoc_types_order' => true,
             'phpdoc_var_annotation_correct_order' => true,
-            'protected_to_private' => true,
             'return_assignment' => true,
-            'self_static_accessor' => true,
             'single_line_comment_style' => true,
-            'single_line_empty_body' => true,
             'single_line_throw' => false,
             'whitespace_after_comma_in_array' => ['ensure_single_space' => true],
         ];

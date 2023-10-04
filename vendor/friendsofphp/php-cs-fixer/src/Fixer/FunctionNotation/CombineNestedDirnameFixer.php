@@ -27,6 +27,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class CombineNestedDirnameFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -41,11 +44,17 @@ final class CombineNestedDirnameFixer extends AbstractFixer
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_STRING);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isRisky(): bool
     {
         return true;
@@ -54,7 +63,7 @@ final class CombineNestedDirnameFixer extends AbstractFixer
     /**
      * {@inheritdoc}
      *
-     * Must run before MethodArgumentSpaceFixer, NoSpacesInsideParenthesisFixer, SpacesInsideParenthesesFixer.
+     * Must run before MethodArgumentSpaceFixer, NoSpacesInsideParenthesisFixer.
      * Must run after DirConstantFixer.
      */
     public function getPriority(): int
@@ -62,6 +71,9 @@ final class CombineNestedDirnameFixer extends AbstractFixer
         return 35;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         for ($index = $tokens->count() - 1; 0 <= $index; --$index) {

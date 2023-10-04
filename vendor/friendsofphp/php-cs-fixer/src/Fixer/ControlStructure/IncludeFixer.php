@@ -29,6 +29,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class IncludeFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -46,11 +49,17 @@ include_once("sample4.php");
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound([T_REQUIRE, T_REQUIRE_ONCE, T_INCLUDE, T_INCLUDE_ONCE]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         $this->clearIncludies($tokens, $this->findIncludies($tokens));
@@ -64,7 +73,7 @@ include_once("sample4.php");
         $blocksAnalyzer = new BlocksAnalyzer();
 
         foreach ($includies as $includy) {
-            if (!$tokens[$includy['end']]->isGivenKind(T_CLOSE_TAG)) {
+            if ($includy['end'] && !$tokens[$includy['end']]->isGivenKind(T_CLOSE_TAG)) {
                 $afterEndIndex = $tokens->getNextNonWhitespace($includy['end']);
 
                 if (null === $afterEndIndex || !$tokens[$afterEndIndex]->isComment()) {

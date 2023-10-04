@@ -28,17 +28,26 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class DisjunctiveNormalFormTypeParenthesisTransformer extends AbstractTransformer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getPriority(): int
     {
         // needs to run after TypeAlternationTransformer
         return -16;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRequiredPhpVersionId(): int
     {
         return 8_02_00;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function process(Tokens $tokens, Token $token, int $index): void
     {
         if ($token->equals('(') && $tokens[$tokens->getPrevMeaningfulToken($index)]->isGivenKind(CT::T_TYPE_ALTERNATION)) {
@@ -55,6 +64,9 @@ final class DisjunctiveNormalFormTypeParenthesisTransformer extends AbstractTran
         $tokens[$closeIndex] = new Token([CT::T_DISJUNCTIVE_NORMAL_FORM_TYPE_PARENTHESIS_CLOSE, ')']);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCustomTokens(): array
     {
         return [

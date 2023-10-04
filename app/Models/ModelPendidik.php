@@ -67,14 +67,20 @@ class ModelPendidik extends Model
             ->where('tbl_absen.id_mapel', $id_mapel)
             ->get()->getResultArray();
     }
+    public function nilaimapel($id_mapel)
+    {
+        return $this->db->table('tbl_nilai')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.nisn', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->where('tbl_nilai.id_mapel', $id_mapel)
+            ->get()->getResultArray();
+    }
 
-
-    public function addsiswa()
+    public function addsiswa($id_kelas)
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
-            ->where('tbl_siswa.id_kelas')
+            ->where('tbl_siswa.id_kelas', $id_kelas)
             ->get()->getResultArray();
     }
 }

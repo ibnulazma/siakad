@@ -28,8 +28,8 @@
                         <td><?= $value['mapel'] ?></td>
                         <td><?= $value['kelas'] ?></td>
                         <td>
-                            <a href="<?= base_url('nilai/nilaisiswa/' . $value['id_mapel'] /  $value['id_kelas']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Nilai</a>
-                            <button type="button" class=" btn-primary btn-sm" data-toggle="modal" data-target="#generate<?= $value['id_kelas'] ?>"> <i class="fa-solid fa-list-check"></i> Generate</button>
+                            <a href="<?= base_url('pendidik/nilaisiswa/' . $value['id_mapel']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Nilai</a>
+                            <a href="<?= base_url('pendidik/unduhberkas') ?>" class="btn btn-info btn-sm"> <i class="fa-solid fa-download"></i> Unduh</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -40,37 +40,6 @@
 
 
 
-<div class="modal fade" id="generate<?= $value['id_kelas'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <table>
-                    <thead>
-                        <tr>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

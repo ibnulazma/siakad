@@ -16,6 +16,7 @@ namespace PhpCsFixer\Fixer\ClassNotation;
 
 use PhpCsFixer\AbstractFixer;
 use PhpCsFixer\Fixer\ConfigurableFixerInterface;
+use PhpCsFixer\FixerConfiguration\AllowedValueSubset;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolver;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolverInterface;
 use PhpCsFixer\FixerConfiguration\FixerOptionBuilder;
@@ -98,6 +99,9 @@ final class OrderedClassElementsFixer extends AbstractFixer implements Configura
      */
     private array $typePosition;
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $configuration): void
     {
         parent::configure($configuration);
@@ -114,7 +118,7 @@ final class OrderedClassElementsFixer extends AbstractFixer implements Configura
                 continue;
             }
 
-            if (null === $parents) {
+            if (!$parents) {
                 $this->typePosition[$type] = null;
 
                 continue;
@@ -142,11 +146,17 @@ final class OrderedClassElementsFixer extends AbstractFixer implements Configura
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isAnyTokenKindsFound(Token::getClassyTokenKinds());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -207,28 +217,7 @@ class Example
 ',
                     ['order' => ['method_public'], 'sort_algorithm' => self::SORT_ALPHA]
                 ),
-                new CodeSample(
-                    '<?php
-class Example
-{
-    public function Aa(){}
-    public function AA(){}
-    public function AwS(){}
-    public function AWs(){}
-}
-',
-                    ['order' => ['method_public'], 'sort_algorithm' => self::SORT_ALPHA, 'case_sensitive' => true]
-                ),
-            ],
-            'Accepts a subset of pre-defined element types, special element groups, and custom patterns.
-
-Element types: `[\''.implode('\', \'', array_keys(self::$typeHierarchy)).'\']`
-
-Special element types: `[\''.implode('\', \'', array_keys(self::$specialTypes)).'\']`
-
-Custom values:
-
-- `method:*`: specify a single method name (e.g. `method:__invoke`) to set the order of that specific method.'
+            ]
         );
     }
 
@@ -243,6 +232,9 @@ Custom values:
         return 65;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         for ($i = 1, $count = $tokens->count(); $i < $count; ++$i) {
@@ -268,28 +260,15 @@ Custom values:
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
-        $builtIns = array_keys(array_merge(self::$typeHierarchy, self::$specialTypes));
-
         return new FixerConfigurationResolver([
             (new FixerOptionBuilder('order', 'List of strings defining order of elements.'))
                 ->setAllowedTypes(['array'])
-                ->setAllowedValues([
-                    static function (array $values) use ($builtIns): bool {
-                        foreach ($values as $value) {
-                            if (\in_array($value, $builtIns, true)) {
-                                return true;
-                            }
-
-                            if (\is_string($value) && 'method:' === substr($value, 0, 7)) {
-                                return true;
-                            }
-                        }
-
-                        return false;
-                    },
-                ])
+                ->setAllowedValues([new AllowedValueSubset(array_keys(array_merge(self::$typeHierarchy, self::$specialTypes)))])
                 ->setDefault([
                     'use_trait',
                     'case',
@@ -308,13 +287,9 @@ Custom values:
                     'method_private',
                 ])
                 ->getOption(),
-            (new FixerOptionBuilder('sort_algorithm', 'How multiple occurrences of same type statements should be sorted.'))
+            (new FixerOptionBuilder('sort_algorithm', 'How multiple occurrences of same type statements should be sorted'))
                 ->setAllowedValues(self::SUPPORTED_SORT_ALGORITHMS)
                 ->setDefault(self::SORT_NONE)
-                ->getOption(),
-            (new FixerOptionBuilder('case_sensitive', 'Whether the sorting should be case sensitive.'))
-                ->setAllowedTypes(['bool'])
-                ->setDefault(false)
                 ->getOption(),
         ]);
     }
@@ -505,12 +480,6 @@ Custom values:
         foreach ($elements as &$element) {
             $type = $element['type'];
 
-            if (\in_array($type, ['method', 'magic', 'phpunit'], true) && isset($this->typePosition["method:{$element['name']}"])) {
-                $element['position'] = $this->typePosition["method:{$element['name']}"];
-
-                continue;
-            }
-
             if (\array_key_exists($type, self::$specialTypes)) {
                 if (isset($this->typePosition[$type])) {
                     $element['position'] = $this->typePosition[$type];
@@ -583,10 +552,10 @@ Custom values:
      */
     private function sortGroupElements(array $a, array $b): int
     {
-        if (self::SORT_ALPHA === $this->configuration['sort_algorithm']) {
-            return $this->configuration['case_sensitive']
-                ? strcmp($a['name'], $b['name'])
-                : strcasecmp($a['name'], $b['name']);
+        $selectedSortAlgorithm = $this->configuration['sort_algorithm'];
+
+        if (self::SORT_ALPHA === $selectedSortAlgorithm) {
+            return strcasecmp($a['name'], $b['name']);
         }
 
         return $a['start'] <=> $b['start'];

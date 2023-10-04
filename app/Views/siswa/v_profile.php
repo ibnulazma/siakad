@@ -1,6 +1,7 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
+
 <div class="row">
     <div class="col-md-2">
         <div class=" card">
@@ -61,6 +62,7 @@
 
                                             Perempuan
                                         <?php } ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -219,35 +221,80 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <table width="50%" class="table">
-
-
+                                        <tr>
+                                            <td><b>Nama Ayah</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('nama_ayah')) ? 'is-invalid' : ''; ?>" name="nama_ayah" value="<?= old('nama_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nama_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>NIK</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('nik_ayah')) ? 'is-invalid' : ''; ?>" name="nik_ayah" value="<?= old('nik_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nik_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td><b>Tahun Lahir</b></td>
-                                            <td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= old('tahun_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('tahun_ayah'); ?>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><b></b></td>
+                                            <td><b>Pendidikan</b></td>
                                             <td>
-
+                                                <select name="didik_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>">
+                                                    <option value="">-- Pilih Pendidikan --</option>
+                                                    <?php foreach ($didik as $key => $value) { ?>
+                                                        <option value="<?= $value['pendidikan'] ?>"> <?= $value['pendidikan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('didik_ayah'); ?>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><b></b></td>
+                                            <td><b>Pekerjaan</b></td>
                                             <td>
-
+                                                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                                                    <option value="">--Pilih Pekerjaan--</option>
+                                                    <?php foreach ($kerja as $key => $value) { ?>
+                                                        <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
+                                                        <div class="invalid-feedback">
+                                                            <?= $validation->getError('kerja_ayah'); ?>
+                                                        </div>
+                                                    <?php } ?>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>Penghasilan</b></td>
                                             <td>
-
+                                                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                                                    <option value="">--Pilih Penghasilan--</option>
+                                                    <?php foreach ($hasil as $key => $value) { ?>
+                                                        <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('hasil_ayah'); ?>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>No Hp Ayah</b></td>
                                             <td>
-
+                                                <input type="text" name="telp_ayah" class="form-control <?= ($validation->hasError('telp_ayah')) ? 'is-invalid' : ''; ?>" value="<?= old('telp_ayah') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('telp_ayah'); ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>
@@ -653,25 +700,429 @@
                 </div>
             </div>
         <?php } else if ($siswa['status_daftar'] == 4) { ?>
+            <div class="card">
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link active" href="#alamat" data-toggle="tab">Alamat Domisili</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#orangtua" data-toggle="tab">Orang Tua</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#periodik" data-toggle="tab">Periodik</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#registrasi" data-toggle="tab">Registrasi</a></li>
+                    </ul>
+                </div>
+                <?= form_open('siswa/update_siswa/' . $siswa['id_siswa']) ?>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="alamat">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td width="30%"><b>Alamat</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" name="alamat" value="<?= $siswa['alamat'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('alamat'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>RT</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('rt')) ? 'is-invalid' : ''; ?>" name="rt" value="<?= $siswa['rt'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('rt'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>RW</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('rw')) ? 'is-invalid' : ''; ?>" name="rw" value="<?= $siswa['rw'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('rw'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Provinsi</b></td>
+                                            <td>
+                                                <select name="provinsi" class="form-control select2bs4 <?= ($validation->hasError('provinsi')) ? 'is-invalid' : ''; ?> " style="width: 100%;" id="provinsi" value="<?= $siswa['provinsi'] ?>">
+                                                    <option value="">--Pilih Provinsi--</option>
+                                                    <?php foreach ($provinsi as $row) { ?>
+                                                        <option value="<?= $row['id_provinsi'] ?>"><?= $row['prov_name'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('provinsi'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Kab/Kota</b></td>
+                                            <td>
+                                                <select name="kabupaten" class="form-control select2bs4 <?= ($validation->hasError('kabupaten')) ? 'is-invalid' : ''; ?>" style="width: 100%;" id="kabupaten">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kabupaten'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table" width="50%">
+                                        <tr>
+                                            <td width="30%"><b>Kecamatan</b></td>
+                                            <td>
+                                                <select name="kecamatan" class="form-control select2bs4 <?= ($validation->hasError('kecamatan')) ? 'is-invalid' : ''; ?>" style="width: 100%;" id="kecamatan">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kecamatan'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Desa/Kel</b></td>
+                                            <td>
+                                                <select name="desa" class="form-control select2bs4 <?= ($validation->hasError('desa')) ? 'is-invalid' : ''; ?>" style="width: 100%;" id="desa">
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('desa'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Kode Pos</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('kodepos')) ? 'is-invalid' : ''; ?>" name="kodepos" value="<?= $siswa['kodepos'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kodepos'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
 
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" tab-pane" id="orangtua">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td><b>Nama Ayah</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('nama_ayah')) ? 'is-invalid' : ''; ?>" name="nama_ayah" value="<?= $siswa['nama_ayah'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nama_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>NIK Ayah</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('nik_ayah')) ? 'is-invalid' : ''; ?>" name="nik_ayah" value="<?= $siswa['nik_ayah'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nik_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tahun Lahir</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= $siswa['tahun_ayah'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('tahun_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pendidikan</b></td>
+                                            <td>
+                                                <select name="didik_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>">
+                                                    <option value="">-- Pilih Pendidikan --</option>
+                                                    <?php foreach ($didik as $key => $value) { ?>
+                                                        <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ayah'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('didik_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pekerjaan</b></td>
+                                            <td>
+                                                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('kerja_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                                                    <option value="">--Pilih Pekerjaan--</option>
+                                                    <?php foreach ($kerja as $key => $value) { ?>
+                                                        <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ayah'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
+                                                        <div class="invalid-feedback">
+                                                            <?= $validation->getError('kerja_ayah'); ?>
+                                                        </div>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Penghasilan</b></td>
+                                            <td>
+                                                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                                                    <option value="">--Pilih Penghasilan--</option>
+                                                    <?php foreach ($hasil as $key => $value) { ?>
+                                                        <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ayah'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('hasil_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>No Hp Ayah</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('telp_ayah')) ? 'is-invalid' : ''; ?>" name="telp_ayah" value="<?= $siswa['telp_ayah'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('telp_ayah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td><b>Nama Ibu</b></td>
+                                            <td>
+                                                <input type="text" class="form-control" name="nama_ibu" value="<?= $siswa['nama_ibu'] ?>" readonly>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nama_ibu'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>NIK</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('nik_ibu')) ? 'is-invalid' : ''; ?>" name="nik_ibu" value="<?= $siswa['nik_ibu'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('nik_ibu'); ?>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tahun Lahir</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('tahun_ibu')) ? 'is-invalid' : ''; ?>" name="tahun_ibu" value="<?= $siswa['tahun_ibu'] ?>"></td>
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('tahun_ibu'); ?>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pendidikan</b></td>
+                                            <td>
+                                                <select name="didik_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" value="" <?= $siswa['didik_ibu'] ?>>
+                                                    <option value="">-- Pilih Pendidikan --</option>
+                                                    <?php foreach ($didik as $key => $value) { ?>
+                                                        <?php foreach ($didik as $key => $value) { ?>
+                                                            <option value="<?= $value['pendidikan'] ?>" <?= $siswa['didik_ibu'] == $value['pendidikan'] ? 'selected' : '' ?>> <?= $value['pendidikan'] ?></option>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('didik_ibu'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Pekerjaan</b></td>
+                                            <td>
+                                                <select name="kerja_ibu" class="form-control <?= ($validation->hasError('kerja_ibu')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                                                    <option value="">--Pilih Pekerjaan--</option>
+                                                    <?php foreach ($kerja as $key => $value) { ?>
+                                                        <option value="<?= $value['pekerjaan'] ?>" <?= $siswa['kerja_ibu'] == $value['pekerjaan'] ? 'selected' : '' ?>> <?= $value['pekerjaan'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kerja_ibu'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <td><b>Penghasilan</b></td>
+                                        <td>
+                                            <select name="hasil_ibu" class="form-control <?= ($validation->hasError('hasil_ibu')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                                                <option value=""> --Pilih Penghasilan-- </option>
+                                                <?php foreach ($hasil as $key => $value) { ?>
+                                                    <?php foreach ($hasil as $key => $value) { ?>
+                                                        <option value="<?= $value['penghasilan'] ?>" <?= $siswa['hasil_ibu'] == $value['penghasilan'] ? 'selected' : '' ?>> <?= $value['penghasilan'] ?></option>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <tr>
+                                            <td><b>No Hp Ibu</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('telp_ibu')) ? 'is-invalid' : ''; ?>" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('telp_ibu'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="periodik">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Berat Badan</b></td>
+                                            <td><input type="number" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>" name="berat" value="<?= $siswa['berat'] ?>"></td>
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('berat'); ?>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Tinggi Badan</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('tinggi')) ? 'is-invalid' : ''; ?>" name="tinggi" value="<?= $siswa['tinggi'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('tinggi'); ?>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><b>Lingkar Kepala</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('lingkar')) ? 'is-invalid' : ''; ?>" name="lingkar" value="<?= $siswa['lingkar'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('lingkar'); ?>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><b>Anak Ke</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('anak_ke')) ? 'is-invalid' : ''; ?>" name="anak_ke" value="<?= $siswa['anak_ke'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('anak_ke'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Jumlah Saudara Kandung</b></td>
+                                            <td>
+                                                <input type=" number" class="form-control <?= ($validation->hasError('jml_saudara')) ? 'is-invalid' : ''; ?>" name="jml_saudara" value="<?= $siswa['jml_saudara'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('jml_saudara'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class=" col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Tinggal Bersama</b></td>
+                                            <td>
+                                                <select name="tinggal" class="form-control select2bs4 <?= ($validation->hasError('tinggal')) ? 'is-invalid' : ''; ?>" style="width: 100%;">
+                                                    <option value="">--Tinggal Bersama--</option>
+                                                    <?php foreach ($tinggal as $key => $value) { ?>
+                                                        <option value="<?= $value['tinggal'] ?>" <?= $siswa['tinggal'] == $value['tinggal'] ? 'selected' : '' ?>> <?= $value['tinggal'] ?></option>
+                                                    <?php } ?>
+
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('tinggal'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Transportasi</b></td>
+                                            <td>
+                                                <select name="transportasi" class="form-control select2bs4 <?= ($validation->hasError('transportasi')) ? 'is-invalid' : ''; ?>" style="width: 100%;">
+                                                    <option value="">--Pilih--</option>
+                                                    <?php foreach ($transportasi as $key => $value) { ?>
+                                                        <option value="<?= $value['transportasi'] ?>" <?= $siswa['transportasi'] == $value['transportasi'] ? 'selected' : '' ?>> <?= $value['transportasi'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('transportasi'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="registrasi">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table width="50%" class="table">
+                                        <tr>
+                                            <td><b>Hobi</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('hobi')) ? 'is-invalid' : ''; ?>" name="hobi" value="<?= $siswa['hobi'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('hobi'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Cita-cita</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('cita_cita')) ? 'is-invalid' : ''; ?>" name="cita_cita" value="<?= $siswa['cita_cita'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('cita_cita'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>No Seri Ijazah</b></td>
+                                            <td>
+                                                <input type="text" class="form-control <?= ($validation->hasError('seri_ijazah')) ? 'is-invalid' : ''; ?>" name="seri_ijazah" value="<?= $siswa['seri_ijazah'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('seri_ijazah'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>No Telp Siswa</b></td>
+                                            <td>
+                                                <input type="number" class="form-control <?= ($validation->hasError('telp_anak')) ? 'is-invalid' : ''; ?>" name="telp_anak" value="<?= $siswa['telp_anak'] ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('telp_anak'); ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">Simpan</button>
+                        <?= form_close() ?>
+                    </div>
+
+                </div>
+            </div>
 
         <?php } ?>
-    </div>
-</div>
-
-
-<script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
-<script>
-    function opsi(value) {
-        var st = $("#dropdown").val();
-        if (st == "Sudah Meninggal") {
-            document.getElementById("dipilih").disabled = true;
-        } else {
-            document.getElementById("dipilih").disabled = false;
-        }
-    }
-</script>
 
 
 
-<?= $this->endSection() ?>
+        <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+        <script>
+            function opsi(value) {
+                var st = $("#dropdown").val();
+                if (st == "Sudah Meninggal") {
+                    document.getElementById("dipilih").disabled = true;
+                } else {
+                    document.getElementById("dipilih").disabled = false;
+                }
+            }
+        </script>
+
+
+
+        <?= $this->endSection() ?>

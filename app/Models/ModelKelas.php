@@ -24,6 +24,18 @@ class ModelKelas extends Model
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     public function DataKelas($id_kelas)
     {
         return $this->db->table('tbl_mapel')
@@ -88,20 +100,9 @@ class ModelKelas extends Model
     public function datasiswa($id_kelas)
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat')
             ->orderBy('nama_siswa', 'ASC')
-            ->where('tbl_kelas.id_kelas', $id_kelas)
-            ->get()
-            ->getResultArray();
-    }
-
-    public function datanilai($id_kelas)
-    {
-        return $this->db->table('tbl_nilai')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
-            ->orderBy('nama_siswa', 'ASC')
-            ->where('tbl_siswa.id_kelas', $id_kelas)
+            ->where('id_kelas', $id_kelas)
             ->get()
             ->getResultArray();
     }

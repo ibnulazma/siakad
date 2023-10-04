@@ -31,15 +31,18 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class SingleQuoteFixer extends AbstractFixer implements ConfigurableFixerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         $codeSample = <<<'EOF'
-            <?php
+<?php
 
-            $a = "sample";
-            $b = "sample with 'single-quotes'";
+$a = "sample";
+$b = "sample with 'single-quotes'";
 
-            EOF;
+EOF;
 
         return new FixerDefinition(
             'Convert double quotes to single quotes for simple strings.',
@@ -64,11 +67,17 @@ final class SingleQuoteFixer extends AbstractFixer implements ConfigurableFixerI
         return 10;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_CONSTANT_ENCAPSED_STRING);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         foreach ($tokens as $index => $token) {
@@ -97,6 +106,9 @@ final class SingleQuoteFixer extends AbstractFixer implements ConfigurableFixerI
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createConfigurationDefinition(): FixerConfigurationResolverInterface
     {
         return new FixerConfigurationResolver([

@@ -169,7 +169,6 @@ final class CommentsAnalyzer
                 T_PUBLIC,
                 T_VAR,
                 T_FUNCTION,
-                T_FN,
                 T_ABSTRACT,
                 T_CONST,
                 T_NAMESPACE,
@@ -192,12 +191,6 @@ final class CommentsAnalyzer
 
         if ($token->isClassy() || $token->isGivenKind($skip)) {
             return true;
-        }
-
-        if ($token->isGivenKind(T_CASE) && \defined('T_ENUM')) {
-            $caseParent = $tokens->getPrevTokenOfKind($index, [[T_ENUM], [T_SWITCH]]);
-
-            return $tokens[$caseParent]->isGivenKind([T_ENUM]);
         }
 
         if ($token->isGivenKind(T_STATIC)) {
@@ -227,11 +220,11 @@ final class CommentsAnalyzer
             return false;
         }
 
-        $openParenthesisIndex = $tokens->getNextMeaningfulToken($controlIndex);
-        $closeParenthesisIndex = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $openParenthesisIndex);
+        $index = $tokens->getNextMeaningfulToken($controlIndex);
+        $endIndex = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $index);
         $docsContent = $docsToken->getContent();
 
-        for ($index = $openParenthesisIndex + 1; $index < $closeParenthesisIndex; ++$index) {
+        for ($index = $index + 1; $index < $endIndex; ++$index) {
             $token = $tokens[$index];
 
             if (

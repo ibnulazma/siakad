@@ -25,6 +25,9 @@ use PhpCsFixer\Tokenizer\Tokens;
 
 final class OctalNotationFixer extends AbstractFixer
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -38,11 +41,17 @@ final class OctalNotationFixer extends AbstractFixer
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return \PHP_VERSION_ID >= 8_01_00 && $tokens->isTokenKindFound(T_LNUMBER);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         foreach ($tokens as $index => $token) {
@@ -52,13 +61,14 @@ final class OctalNotationFixer extends AbstractFixer
 
             $content = $token->getContent();
 
-            $newContent = Preg::replace('#^0_*+([0-7_]+)$#', '0o$1', $content);
-
-            if ($content === $newContent) {
+            if (1 !== Preg::match('#^0[\d_]+$#', $content)) {
                 continue;
             }
 
-            $tokens[$index] = new Token([T_LNUMBER, $newContent]);
+            $tokens[$index] = 1 === Preg::match('#^0+$#', $content)
+                ? new Token([T_LNUMBER, '0'])
+                : new Token([T_LNUMBER, '0o'.('_' === $content[1] ? '0' : '').substr($content, 1)])
+            ;
         }
     }
 }
