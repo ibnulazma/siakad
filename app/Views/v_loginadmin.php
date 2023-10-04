@@ -46,7 +46,7 @@
                     echo '</small>';
                     echo ' </div>';
                 } ?>
-                <form action="<?= base_url('auth/cekloginguru') ?>" method="POST">
+                <form action="<?= base_url('auth/cekloginadmin') ?>" method="POST">
                     <div class="form-floating mb-3">
                         <input type="text" name="username" class="form-control  bg-light <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" placeholder="Username">
                         <label for="">Username</label>

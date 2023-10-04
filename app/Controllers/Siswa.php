@@ -90,7 +90,6 @@ class Siswa extends BaseController
         return view('siswa/v_profile', $data);
     }
 
-
     public function edit_alamat($id_siswa)
     {
         session();

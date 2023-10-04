@@ -61,7 +61,7 @@
                 <label for="">Pekerjaan</label>
             </div>
             <div class="col-sm-8">
-                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('kerja_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)" value="<?= old('kerja_ayah') ?>">
                     <option value="">--Pilih Pekerjaan--</option>
                     <?php foreach ($kerja as $key => $value) { ?>
                         <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
@@ -77,7 +77,7 @@
                 <label for="">Penghasilan</label>
             </div>
             <div class="col-sm-8">
-                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)" value="<?= old('hasil_ayah') ?>">
                     <option value="">--Pilih Penghasilan--</option>
                     <?php foreach ($hasil as $key => $value) { ?>
                         <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
@@ -139,7 +139,7 @@
                 <label for="">Pendidikan</label>
             </div>
             <div class="col-sm-8">
-                <select name="didik_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>">
+                <select name="didik_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" value="<?= old('didik_ibu') ?>">
                     <option value="">-- Pilih Pendidikan --</option>
                     <?php foreach ($didik as $key => $value) { ?>
                         <option value="<?= $value['pendidikan'] ?>"> <?= $value['pendidikan'] ?></option>
@@ -155,7 +155,7 @@
                 <label for="">Pekerjaan</label>
             </div>
             <div class="col-sm-8">
-                <select name="kerja_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)">
+                <select name="kerja_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)" value="<?= old('kerja_ibu') ?>">
                     <option value="">--Pilih Pekerjaan--</option>
                     <?php foreach ($kerja as $key => $value) { ?>
                         <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
@@ -171,14 +171,14 @@
                 <label for="">Penghasilan</label>
             </div>
             <div class="col-sm-8">
-                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)">
+                <select name="hasil_ibu" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)" value="<?= old('hasil_ibu') ?>">
                     <option value="">--Pilih Penghasilan--</option>
                     <?php foreach ($hasil as $key => $value) { ?>
                         <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
                     <?php } ?>
                 </select>
                 <div class="invalid-feedback">
-                    <?= $validation->getError('hasil_ayah'); ?>
+                    <?= $validation->getError('hasil_ibu'); ?>
                 </div>
             </div>
         </div>

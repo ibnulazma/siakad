@@ -11,6 +11,11 @@ class ModelSetting extends Model
         return $this->db->table('tbl_profile')
             ->get()->getRowArray();
     }
+    public function user()
+    {
+        return $this->db->table('tbl_user')
+            ->get()->getResultArray();
+    }
     public function add($data)
     {
         $this->db->table('tbl_tinggal')

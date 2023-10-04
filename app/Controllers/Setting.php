@@ -28,4 +28,25 @@ class Setting extends BaseController
 
         return view('admin/setting/profile', $data);
     }
+    public function user()
+    {
+
+        $alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // $arr = array();
+        $lenght = strlen($alphanumeric) - 2;
+        for ($i = 0; $i < 5; $i++) {
+            $x = rand(0, $lenght);
+            $arr[] = $alphanumeric[$x];
+        }
+        $data = [
+            'title'     => 'SIAKADINKA',
+            'subtitle'  => 'Profile Sekolah',
+            'menu'      => 'setting',
+            'submenu'   => 'user',
+            'user' => $this->ModelSetting->user(),
+            'randompass' => $arr
+        ];
+
+        return view('admin/setting/user', $data);
+    }
 }

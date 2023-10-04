@@ -1,8 +1,8 @@
-<?= $this->extend('template/template-edit') ?>
+<?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
 
-<h1>Aku</h1>
+
 
 
 <?= $this->endSection() ?>

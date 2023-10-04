@@ -127,8 +127,64 @@ class Auth extends BaseController
                 return redirect()->to(base_url('auth/loginguru'));
             }
         } else {
-            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to('auth/loginguru');
+            $validation = \Config\Services::validation();
+            return redirect()->to('/auth/loginguru')->withInput()->with('validation', $validation);
+        }
+    }
+    public function loginadmin()
+    { {
+            $data = [
+                'title' => 'SIAKADINKA',
+                'subtitle' => 'Halaman Login',
+                'validation'    =>  \Config\Services::validation(),
+
+            ];
+
+            return view('v_loginadmin', $data);
+        }
+    }
+
+    public function cekloginadmin()
+    {
+        if ($this->validate(
+            [
+                'username' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} harus diisi'
+                    ]
+
+                ],
+                'password' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} harus diisi'
+                    ]
+
+                ],
+            ]
+
+        )) {
+            $username   = $this->request->getPost('username');
+            $password   = $this->request->getPost('password');
+
+
+            $cekadmin = $this->ModelAuth->login($username, $password);
+            if ($cekadmin) {
+                session()->set('username', $cekadmin['username']);
+                session()->set('nama', $cekadmin['nama_user']);
+                // session()->set('foto', $cekadmin['foto']);
+                session()->set('level', 'admin');
+                return redirect()->to(base_url('admin'));
+            } else {
+                session()->setFlashdata('error', 'Username or Password is Wrong');
+                return redirect()->to(base_url('auth/loginadmin'));
+            }
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/auth/loginadmin')->withInput()->with('validation', $validation);
+            // session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            // return redirect()->to(base_url('auth'));
         }
     }
 }

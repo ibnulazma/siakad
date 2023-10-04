@@ -51,6 +51,12 @@
                                 <p>Profile Sekolah</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('setting/user') ?>" class="nav-link <?= $submenu == 'user' ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

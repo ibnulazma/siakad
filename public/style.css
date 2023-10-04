@@ -16,7 +16,7 @@ body{
 }
 .kerangka{
     
-    background-image:linear-gradient(to bottom, rgba(75, 79, 100, 0.52), rgba(197, 132, 107, 0.959)), url('foto/img.jpg') ; 
+    background-image:linear-gradient(to bottom, rgba(14, 117, 219, 0.52), rgba(185, 170, 164, 0.959)), url('foto/sekolah.jpg') ; 
      background-repeat:no-repeat; 
      background-size: cover;
      position: relative;
