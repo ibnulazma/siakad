@@ -1,129 +1,100 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title ?>| <?= $subtitle ?> </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= base_url() ?>/style.css">
 
+    <title>Login | SIAKAD INSAN KAMIL</title>
 
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+</head>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/plugins/fontawesome-free/css/solid.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?= base_url() ?>/AdminLTE/dist/css/adminlte.min.css">
-
-
-    <style>
-        body {
-            background-image: url('<?= base_url() ?>/foto/skul.jpg');
-            background-size: cover;
-        }
-    </style>
-
-
-<body class="hold-transition login-page">
+<body>
 
 
 
-    <div class="login-box">
 
-        <div class="card card-outline card-primary">
-            <div class="card-body login-card-body">
-                <div class="text-center mb-3">
-                    <img src="<?= base_url() ?>/logo/logo.png" alt="AdminLTE Logo" style="opacity: .8;text-align:center;" width="75px">
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border  p-3 bg-white shadow box-area">
+            <div class="col-md-6  d-flex justify-content-center align-items-center flex-column left-box kerangka">
+                <div class="featured-image">
+                    <img src="<?= base_url() ?>/foto/logo.png" alt="" width="150px" class="img-fluid logo">
                 </div>
-                <h3 class="login-box-msg"><b>SIAKAD </b><br>
-                    <span style="font-size: 20px;">SISTEM INFORMASI AKADEMIK</span>
-                </h3>
+                <small class="selamat">SELAMAT DATANG</small>
+                <small class="text-white text-wrap " style="font-weight: 500; font-size: 20px;">Sistem Informasi Akademik</small>
+                <small class="text-white text-wrap " style="font-weight: 900; font-size: 20px;">SMP INSAN KAMIL</small>
+            </div>
+            <div class="col-md-6 right-box">
+                <div class="row align-items-center">
+                    <div class="header-text">
+                        <h5 style="font-weight:900;">Hello Again !!</h5>
+                        <p>Please Login To Your Account!!</p>
+                    </div>
+                </div>
 
                 <?php
+
                 $errors = session()->getFlashdata('errors');
-
-                if (!empty($errors)) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            <?php foreach ($errors as $error) : ?>
-                                <li><?= esc($error) ?></li>
-                            <?php endforeach ?>
-                        </ul>
-                    </div>
-                <?php } ?>
-
+                ?>
                 <?php if (session()->getFlashdata('pesan')) {
                     echo '<div class="alert alert-success" role="alert">';
-                    echo session()->getFlashdata('pesan');
+                    echo  session()->getFlashdata('pesan');
                     echo ' </div>';
                 } elseif (session()->getFlashdata('error')) {
                     echo '<div class="alert alert-danger" role="alert">';
+                    echo '<small>';
                     echo session()->getFlashdata('error');
+                    echo '</small>';
                     echo ' </div>';
                 } ?>
-                <?= form_open('auth/ceklogin') ?>
-
-                <div class="mb-4">
-                    <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" placeholder="Username" name="username" value="<?= old('username') ?>">
-                    <div class="invalid-feedback">
-                        <?= $validation->getError('username'); ?>
+                <form action="<?= base_url('auth/ceklogin') ?>" method="POST">
+                    <div class="form-floating mb-3">
+                        <input type="text" name="username" class="form-control  bg-light <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" placeholder="Username">
+                        <label for="">Username</label>
+                        <div class="invalid-feedback">
+                            <small>
+                                <?= $validation->getError('username'); ?>
+                            </small>
+                        </div>
                     </div>
-                </div>
-
-                <div class=" mb-2">
-                    <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="Show" placeholder="Password" name="password" value="<?= old('password') ?>">
-                    <div class=" invalid-feedback">
-                        <?= $validation->getError('password'); ?>
+                    <div class="form-floating mb-1">
+                        <input type="password" name="password" class=" form-control bg-light <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" placeholder="Password" id="Show">
+                        <label for="">Password</label>
+                        <div class="invalid-feedback">
+                            <small>
+                                <?= $validation->getError('password'); ?>
+                            </small>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <select name="level" id="" class="form-control <?= ($validation->hasError('level')) ? 'is-invalid' : ''; ?>">
-                        <option value="">--Pilih Level--</option>
-                        <option value="1">Administrator</option>
-                        <option value="2">Guru</option>
-                        <option value="3">Siswa</option>
-                        <option value="4">Wali Kelas</option>
-                    </select>
-                    <div class=" invalid-feedback">
-                        <?= $validation->getError('level'); ?>
+                    <div class="input-grup mb-3 d-flex justify-content-between">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" id="exampleCheck1" onclick="myFunction()">
+                            <label class="form-check-label  show-pass" for="flexCheckDefault">
+                                Show Password
+                            </label>
+                        </div>
+                        <p class="forgot"><a href="">Forgot Password??</a></p>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1" onclick="myFunction()">
-                        <label class="custom-control-label" for="exampleCheck1">Tampilkan Password</label>
+                    <div class="input-grup mb-5 ">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block mb-4"><i class="fas fa-sign-in"></i> Sign In</button>
-                <?= form_close() ?>
+                </form>
+                <small> Are You Teacher??? <a href="<?= base_url('auth/loginguru') ?>">Please Login</a></small>
             </div>
         </div>
 
     </div>
 
-
-    <script src="<?= base_url() ?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
-
-    <script src="<?= base_url() ?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="<?= base_url() ?>/AdminLTE/dist/js/adminlte.min.js?v=3.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 
-    <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideDown(500, function() {
-                $(this).remove();
-            });
-        }, 2000);
-    </script>
+
 
     <script type="text/javascript">
         function myFunction() {
@@ -137,6 +108,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </script>
 
 
+
 </body>
+
 
 </html>

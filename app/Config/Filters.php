@@ -80,10 +80,8 @@ class Filters extends BaseConfig
                     'user', 'user/*',
                     'peserta', 'peserta/*',
                     'surat', 'surat/*',
-
-
-
-
+                    'setting', 'setting/*',
+                    'ppdb', 'ppdb/*',
                 ]
             ],
             'filterpeserta' =>
@@ -101,6 +99,7 @@ class Filters extends BaseConfig
             [
                 'except' => [
                     'pendidik', 'pendidik/*',
+                    'nilai', 'nilai/*',
 
                     // '/',
                 ]

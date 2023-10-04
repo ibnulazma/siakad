@@ -111,8 +111,8 @@ class ModelSiswa extends Model
     public function DaftaNilai($id_siswa)
     {
         return $this->db->table('tbl_nilai')
-            ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_nilai.id_mapel', 'left')
-            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.id_siswa', 'left')
+            // ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_nilai.id_mapel', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.nisn', 'left')
             ->where('tbl_siswa.id_siswa', $id_siswa)
             ->get()->getResultArray();
     }
@@ -123,8 +123,6 @@ class ModelSiswa extends Model
             ->where('nisn', session()->get('username'))
             ->get()->getRowArray();
     }
-
-
 
     public function jumlahAktif()
     {

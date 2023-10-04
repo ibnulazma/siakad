@@ -10,6 +10,7 @@ use App\Models\ModelSiswa;
 use App\Models\ModelPeserta;
 use App\Models\ModelGuru;
 use App\Models\ModelKelas;
+use App\Models\ModelSetting;
 
 use Ifsnop\Mysqldump\Mysqldump;
 
@@ -28,6 +29,7 @@ class Admin extends BaseController
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelGuru    = new ModelGuru();
         $this->ModelKelas    = new ModelKelas();
+        $this->ModelSetting = new ModelSetting();
     }
 
     public function index()
@@ -41,11 +43,12 @@ class Admin extends BaseController
             'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
             'datatahun'        => $this->ModelTa->group_tahun(),
-            'siswa'            => $this->ModelPeserta->verifikasi(),
+            // 'siswa'            => $this->ModelPeserta->verifikasi(),
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
             'baru'            => $this->ModelSiswa->jml_baru(),
+            'profil' => $this->ModelSetting->Profile(),
 
 
         ];

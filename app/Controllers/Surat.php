@@ -13,8 +13,8 @@ class Surat extends BaseController
     public function __construct()
     {
         helper('form');
-        $this->ModelSiswa = new ModelSiswa;
-        $this->ModelSurat = new ModelSurat;
+        $this->ModelSiswa = new ModelSiswa();
+        $this->ModelSurat = new ModelSurat();
     }
     public function index()
     {
@@ -34,8 +34,8 @@ class Surat extends BaseController
             'subtitle'  => 'Surat',
             'menu'      => 'surat',
             'submenu'   => 'mutasi',
-            'siswa'     => $this->ModelSiswa->AllData(),
-            'mutasi'    => $this->ModelSiswa->mutasi()
+            'mutasi'     => $this->ModelSurat->AllData(),
+            // 'mutasi'    => $this->ModelSiswa->mutasi()
         ];
 
         return view('admin/surat/mutasi', $data);
