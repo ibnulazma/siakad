@@ -66,7 +66,7 @@ class Guru extends BaseController
 
             );
 
-            $foto->move('foto', $nama_file);
+            // $foto->move('foto', $nama_file);
             $this->ModelGuru->add($data);
             session()->setFlashdata('pesan', 'Guru Berhasil Ditambah !!!');
             return redirect()->to(base_url('guru'));

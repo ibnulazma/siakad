@@ -229,11 +229,34 @@ class Kelas extends BaseController
         $sheet->setCellValue('C1', 'NISN');
         $sheet->setCellValue('D1', 'PAI');
         $sheet->setCellValue('E1', 'PKN');
+        $sheet->setCellValue('F1', 'B.INDO');
+        $sheet->setCellValue('G1', 'MTK');
+        $sheet->setCellValue('H1', 'IPA');
+        $sheet->setCellValue('I1', 'IPS');
+        $sheet->setCellValue('J1', 'B.INGG');
+        $sheet->setCellValue('K1', 'SBK');
+        $sheet->setCellValue('L1', 'PJOK');
+        $sheet->setCellValue('M1', 'PRKY');
+        $sheet->setCellValue('N1', 'TIK');
+        $sheet->setCellValue('O1', 'TJWD');
+        $sheet->setCellValue('P1', 'TRJMH');
+        $sheet->setCellValue('Q1', 'FIQIH');
 
+        $column = 2;
+        foreach ($siswa as  $key => $value) {
+            $sheet->setCellValue('A' . $column, ($column - 1));
+            $sheet->setCellValue('B' . $column, $value['nama_siswa']);
+            $sheet->setCellValue('C' . $column, $value['nisn']);
+            $column++;
+        }
 
 
 
         $writer = new Xlsx($spreadsheet);
-        $writer->save('h')
+        header('Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment:filename=datanilai.xlsx');
+        header('Cache-Control:max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

@@ -48,7 +48,7 @@
                 <a href="<?= base_url('kelas/halaman/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-blue btn-sm"><i class="fa-regular fa-file-lines"></i> Halaman Depan</a>
                 <a href="<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i> Label</a>
                 <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
-                <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="<?= base_url('kelas/printexcel/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
             </div>
             <div class="tabel-responsive">
                 <table class="table table-bordered mt-5" width="100%">

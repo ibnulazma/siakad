@@ -1,76 +1,111 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
+<style>
+    .tabel {
+        width: 150%;
+        text-align: center;
 
 
+    }
 
-<div class="card ">
+    .tabel th {
+        align-items: center;
+    }
 
-    <div class="card-body">
+    td .siswa {
+        background: red;
+    }
+</style>
+<div class="row">
+    <div class="col-md-5">
+        <?= form_open_multipart('nilai/upload') ?>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="file" class="form-control" name="fileimport" id="exampleInputFile">
+                <div class="input-group-append">
+                    <button class="input-group-text bg-primary" type="submit">Upload</button>
+                </div>
+            </div>
+        </div>
+        <?= form_close() ?>
+    </div>
 
-        <table class="table table-bordered">
-            <thead class="text-center bg-primary">
-                <tr>
-                    <th>No</th>
-                    <th>Kode Mapel</th>
-                    <th>Mata Pelajaran</th>
-                    <th>Kelas</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
+    <div class="col-md-7">
+        <div class="input-group-append">
+            <button class="input-group-text bg-success btn-sm mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
+            <a href="" class="input-group-text bg-danger btn-sm mb-3" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
+        </div>
 
-                <?php $no = 1;
-                foreach ($ambilmapel as $key => $value) { ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $value['kode_mapel'] ?></td>
-                        <td><?= $value['mapel'] ?></td>
-                        <td><?= $value['kelas'] ?></td>
-                        <td>
-                            <a href="<?= base_url('nilai/nilaisiswa/' . $value['id_mapel'] /  $value['id_kelas']) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-list-check"></i> Nilai</a>
-                            <button type="button" class=" btn-primary btn-sm" data-toggle="modal" data-target="#generate<?= $value['id_kelas'] ?>"> <i class="fa-solid fa-list-check"></i> Generate</button>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
     </div>
 </div>
+<div class="card text-sm">
+    <div class="card-body">
+        <div class="table-responsive" height="500px">
+            <table class="table table-bordered tabel">
+                <thead class="bg-primary">
+                    <tr>
+                        <th rowspan="2">No</th>
+                        <th rowspan="2" width="20%" class="siswa">Nama Siswa</th>
+                        <th rowspan="2">NISN</th>
+                        <th colspan="15">Mata Pelajaran</th>
+                        <th rowspan="2">Jumlah</th>
+                        <th rowspan="2">Aksi</th>
+                    </tr>
+                    <tr>
+                        <th>PAI</th>
+                        <th>PKN</th>
+                        <th>B.IND</th>
+                        <th>MTK</th>
+                        <th>IPA</th>
+                        <th>IPS</th>
+                        <th>B.INGG</th>
+                        <th>SBK</th>
+                        <th>PJOK</th>
+                        <th>PRKY</th>
+                        <th>TIK</th>
+                        <th>MHD</th>
+                        <th>TJWD</th>
+                        <th>TRJM</th>
+                        <th>FQIH</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
 
-
-
-<div class="modal fade" id="generate<?= $value['id_kelas'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <table>
-                    <thead>
+                    <?php $no = 1;
+                    foreach ($nilai as $key => $value) { ?>
                         <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $value['nama_siswa'] ?></td>
+                            <td><?= $value['nisn'] ?></td>
+                            <td><?= $value['pai'] ?></td>
+                            <td><?= $value['pkn'] ?></td>
+                            <td><?= $value['indo'] ?></td>
+                            <td><?= $value['mtk'] ?></td>
+                            <td><?= $value['ipa'] ?></td>
+                            <td><?= $value['ips'] ?></td>
+                            <td><?= $value['inggris'] ?></td>
+                            <td><?= $value['sbk'] ?></td>
+                            <td><?= $value['pjok'] ?></td>
+                            <td><?= $value['prky'] ?></td>
+                            <td><?= $value['tik'] ?></td>
+                            <td><?= $value['mhd'] ?></td>
+                            <td><?= $value['tjwd'] ?></td>
+                            <td><?= $value['trjmh'] ?></td>
+                            <td><?= $value['fiqih'] ?></td>
+                            <td><?= $value['jumlah'] ?></td>
 
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                    </tbody>
-                </table>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                        <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+
+
+
 
 
 

@@ -37,15 +37,38 @@ class ModelNilai extends Model
             ->where('tbl_absen.id_mapel', $id_mapel)
             ->get()->getResultArray();
     }
-    public function nilaimapel($id_mapel)
+
+
+    public function nilaimapel($id_guru)
     {
         return $this->db->table('tbl_nilai')
-            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.id_siswa', 'left')
-            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            // // ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_nilai.id_mapel', 'left')
-            ->where('tbl_nilai.id_mapel', $id_mapel)
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->where('tbl_kelas.id_guru', $id_guru)
             ->get()->getResultArray();
     }
+
+    public function walas($id_guru)
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
+            ->where('tbl_kelas.id_guru', $id_guru)
+
+            ->get()->getResultArray();
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     public function addsiswa($id_kelas)
     {
