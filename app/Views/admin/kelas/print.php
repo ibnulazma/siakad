@@ -83,9 +83,7 @@
 </style>
 
 <body>
-
     <?php foreach ($datasiswa as $key => $value) { ?>
-
         <div class="content">
             <div class="container">
                 <h5 class="judul text-center"> KETERANGAN TENTANG DIRI PESERTA DIDIK</h5>
@@ -185,14 +183,10 @@
                             </td>
                         </tr>
                         <tr>
-
                         </tr>
-
-
                     </table>
                 </div>
             </div>
-
         </div>
     <?php } ?>
 </body>

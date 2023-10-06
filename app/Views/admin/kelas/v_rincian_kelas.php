@@ -10,7 +10,14 @@
             <a class="btn btn-danger btn-xs float-right" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus"></i> Tambah</a>
             <a class="btn btn-success btn-xs float-right mr-2" href="<?= base_url('kelas') ?>"> <i class="fas fa-backward"></i></i> Kembali</a>
         </div>
+
+
+
+
         <div class="card-body">
+
+
+
             <table class="table table-bordered mb-5">
                 <tr>
                     <th width="100px">Wali Kelas</th>
@@ -37,38 +44,45 @@
                 echo ' </div>';
             } ?>
 
-            <table class="table table-bordered mt-5" width="100%">
-                <thead>
-                    <tr class="bg-primary">
-                        <th class="text-center" width="20px">#</th>
-                        <th class="text-center" width="20px">NISN</th>
-                        <th>Nama Peserta Didik</th>
-                        <th>Jenis Kelamin</th>
-                        <th width="20%" class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($datasiswa as $key => $value) { ?>
-                        <tr>
-                            <td class="text-center"><a href="<?= base_url('kelas/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
-                            <td class="text-center"><?= $value['nisn'] ?></td>
-                            <td><?= $value['nama_siswa'] ?></td>
-                            <td><?= $value['jenis_kelamin'] ?></td>
-                            <td>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detail<?= $value['id_siswa'] ?>">
-                                        <i class="fas fa-book"></i>
-                                    </button>
-                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </td>
+            <div class="container text-center mr-2">
+                <a href="<?= base_url('kelas/halaman/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-blue btn-sm"><i class="fa-regular fa-file-lines"></i> Halaman Depan</a>
+                <a href="<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i> Label</a>
+                <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
+                <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
+            </div>
+            <div class="tabel-responsive">
+                <table class="table table-bordered mt-5" width="100%">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th class="text-center" width="20px">#</th>
+                            <th class="text-center" width="20px">NISN</th>
+                            <th>Nama Peserta Didik</th>
+                            <th>Jenis Kelamin</th>
+                            <th width="20%" class="text-center">Aksi</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($datasiswa as $key => $value) { ?>
+                            <tr>
+                                <td class="text-center"><a href="<?= base_url('kelas/detail_siswa/' . $value['id_siswa']) ?>"><i class="fas fa-user"></i></a></td>
+                                <td class="text-center"><?= $value['nisn'] ?></td>
+                                <td><?= $value['nama_siswa'] ?></td>
+                                <td><?= $value['jenis_kelamin'] ?></td>
+                                <td>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detail<?= $value['id_siswa'] ?>">
+                                            <i class="fas fa-book"></i>
+                                        </button>
+                                        <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

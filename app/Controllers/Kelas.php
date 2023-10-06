@@ -6,6 +6,11 @@ use App\Models\ModelKelas;
 use App\Models\ModelGuru;
 use App\Models\ModelTa;
 use \Dompdf\Dompdf;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+// use \Dompdf\Options;
+
+// use TCPDF;
 
 
 class Kelas extends BaseController
@@ -20,7 +25,6 @@ class Kelas extends BaseController
 
     public function index()
     {
-
 
         $data = [
             'title'         => 'SIAKADINKA',
@@ -69,8 +73,6 @@ class Kelas extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Di Hapus !!!');
         return redirect()->to(base_url('kelas'));
     }
-
-
 
     // RINCIAN KELAS
     public function rincian_kelas($id_kelas)
@@ -126,30 +128,28 @@ class Kelas extends BaseController
             'subtitle'  => 'Profil Siswa',
             'siswa'     => $this->ModelKelas->DataPeserta($id_siswa)
         ];
-        return view('admin/kelas/v_detail_siswa', $data);
+        return view('admin/kelas/prinorang', $data);
     }
+    // public function nilai($id_kelas)
+    // {
 
-    public function nilai($id_kelas)
-    {
-
-        $kelas = $this->ModelKelas->detail($id_kelas);
-        $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Data Siswa Kelas ' . $kelas['kelas'],
-            'menu'          => 'akademik',
-            'submenu'       => 'kelas',
-            'kelas'         => $kelas,
-            'jml_siswa'     => $this->ModelKelas->jml_siswa($id_kelas),
-            'datanilai'     => $this->ModelKelas->datanilai($id_kelas),
-        ];
-        return view('admin/kelas/v_nilai', $data);
-    }
+    //     $kelas = $this->ModelKelas->detail($id_kelas);
+    //     $data = [
+    //         'title'         => 'SIAKADINKA',
+    //         'subtitle'      => 'Data Siswa Kelas ' . $kelas['kelas'],
+    //         'menu'          => 'akademik',
+    //         'submenu'       => 'kelas',
+    //         'kelas'         => $kelas,
+    //         'jml_siswa'     => $this->ModelKelas->jml_siswa($id_kelas),
+    //         'datanilai'     => $this->ModelKelas->datanilai($id_kelas),
+    //     ];
+    //     return view('admin/kelas/v_nilai', $data);
+    // }
 
 
 
     public function print($id_kelas)
     {
-
         $dompdf = new Dompdf();
         $kelas = $this->ModelKelas->detail($id_kelas);
         $data = [
@@ -161,6 +161,8 @@ class Kelas extends BaseController
             // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
         ];
         $html = view('admin/kelas/print', $data);
+        //Atur Gambar
+
         $dompdf->loadHtml($html);
         $dompdf->setPaper('Legal', 'potrait');
         $dompdf->render();
@@ -168,6 +170,7 @@ class Kelas extends BaseController
             "Attachment" => false
         ));
     }
+
     public function halaman($id_kelas)
     {
 
@@ -207,11 +210,30 @@ class Kelas extends BaseController
         ];
         $html = view('admin/kelas/label', $data);
         $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'potrait');
         $dompdf->render();
         $dompdf->stream('data siswa kelas.pdf', array(
             "Attachment" => false
         ));
         exit();
+    }
+
+
+    public function printexcel($id_kelas)
+    {
+        $siswa = $this->ModelKelas->datasiswa($id_kelas);
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'NISN');
+        $sheet->setCellValue('D1', 'PAI');
+        $sheet->setCellValue('E1', 'PKN');
+
+
+
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('h')
     }
 }

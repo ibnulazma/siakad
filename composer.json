@@ -15,7 +15,8 @@
         "psr/log": "^1.1",
         "phpoffice/phpspreadsheet": "^1.28",
         "ifsnop/mysqldump-php": "^2.12",
-        "dompdf/dompdf": "^2.0"
+        "dompdf/dompdf": "^2.0",
+        "tecnickcom/tcpdf": "^6.6"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.1",
