@@ -153,4 +153,18 @@ class Guru extends BaseController
             return redirect()->to('guru');
         }
     }
+
+
+
+    public function edit($id_guru)
+    {
+        $data = [
+            'id_guru' => $id_guru,
+            'nama_guru' => $this->request->getPost('nama_guru'),
+            'walas' => $this->request->getPost('walas'),
+        ];
+        $this->ModelGuru->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
+        return redirect()->to(base_url('guru'));
+    }
 }

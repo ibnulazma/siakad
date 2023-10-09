@@ -12,6 +12,13 @@ class ModelGuru extends Model
             ->get()
             ->getResultArray();
     }
+    public function walikelas()
+    {
+        return $this->db->table('tbl_guru')
+            ->where('walas', '1')
+            ->get()
+            ->getResultArray();
+    }
     public function jumlahGuru()
     {
         return $this->db->table('tbl_guru')
@@ -34,7 +41,7 @@ class ModelGuru extends Model
     public function edit($data)
     {
         $this->db->table('tbl_guru')
-            ->where('id_kelas', $data['id_kelas'])
+            ->where('id_guru', $data['id_guru'])
             ->update($data);
     }
     public function delete_data($data)

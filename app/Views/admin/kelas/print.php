@@ -82,8 +82,15 @@
     }
 </style>
 
+
+
 <body>
-    <?php foreach ($datasiswa as $key => $value) { ?>
+    <?php
+
+
+    foreach ($datasiswa as $key => $value) { ?>
+
+        <!-- <img src="data:image/png;base64, '.base64_encode(file_get_contents($image_path)).'" alt="" srcset=""> -->
         <div class="content">
             <div class="container">
                 <h5 class="judul text-center"> KETERANGAN TENTANG DIRI PESERTA DIDIK</h5>

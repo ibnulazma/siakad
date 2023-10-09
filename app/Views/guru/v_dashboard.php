@@ -32,10 +32,10 @@
                             <b>Jenis Kelamin</b> <span class="float-right"><?= $guru['kelamin'] ?></span>
                         </li>
                         <li class="list-group-item">
-                            <b>Tempat Lahir</b> <span class="float-right"><?= $guru['tempat_lahir'] ?></span>
+                            <b>Tempat Lahir</b> <span class="float-right"><?= $guru['tmpt_lahir'] ?></span>
                         </li>
                         <li class="list-group-item">
-                            <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d M Y', strtotime($guru['tanggal_lahir']))  ?></span>
+                            <b>Tanggal Lahir</b> <span class="float-right"> <?= date('d M Y', strtotime($guru['tgl_lahir']))  ?></span>
                         </li>
                     </ul>
                 </ul>
@@ -67,15 +67,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="tempat_lahir" value=<?= $guru['tempat_lahir'] ?>>
+                                        <input type="text" class="form-control" name="nama_guru" value=<?= $guru['nama_guru'] ?>>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tempat Lahir</label>
+                                        <input type="date" class="form-control" name="tmpt_lahir" value=<?= $guru['tanggal_lahir'] ?>>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" name="tanggal_lahir" value=<?= $guru['tanggal_lahir'] ?>>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tanggal Lahir</label>
-                                        <input type="text" class="form-control" name="telp_guru" value=<?= $guru['telp_guru'] ?>>
+                                        <input type="text" class="form-control" name="tgl_lahir" value=<?= $guru['tgl_lahir'] ?>>
                                     </div>
 
                                 </div>
@@ -102,25 +102,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -53,9 +53,7 @@
                         <h6>Rincian Data Peserta Didik</h6>
                     </div>
                     <div class="kembali">
-                        <a href="<?= base_url('peserta') ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-backward fa-beat-fade"></i> Kembali</a>
-                        <a href="<?= base_url('peserta/editdata/' . $siswa['id_siswa']) ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pencil fa-beat-fade"></i> Edit Data</a>
-
+                        <a href="<?= base_url('kelas/rincian_kelas/' . $siswa['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-backward fa-beat-fade"></i> Kembali</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +68,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td class="text-center" colspan="2">Nomor Induk Siswa :</td>
+                                    <td class="text-center" colspan="2">Nomor Induk Siswa : <?= $siswa['nis'] ?></td>
                                 </tr>
                                 <tr>
                                     <td class="text-center" colspan="2">Nomor Induk Siswa Nasional : <?= $siswa['nisn'] ?></td>
@@ -89,7 +87,7 @@
                                 </tr>
                                 <tr>
                                     <td>3. Tempat dan Tanggal Lahir</td>
-                                    <td><?= $siswa['tempat_lahir'] ?>, <?= date('d M Y', strtotime($siswa['tanggal_lahir'])) ?></td>
+                                    <td><?= $siswa['tempat_lahir'] ?>, <?= date('d F Y', strtotime($siswa['tanggal_lahir'])) ?></td>
                                 </tr>
                                 <tr>
                                     <td>4. Agama</td>

@@ -32,7 +32,7 @@ class Kelas extends BaseController
             'menu'          => 'akademik',
             'submenu'       => 'kelas',
             'kelas'         => $this->ModelKelas->AllData(),
-            'guru'          => $this->ModelGuru->AllData(),
+            'guru'          => $this->ModelGuru->walikelas(),
             'tingkat'       => $this->ModelKelas->Tingkat(),
 
         ];
@@ -94,6 +94,15 @@ class Kelas extends BaseController
         return view('admin/kelas/v_rincian_kelas', $data);
     }
 
+    public function bukuinduk($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        ];
+        return view('admin/bukuinduk', $data);
+    }
+
     public function addanggota($id_siswa, $id_kelas)
     {
         $data = [
@@ -130,6 +139,7 @@ class Kelas extends BaseController
         ];
         return view('admin/kelas/prinorang', $data);
     }
+
     // public function nilai($id_kelas)
     // {
 
