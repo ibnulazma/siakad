@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\ModelNilai;
+use \Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Nilai extends BaseController
 {
@@ -141,5 +143,33 @@ class Nilai extends BaseController
 
         ];
         return view('guru/nilai/nilai', $data);
+    }
+
+
+    public function printrapot()
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $dompdf = new Dompdf($options);
+
+        $guru = $this->ModelNilai->DataGuru();
+        $data = [
+            'nilai'         => $this->ModelNilai->nilaimapel($guru['id_guru']),
+            'image_url'   => base_url('foto/logo.png'),
+
+
+
+        ];
+        $html = view('guru/nilai/rapot', $data);
+        //Atur Gambar
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('Legal', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
     }
 }

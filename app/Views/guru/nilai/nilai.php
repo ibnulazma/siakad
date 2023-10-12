@@ -33,14 +33,14 @@
 
     <div class="col-md-7">
         <div class="input-group-append">
-            <button class="input-group-text bg-success btn-sm mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
-            <a href="" class="input-group-text bg-danger btn-sm mb-3" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
+            <a href="<?= base_url('nilai/printrapot') ?>" target="_blank" class="input-group-text bg-danger btn-sm mb-3" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
         </div>
 
     </div>
 </div>
 <div class="card text-sm">
     <div class="card-body">
+
         <div class="table-responsive" height="500px">
             <table class="table table-bordered tabel">
                 <thead class="bg-primary">
@@ -50,7 +50,6 @@
                         <th rowspan="2">NISN</th>
                         <th colspan="15">Mata Pelajaran</th>
                         <th rowspan="2">Jumlah</th>
-                        <th rowspan="2">Aksi</th>
                     </tr>
                     <tr>
                         <th>PAI</th>
@@ -68,6 +67,7 @@
                         <th>TJWD</th>
                         <th>TRJM</th>
                         <th>FQIH</th>
+                        <th>BTQ</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -93,6 +93,7 @@
                             <td><?= $value['tjwd'] ?></td>
                             <td><?= $value['trjmh'] ?></td>
                             <td><?= $value['fiqih'] ?></td>
+                            <td><?= $value['btq'] ?></td>
                             <td><?= $value['jumlah'] ?></td>
 
 

@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tempat Lahir</label>
-                                        <input type="date" class="form-control" name="tmpt_lahir" value=<?= $guru['tanggal_lahir'] ?>>
+                                        <input type="date" class="form-control" name="tmpt_lahir" value=<?= $guru['tmpt_lahir'] ?>>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tanggal Lahir</label>
