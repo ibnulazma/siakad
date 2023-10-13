@@ -108,6 +108,7 @@ class Peserta extends BaseController
             'subtitle' => 'Profil Siswa',
             'menu'      => 'akademik',
             'submenu'      => 'peserta',
+            'kelas'  => $this->ModelKelas->kelas(),
             'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
         ];
         return view('admin/v_detail_siswa', $data);
@@ -312,15 +313,15 @@ class Peserta extends BaseController
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
         return redirect()->to(base_url('peserta'));
     }
-    // public function verifikasi($id_siswa)
-    // {
-    //     $data = [
-    //         'title' => 'Buku Induk Siswa-SIAKAD',
-    //         'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
-    //         'kelas'     => $this->ModelKelas->AllData()
-    //     ];
-    //     return view('admin/verifikasi', $data);
-    // }
+    public function bukuinduk($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'kelas'     => $this->ModelKelas->AllData()
+        ];
+        return view('admin/bukuinduk', $data);
+    }
     // public function verifikasi_data($id_siswa)
     // {
     //     $data = [

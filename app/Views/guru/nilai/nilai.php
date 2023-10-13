@@ -48,7 +48,7 @@
                         <th rowspan="2">No</th>
                         <th rowspan="2" width="20%" class="siswa">Nama Siswa</th>
                         <th rowspan="2">NISN</th>
-                        <th colspan="15">Mata Pelajaran</th>
+                        <th colspan="16">Mata Pelajaran</th>
                         <th rowspan="2">Jumlah</th>
                     </tr>
                     <tr>
@@ -94,9 +94,10 @@
                             <td><?= $value['trjmh'] ?></td>
                             <td><?= $value['fiqih'] ?></td>
                             <td><?= $value['btq'] ?></td>
-                            <td><?= $value['jumlah'] ?></td>
+                            <td>
 
 
+                            </td>
                         <?php } ?>
                 </tbody>
             </table>
