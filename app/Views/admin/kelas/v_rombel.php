@@ -35,7 +35,7 @@
 
                             <td class="text-center">
                                 <a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="fas fa-user"></i></a>
-                                <a href="<?= base_url('kelas/nilai/' . $value['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-list"></i></a>
+                                <a href="<?= base_url('kelas/nilai/' . $value['id_kelas']) ?>" target="_blank" class="btn btn-primary btn-sm"><i class="fas fa-list"></i></a>
                                 <a href="<?= base_url('kelas/delete/' . $value['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit<?= $value['id_kelas'] ?>"><i class="fas fa-pencil"></i></button>
 

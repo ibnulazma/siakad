@@ -7,7 +7,8 @@
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Data Siswa Kelas <?= $kelas['kelas'] ?></h3>
-            <a class="btn btn-danger btn-xs float-right" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus"></i> Tambah</a>
+            <button class="btn btn-warning btn-xs float-right mr-2" data-toggle="modal" data-target="#upload"> <i class="fas fa-upload"></i> P3MP</button>
+            <button class="btn btn-danger btn-xs float-right mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus"></i> Tambah</button>
             <a class="btn btn-success btn-xs float-right mr-2" href="<?= base_url('kelas') ?>"> <i class="fas fa-backward"></i></i> Kembali</a>
         </div>
         <div class="card-body">
@@ -37,9 +38,10 @@
                 echo ' </div>';
             } ?>
 
-            <div class="container text-center mr-2">
-                <div class="col-md-10">
-                    <div class="row justify-content-center">
+            <div class="container text-center">
+
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-10">
                         <a href="<?= base_url('kelas/halaman/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-blue btn-sm"><i class="fa-regular fa-file-lines"></i> Halaman Depan</a>
                         <a href="<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i> Label</a>
                         <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
@@ -130,7 +132,24 @@
     </div>
 </div>
 
-
+<div class="modal fade" id="upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Nilai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="file" class="form-control" name="fileimport">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning "><i fas fa-upload></i> Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- ModalHapus -->
 
 
