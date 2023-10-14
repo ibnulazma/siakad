@@ -87,12 +87,16 @@ class Nilai extends BaseController
                 $mtk            = $row[6];
                 $ipa            = $row[7];
                 $ips            = $row[8];
-                $tik            = $row[9];
-                $mhd            = $row[10];
-                $tjwd           = $row[11];
-                $trjm           = $row[12];
-                $fiqih          = $row[13];
-                $jumlah         = $row[14];
+                $inggris        = $row[9];
+                $sbk            = $row[10];
+                $pjok           = $row[11];
+                $prky           = $row[12];
+                $tik            = $row[13];
+                $mhd            = $row[14];
+                $tjwd           = $row[15];
+                $trjmh          = $row[16];
+                $fiqih          = $row[17];
+                $btq            = $row[18];
 
                 $db = \Config\Database::connect();
 
@@ -102,19 +106,23 @@ class Nilai extends BaseController
                     $jumlaherror++;
                 } else {
                     $datasimpan = [
-                        'nisn'      =>   $nisn,
-                        'pai'       =>    $pai,
-                        'pkn '      =>   $pkn,
-                        'indo'      =>   $indo,
-                        'mtk'       =>    $mtk,
-                        'ipa'       =>    $ipa,
-                        'ips'       =>    $ips,
-                        'tik'       =>    $tik,
-                        'mhd '      =>   $mhd,
-                        'tjwd'      =>   $tjwd,
-                        'trjmh '    =>  $trjm,
+                        'nisn'      => $nisn,
+                        'pai'       => $pai,
+                        'pkn '      => $pkn,
+                        'indo'      => $indo,
+                        'mtk'       => $mtk,
+                        'ipa'       => $ipa,
+                        'ips'       => $ips,
+                        'inggris'   => $inggris,
+                        'sbk'       => $sbk,
+                        'pjok'      => $pjok,
+                        'prky'      => $prky,
+                        'tik'       => $tik,
+                        'mhd '      => $mhd,
+                        'tjwd'      => $tjwd,
+                        'trjmh '    => $trjmh,
                         'fiqih '    => $fiqih,
-                        'jumlah'    => $jumlah,
+                        'btq '      => $btq,
                         'id_ta'     => $ta['id_ta'],
 
                     ];

@@ -166,7 +166,7 @@
                 <tr>
                     <td width="20%">NIS/NISN</td>
                     <td width="5%">:</td>
-                    <td width="30%"><?= $row['nis'] ?>222301089/<?= $row['nisn'] ?></td>
+                    <td width="30%"><?= $row['nis'] ?>/<?= $row['nisn'] ?></td>
                     <td width="20%">Tahun Pelajaran </td>
                     <td width="5%">:</td>
                     <td>2023-2024</td>
