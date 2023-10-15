@@ -19,7 +19,8 @@ class Siswa extends BaseController
     public function __construct()
     {
 
-        helper('form', 'input', 'url');
+        $this->load->helper('terbilang');
+        helper('form');
         $this->ModelSiswa = new ModelSiswa();
         $this->ModelKelas = new ModelKelas();
         $this->ModelWilayah = new ModelWilayah();
@@ -1148,13 +1149,12 @@ class Siswa extends BaseController
         $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Peserta Didik',
+            'subtitle'      => 'Nilai P3MP',
             'menu'          =>  'nilai',
             'submenu'       =>  'nilai',
             'siswa'         => $siswa,
-            'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
-            // 'nilai'      => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
-            'nilai'         => $this->ModelSiswa->DaftaNilai($siswa['id_siswa']),
+            'terbilang' => $terbilang,
+            'nilai'         => $this->ModelSiswa->DaftaNilai($siswa['nisn']),
         ];
         return view('siswa/v_nilai', $data);
     }

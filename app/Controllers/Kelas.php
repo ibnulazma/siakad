@@ -20,6 +20,7 @@ class Kelas extends BaseController
     public function __construct()
     {
         helper('form');
+        helper('terbilang');
         $this->ModelKelas = new ModelKelas();
         $this->ModelGuru = new ModelGuru();
         $this->ModelTa = new ModelTa();

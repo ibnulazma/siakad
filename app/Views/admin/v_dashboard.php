@@ -1,7 +1,6 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-
 <div class="row">
     <div class="col-md-3 col-sm-6 col-12">
         <div class="info-box">
@@ -71,8 +70,6 @@
 
 <div class="row">
     <div class="col-md-6">
-
-
     </div>
     <div class="col-md-6">
         <div class="card">
@@ -86,6 +83,8 @@
 
     </div>
 </div>
+
+<?= terbilang("100000") ?>
 
 
 

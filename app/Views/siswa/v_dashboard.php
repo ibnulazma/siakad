@@ -22,14 +22,8 @@ $tahun = $db->table('tbl_ta')
 
 <div class="row">
     <div class="col-md-12">
-        <?php if ($siswa['status_daftar'] == 0) { ?>
 
-            <div class="bg-danger p-2">
-
-                Perhatian: Silahkan Update Data !!!!
-
-            </div>
-        <?php } elseif ($siswa['status_daftar'] == 1) { ?>
+        <?php if ($siswa['status_daftar'] == 1) { ?>
 
             <div class="bg-danger p-2">
 

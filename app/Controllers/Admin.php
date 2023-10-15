@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
@@ -19,8 +18,8 @@ class Admin extends BaseController
 
     public function __construct()
     {
-
-        helper('form', 'download', 'file');
+        helper('form');
+        helper('terbilang');
 
         $this->ModelTa      = new ModelTa();
         $this->ModelSekolah = new ModelSekolah();
@@ -34,6 +33,7 @@ class Admin extends BaseController
 
     public function index()
     {
+
         $data = [
             'title'             => 'SIAKADINKA',
             'subtitle'          => 'Dashboard',

@@ -196,7 +196,7 @@
                     <td class="td1">Pendidikan Agama Islam</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['pai'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['pai'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
