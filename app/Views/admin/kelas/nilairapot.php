@@ -215,7 +215,7 @@
                     <td class="td1">Pendidikan Kewarganegaraan</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['pkn'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['pkn'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -234,7 +234,7 @@
                     <td class="td1">Bahasa Indonesia</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['indo'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['indo'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -253,7 +253,7 @@
                     <td class="td1">Matematika</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['mtk'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['mtk'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -272,7 +272,7 @@
                     <td class="td1">Ilmu Pengetahuan Alam</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['ipa'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['ipa'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -291,7 +291,7 @@
                     <td class="td1">Ilmu Pengetahuan Sosial</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['ips'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['ips'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -310,7 +310,7 @@
                     <td class="td1">Bahasa Inggris</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['inggris'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['inggris'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -329,7 +329,7 @@
                     <td class="td1">Seni Budaya dan Kesenian</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['sbk'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['sbk'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -348,7 +348,7 @@
                     <td class="td1">Prakarya</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['prky'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['prky'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -367,7 +367,7 @@
                     <td class="td1">Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['pjok'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['pjok'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -389,7 +389,7 @@
                     <td class="td1">Tekonogi Informasi dan Komputer</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['tik'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['tik'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -408,7 +408,7 @@
                     <td class="td1">Baca Tulis Alquran</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['btq'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['btq'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -427,7 +427,7 @@
                     <td class="td1">Tajwid</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['tjwd'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['tjwd'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -446,7 +446,7 @@
                     <td class="td1">Terjemah</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['trjmh'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['trjmh'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -464,7 +464,7 @@
                     <td class="td1">Fiqih</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['fiqih'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['fiqih'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';
@@ -483,7 +483,7 @@
                     <td class="td1">Muhadhoroh</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['mhd'] ?></td>
-                    <td class="td1"></td>
+                    <td class="td1"><?= ucwords(terbilang($row['mhds'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';

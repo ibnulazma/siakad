@@ -181,8 +181,10 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="border: 1px solid black;text-align:center;" width="17%"> 3x4
+                                <img src="data:image/png;base64, <?= $value['foto'] ?>" width="30px">
                             </td>
-                            <td width="10%"></td>
+                            <td width=" 10%">
+                            </td>
                             <td>
                                 Tangerang, 17 Juli 2023<br>
                                 Kepala Sekolah <br><br><br><br><br><br>
