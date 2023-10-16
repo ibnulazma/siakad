@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Biodata Rapot</title>
 </head>
 
@@ -483,7 +484,7 @@
                     <td class="td1">Muhadhoroh</td>
                     <td class="td1 center">65</td>
                     <td class="td1 center"><?= $row['mhd'] ?></td>
-                    <td class="td1"><?= ucwords(terbilang($row['mhds'])) ?></td>
+                    <td class="td1"><?= ucwords(terbilang($row['mhd'])) ?></td>
                     <td class="td1">
                         <?php
                         $kkm = '65';

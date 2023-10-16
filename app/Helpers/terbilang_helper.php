@@ -1,10 +1,6 @@
 <?php
 
 
-
-
-
-
 function terbilang($x)
 {
   $angka = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
