@@ -97,6 +97,9 @@ class Nilai extends BaseController
                 $trjmh          = $row[16];
                 $fiqih          = $row[17];
                 $btq            = $row[18];
+                $sakit          = $row[19];
+                $izin           = $row[20];
+                $alfa           = $row[21];
 
                 $db = \Config\Database::connect();
 
@@ -123,6 +126,9 @@ class Nilai extends BaseController
                         'trjmh '    => $trjmh,
                         'fiqih '    => $fiqih,
                         'btq '      => $btq,
+                        'sakit '    => $sakit,
+                        'izin '     => $izin,
+                        'alfa '     => $alfa,
                         'id_ta'     => $ta['id_ta'],
 
                     ];

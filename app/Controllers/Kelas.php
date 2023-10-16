@@ -185,7 +185,38 @@ class Kelas extends BaseController
         exit();
     }
 
+    public function ledger($id_kelas)
+    {
 
+
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->setOptions($options);
+        $dompdf->output();
+
+        $path = base_url('/foto/logo.png');
+
+
+        $kelas = $this->ModelKelas->detail($id_kelas);
+        $data = [
+            'nilai'         => $this->ModelNilai->nilaikelas($id_kelas),
+            'kelas'         => $kelas,
+
+        ];
+        $html = view('admin/kelas/ledger', $data);
+        //Atur Gambar
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('Legal', 'landscape');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
+    }
 
     public function print($id_kelas)
     {
@@ -205,7 +236,7 @@ class Kelas extends BaseController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('Legal', 'potrait');
         $dompdf->render();
-        $dompdf->stream('data siswa kelas.pdf', array(
+        $dompdf->stream('leger.pdf', array(
             "Attachment" => false
         ));
     }
@@ -216,7 +247,7 @@ class Kelas extends BaseController
         $dompdf = new Dompdf();
         $kelas = $this->ModelKelas->detail($id_kelas);
         $data = [
-            'title'         =>   $kelas,
+            'title'         =>  $kelas,
             'kelas'         => $kelas,
             'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
 

@@ -47,6 +47,7 @@
                         <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
                         <a href="<?= base_url('kelas/printexcel/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
                         <a href="<?= base_url('kelas/nilai/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-yellow btn-sm"><i class="fas fa-file-pdf"></i> Rapot</a>
+                        <a href="<?= base_url('kelas/ledger/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-info btn-sm"><i class="fas fa-table"></i> Leger</a>
                     </div>
                 </div>
             </div>

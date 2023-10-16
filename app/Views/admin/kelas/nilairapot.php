@@ -565,7 +565,7 @@
                         <td class="td3"></td>
                         <td class="td3">1. Sakit</td>
                         <td class="td3 center">:</td>
-                        <td class="td3"></td>
+                        <td class="td3"><?= $row['sakit'] ?></td>
                     </tr>
                     <tr>
                         <td class="td3">2. Kepribadian</td>
@@ -573,7 +573,7 @@
                         <td class="td3"></td>
                         <td class="td3">2. Izin</td>
                         <td class="td3 center">:</td>
-                        <td class="td3"></td>
+                        <td class="td3"><?= $row['izin'] ?></td>
                     </tr>
                     <tr>
                         <td class="td3"></td>
@@ -581,7 +581,7 @@
                         <td class="td3"></td>
                         <td class="td3">3. Tanpa Keterangan</td>
                         <td class="td3 center">:</td>
-                        <td class="td3"></td>
+                        <td class="td3"><?= $row['sakit'] ?></td>
                     </tr>
                 </tbody>
             </table>
