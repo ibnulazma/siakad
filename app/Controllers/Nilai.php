@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\ModelNilai;
+use App\Models\ModelKelas;
+use App\Models\ModelTapel;
 use \Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -12,22 +14,60 @@ class Nilai extends BaseController
 
     public function __construct()
     {
+
+
         helper('form');
         $this->ModelNilai = new ModelNilai();
+        $this->ModelKelas = new ModelKelas();
+        $this->ModelTapel = new ModelTapel();
     }
 
     public function index()
     {
         $data = [
             'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Nilai',
+            'subtitle'      => 'Nilai Ujian Tengah Semester',
             'menu'          => 'nilai',
             'submenu'       => 'nilai',
-            'sub'           => 'p3mp'
+            'sub'           => 'p3mp',
+
             // 'nilai'         => $this->ModelNilai->nilaimapel(['id_guru']),
         ];
-        return view('admin/nilai/p3mp', $data);
+        return view('admin/nilai/uts', $data);
     }
+
+    public function uts()
+    {
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Nilai Ujian Tengah Semester',
+            'menu'          => 'nilai',
+            'submenu'       => 'uts',
+            'kelas'         => $this->ModelKelas->AllData(),
+
+            // 'nilai'         => $this->ModelNilai->nilaimapel(['id_guru']),
+        ];
+        return view('admin/nilai/uts', $data);
+    }
+
+    public function tapel()
+    {
+        session();
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Nilai Ujian Tengah Semester',
+            'menu'          => 'nilai',
+            'submenu'       => 'uts',
+            'tapel'         => $this->ModelTapel->AllData(),
+
+            // 'nilai'         => $this->ModelNilai->nilaimapel(['id_guru']),
+        ];
+        return view('admin/nilai/tapel', $data);
+    }
+
+
+
+
 
 
 
