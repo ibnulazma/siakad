@@ -95,7 +95,7 @@
 <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 
-<script>
+<!-- <script>
     const swal = $('.swal').data('swal');
     if (swal) {
         Swal.fire({
@@ -123,7 +123,7 @@
             }
         })
     })
-</script>
+</script> -->
 
 
 
@@ -177,16 +177,6 @@
         $('[data-mask]').inputmask()
 
         //Date picker
-        $('#reservationdate').datetimepicker({
-            format: 'L'
-        });
-
-        //Date and time picker
-        $('#reservationdatetime').datetimepicker({
-            icons: {
-                time: 'far fa-clock'
-            }
-        });
 
         //Date range picker
         $('#reservation').daterangepicker()
@@ -198,32 +188,7 @@
                 format: 'MM/DD/YYYY hh:mm A'
             }
         })
-        //Date range as a button
-        $('#daterange-btn').daterangepicker({
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment()
-            },
-            function(start, end) {
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-        )
 
-        //Timepicker
-        $('#timepicker').datetimepicker({
-            format: 'LT'
-        })
-        // bootsrapswitch
-        $("input[data-bootstrap-switch]").each(function() {
-            $(this).bootstrapSwitch('state', $(this).prop('checked'));
-        })
 
     })
 </script>
@@ -235,13 +200,16 @@
         });
     }, 2000);
 </script>
+
+
+
 <script>
     $(document).ready(function() {
         $("#provinsi").change(function() {
             var id_kabupaten = $("#provinsi").val();
             $.ajax({
                 type: 'GET',
-                url: '<?= base_url('Siswa/dataKabupaten') ?>/' + id_kabupaten,
+                url: '<?= base_url('Peserta/dataKabupaten') ?>/' + id_kabupaten,
                 success: function(html) {
                     $("#kabupaten").html(html);
                 }
@@ -256,7 +224,7 @@
             var id_kecamatan = $("#kabupaten").val();
             $.ajax({
                 type: 'GET',
-                url: '<?= base_url('Siswa/dataKecamatan') ?>/' + id_kecamatan,
+                url: '<?= base_url('Peserta/dataKecamatan') ?>/' + id_kecamatan,
                 success: function(html) {
                     $("#kecamatan").html(html);
                 }
@@ -270,7 +238,7 @@
             var id_desa = $("#kecamatan").val();
             $.ajax({
                 type: 'GET',
-                url: '<?= base_url('Siswa/dataDesa') ?>/' + id_desa,
+                url: '<?= base_url('Peserta/dataDesa') ?>/' + id_desa,
                 success: function(html) {
                     $("#desa").html(html);
                 }
@@ -278,32 +246,7 @@
         });
     });
 </script>
-<script type="text/javascript">
-    var rupiah = document.getElementById('rupiah');
-    rupiah.addEventListener('keyup', function(e) {
-        // tambahkan 'Rp.' pada saat form di ketik
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah.value = formatRupiah(this.value, 'Rp. ');
-    });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix) {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split = number_string.split(','),
-            sisa = split[0].length % 3,
-            rupiah = split[0].substr(0, sisa),
-            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-        // tambahkan titik jika yang di input sudah menjadi angka ribuan
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-        }
-
-        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-    }
-</script>
 </body>
 
 </html>

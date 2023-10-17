@@ -1,9 +1,7 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-
-
-<div class="row text-sm">
+<div class="row">
     <div class="col-lg-4">
         <div class=" card">
             <div class="card-body box-profile">
@@ -61,7 +59,6 @@
                 <h5 class="card-title">
                     <strong>IDENTITAS</strong>
                 </h5>
-                <button class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#identitas"><i class="fas fa-edit"></i> </button>
             </div>
             <div class="card-body">
                 <ul class="list-group  mb-3">
@@ -72,15 +69,10 @@
                         <span>NIK : <?= $siswa['nik'] ?> </span>
                     </li>
                     <li class="list-group-item">
-
-                        <span>Status Registrasi :
-
-                            <?php if ($siswa['status_registrasi'] == 1) { ?>
-
-                                <b> Siswa Baru </b></span>
-                    <?php } elseif ($siswa['status_registrasi'] == 2) { ?>
-                        <b> Pindahan </b></span>
-                    <?php } ?>
+                        <span>NISN : <?= $siswa['nisn'] ?> </span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>NIS : <?= $siswa['nis'] ?> </span>
                     </li>
                     <li class="list-group-item">
                         <span>Kelas : <?= $siswa['kelas'] ?> </span>
@@ -104,6 +96,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="list-group list-group-unbordered mb-3">
+
                             <li class="list-group-item">
                                 <span> Alamat: <?= $siswa['alamat'] ?></span>
                             </li>
@@ -123,11 +116,15 @@
                             <li class="list-group-item">
                                 <span> Kab/Kota: <?= $siswa['city_name'] ?> </span>
                             </li>
+                            <li class="list-group-item">
+                                <span> Kode Pos: <?= $siswa['kodepos'] ?> </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
@@ -186,14 +183,12 @@
                 </div>
             </div>
         </div>
+
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title"><strong>DATA PERIODIK</strong></h5>
-                <button class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#periodik"><i class="fas fa-edit"></i> </button>
-            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
+                        <h5><strong>DATA PERIODIK</strong></h5>
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <span> Berat Badan : <?= $siswa['berat'] ?></span>
@@ -213,6 +208,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
+                        <h5><strong>DATA REGISTRASI</strong></h5>
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <span> Jenis Pendaftaran: Siswa Baru</span>
@@ -237,81 +233,338 @@
     </div>
 </div>
 
-<!-- ModalAlamat -->
-<div class="modal fade" id="identitas" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="alamat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Identitas</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Alamat</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('peserta/edit_identitas/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/update_alamat/' . $siswa['id_siswa']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Nama Siswa</label>
-                            <input type="text" class="form-control" name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Alamat</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control " name="alamat" value="<?= $siswa['alamat'] ?>">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Jenis Kelamin</label>
-                            <input type="text" class="form-control" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">RT</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control " name="rt" value="<?= $siswa['rt'] ?>">
+
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Tempat</label>
-                            <input type="text" class="form-control" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">RW</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control " name="rw" value="<?= $siswa['rw'] ?>">
+
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Tanggal Lahir</label>
-                            <input type="text" class="form-control" name="tanggal_lahir" value="<?= $siswa['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Provinsi</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="provinsi" class="form-control select2bs4  " style="width: 100%;" id="provinsi" value="<?= old('provinsi') ?>">
+                                    <option value="">--Pilih Provinsi--</option>
+                                    <?php foreach ($provinsi as $row) { ?>
+                                        <option value="<?= $row['id_provinsi'] ?>"><?= $row['prov_name'] ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">NIK</label>
-                            <input type="text" class="form-control" name="nik" value="<?= $siswa['nik'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="">NISN</label>
-                            <input type="text" class="form-control" name="nisn" value="<?= $siswa['nisn'] ?>">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Kab/Kota</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="kabupaten" class="form-control select2bs4 " style="width: 100%;" id="kabupaten">
+                                </select>
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">NIPD</label>
-                            <input type="text" class="form-control" name="nis" value="<?= $siswa['nis'] ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Kelas</label>
-                            <select name="id_kelas" class="form-control">
-                                <?php if ($siswa['kelas'] == NULL) { ?>
-                                    <option value="">--Pilih Kelas--</option>
-                                    <?php foreach ($kelas as $row) { ?>
-                                        <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
-                                    <?php } ?>
-                                <?php   } else { ?>
-                                    <?php foreach ($kelas as $row) { ?>
-                                        <option value="<?= $row['id_kelas'] ?>" <?= $siswa['id_kelas'] == $siswa['id_kelas'] ? 'selected' : '' ?>> <?= $row['kelas'] ?></option>
-                                    <?php } ?>
-                                <?php }  ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Status Registasi</label>
-                            <select name="status_registrasi" class="form-control">
-                                <option value="">--Pilih Kelas--</option>
-                                <option value="1">Siswa Baru</option>
-                                <option value="2">Pindahan</option>
-                                <option value="3">Mutasi/Keluar</option>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Kecamatan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="kecamatan" class="form-control select2bs4 " style="width: 100%;" id="kecamatan">
+                                </select>
 
-                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Desa</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="desa" class="form-control select2bs4 " style="width: 100%;" id="desa">
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Kode Pos</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control " name="kodepos" value="<?= $siswa['kodepos'] ?>">
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            <?= form_close() ?>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="orangtua" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Orng Tua</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?= form_open('peserta/update_alamat/' . $siswa['id_siswa']) ?>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Nama Ayah</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control <?= ($validation->hasError('nama_ayah')) ? 'is-invalid' : ''; ?>" name="nama_ayah" value="<?= old('nama_ayah') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nama_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">NIK AYAH</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control <?= ($validation->hasError('nik_ayah')) ? 'is-invalid' : ''; ?>" name="nik_ayah" value="<?= old('nik_ayah') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nik_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Tahun Lahir</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= old('tahun_ayah') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('tahun_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Pendidikan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="didik_ayah" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>">
+                                    <option value="">-- Pilih Pendidikan --</option>
+                                    <?php foreach ($didik as $key => $value) { ?>
+                                        <option value="<?= $value['pendidikan'] ?>"> <?= $value['pendidikan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('didik_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Pekerjaan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="kerja_ayah" class="form-control <?= ($validation->hasError('kerja_ayah')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)" value="<?= old('kerja_ayah') ?>">
+                                    <option value="">--Pilih Pekerjaan--</option>
+                                    <?php foreach ($kerja as $key => $value) { ?>
+                                        <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('kerja_ayah'); ?>
+                                        </div>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Penghasilan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="hasil_ayah" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)" value="<?= old('hasil_ayah') ?>">
+                                    <option value="">--Pilih Penghasilan--</option>
+                                    <?php foreach ($hasil as $key => $value) { ?>
+                                        <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('hasil_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">No Telp</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" name="telp_ayah" class="form-control <?= ($validation->hasError('telp_ayah')) ? 'is-invalid' : ''; ?>" value="<?= old('telp_ayah') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('telp_ayah'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Nama Ibu</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control <?= ($validation->hasError('nama_ibu')) ? 'is-invalid' : ''; ?>" name="nama_ibu" value="<?= $siswa['nama_ibu'] ?>" readonly>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nama_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">NIK Ibu</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control <?= ($validation->hasError('nik_ibu')) ? 'is-invalid' : ''; ?>" name="nik_ibu" value="<?= old('nik_ibu') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nik_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Tahun Lahir</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control <?= ($validation->hasError('tahun_ibu')) ? 'is-invalid' : ''; ?>" name="tahun_ibu" value="<?= old('tahun_ibu') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('tahun_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Pendidikan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="didik_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" value="<?= old('didik_ibu') ?>">
+                                    <option value="">-- Pilih Pendidikan --</option>
+                                    <?php foreach ($didik as $key => $value) { ?>
+                                        <option value="<?= $value['pendidikan'] ?>"> <?= $value['pendidikan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('didik_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Pekerjaan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="kerja_ibu" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>" id="dropdown" onChange="opsi(this)" value="<?= old('kerja_ibu') ?>">
+                                    <option value="">--Pilih Pekerjaan--</option>
+                                    <?php foreach ($kerja as $key => $value) { ?>
+                                        <option value="<?= $value['pekerjaan'] ?>"> <?= $value['pekerjaan'] ?></option>
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('kerja_ibu'); ?>
+                                        </div>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">Penghasilan</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select name="hasil_ibu" class="form-control <?= ($validation->hasError('hasil_ayah')) ? 'is-invalid' : ''; ?>" id="dipilih" onChange="opsi(this)" value="<?= old('hasil_ibu') ?>">
+                                    <option value="">--Pilih Penghasilan--</option>
+                                    <?php foreach ($hasil as $key => $value) { ?>
+                                        <option value="<?= $value['penghasilan'] ?>"> <?= $value['penghasilan'] ?></option>
+                                    <?php } ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('hasil_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label for="">No Telp</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" name="telp_ibu" class="form-control <?= ($validation->hasError('telp_ibu')) ? 'is-invalid' : ''; ?>" value="<?= old('telp_ibu') ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('telp_ibu'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
             <?= form_close() ?>
         </div>
@@ -321,66 +574,17 @@
 
 
 
-<div class="modal fade" id="alamat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Alamat</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<!--OranTua -->
-<div class="modal fade" id="orangtua" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Orang Tua</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal fade" id="periodik" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Periodik</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+
+
+
 
 <?= $this->endSection() ?>

@@ -6,6 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\ModelPeserta;
 use App\Models\ModelKelas;
 use App\Models\ModelSetting;
+use App\Models\ModelWilayah;
+use App\Models\ModelTinggal;
+use App\Models\ModelTransportasi;
+use App\Models\ModelPenghasilan;
+use App\Models\ModelPekerjaan;
+use App\Models\ModelPendidikan;
 use \Dompdf\Dompdf;
 
 class Peserta extends BaseController
@@ -18,6 +24,12 @@ class Peserta extends BaseController
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelKelas = new ModelKelas();
         $this->ModelSetting = new ModelSetting();
+        $this->ModelWilayah = new ModelWilayah();
+        $this->ModelPekerjaan = new ModelPekerjaan();
+        $this->ModelTinggal = new ModelTinggal();
+        $this->ModelTransportasi = new ModelTransportasi();
+        $this->ModelPenghasilan = new ModelPenghasilan();
+        $this->ModelPendidikan = new ModelPendidikan();
     }
 
 
@@ -120,14 +132,20 @@ class Peserta extends BaseController
 
     public function detail_siswa($id_siswa)
     {
-
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Profil Siswa',
             'menu'      => 'akademik',
             'submenu'      => 'peserta',
             'kelas'  => $this->ModelKelas->kelas(),
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'tinggal'  => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'kerja'     => $this->ModelPekerjaan->AllData(),
+            'didik'     => $this->ModelPendidikan->AllData(),
+            'hasil'     => $this->ModelPenghasilan->AllData(),
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'validation'    =>  \Config\Services::validation(),
         ];
         return view('admin/peserta/v_detail_siswa', $data);
     }
@@ -447,6 +465,31 @@ class Peserta extends BaseController
         return redirect()->to('peserta/detail_siswa/' . $id_siswa);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function update_orangtua($id_siswa)
     {
         $data = [
@@ -470,5 +513,31 @@ class Peserta extends BaseController
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+    }
+
+
+    public function dataKabupaten($id_provinsi)
+    {
+        $data = $this->ModelWilayah->getKabupaten($id_provinsi);
+        echo '<option>--Pilih Kabupaten--</option>';
+        foreach ($data as $value) {
+            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
+        }
+    }
+    public function dataKecamatan($id_kabupaten)
+    {
+        $data = $this->ModelWilayah->getKecamatan($id_kabupaten);
+        echo '<option>--Pilih Kecamatan--</option>';
+        foreach ($data as $value) {
+            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
+        }
+    }
+    public function dataDesa($id_kecamatan)
+    {
+        $data = $this->ModelWilayah->getDesa($id_kecamatan);
+        echo '<option>--Pilih Desa/Kelurahan--</option>';
+        foreach ($data as $value) {
+            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
+        }
     }
 }
