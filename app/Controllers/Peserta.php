@@ -27,15 +27,33 @@ class Peserta extends BaseController
         session();
         $data = [
             'title'      => 'SIAKADINKA',
-            'subtitle'      => 'Peserta Didik',
-            'menu'      => 'akademik',
-            'submenu'      => 'peserta',
-            'tingkat'  => $this->ModelKelas->Tingkat(),
-            'kelas'  => $this->ModelKelas->kelas(),
-            'peserta'  => $this->ModelPeserta->AllData()
+            'subtitle'   => 'Peserta Didik',
+            'menu'       => 'akademik',
+            'submenu'    => 'peserta',
+            'tingkat'    => $this->ModelKelas->Tingkat(),
+            'kelas'      => $this->ModelKelas->kelas(),
+            'peserta'    => $this->ModelPeserta->AllData(),
+            'jumlverifikasi'    => $this->ModelPeserta->jmlverifikasi()
 
         ];
-        return view('admin/v_peserta', $data);
+        return view('admin/peserta/v_peserta', $data);
+    }
+
+    public function verifikasi()
+    {
+
+        session();
+        $data = [
+            'title'      => 'SIAKADINKA',
+            'subtitle'   => ' VerifikasiPeserta Didik',
+            'menu'       => 'akademik',
+            'submenu'    => 'peserta',
+            'tingkat'    => $this->ModelKelas->Tingkat(),
+            'kelas'      => $this->ModelKelas->kelas(),
+            'verifikasi'    => $this->ModelPeserta->verifikasi()
+
+        ];
+        return view('admin/peserta/verifikasi', $data);
     }
 
 
@@ -111,7 +129,7 @@ class Peserta extends BaseController
             'kelas'  => $this->ModelKelas->kelas(),
             'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
         ];
-        return view('admin/v_detail_siswa', $data);
+        return view('admin/peserta/v_detail_siswa', $data);
     }
 
     public function siswa_edit($id_siswa)
@@ -320,20 +338,9 @@ class Peserta extends BaseController
             'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
             'kelas'     => $this->ModelKelas->AllData()
         ];
-        return view('admin/bukuinduk', $data);
+        return view('admin/peserta/bukuinduk', $data);
     }
-    // public function verifikasi_data($id_siswa)
-    // {
-    //     $data = [
-    //         'id_siswa'      => $id_siswa,
-    //         'id_kelas'      => $this->request->getPost('id_kelas'),
-    //         'status_daftar' => $this->request->getPost('status_daftar'),
-    //         'catatan' => $this->request->getPost('catatan'),
-    //     ];
-    //     $this->ModelPeserta->edit($data);
-    //     session()->setFlashdata('pesan', 'Data Berhasil Di Verifikasi !!!');
-    //     return redirect()->to(base_url('peserta'));
-    // }
+
 
 
     public function editbiodata($id_siswa)
@@ -395,5 +402,73 @@ class Peserta extends BaseController
         $dompdf->stream('data siswa kelas.pdf', array(
             "Attachment" => false
         ));
+    }
+
+    public function edit_identitas($id_siswa)
+    {
+
+        $data = [
+            'id_siswa'                => $id_siswa,
+            'nama_siswa'            => $this->request->getPost('nama_siswa'),
+            'nisn'                   => $this->request->getPost('nisn'),
+            'nik'                    => $this->request->getPost('nik'),
+            'tempat_lahir'           => $this->request->getPost('tempat_lahir'),
+            'tanggal_lahir'          => $this->request->getPost('tanggal_lahir'),
+            'nis'                    => $this->request->getPost('nis'),
+            'id_kelas'               => $this->request->getPost('id_kelas'),
+            'jenis_kelamin'          => $this->request->getPost('jenis_kelamin'),
+            'status_registrasi'      => $this->request->getPost('status_registrasi'),
+
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+    }
+
+    public function update_alamat($id_siswa)
+    {
+
+        $data = [
+            'id_siswa'          => $id_siswa,
+            'no_kip'            => $this->request->getPost('no_kip'),
+            'kip'               => $this->request->getPost('kip'),
+            'anak_ke'           => $this->request->getPost('anak_ke'),
+            'alamat'            => $this->request->getPost('alamat'),
+            'rt'                => $this->request->getPost('rt'),
+            'rw'                => $this->request->getPost('rw'),
+            'provinsi'          => $this->request->getPost('provinsi'),
+            'kabupaten'         => $this->request->getPost('kabupaten'),
+            'kecamatan'         => $this->request->getPost('kecamatan'),
+            'desa'              => $this->request->getPost('desa'),
+            'kodepos'           => $this->request->getPost('kodepos'),
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+    }
+
+    public function update_orangtua($id_siswa)
+    {
+        $data = [
+            'id_siswa'          => $id_siswa,
+            'nama_ayah'         => $this->request->getPost('nama_ayah'),
+            'nama_ibu'          => $this->request->getPost('nama_ibu'),
+            'didik_ibu'         => $this->request->getPost('didik_ibu'),
+            'didik_ayah'        => $this->request->getPost('didik_ayah'),
+            'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
+            'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
+            'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
+            'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
+            'telp_ayah'         => $this->request->getPost('telp_ayah'),
+            'telp_ibu'          => $this->request->getPost('telp_ibu'),
+            'nik_ibu'           => $this->request->getPost('nik_ibu'),
+            'nik_ayah'          => $this->request->getPost('nik_ayah'),
+            'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
+            'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
+
+        ];
+        $this->ModelPeserta->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
     }
 }

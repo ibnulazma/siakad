@@ -18,18 +18,37 @@ class Nilai extends BaseController
 
     public function index()
     {
-
-        $guru = $this->ModelNilai->DataGuru();
         $data = [
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Nilai',
             'menu'          => 'nilai',
             'submenu'       => 'nilai',
-            'ambilmapel'    => $this->ModelNilai->Mapel($guru['id_guru']),
-            'nilai'         => $this->ModelNilai->nilaimapel($guru['id_guru']),
+            'sub'           => 'p3mp'
+            // 'nilai'         => $this->ModelNilai->nilaimapel(['id_guru']),
         ];
-        return view('guru/nilai/nilai', $data);
+        return view('admin/nilai/p3mp', $data);
     }
+
+
+
+
+
+
+
+    // public function index()
+    // {
+
+    //     $guru = $this->ModelNilai->DataGuru();
+    //     $data = [
+    //         'title'         => 'SIAKADINKA',
+    //         'subtitle'      => 'Nilai',
+    //         'menu'          => 'nilai',
+    //         'submenu'       => 'nilai',
+
+    //         'nilai'         => $this->ModelNilai->nilaimapel($guru['id_guru']),
+    //     ];
+    //     return view('guru/nilai/nilai', $data);
+    // }
 
     public function upload()
     {

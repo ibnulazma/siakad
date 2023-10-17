@@ -72,10 +72,15 @@
                         <span>NIK : <?= $siswa['nik'] ?> </span>
                     </li>
                     <li class="list-group-item">
-                        <span>NISN : <?= $siswa['nisn'] ?> </span>
-                    </li>
-                    <li class="list-group-item">
-                        <span>NIS : <?= $siswa['nis'] ?> </span>
+
+                        <span>Status Registrasi :
+
+                            <?php if ($siswa['status_registrasi'] == 1) { ?>
+
+                                <b> Siswa Baru </b></span>
+                    <?php } elseif ($siswa['status_registrasi'] == 2) { ?>
+                        <b> Pindahan </b></span>
+                    <?php } ?>
                     </li>
                     <li class="list-group-item">
                         <span>Kelas : <?= $siswa['kelas'] ?> </span>
@@ -242,60 +247,62 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <?= form_open('peserta/edit_identitas/' . $siswa['id_siswa']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Nama Siswa</label>
-                            <input type="text" class="form-control" value="<?= $siswa['nama_siswa'] ?>">
+                            <input type="text" class="form-control" name="nama_siswa" value="<?= $siswa['nama_siswa'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jenis Kelamin</label>
+                            <input type="text" class="form-control" name="jenis_kelamin" value="<?= $siswa['jenis_kelamin'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Tempat</label>
-                            <input type="text" class="form-control" value="<?= $siswa['tempat_lahir'] ?>">
+                            <input type="text" class="form-control" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Tanggal Lahir</label>
-                            <input type="text" class="form-control" value="<?= $siswa['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
+                            <input type="text" class="form-control" name="tanggal_lahir" value="<?= $siswa['tanggal_lahir'] ?>" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask>
                         </div>
                         <div class="form-group">
                             <label for="">NIK</label>
-                            <input type="text" class="form-control" value="<?= $siswa['nik'] ?>">
+                            <input type="text" class="form-control" name="nik" value="<?= $siswa['nik'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">NISN</label>
-                            <input type="text" class="form-control" value="<?= $siswa['nisn'] ?>">
+                            <input type="text" class="form-control" name="nisn" value="<?= $siswa['nisn'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">NIPD</label>
-                            <input type="text" class="form-control" value="<?= $siswa['nis'] ?>">
+                            <input type="text" class="form-control" name="nis" value="<?= $siswa['nis'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="">Kelas</label>
                             <select name="id_kelas" class="form-control">
-                                <option value="">--Pilih Kelas--</option>
-                                <?php foreach ($kelas as $row) { ?>
-                                    <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Verifikasi</label>
-                            <select name="id_kelas" class="form-control">
-                                <option value="">--Verifikasi--</option>
-                                <option value="3">Ya</option>
-                                <option value="5">Tolak</option>
-
+                                <?php if ($siswa['kelas'] == NULL) { ?>
+                                    <option value="">--Pilih Kelas--</option>
+                                    <?php foreach ($kelas as $row) { ?>
+                                        <option value="<?= $row['id_kelas'] ?>"><?= $row['kelas'] ?></option>
+                                    <?php } ?>
+                                <?php   } else { ?>
+                                    <?php foreach ($kelas as $row) { ?>
+                                        <option value="<?= $row['id_kelas'] ?>" <?= $siswa['id_kelas'] == $siswa['id_kelas'] ? 'selected' : '' ?>> <?= $row['kelas'] ?></option>
+                                    <?php } ?>
+                                <?php }  ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Status Registasi</label>
-                            <select name="id_kelas" class="form-control">
+                            <select name="status_registrasi" class="form-control">
                                 <option value="">--Pilih Kelas--</option>
-                                <option value="3">Siswa Baru</option>
-                                <option value="4">Pindahan</option>
-                                <option value="5">Mutasi/Keluar</option>
+                                <option value="1">Siswa Baru</option>
+                                <option value="2">Pindahan</option>
+                                <option value="3">Mutasi/Keluar</option>
 
                             </select>
                         </div>
@@ -306,6 +313,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
+            <?= form_close() ?>
         </div>
     </div>
 </div>

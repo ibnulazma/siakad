@@ -24,7 +24,8 @@
         <div class="col-md-7">
             <div class="input-group-append">
                 <button class="input-group-text bg-success btn-sm mb-3 mr-2" data-toggle="modal" data-target="#tambah"> <i class="fas fa-plus-circle mr-2"></i> Tambah Siswa</button>
-                <a href="" class="input-group-text bg-danger btn-sm mb-3" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
+                <a href="" class="input-group-text bg-danger btn-sm mb-3 mr-2" id="delete-selected"> <i class="fas fa-print mr-2"></i> Print All</a>
+                <a href="<?= base_url('peserta/verifikasi') ?>" class="input-group-text bg-info btn-sm mb-3"> Verifikasi <span class=" badge badge-light ml-2"> <?= $jumlverifikasi ?></span></a>
             </div>
 
         </div>
