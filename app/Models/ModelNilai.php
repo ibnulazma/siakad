@@ -13,11 +13,15 @@ class ModelNilai extends Model
             ->get()->getRowArray();
     }
 
-    public function DataKelas()
+    public function DataKelas($kelas)
     {
-        return $this->db->table('tbl_kelas')
-            ->where('id_kelas')
-            ->get()->getRowArray();
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->where('tbl_kelas.kelas', $kelas)
+            ->where('tbl_ta.status', '1')
+            ->get()
+            ->getResultArray();
     }
     public function Mapel($id_guru)
     {
@@ -49,43 +53,17 @@ class ModelNilai extends Model
             ->get()->getResultArray();
     }
 
-    public function nilaikelas($id_kelas)
+
+
+    public function nilaisiswa($nisn)
     {
         return $this->db->table('tbl_nilai')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
-            ->where('tbl_siswa.id_kelas', $id_kelas)
-            ->get()->getResultArray();
-    }
-
-    public function walas($id_guru)
-    {
-        return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
-            ->where('tbl_kelas.id_guru', $id_guru)
-
-            ->get()->getResultArray();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public function addsiswa($id_kelas)
-    {
-        return $this->db->table('tbl_kelas')
-            ->join('tbl_siswa', 'tbl_siswa.id_kelas = tbl_siswa.id_kelas', 'left')
-            ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_siswa.id_kelas', 'left')
-            ->where('tbl_siswa.id_kelas', $id_kelas)
-            ->get()->getResultArray();
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_nilai.id_ta', 'left')
+            ->where('tbl_siswa.nisn', $nisn)
+            ->where('tbl_ta.status', '1')
+            ->get()->getRowArray();
     }
 }

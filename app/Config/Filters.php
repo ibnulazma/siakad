@@ -82,7 +82,7 @@ class Filters extends BaseConfig
                     'surat', 'surat/*',
                     'setting', 'setting/*',
                     'ppdb', 'ppdb/*',
-                    'nilai', 'nilai /*',
+                    'nilai', 'nilai/*'
                 ]
             ],
             'filterpeserta' =>

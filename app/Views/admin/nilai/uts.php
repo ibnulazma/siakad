@@ -2,34 +2,60 @@
 <?= $this->section('content') ?>
 
 
-<div class="col-md-12">
 
-    <div class="card card-danger">
-        <div class="card-header">
-            DATA NILAI P3MP TAHUN PELAJARAN
+<div class="card card-danger">
+    <div class="card-header">
+        <h5 class="card-title">Nilai P3MP Per Kelas <?= $ta['ta'] ?></h5>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <select name="kelas" id="kelas" class="form-control" width="100%">
+                        <option value="">Pilih Rombel</option>
+                        <?php foreach ($kelas as $row) { ?>
+                            <option value="<?= $row['kelas'] ?>"><?= $row['kelas'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <button onclick="Viewpd()" class="btn btn-danger"> View PD</button>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Kelas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1;
 
-                    foreach ($kelas as $row) { ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $row['kelas'] ?></td>
-                            <td></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+        <div class="Tabel">
+
+
         </div>
     </div>
 </div>
+
+
+
+
+
+<script>
+    function Viewpd() {
+        let kelas = $('#kelas').val();
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('Nilai/Viewpd') ?>",
+            data: {
+                kelas: kelas,
+            },
+            dataType: "JSON",
+            success: function(response) {
+                if (response.data) {
+                    $('.Tabel').html(response.data)
+                }
+            }
+        });
+    }
+</script>
+
+
 <?= $this->endSection() ?>

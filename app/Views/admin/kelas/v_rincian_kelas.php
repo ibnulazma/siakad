@@ -46,19 +46,19 @@
                         <a href="<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i> Label</a>
                         <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
                         <a href="<?= base_url('kelas/printexcel/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
-                        <a href="<?= base_url('kelas/nilai/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-yellow btn-sm"><i class="fas fa-file-pdf"></i> Rapot</a>
+
                         <a href="<?= base_url('kelas/ledger/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-info btn-sm"><i class="fas fa-table"></i> Leger</a>
                     </div>
                 </div>
             </div>
             <div class="tabel-responsive">
-                <table class="table table-bordered mt-5" width="100%">
+                <table class="table table-bordered mt-5" id="example2" width="100%">
                     <thead>
                         <tr class="bg-primary">
-                            <th class="text-center" width="20px">#</th>
-                            <th class="text-center" width="20px">NISN</th>
+                            <th class="text-center" width="10%">#</th>
+                            <th class="text-center" width="20%">NISN</th>
                             <th>Nama Peserta Didik</th>
-                            <th>Jenis Kelamin</th>
+                            <th width="20%">JK</th>
                             <th width="20%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -73,8 +73,10 @@
                                 <td><?= $value['jenis_kelamin'] ?></td>
                                 <td>
                                     <div class="text-center">
-                                        <a href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>" class="btn btn-sm btn-info "><i class=" fas fa-book"></i></a>
-                                        <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        <a href="<?= base_url('kelas/bukuinduk/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm btn-info "><i class=" fas fa-book"></i></a>
+                                        <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="fa-solid fa-file"></i> </a>
+                                        <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm bg-black "><i class="fa-solid fa-address-card"></i> </a>
+                                        <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

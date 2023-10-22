@@ -45,6 +45,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
+                            <th>NIS</th>
                             <th>NISN</th>
                             <th>Nama Siswa</th>
                             <th>TTL</th>
@@ -66,6 +67,7 @@
                         echo bg-lightblue
                         <?php } ?>" data-widget="expandable-table" aria-expanded="false">
                                 <td><?= $no++ ?></td>
+                                <td class="text-center"><?= $value["nis"] ?></td>
                                 <td class="text-center"><?= $value["nisn"] ?></td>
                                 <td><?= $value["nama_siswa"] ?></td>
                                 <td class="text-center"><?= $value["tempat_lahir"] ?>, <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
@@ -164,21 +166,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

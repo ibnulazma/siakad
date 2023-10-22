@@ -6,6 +6,7 @@ use App\Models\ModelKelas;
 use App\Models\ModelGuru;
 use App\Models\ModelTa;
 use App\Models\ModelNilai;
+use App\Models\ModelPeserta;
 use \Dompdf\Dompdf;
 use \Dompdf\Options;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -25,6 +26,7 @@ class Kelas extends BaseController
         $this->ModelGuru = new ModelGuru();
         $this->ModelTa = new ModelTa();
         $this->ModelNilai = new ModelNilai();
+        $this->ModelPeserta = new ModelPeserta();
     }
 
     public function index()
@@ -102,14 +104,7 @@ class Kelas extends BaseController
 
     // BUKU INDUK
 
-    public function bukuinduk($id_siswa)
-    {
-        $data = [
-            'title' => 'Buku Induk Siswa-SIAKAD',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
-        ];
-        return view('admin/bukuinduk', $data);
-    }
+
     /////
 
     //ADD SISWA PERKELAS
@@ -436,5 +431,69 @@ class Kelas extends BaseController
             $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
             return redirect()->to('kelas/rincian_kelas/' . $id_kelas);
         }
+    }
+
+    public function halamansiswa($nisn)
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->setOptions($options);
+        $dompdf->output();
+
+
+        $data = [
+            'halaman'     => $this->ModelKelas->halamansiswa($nisn),
+
+
+        ];
+        $html = view('admin/kelas/halamansiswa', $data);
+        //Atur Gambar
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('Legal', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
+    }
+
+    public function biodatasiswa($nisn)
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $dompdf = new Dompdf($options);
+        $dompdf->setOptions($options);
+        $dompdf->output();
+
+
+        $data = [
+            'biodata'     => $this->ModelKelas->halamansiswa($nisn),
+
+
+        ];
+        $html = view('admin/kelas/biodatasiswa', $data);
+        //Atur Gambar
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('Legal', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
+    }
+
+    public function bukuinduk($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'kelas'     => $this->ModelKelas->AllData()
+        ];
+        return view('admin/kelas/bukuinduk', $data);
     }
 }

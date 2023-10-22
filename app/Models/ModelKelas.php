@@ -23,16 +23,6 @@ class ModelKelas extends Model
     }
 
 
-
-    public function DataKelas($id_kelas)
-    {
-        return $this->db->table('tbl_mapel')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_mapel.id_kelas', 'left')
-            ->where('tbl_mapel.id_kelas', $id_kelas)
-            ->get()
-            ->getResultArray();
-    }
-
     public function AllGuru()
     {
         return $this->db->table('tbl_guru')
@@ -221,4 +211,14 @@ class ModelKelas extends Model
     //     $query = $builder->get();
     //     return $query;
     // }
+
+
+
+    public function halamansiswa($nisn)
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->where('tbl_siswa.nisn', $nisn)
+            ->get()->getRowArray();
+    }
 }

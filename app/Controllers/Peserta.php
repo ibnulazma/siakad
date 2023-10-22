@@ -349,17 +349,6 @@ class Peserta extends BaseController
         session()->setFlashdata('pesan', 'Reset Berhasil !!!');
         return redirect()->to(base_url('peserta'));
     }
-    public function bukuinduk($id_siswa)
-    {
-        $data = [
-            'title' => 'Buku Induk Siswa-SIAKAD',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
-            'kelas'     => $this->ModelKelas->AllData()
-        ];
-        return view('admin/peserta/bukuinduk', $data);
-    }
-
-
 
     public function editbiodata($id_siswa)
     {
@@ -434,7 +423,6 @@ class Peserta extends BaseController
             'tanggal_lahir'          => $this->request->getPost('tanggal_lahir'),
             'nis'                    => $this->request->getPost('nis'),
             'id_kelas'               => $this->request->getPost('id_kelas'),
-            'jenis_kelamin'          => $this->request->getPost('jenis_kelamin'),
             'status_registrasi'      => $this->request->getPost('status_registrasi'),
 
         ];
@@ -465,56 +453,29 @@ class Peserta extends BaseController
         return redirect()->to('peserta/detail_siswa/' . $id_siswa);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function update_orangtua($id_siswa)
     {
         $data = [
             'id_siswa'          => $id_siswa,
             'nama_ayah'         => $this->request->getPost('nama_ayah'),
-            'nama_ibu'          => $this->request->getPost('nama_ibu'),
-            'didik_ibu'         => $this->request->getPost('didik_ibu'),
-            'didik_ayah'        => $this->request->getPost('didik_ayah'),
-            'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
-            'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
-            'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
-            'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
-            'telp_ayah'         => $this->request->getPost('telp_ayah'),
-            'telp_ibu'          => $this->request->getPost('telp_ibu'),
-            'nik_ibu'           => $this->request->getPost('nik_ibu'),
             'nik_ayah'          => $this->request->getPost('nik_ayah'),
             'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
+            'didik_ayah'        => $this->request->getPost('didik_ayah'),
+            'kerja_ayah'        => $this->request->getPost('kerja_ayah'),
+            'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
+            'telp_ayah'         => $this->request->getPost('telp_ayah'),
+            'nama_ibu'          => $this->request->getPost('nama_ibu'),
+            'nik_ibu'           => $this->request->getPost('nik_ibu'),
             'tahun_ibu'         => $this->request->getPost('tahun_ibu'),
-
+            'didik_ibu'         => $this->request->getPost('didik_ibu'),
+            'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
+            'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
+            'telp_ibu'          => $this->request->getPost('telp_ibu'),
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('peserta/detail_siswa/' . $id_siswa);
     }
-
 
     public function dataKabupaten($id_provinsi)
     {
@@ -540,4 +501,9 @@ class Peserta extends BaseController
             echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
         }
     }
+
+
+
+    // Cetak Halaman Persiswa
+
 }

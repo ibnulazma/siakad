@@ -135,4 +135,14 @@ class Admin extends BaseController
         ];
         return view('admin/lembaran1', $data);
     }
+
+
+    public function bukuinduk($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        ];
+        return view('admin/bukuinduk', $data);
+    }
 }

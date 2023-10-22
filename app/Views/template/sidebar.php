@@ -114,10 +114,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('nilai/tapel') ?>" class="nav-link <?= $submenu == 'tapel' ? 'active' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Setting</p>
-                            </a>
                             <a href="<?= base_url('nilai/uts') ?>" class="nav-link <?= $submenu == 'uts' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>UTS</p>

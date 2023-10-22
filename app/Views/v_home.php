@@ -12,9 +12,9 @@
     <title>Hello, world!</title>
 </head>
 
-<body>
+<body style="background-color: aquamarine;">
     <div class="container mx-auto text-center" style="margin-top:150px">
-        <img src="<?= base_url('foto/web.png') ?>" width="100px">
+        <i class="fa-solid fa-triangle-exclamation fa-bounce" style="color: #eb0a0a; font-size:100px;"></i>
         <h1>MOHON MAAF WEBSITE INI SEDANG DALAM PERBAIKAN</h1>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
