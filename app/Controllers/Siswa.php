@@ -44,8 +44,7 @@ class Siswa extends BaseController
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
 
-            // 'absen'         => $this->ModelSiswa->DataAbsen($mhs['id_siswa']),
-            // 'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
+
 
         ];
         return view('siswa/v_dashboard', $data);
@@ -1208,11 +1207,12 @@ class Siswa extends BaseController
         return view('siswa/v_pengajuan', $data);
     }
 
-    public function ajuan($id_siswa)
+    public function mutasi($id_siswa)
     {
         $data = [
             'id_siswa'       => $id_siswa,
             'alasan'         => $this->request->getPost('alasan'),
+            'sekolah'         => $this->request->getPost('sekolah'),
             'status' => 1,
         ];
         $this->ModelSiswa->insertpengajuan($data);

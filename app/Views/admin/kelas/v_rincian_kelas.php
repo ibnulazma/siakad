@@ -76,6 +76,7 @@
                                         <a href="<?= base_url('kelas/bukuinduk/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm btn-info "><i class=" fas fa-book"></i></a>
                                         <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="fa-solid fa-file"></i> </a>
                                         <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm bg-black "><i class="fa-solid fa-address-card"></i> </a>
+                                        <a href="<?= base_url('kelas/labelsiswa/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm bg-pink "><i class="fa-solid fa-tag"></i> </a>
                                         <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>

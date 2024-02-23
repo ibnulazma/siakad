@@ -129,6 +129,8 @@ class Kelas extends BaseController
         $data = [
             'id_siswa' => $id_siswa,
             'id_kelas' => 0,
+            'status_daftar' => 0,
+            'aktif' => 0,
         ];
         $this->ModelKelas->add_data($data);
         session()->setFlashdata('pesan', 'Siswa Berhasil Di Hapus Dari Kelas !!!');
@@ -495,5 +497,28 @@ class Kelas extends BaseController
             'kelas'     => $this->ModelKelas->AllData()
         ];
         return view('admin/kelas/bukuinduk', $data);
+    }
+
+
+
+    public function labelsiswa($id_siswa)
+    {
+
+        $dompdf = new Dompdf();
+
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'label'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'kelas'     => $this->ModelKelas->AllData()
+        ];
+        $html = view('admin/kelas/labelsiswa', $data);
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('data siswa kelas.pdf', array(
+            "Attachment" => false
+        ));
+        exit();
     }
 }

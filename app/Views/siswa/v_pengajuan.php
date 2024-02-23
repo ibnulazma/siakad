@@ -1,14 +1,19 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-<p>Untuk melakukan pengajuan pindah sekolah dari SMP Insan Kamil silahkan klik tombol berikut:</p>
+<?php if ($siswa['status_daftar'] == 1) { ?>
+    <span class="btn btn-danger">Silahkan Update Biodata Terlebih Dahulu</span>
+<?php } elseif ($siswa['status_daftar'] == 3) { ?>
 
-<!-- Button trigger modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Pengajuan Mutasi
-</button>
+    <p>Untuk melakukan pengajuan pindah sekolah dari SMP Insan Kamil silahkan klik tombol berikut:</p>
 
+    <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Pengajuan Mutasi
+    </button>
+
+<?php } ?>
 
 
 
@@ -17,18 +22,16 @@
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered">
-
                     <tbody>
-
                         <tr>
                             <td>
                                 <?php if ($value['status'] == 1) { ?>
-                                    <span class="btn btn-info btn-sm"> Silahkan Hubungi Wali Kelas Untuk Cetak Permohonan</span>
+                                    <span class="btn btn-info btn-sm"> Silahkan Hubungi Wali Kelas Untuk Persetujuan Permohonan Mutasi</span>
+                                <?php } else if ($value['status'] == 2) { ?>
+                                    <span class="btn btn-success btn-sm"> Surat Mutasi Dalam Proses TTD Kepala Sekolah</span>
                                 <?php } ?>
                             </td>
-
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -43,7 +46,7 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <?= form_open('siswa/ajuan/' . $siswa['id_siswa']) ?>
+        <?= form_open('siswa/mutasi/' . $siswa['id_siswa']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Pengajuan Mutasi</h5>
