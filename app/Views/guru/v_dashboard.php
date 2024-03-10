@@ -48,56 +48,41 @@
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active" href="#biodata" data-toggle="tab">Biodata</a></li>
-                    <?php if ($guru['walas'] == 1) { ?>
-                        <li class="nav-item"><a class="nav-link" href="#rombel" data-toggle="tab">Rombel</a></li>
-                    <?php } elseif ($guru['walas'] == 0) { ?>
-                    <?php } ?>
-                    <li class="nav-item"><a class="nav-link" href="#nilai" data-toggle="tab">Nilai</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
-                </ul>
-            </div>
             <div class="card-body">
-                <div class="tab-content">
-                    <div class="active tab-pane" id="biodata">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama_guru" value=<?= $guru['nama_guru'] ?>>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tempat Lahir</label>
-                                        <input type="date" class="form-control" name="tmpt_lahir" value=<?= $guru['tmpt_lahir'] ?>>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tanggal Lahir</label>
-                                        <input type="text" class="form-control" name="tgl_lahir" value=<?= $guru['tgl_lahir'] ?>>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">NUPTK</label>
-                                        <input type="text" class="form-control" name="nuptk" value=<?= $guru['nuptk'] ?>>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Email Aktif</label>
-                                        <input type="text" class="form-control" name="email" value=<?= $guru['email'] ?>>
-                                    </div>
-                                </div>
+                <form action="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nama Lengkap</label>
+                                <input type="text" class="form-control" name="nama_guru" value=<?= $guru['nama_guru'] ?>>
                             </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="nilai">
-                        <div class="text-center text-danger">
-                            Maaf fitur ini dalam tahap pengembangan !!
+                            <div class="form-group">
+                                <label for="">Tempat Lahir</label>
+                                <input type="text" class="form-control" name="tmpt_lahir" value=<?= $guru['tmpt_lahir'] ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tanggal Lahir</label>
+                                <input type="date" class="form-control" name="tgl_lahir" value=<?= $guru['tgl_lahir'] ?>>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">NUPTK</label>
+                                <input type="text" class="form-control" name="nuptk" value=<?= $guru['nuptk'] ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Email Aktif</label>
+                                <input type="text" class="form-control" name="email" value=<?= $guru['email'] ?>>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Telp</label>
+                                <input type="text" class="form-control" name="email" value=<?= $guru['telp_guru'] ?>>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>

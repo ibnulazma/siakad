@@ -54,7 +54,6 @@ class ModelNilai extends Model
     }
 
 
-
     public function nilaisiswa($nisn)
     {
         return $this->db->table('tbl_nilai')

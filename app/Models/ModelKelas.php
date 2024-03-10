@@ -118,7 +118,7 @@ class ModelKelas extends Model
             // ->orderBy('id_kelas', 'DESC')
             // ->where('id_kelas = 0')
             ->where('tbl_ta.status', '1')
-            ->where('status_daftar', '2')
+            ->where('status_daftar', '3')
             ->get()
             ->getResultArray();
     }

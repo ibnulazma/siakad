@@ -68,16 +68,6 @@ class Nilai extends BaseController
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public function upload()
     {
 

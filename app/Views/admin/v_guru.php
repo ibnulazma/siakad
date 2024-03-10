@@ -72,12 +72,12 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td><?= $value["nama_guru"] ?></td>
                             <td class="text-center">
 
-                                <?php if ($value['status_daftar'] == 0) { ?>
+                                <?php if ($value['status'] == 0) { ?>
                                     <span class="btn btn-danger btn-xs ">belum aktif</span>
 
-                                <?php } else if ($value['status_daftar'] == 1) { ?>
+                                <?php } else if ($value['status'] == 1) { ?>
                                     <button data-toggle="modal" data-target="#edit<?= $value['id_guru'] ?>" class="btn btn-danger btn-xs ">verifikasi</button>
-                                <?php } else if ($value['status_daftar'] == 2) { ?>
+                                <?php } else if ($value['status'] == 2) { ?>
                                     <a href="" class="btn btn-danger btn-xs ">aktif</a>
                                 <?php } ?>
                             </td>

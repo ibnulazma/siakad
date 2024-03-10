@@ -308,6 +308,10 @@ class Kelas extends BaseController
         $sheet->setCellValue('O1', 'TJWD');
         $sheet->setCellValue('P1', 'TRJMH');
         $sheet->setCellValue('Q1', 'FIQIH');
+        $sheet->setCellValue('R1', 'BTQ');
+        $sheet->setCellValue('S1', 'SAKIT');
+        $sheet->setCellValue('T1', 'IZIN');
+        $sheet->setCellValue('U1', 'ALFA');
 
         $column = 2;
         foreach ($siswa as  $key => $value) {
