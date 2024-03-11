@@ -101,47 +101,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('kelas/tambahanggota') ?>
             <div class="modal-body">
-                <table class="table table-bordered" id="example1">
+                <table class="table table-bordered" id="example2">
                     <thead>
                         <tr>
-                            <th><input type="checkbox"></th>
+                            <th>#</th>
                             <th>Nama Siswa</th>
                             <th>NISN</th>
                             <th>Tingkat</th>
                             <th>Jenis Kelamin</th>
-
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        $db     = \Config\Database::connect();
-
-                        $ta = $db->table('tbl_ta')
-                            ->where('status', '1')
-                            ->get()->getRowArray();
                         foreach ($tidakpunya as $key => $value) { ?>
 
                             <?php if ($kelas['id_tingkat'] == $value['id_tingkat']) { ?>
                                 <tr>
-                                    <td><input type="checkbox" name="nisn[]" value="<?= $value['nisn'] ?>"></td>
+                                    <td><?= $no++ ?></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
-                                    <td><?= $value['tingkat'] ?></td>
+                                    <td></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
-                                    <input type="hidden" name="id_kelas[]" value="<?= $kelas['id_kelas'] ?>">
-                                    <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">
+                                    <td>
+                                        <a href="<?= base_url('kelas/addanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-warning "><i fas fa-upload></i> Tambah</button>
-            </div>
-            <?= form_close() ?>
         </div>
     </div>
 </div>

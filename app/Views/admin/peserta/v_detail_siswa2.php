@@ -325,7 +325,18 @@
                                 <label for="">Kelas</label>
                             </div>
                             <div class="col-sm-8">
-
+                                <select name="id_kelas" class="form-control">
+                                    <?php if ($siswa['id_kelas'] = NULL) { ?>
+                                        <option value="">-Pilih Kelas</option>
+                                        <?php foreach ($kelas as $key => $value) { ?>
+                                            <option value="<?= $value['id_kelas'] ?>"><?= $value['kelas'] ?></option>
+                                        <?php } ?>
+                                    <?php } else {  ?>
+                                        <?php foreach ($kelas as $key => $value) { ?>
+                                            <option value="<?= $value['id_kelas'] ?>" <?= $siswa['kelas'] == $value['kelas'] ? 'selected' : '' ?>> <?= $value['kelas'] ?></option>
+                                        <?php } ?>
+                                    <?php     } ?>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -11,6 +11,20 @@ class ModelPeserta extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            // ->where('status', '1')
+            ->where('status_daftar', '3')
+            ->get()
+            ->getResultArray();
+    }
+
+
+
+
+    public function pertahun()
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->where('status', '1')
             ->where('status_daftar', '3')
@@ -21,7 +35,7 @@ class ModelPeserta extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->where('status_daftar', '2')
             ->countAllResults();
     }
@@ -63,10 +77,10 @@ class ModelPeserta extends Model
     public function DataPeserta($id_siswa)
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')

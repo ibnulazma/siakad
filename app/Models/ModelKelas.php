@@ -77,10 +77,13 @@ class ModelKelas extends Model
     // Data Siswa berdasarkan kelas
     public function datasiswa($id_kelas)
     {
-        return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta')
             ->orderBy('nama_siswa', 'ASC')
             ->where('tbl_kelas.id_kelas', $id_kelas)
+            ->where('tbl_ta.status', '1')
             ->get()
             ->getResultArray();
     }
@@ -113,11 +116,11 @@ class ModelKelas extends Model
     public function siswablmpuna()
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             // ->orderBy('id_kelas', 'DESC')
             // ->where('id_kelas = 0')
-            ->where('tbl_ta.status', '1')
+
             ->where('status_daftar', '3')
             ->get()
             ->getResultArray();
@@ -127,7 +130,8 @@ class ModelKelas extends Model
 
     public function jml_siswa($id_kelas)
     {
-        return $this->db->table('tbl_siswa')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
             ->where('id_kelas', $id_kelas)
             // ->where('jenis_kelamin', 'Laki-laki')
             ->countAllResults();
@@ -146,10 +150,17 @@ class ModelKelas extends Model
 
     public function add_data($data)
     {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
+
+        
+        $this->db->table('tbl_database')
+            ->insert($data);
     }
+    // public function add_data($data)
+    // {
+    //     $this->db->table('tbl_siswa')
+    //         ->where('id_siswa', $data['id_siswa'])
+    //         ->update($data);
+    // }
 
     public function hapusanggota($data)
     {

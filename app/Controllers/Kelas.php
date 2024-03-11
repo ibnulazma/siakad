@@ -47,6 +47,7 @@ class Kelas extends BaseController
 
     public function add()
     {
+
         $data = [
             'kelas' => $this->request->getPost('kelas'),
             'id_guru' => $this->request->getPost('id_guru'),
@@ -80,6 +81,15 @@ class Kelas extends BaseController
         return redirect()->to(base_url('kelas'));
     }
 
+
+
+
+
+
+
+
+
+
     // RINCIAN KELAS
     public function rincian_kelas($id_kelas)
     {
@@ -104,23 +114,67 @@ class Kelas extends BaseController
 
     // BUKU INDUK
 
+    public function tambahanggota()
+    {
+
+
+        $nisn       = $_POST['nisn'];
+        $id_kelas   = $_POST['id_kelas'];
+        $id_ta   = $_POST['id_ta'];
+
+        $jml_siswa = count($nisn);
+        for ($i = 0; $i < $jml_siswa; $i++) {
+            $data = array(
+                'nisn' => $nisn[$i],
+                'id_kelas' => $id_kelas[$i],
+                'id_ta' => $id_ta[$i]
+            );
+            $this->ModelKelas->add_data($data);
+        }
+        session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');
+        return redirect()->to(base_url('kelas'));
+    }
+
 
     /////
 
     //ADD SISWA PERKELAS
 
-    public function addanggota($id_siswa, $id_kelas)
-    {
-        $data = [
-            'id_siswa' => $id_siswa,
-            'id_kelas' => $id_kelas,
-            'status_daftar' => 3,
-        ];
-        $this->ModelKelas->add_data($data);
-        session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');
-        return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
-    }
+    // public function addanggota()
+    // { {
+    //         $student_id = $this->input->post('student_id'); //here i am getting student id from the checkbox
+
+    //         for ($i = 0; $i < sizeof($student_id); $i++) {
+    //             $data = array('student_id' => $student_id[$i]);
+    //             $this->db->insert('added_student', $data);
+    //         }
+
+    //         $this->session->set_flashdata('msg', "Students details has been added successfully");
+    //         $this->session->set_flashdata('msg_class', 'alert-success');
+
+    //         return redirect('students');
+    //     }
+    // }
     //
+    // public function addanggota($nisn, $id_kelas)
+    // {
+
+    //     $db     = \Config\Database::connect();
+
+    //     $ta = $db->table('tbl_ta')
+    //         ->where('status', '1')
+    //         ->get()->getRowArray();
+    //     $data = [
+    //         'nisn' => $nisn,
+    //         'id_kelas' => $id_kelas,
+    //         // 'status_daftar' => 3,
+    //         'id_ta'        =>  $ta['id_ta'],
+    //     ];
+    //     $this->ModelKelas->add_data($data);
+    //     session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');
+    //     return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
+    // }
+    // //
 
     //HAPUS ANGGOTA KELAS
 

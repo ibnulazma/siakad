@@ -74,7 +74,7 @@
                         <li class="nav-item">
                             <a href="<?= base_url('peserta') ?>" class="nav-link <?= $submenu == 'peserta' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Peserta Didik</p>
+                                <p>Database Siswa</p>
                             </a>
                         </li>
                         <li class="nav-item">
