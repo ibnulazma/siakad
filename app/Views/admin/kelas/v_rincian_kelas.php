@@ -46,8 +46,8 @@
                         <a href="<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-black btn-sm"><i class="fa-solid fa-tag"></i> Label</a>
                         <a href="<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-pink btn-sm"><i class="fas fa-print"></i> Print Biodata</a>
                         <a href="<?= base_url('kelas/printexcel/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-green btn-sm"><i class="fas fa-file-excel"></i> Excel</a>
-
                         <a href="<?= base_url('kelas/ledger/' . $kelas['id_kelas']) ?>" target="_blank" class="btn bg-info btn-sm"><i class="fas fa-table"></i> Leger</a>
+
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                                         <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="fa-solid fa-file"></i> </a>
                                         <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm bg-black "><i class="fa-solid fa-address-card"></i> </a>
                                         <a href="<?= base_url('kelas/labelsiswa/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm bg-pink "><i class="fa-solid fa-tag"></i> </a>
-                                        <a href="<?= base_url('kelas/hapusanggota/' . $value['id_siswa'] . '/' . $kelas['id_kelas']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        <a href="<?= base_url('kelas/hapusanggota/' . $value['nisn']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

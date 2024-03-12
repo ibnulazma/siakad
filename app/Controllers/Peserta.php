@@ -130,7 +130,7 @@ class Peserta extends BaseController
     }
 
 
-    public function detail_siswa($id_siswa)
+    public function detail_siswa($nisn)
     {
         $data = [
             'title' => 'SIAKAD',
@@ -144,8 +144,9 @@ class Peserta extends BaseController
             'kerja'     => $this->ModelPekerjaan->AllData(),
             'didik'     => $this->ModelPendidikan->AllData(),
             'hasil'     => $this->ModelPenghasilan->AllData(),
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa),
+            'siswa'     => $this->ModelPeserta->DataPeserta($nisn),
             'validation'    =>  \Config\Services::validation(),
+            'rekamdidik' => $this->ModelPeserta->rekamdidik($nisn)
         ];
         return view('admin/peserta/v_detail_siswa', $data);
     }

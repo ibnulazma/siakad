@@ -18,9 +18,6 @@ class ModelPeserta extends Model
             ->getResultArray();
     }
 
-
-
-
     public function pertahun()
     {
         return $this->db->table('tbl_siswa')
@@ -39,6 +36,7 @@ class ModelPeserta extends Model
             ->where('status_daftar', '2')
             ->countAllResults();
     }
+
     public function verifikasi()
     {
         return $this->db->table('tbl_siswa')
@@ -74,7 +72,8 @@ class ModelPeserta extends Model
         return $this->db->table('tbl_siswa')
             ->where('nisn', $nisn)->get()->getRowArray();
     }
-    public function DataPeserta($id_siswa)
+
+    public function DataPeserta($nisn)
     {
         return $this->db->table('tbl_siswa')
             // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
@@ -85,7 +84,7 @@ class ModelPeserta extends Model
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('id_siswa', $id_siswa)
+            ->where('nisn', $nisn)
             ->get()->getRowArray();
     }
     public function Data($id_siswa)
@@ -103,7 +102,44 @@ class ModelPeserta extends Model
             ->where('tbl_kelas.id_guru')
             ->get()->getRowArray();
     }
+    public function jumlahAktif()
+    {
+        return $this->db->table('tbl_siswa')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->where('status_daftar', '3')
+            // ->where('status', '1')
+            ->countAllResults();
+    }
+
+    public function jumlahNonAktif()
+    {
+        return $this->db->table('tbl_siswa')
+            ->where('status_daftar', '1')
+            ->countAllResults();
+    }
+
+    public function jml_baru()
+    {
+        return $this->db->table('tbl_siswa')
+            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->where('status_daftar', '2')
+            // ->where('status', '1')
+            ->countAllResults();
+    }
+
+
+    public function rekamdidik($nisn)
+    {
+        return $this->db->table('tbl_database')
+            // ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
+            // // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->where('tbl_database.nisn', $nisn)
+            // ->where('status', '1')
+            ->get()->getResultArray();
+    }
 }
+
 
 
 

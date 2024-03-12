@@ -82,14 +82,6 @@ class Kelas extends BaseController
     }
 
 
-
-
-
-
-
-
-
-
     // RINCIAN KELAS
     public function rincian_kelas($id_kelas)
     {
@@ -140,55 +132,18 @@ class Kelas extends BaseController
 
     //ADD SISWA PERKELAS
 
-    // public function addanggota()
-    // { {
-    //         $student_id = $this->input->post('student_id'); //here i am getting student id from the checkbox
-
-    //         for ($i = 0; $i < sizeof($student_id); $i++) {
-    //             $data = array('student_id' => $student_id[$i]);
-    //             $this->db->insert('added_student', $data);
-    //         }
-
-    //         $this->session->set_flashdata('msg', "Students details has been added successfully");
-    //         $this->session->set_flashdata('msg_class', 'alert-success');
-
-    //         return redirect('students');
-    //     }
-    // }
-    //
-    // public function addanggota($nisn, $id_kelas)
-    // {
-
-    //     $db     = \Config\Database::connect();
-
-    //     $ta = $db->table('tbl_ta')
-    //         ->where('status', '1')
-    //         ->get()->getRowArray();
-    //     $data = [
-    //         'nisn' => $nisn,
-    //         'id_kelas' => $id_kelas,
-    //         // 'status_daftar' => 3,
-    //         'id_ta'        =>  $ta['id_ta'],
-    //     ];
-    //     $this->ModelKelas->add_data($data);
-    //     session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');
-    //     return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
-    // }
-    // //
 
     //HAPUS ANGGOTA KELAS
 
-    public function hapusanggota($id_siswa, $id_kelas)
+    public function hapusanggota($nisn)
     {
         $data = [
-            'id_siswa' => $id_siswa,
-            'id_kelas' => 0,
-            'status_daftar' => 0,
-            'aktif' => 0,
+            'nisn' => $nisn,
+
         ];
-        $this->ModelKelas->add_data($data);
+        $this->ModelKelas->hapus($data);
         session()->setFlashdata('pesan', 'Siswa Berhasil Di Hapus Dari Kelas !!!');
-        return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
+        return redirect()->to(base_url('kelas'));
     }
 
 
@@ -532,8 +487,6 @@ class Kelas extends BaseController
 
         $data = [
             'biodata'     => $this->ModelKelas->halamansiswa($nisn),
-
-
         ];
         $html = view('admin/kelas/biodatasiswa', $data);
         //Atur Gambar

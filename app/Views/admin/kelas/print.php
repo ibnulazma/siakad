@@ -116,7 +116,7 @@
                         <td>4. Jenis Kelamin</td>
                         <td>:</td>
                         <td>
-                            <?php $jk = 'Laki-laki';
+                            <?php $jk = 'L';
                             if ($jk == $value['jenis_kelamin']) { ?>
                                 <?= strtoupper('Laki-laki') ?>
                             <?php } else { ?>
@@ -147,7 +147,7 @@
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;c. Kecamatan</td>
                         <td>:</td>
-                        <td><?= $value['kecamatan'] ?></td>
+                        <td><?= $value['nama_kecamatan'] ?></td>
                     </tr>
                     <tr>
                         <td>7. Diterima di sekolah ini</td>
@@ -168,7 +168,7 @@
                     <tr class="">
                         <td>&nbsp;&nbsp;&nbsp;a. Ayah</td>
                         <td>:</td>
-                        <td><?= $value['nama_ayah'] ?></td>
+                        <td><?= strtoupper($value['nama_ayah']) ?></td>
                     </tr>
                     <tr class="">
                         <td>&nbsp;&nbsp;&nbsp;b. Ibu</td>
@@ -181,7 +181,7 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="border: 1px solid black;text-align:center;" width="17%"> 3x4
-                                <img src="data:image/png;base64, <?= $value['foto'] ?>" width="30px">
+
                             </td>
                             <td width=" 10%">
                             </td>

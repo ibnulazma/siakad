@@ -5,7 +5,7 @@
 
 <div class="card card-danger">
     <div class="card-header">
-        <h5 class="card-title">Nilai P3MP Per Kelas <?= $ta['ta'] ?></h5>
+        <h5 class="card-title">Nilai P3MP Per Kelas <?= $ta['ta'] ?> Semester <?= $ta['semester'] ?></h5>
     </div>
     <div class="card-body">
 
@@ -33,7 +33,6 @@
         </div>
     </div>
 </div>
-
 
 
 

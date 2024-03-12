@@ -79,11 +79,16 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_database')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta')
             ->orderBy('nama_siswa', 'ASC')
             ->where('tbl_kelas.id_kelas', $id_kelas)
             ->where('tbl_ta.status', '1')
+            ->where('tbl_siswa.status_daftar', '3')
             ->get()
             ->getResultArray();
     }
@@ -132,6 +137,7 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_database')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->where('tbl_siswa.status_daftar', '3')
             ->where('id_kelas', $id_kelas)
             // ->where('jenis_kelamin', 'Laki-laki')
             ->countAllResults();
@@ -151,7 +157,7 @@ class ModelKelas extends Model
     public function add_data($data)
     {
 
-        
+
         $this->db->table('tbl_database')
             ->insert($data);
     }
@@ -162,11 +168,11 @@ class ModelKelas extends Model
     //         ->update($data);
     // }
 
-    public function hapusanggota($data)
+    public function hapus($data)
     {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
+        $this->db->table('tbl_database')
+            ->where('nisn', $data['nisn'])
+            ->delete($data);
     }
 
     ////////JADWAL PERKELAS
@@ -182,9 +188,10 @@ class ModelKelas extends Model
             ->getResultArray();
     }
 
-    public function DataPeserta($id_siswa)
+    public function DataPeserta($nisn)
     {
         return $this->db->table('tbl_siswa')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
@@ -193,7 +200,7 @@ class ModelKelas extends Model
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('id_siswa', $id_siswa)
+            ->where('nisn', $nisn)
             ->get()->getRowArray();
     }
 
@@ -227,8 +234,13 @@ class ModelKelas extends Model
 
     public function halamansiswa($nisn)
     {
-        return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
             ->where('tbl_siswa.nisn', $nisn)
             ->get()->getRowArray();
     }

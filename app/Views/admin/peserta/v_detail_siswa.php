@@ -79,7 +79,50 @@
                 </ul>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    Rekam Didik
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Kelas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($rekamdidik as $key => $value) { ?>
+                            <tr>
+                                <td><?= $value['ta'] ?> <?= $value['semester'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">

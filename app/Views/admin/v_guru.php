@@ -73,7 +73,7 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td class="text-center">
 
                                 <?php if ($value['status'] == 0) { ?>
-                                    <span class="btn btn-danger btn-xs ">belum aktif</span>
+                                    <span class="badge badge-danger ">belum aktif</span>
 
                                 <?php } else if ($value['status'] == 1) { ?>
                                     <button data-toggle="modal" data-target="#edit<?= $value['id_guru'] ?>" class="btn btn-danger btn-xs ">verifikasi</button>

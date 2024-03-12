@@ -132,6 +132,17 @@
     }
 </style>
 
+<?php
+$db     = \Config\Database::connect();
+
+$ta = $db->table('tbl_ta')
+    ->where('status', '1')
+    ->get()->getRowArray();
+
+?>
+
+
+
 <body>
 
     <div class="wrapper">
@@ -162,7 +173,7 @@
                 <td class="td2" width="40%"><?= $nilai['nama_siswa'] ?></td>
                 <td class="td2" width="20%">Semester </td>
                 <td class="td2" width="5%">:</td>
-                <td>I (Ganjil)</td>
+                <td><?= $ta['smt'] ?> (<?= $ta['semester'] ?>)</td>
             </tr>
             <tr>
                 <td width="20%">NIS/NISN</td>
@@ -170,7 +181,7 @@
                 <td width="30%"><?= $nilai['nis'] ?>/<?= $nilai['nisn'] ?></td>
                 <td width="20%">Tahun Pelajaran </td>
                 <td width="5%">:</td>
-                <td>2023-2024</td>
+                <td><?= $ta['ta'] ?></td>
             </tr>
             <tr>
                 <td width="20%">Kelas</td>

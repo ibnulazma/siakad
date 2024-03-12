@@ -39,16 +39,17 @@ class Admin extends BaseController
             'subtitle'          => 'Dashboard',
             'menu'              => 'admin',
             'submenu'           => 'admin',
-            'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
-            'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
+            'jumlahaktif'       => $this->ModelPeserta->jumlahAktif(),
+            'jumlahtidakaktif'  => $this->ModelPeserta->jumlahNonAktif(),
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
-            'datatahun'        => $this->ModelTa->group_tahun(),
+            // 'datatahun'        => $this->ModelTa->group_tahun(),
             // 'siswa'            => $this->ModelPeserta->verifikasi(),
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
-            'baru'            => $this->ModelSiswa->jml_baru(),
+            'baru'            => $this->ModelPeserta->jml_baru(),
             'profil' => $this->ModelSetting->Profile(),
+            // 'tahun'  => $this->ModelTa->tahun()
 
 
         ];

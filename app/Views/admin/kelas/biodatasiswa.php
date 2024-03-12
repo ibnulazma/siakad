@@ -115,7 +115,7 @@
                     <td>4. Jenis Kelamin</td>
                     <td>:</td>
                     <td>
-                        <?php $jk = 'Laki-laki';
+                        <?php $jk = 'L';
                         if ($jk == $biodata['jenis_kelamin']) { ?>
                             <?= strtoupper('Laki-laki') ?>
                         <?php } else { ?>
@@ -146,7 +146,7 @@
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;c. Kecamatan</td>
                     <td>:</td>
-                    <td><?= $biodata['kecamatan'] ?></td>
+                    <td><?= $biodata['nama_kecamatan'] ?></td>
                 </tr>
                 <tr>
                     <td>7. Diterima di sekolah ini</td>
