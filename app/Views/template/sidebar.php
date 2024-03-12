@@ -200,6 +200,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= base_url('pendidik/profile') ?>" class="nav-link <?= $menu == 'profile' ? 'active' : '' ?>">
+                        <i class="fas fa-user nav-icon"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= base_url('pendidik/pengajuan') ?>" class="nav-link <?= $menu == 'pengajuan' ? 'active' : '' ?>">
                         <i class="fas fa-envelope nav-icon"></i>
                         <p>

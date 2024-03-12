@@ -9,7 +9,15 @@ class ModelPendidik extends Model
     public function DataGuru()
     {
         return $this->db->table('tbl_guru')
+            ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
             ->where('niy', session()->get('username'))
+            ->get()->getRowArray();
+    }
+
+    public function profile($niy)
+    {
+        return $this->db->table('tbl_guru')
+            ->where('id_guru', $niy)
             ->get()->getRowArray();
     }
 
@@ -27,10 +35,13 @@ class ModelPendidik extends Model
 
     public function walas($id_guru)
     {
-        return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->where('tbl_kelas.id_guru', $id_guru)
+            ->where('tbl_ta.status', '1')
 
             ->get()->getResultArray();
     }
