@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 <div class="row">
     <div class="col-md-3 col-sm-6 col-12">
         <div class="info-box">
@@ -93,9 +89,37 @@ $ta = $db->table('tbl_ta')
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <div width="50%">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rombel</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+
+                        foreach ($grupkelas->getResult() as $row) {
+                            $rombel = $row->kelas;
+                            $jumlah = $row->jumlah;
+
+                        ?>
+                            <tr>
+                                <td><?= $rombel ?> </td>
+                                <td></td>
+                                <td></td>
+                                <td> <strong><?= $jumlah ?></strong> </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <!-- <div width="50%">
                     <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -110,6 +134,7 @@ $ta = $db->table('tbl_ta')
         </div>
 
     </div>
+
 </div>
 
 

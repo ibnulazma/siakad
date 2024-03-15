@@ -88,8 +88,6 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-xs btn-info" href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>"> <i class="fa-solid fa-id-card-clip"></i> </a>
-                                    <a class="btn btn-xs btn-success" href="<?= base_url('peserta/bukuinduk/' .  $value['id_siswa']) ?>"> <i class="fa-solid fa-book"></i> </a>
-                                    <a class="btn btn-xs btn-danger" href="<?= base_url('peserta/print/' .  $value['id_siswa']) ?>"> <i class="fas fa-print"></i> </a>
                                 </td>
                             </tr>
                         <?php } ?>

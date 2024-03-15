@@ -98,6 +98,7 @@
                         <?php foreach ($rekamdidik as $key => $value) { ?>
                             <tr>
                                 <td><?= $value['ta'] ?> <?= $value['semester'] ?></td>
+                                <td><?= $value['kelas'] ?> <?= $value['nama_guru'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -193,6 +194,9 @@
                             <li class="list-group-item">
                                 Penghasilan : <?= $siswa['hasil_ayah'] ?></span>
                             </li>
+                            <li class="list-group-item">
+                                Telp : <?= $siswa['telp_ayah'] ?></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-6">
@@ -214,6 +218,9 @@
                             </li>
                             <li class="list-group-item">
                                 Penghasilan : <?= $siswa['hasil_ibu'] ?></span>
+                            </li>
+                            <li class="list-group-item">
+                                Telp : <?= $siswa['telp_ibu'] ?></span>
                             </li>
                         </ul>
                     </div>
@@ -308,7 +315,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('peserta/edit_identitas/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/edit_identitas/' . $siswa['nisn']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -395,7 +402,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('peserta/update_alamat/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/update_alamat/' . $siswa['nisn']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -499,12 +506,12 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Orng Tua</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Orang Tua</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('peserta/update_orangtua/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/update_orangtua/' . $siswa['nisn']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">

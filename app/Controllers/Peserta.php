@@ -432,11 +432,11 @@ class Peserta extends BaseController
         return redirect()->to('peserta/detail_siswa/' . $id_siswa);
     }
 
-    public function update_alamat($id_siswa)
+    public function update_alamat($nisn)
     {
 
         $data = [
-            'id_siswa'          => $id_siswa,
+            'id_siswa'          => $nisn,
             'no_kip'            => $this->request->getPost('no_kip'),
             'kip'               => $this->request->getPost('kip'),
             'anak_ke'           => $this->request->getPost('anak_ke'),
@@ -451,13 +451,13 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $nisn);
     }
 
-    public function update_orangtua($id_siswa)
+    public function update_orangtua($nisn)
     {
         $data = [
-            'id_siswa'          => $id_siswa,
+            'nisn'          => $nisn,
             'nama_ayah'         => $this->request->getPost('nama_ayah'),
             'nik_ayah'          => $this->request->getPost('nik_ayah'),
             'tahun_ayah'        => $this->request->getPost('tahun_ayah'),
@@ -475,7 +475,7 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $nisn);
     }
 
     public function dataKabupaten($id_provinsi)

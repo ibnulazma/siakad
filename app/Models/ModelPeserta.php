@@ -56,7 +56,7 @@ class ModelPeserta extends Model
     public function edit($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
+            ->where('nisn', $data['nisn'])
             ->update($data);
     }
 
@@ -133,7 +133,8 @@ class ModelPeserta extends Model
         return $this->db->table('tbl_database')
             // ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
-            // // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->where('tbl_database.nisn', $nisn)
             // ->where('status', '1')
             ->get()->getResultArray();
