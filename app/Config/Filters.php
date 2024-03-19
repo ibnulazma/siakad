@@ -57,6 +57,8 @@ class Filters extends BaseConfig
 
                 ]
             ],
+
+            // 'csrf',
             // 'filterpendidik' =>
             // [
             //     'except' => [
@@ -82,7 +84,8 @@ class Filters extends BaseConfig
                     'surat', 'surat/*',
                     'setting', 'setting/*',
                     'ppdb', 'ppdb/*',
-                    'nilai', 'nilai/*'
+                    'nilai', 'nilai/*',
+                    'datatables', 'datatables/*'
                 ]
             ],
             'filterpeserta' =>

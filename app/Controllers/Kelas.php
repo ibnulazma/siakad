@@ -391,7 +391,7 @@ class Kelas extends BaseController
                     continue;
                 }
 
-
+$id_nilai
                 $nisn           = $row[2];
                 $pai            = $row[3];
                 $pkn            = $row[4];
@@ -412,12 +412,13 @@ class Kelas extends BaseController
 
                 $db = \Config\Database::connect();
 
-                $ceknonis = $db->table('tbl_nilai')->getWhere(['nisn' => $nisn])->getResult();
+                $ceknonis = $db->table('tbl_nilai')->getWhere(['id_nilai' => $id_nilai])->getResult();
 
                 if (count($ceknonis) > 0) {
                     $jumlaherror++;
                 } else {
                     $datasimpan = [
+                        'id_nilai' => $id_nilai,
                         'nisn'      => $nisn,
                         'pai'       => $pai,
                         'pkn '      => $pkn,

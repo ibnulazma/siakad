@@ -12,6 +12,7 @@ use App\Models\ModelTransportasi;
 use App\Models\ModelPenghasilan;
 use App\Models\ModelPekerjaan;
 use App\Models\ModelPendidikan;
+use App\Models\MPeserta;
 use \Dompdf\Dompdf;
 
 class Peserta extends BaseController
@@ -150,6 +151,35 @@ class Peserta extends BaseController
         ];
         return view('admin/peserta/v_detail_siswa', $data);
     }
+
+    public function data_siswa()
+    {
+        $model = new MPeserta();
+        $listing = $model->get_datasiswa();
+
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($listing as $key) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $key->nama_lengkap;
+            $row[] = $key->id_tingkat;
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "data"  => $data
+        );
+        echo json_encode($output);
+    }
+
+
+
+
+
+
 
     public function siswa_edit($id_siswa)
     {

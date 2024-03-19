@@ -41,10 +41,10 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="example2">
+                <table class="table table-bordered" id="peserta">
                     <thead>
                         <tr class="text-center">
-                            <th>#</th>
+                            <th><input type="checkbox"></th>
                             <th>NIS</th>
                             <th>NISN</th>
                             <th>Nama Siswa</th>
@@ -66,7 +66,7 @@
                                         if ($hasil == $value['kerja_ayah']) { ?>
                         echo bg-lightblue
                         <?php } ?>" data-widget="expandable-table" aria-expanded="false">
-                                <td><?= $no++ ?></td>
+                                <td><input type="checkbox"></td>
                                 <td class="text-center"><?= $value["nis"] ?></td>
                                 <td class="text-center"><?= $value["nisn"] ?></td>
                                 <td><?= $value["nama_siswa"] ?></td>

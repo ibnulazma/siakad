@@ -149,8 +149,34 @@
             "autoWidth": true,
             "responsive": true,
         });
+        $('#tbl_peserta').DataTable({
+            // "order": [],
+            "processing": true,
+            "serverSide": true,
+            "searching": true,
+            "ordering": true,
+            "ajax": {
+                "url": "<?= base_url('Datatables/data_siswa'); ?>",
+                "type": "POST",
+                // "data": {
+                //     "csrf_test_name": $('.input[name=csrf_test_name]').val()
+                // },
+                // "data": function(data) {
+                //     data.jenis_kelamin = $('#Jk').val();
+                //     // data.csrf_test_name = $('.input[name=csrf_test_name]').val();
+                // }
+            },
+            "columnDefs": [{
+                "targets": [0],
+                "orderable": false
+            }]
+        });
+        // $('#Jk').change(function() {
+        //     table.draw();
+        // });
     });
 </script>
+
 <script>
     $(function() {
         //Initialize Select2 Elements

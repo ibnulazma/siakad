@@ -3,6 +3,15 @@
 
 
 
+<?php
+$db     = \Config\Database::connect();
+
+
+$ta = $db->table('tbl_ta')
+    ->where('status', '1')
+    ->get()->getRowArray();
+
+?>
 
 
 <?php if ($siswa['status_daftar'] == 1) { ?>
@@ -13,98 +22,62 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
+
+                <div class="text-center">
+                    <h5>Nilai P3MP</h5>
+                </div>
+
                 <table class="table table-bordered">
-                    <tr>
-                        <th>No</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Nilai</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Pendidikan Agama Islam</td>
-                        <td><?= $nilai['pai'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Pendidikan Kewarganegaraan</td>
-                        <td><?= $nilai['pkn'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Bahasa Indonesia</td>
-                        <td><?= $nilai['indo'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Matematika</td>
-                        <td><?= $nilai['mtk'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Ilmu Pengetahuan Alam</td>
-                        <td><?= $nilai['ipa'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Ilmu Pengetahuan Sosial</td>
-                        <td><?= $nilai['pkn'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Bahasa Inggris</td>
-                        <td><?= $nilai['inggris'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Seni Budaya dan Kesenian</td>
-                        <td><?= $nilai['sbk'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Prakarya</td>
-                        <td><?= $nilai['prky'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
-                        <td><?= $nilai['pjok'] ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><b>Kurikulum Mulok</b></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Teknologi Informatika dan Komputer</td>
-                        <td><?= $nilai['tik'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Baca Tulis Alquran</td>
-                        <td><?= $nilai['btq'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tajwid</td>
-                        <td><?= $nilai['tjwd'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Terjemah</td>
-                        <td><?= $nilai['trjmh'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Fiqih</td>
-                        <td><?= $nilai['fiqih'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Muhadhoroh</td>
-                        <td><?= $nilai['mhd'] ?></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Tahun Pelajaran</th>
+                            <th>PAI</th>
+                            <th>PKN</th>
+                            <th>B.Indo</th>
+                            <th>MTK</th>
+                            <th>IPA</th>
+                            <th>IPS</th>
+                            <th>B.Inggris</th>
+                            <th>SBK</th>
+                            <th>PJOK</th>
+                            <th>PRKY</th>
+                            <th>TIK</th>
+                            <th>MHD</th>
+                            <th>FIQIH</th>
+                            <th>TJWD</th>
+                            <th>TRJMH</th>
+                            <th>BTQ</th>
+                        </tr>
+                    <tbody>
+                        <?php foreach ($nilai as $key => $data) { ?>
+
+                            <tr>
+                                <td class="text-center"><?= $data['ta'] ?>/<?= $data['semester'] ?></td>
+                                <td><?= $data['pai'] ?></td>
+                                <td><?= $data['pkn'] ?></td>
+                                <td><?= $data['indo'] ?></td>
+                                <td><?= $data['mtk'] ?></td>
+                                <td><?= $data['ipa'] ?></td>
+                                <td><?= $data['ips'] ?></td>
+                                <td><?= $data['inggris'] ?></td>
+                                <td><?= $data['sbk'] ?></td>
+                                <td><?= $data['pjok'] ?></td>
+                                <td><?= $data['prky'] ?></td>
+                                <td><?= $data['tik'] ?></td>
+                                <td><?= $data['mhd'] ?></td>
+                                <td><?= $data['fiqih'] ?></td>
+                                <td><?= $data['tjwd'] ?></td>
+                                <td><?= $data['trjmh'] ?></td>
+                                <td><?= $data['btq'] ?></td>
+                            </tr>
+
+                        <?php } ?>
+                    </tbody>
+                    </thead>
 
 
                 </table>
+
             </div>
         </div>
     </div>

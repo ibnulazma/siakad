@@ -71,7 +71,7 @@ class Siswa extends BaseController
     {
         session();
 
-        // $siswa = $this->ModelSiswa->DataSiswa();
+        $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',
             'subtitle'  => ' Data Peserta Didik',
@@ -85,6 +85,7 @@ class Siswa extends BaseController
             'didik'     => $this->ModelPendidikan->AllData(),
             'hasil'     => $this->ModelPenghasilan->AllData(),
             'validation'    =>  \Config\Services::validation(),
+            'datadidik' => $this->ModelSiswa->rekamdidik($siswa['nisn']),
         ];
         return view('siswa/v_profile', $data);
     }
@@ -1152,7 +1153,7 @@ class Siswa extends BaseController
             'menu'          =>  'nilai',
             'submenu'       =>  'nilai',
             'siswa'         => $siswa,
-            'nilai'         => $this->ModelSiswa->DaftaNilai($siswa['nisn']),
+            'nilai'         => $this->ModelSiswa->Daftarnilai($siswa['nisn']),
         ];
         return view('siswa/v_nilai', $data);
     }

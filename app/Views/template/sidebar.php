@@ -78,6 +78,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url('datatables') ?>" class="nav-link <?= $submenu == 'data' ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>DataTable</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url('guru') ?>" class="nav-link <?= $submenu == 'guru' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>PTK</p>

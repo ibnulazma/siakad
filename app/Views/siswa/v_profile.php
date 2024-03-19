@@ -76,13 +76,32 @@
                     <li class="list-group-item">
                         <span>NIS : <?= $siswa['nis'] ?> </span>
                     </li>
-                    <li class="list-group-item">
-                        <span>Kelas : <?= $siswa['kelas'] ?> </span>
-                    </li>
-                    <li class="list-group-item">
-                        <span>Wali Kelas : <?= $siswa['nama_guru'] ?> </span>
-                    </li>
                 </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    Rekam Didik
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Kelas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($datadidik as $key => $value) { ?>
+                            <tr>
+                                <td><?= $value['ta'] ?> <?= $value['semester'] ?></td>
+                                <td><?= $value['kelas'] ?> <?= $value['nama_guru'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -227,6 +246,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

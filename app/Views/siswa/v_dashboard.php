@@ -15,9 +15,7 @@ $ta = $db->table('tbl_ta')
     ->where('status', '1')
     ->get()->getRowArray();
 
-$tahun = $db->table('tbl_ta')
 
-    ->get()->getRowArray();
 ?>
 
 <div class="row">
@@ -58,7 +56,7 @@ $tahun = $db->table('tbl_ta')
             </div>
             <div class="card-body">
                 <p> Selamat Datang <strong><?= $siswa['nama_siswa'] ?></strong> di Sistem Informasi Akademik SMP INSAN KAMIL <br></p>
-                <h5>TAHUN PELAJARAN AKTIF : Semester <?= $siswa['semester'] ?> <?= $siswa['ta'] ?></h5>
+                <h5>TAHUN PELAJARAN AKTIF : Semester <?= $ta['semester'] ?> <?= $ta['ta'] ?></h5>
             </div>
             <div class="card-footer">
                 <?php if ($siswa['status_daftar'] == 0) { ?>
