@@ -73,10 +73,10 @@
                                 <td><?= $value['jenis_kelamin'] ?></td>
                                 <td>
                                     <div class="text-center">
-                                        <a href="<?= base_url('kelas/bukuinduk/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm btn-info "><i class=" fas fa-book"></i></a>
+                                        <a href="<?= base_url('kelas/bukuinduk/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-info "><i class=" fas fa-book"></i></a>
                                         <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="fa-solid fa-file"></i> </a>
                                         <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm bg-black "><i class="fa-solid fa-address-card"></i> </a>
-                                        <a href="<?= base_url('kelas/labelsiswa/' .  $value['id_siswa']) ?>" target="_blank" class="btn btn-sm bg-pink "><i class="fa-solid fa-tag"></i> </a>
+                                        <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm bg-pink "><i class="fa-solid fa-tag"></i> </a>
                                         <a href="<?= base_url('kelas/hapusanggota/' . $value['nisn']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
@@ -155,7 +155,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open_multipart('kelas/upload/' . $kelas['id_kelas']) ?>
+            <?= form_open_multipart('kelas/upload/') ?>
             <div class="modal-body">
                 <input type="file" class="form-control" name="fileimport">
             </div>

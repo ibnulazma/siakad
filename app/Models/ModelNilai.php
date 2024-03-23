@@ -65,4 +65,19 @@ class ModelNilai extends Model
             ->where('tbl_ta.status', '1')
             ->get()->getRowArray();
     }
+
+
+
+    public function cekdata($nisn)
+    {
+        return $this->db->table('tbl_nisn')
+            ->where('nisn', $nisn)
+            ->get()->getRowArray();
+    }
+
+    public function addnilai($data)
+    {
+        $this->db->table('tbl_nisn')
+            ->insert($data);
+    }
 }

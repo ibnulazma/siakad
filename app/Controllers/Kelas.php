@@ -13,6 +13,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // use \Dompdf\Options;
 
+use PHPExcel;
+use PHPExcel_IOFactory;
+
 // use TCPDF;
 
 
@@ -342,112 +345,206 @@ class Kelas extends BaseController
 
 
 
-    public function upload($id_kelas)
+
+    // public function upload()
+    // {
+    //     $file = $this->request->getFile('fileimport');
+
+    //     new PHPExcel;
+    //     $filelocation = $file->getTempName();
+    //     $objPHPExcel = PHPExcel_IOFactory::load($filelocation);
+
+    //     $sheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+    //     foreach ($sheet as $key => $data) {
+    //         if ($key == 1) {
+    //             continue;
+    //         }
+
+    //         $nisn = $this->ModelNilai->cekdata($data['B']);
+
+    //         if ($data['B'] == $nisn['nisn']) {
+    //             continue;
+    //         }
+    //         $data = array(
+    //             'nisn' =>   $data['B'],
+    //             'pai' => $data['C'],
+    //             'pkn' => $data['D'],
+    //             'indo' => $data['E'],
+    //         );
+
+    //         $this->ModelNilai->addnilai($data);
+    //     }
+
+    //     return redirect()->to(base_url('kelas'));
+    // }
+
+
+
+    public function upload()
     {
 
         $db     = \Config\Database::connect();
+
         $ta = $db->table('tbl_ta')
             ->where('status', '1')
             ->get()->getRowArray();
 
-        $validation = \Config\Services::validation();
-        $valid = $this->validate(
-            [
-                'fileimport' => [
-                    'label' => 'Input File',
-                    'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
-                    'error' => [
-                        'uploaded' => '{field} wajib diisi',
-                        'ext_in' => '{field} harus ekstensi xls atau xlsx'
-                    ]
-                ]
-            ]
-        );
-
-        if (!$valid) {
-
-
-            $this->session->setFlashdata('pesan', $validation->getError('fileimport'));
-            return redirect()->to('nilai');
+        $file_excel = $this->request->getFile('fileimport');
+        $ext = $file_excel->getClientExtension();
+        if ($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
         } else {
-
-            $file = $this->request->getFile('fileimport');
-            $ext = $file->getClientExtension();
-
-            if ($ext == 'xls') {
-                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-
-            $spreadsheet = $render->load($file);
-            $data = $spreadsheet->getActiveSheet()->toArray();
-
-
-            $jumlaherror = 0;
-            $jumlahsukses = 0;
-            foreach ($data as $x => $row) {
-                if ($x == 0) {
-                    continue;
-                }
-
-$id_nilai
-                $nisn           = $row[2];
-                $pai            = $row[3];
-                $pkn            = $row[4];
-                $indo           = $row[5];
-                $mtk            = $row[6];
-                $ipa            = $row[7];
-                $ips            = $row[8];
-                $inggris        = $row[9];
-                $sbk            = $row[10];
-                $pjok           = $row[11];
-                $prky           = $row[12];
-                $tik            = $row[13];
-                $mhd            = $row[14];
-                $tjwd           = $row[15];
-                $trjmh          = $row[16];
-                $fiqih          = $row[17];
-                $btq            = $row[18];
-
-                $db = \Config\Database::connect();
-
-                $ceknonis = $db->table('tbl_nilai')->getWhere(['id_nilai' => $id_nilai])->getResult();
-
-                if (count($ceknonis) > 0) {
-                    $jumlaherror++;
-                } else {
-                    $datasimpan = [
-                        'id_nilai' => $id_nilai,
-                        'nisn'      => $nisn,
-                        'pai'       => $pai,
-                        'pkn '      => $pkn,
-                        'indo'      => $indo,
-                        'mtk'       => $mtk,
-                        'ipa'       => $ipa,
-                        'ips'       => $ips,
-                        'inggris'   => $inggris,
-                        'sbk'       => $sbk,
-                        'pjok'      => $pjok,
-                        'prky'      => $prky,
-                        'tik'       => $tik,
-                        'mhd '      => $mhd,
-                        'tjwd'      => $tjwd,
-                        'trjmh '    => $trjmh,
-                        'fiqih '    => $fiqih,
-                        'btq '      => $btq,
-                        'id_ta'     => $ta['id_ta'],
-
-                    ];
-
-                    $db->table('tbl_nilai')->insert($datasimpan);
-                    $jumlahsukses++;
-                }
-            }
-            $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
-            return redirect()->to('kelas/rincian_kelas/' . $id_kelas);
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         }
+        $spreadsheet = $render->load($file_excel);
+
+        $data = $spreadsheet->getActiveSheet()->toArray();
+        foreach ($data as $x => $row) {
+            if ($x == 0) {
+                continue;
+            }
+
+
+            $nisn           = $row[1];
+            $pai            = $row[2];
+            $pkn            = $row[3];
+            $indo           = $row[4];
+
+            $db = \Config\Database::connect();
+
+            $cekNis = $db->table('tbl_nilai')->get()->getResult();
+
+            if (count($cekNis) > 0) {
+                session()->setFlashdata('message', '<b style="color:red">Data Gagal di Import NIS ada yang sama</b>');
+            } else {
+
+                $simpandata = [
+
+                    'nisn' => $nisn,
+                    'pai' => $pai,
+                    'pkn' => $pkn,
+                    'indo' => $indo,
+                    'id_ta' => $ta['id_ta']
+                ];
+
+                $db->table('tbl_nilai')->insert($simpandata);
+                session()->setFlashdata('message', 'Berhasil import excel');
+            }
+        }
+
+        return redirect()->to('/kelas');
     }
+
+
+
+
+
+
+    // public function upload($id_kelas)
+    // {
+
+    //     $db     = \Config\Database::connect();
+    //     $ta = $db->table('tbl_ta')
+    //         ->where('status', '1')
+    //         ->get()->getRowArray();
+
+    //     $validation = \Config\Services::validation();
+    //     $valid = $this->validate(
+    //         [
+    //             'fileimport' => [
+    //                 'label' => 'Input File',
+    //                 'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
+    //                 'error' => [
+    //                     'uploaded' => '{field} wajib diisi',
+    //                     'ext_in' => '{field} harus ekstensi xls atau xlsx'
+    //                 ]
+    //             ]
+    //         ]
+    //     );
+
+    //     if (!$valid) {
+
+
+    //         $this->session->setFlashdata('pesan', $validation->getError('fileimport'));
+    //         return redirect()->to('nilai');
+    //     } else {
+
+    //         $file = $this->request->getFile('fileimport');
+    //         $ext = $file->getClientExtension();
+
+    //         if ($ext == 'xls') {
+    //             $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    //         } else {
+    //             $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    //         }
+
+    //         $spreadsheet = $render->load($file);
+    //         $data = $spreadsheet->getActiveSheet()->toArray();
+
+
+    //         $jumlaherror = 0;
+    //         $jumlahsukses = 0;
+    //         foreach ($data as $x => $row) {
+    //             if ($x == 0) {
+    //                 continue;
+    //             }
+
+
+    //             $nisn           = $row[2];
+    //             $pai            = $row[3];
+    //             $pkn            = $row[4];
+    //             $indo           = $row[5];
+    //             $mtk            = $row[6];
+    //             $ipa            = $row[7];
+    //             $ips            = $row[8];
+    //             $inggris        = $row[9];
+    //             $sbk            = $row[10];
+    //             $pjok           = $row[11];
+    //             $prky           = $row[12];
+    //             $tik            = $row[13];
+    //             $mhd            = $row[14];
+    //             $tjwd           = $row[15];
+    //             $trjmh          = $row[16];
+    //             $fiqih          = $row[17];
+    //             $btq            = $row[18];
+
+    //             $db = \Config\Database::connect();
+
+    //             $ceknonis = $db->table('tbl_nilai')->getWhere(['id_ta' => $id_ta])->getResult();
+
+    //             if (count($ceknonis) > 0) {
+    //                 $jumlaherror++;
+    //             } else {
+    //                 $datasimpan = [
+    //                     'nisn'      => $nisn,
+    //                     'pai'       => $pai,
+    //                     'pkn '      => $pkn,
+    //                     'indo'      => $indo,
+    //                     'mtk'       => $mtk,
+    //                     'ipa'       => $ipa,
+    //                     'ips'       => $ips,
+    //                     'inggris'   => $inggris,
+    //                     'sbk'       => $sbk,
+    //                     'pjok'      => $pjok,
+    //                     'prky'      => $prky,
+    //                     'tik'       => $tik,
+    //                     'mhd '      => $mhd,
+    //                     'tjwd'      => $tjwd,
+    //                     'trjmh '    => $trjmh,
+    //                     'fiqih '    => $fiqih,
+    //                     'btq '      => $btq,
+    //                     'id_ta'     => $ta['id_ta'],
+
+    //                 ];
+
+    //                 $db->table('tbl_nilai')->insert($datasimpan);
+    //                 $jumlahsukses++;
+    //             }
+    //         }
+    //         $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
+    //         return redirect()->to('kelas/rincian_kelas/' . $id_kelas);
+    //     }
+    // }
 
     public function halamansiswa($nisn)
     {
