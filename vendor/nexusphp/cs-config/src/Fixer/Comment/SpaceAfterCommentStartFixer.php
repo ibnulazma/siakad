@@ -18,6 +18,7 @@ use PhpCsFixer\Fixer\DeprecatedFixerInterface;
 use PhpCsFixer\FixerDefinition\CodeSample;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
+use PhpCsFixer\Preg;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 
@@ -28,6 +29,9 @@ use PhpCsFixer\Tokenizer\Tokens;
  */
 final class SpaceAfterCommentStartFixer extends AbstractCustomFixer implements DeprecatedFixerInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
@@ -39,11 +43,17 @@ final class SpaceAfterCommentStartFixer extends AbstractCustomFixer implements D
         );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getSuccessorsNames(): array
     {
         return ['single_line_comment_spacing'];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_COMMENT);
@@ -59,6 +69,9 @@ final class SpaceAfterCommentStartFixer extends AbstractCustomFixer implements D
         return 3;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
     {
         for ($index = 1, $count = $tokens->count(); $index < $count; ++$index) {
@@ -79,13 +92,13 @@ final class SpaceAfterCommentStartFixer extends AbstractCustomFixer implements D
                 continue;
             }
 
-            preg_match('/^\/\/(\s*)(.+)/', $comment, $matches);
+            Preg::match('/^\/\/(\s*)(.+)/', $comment, $matches);
 
             if (' ' === $matches[1]) {
                 continue;
             }
 
-            if (preg_match('/\-+/', $matches[2]) === 1 || preg_match('/\=+/', $matches[2]) === 1) {
+            if (Preg::match('/\-+/', $matches[2]) === 1 || Preg::match('/\=+/', $matches[2]) === 1) {
                 continue;
             }
 
