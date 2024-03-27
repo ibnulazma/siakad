@@ -14,17 +14,21 @@ declare(strict_types=1);
 use Nexus\CsConfig\Factory;
 use Nexus\CsConfig\Fixer\Comment\NoCodeSeparatorCommentFixer;
 use Nexus\CsConfig\FixerGenerator;
-use Nexus\CsConfig\Ruleset\Nexus74;
+use Nexus\CsConfig\Ruleset\Nexus81;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->files()
-    ->in(__DIR__)
-    ->exclude(['build'])
+    ->in([
+        __DIR__.'/src',
+        __DIR__.'/tests',
+    ])
     ->append([__FILE__])
 ;
 
-$overrides = [];
+$overrides = [
+    'final_public_method_for_abstract_class' => false,
+];
 $options = [
     'finder' => $finder,
     'cacheFile' => 'build/.php-cs-fixer.cache',
@@ -34,4 +38,9 @@ $options = [
     ],
 ];
 
-return Factory::create(new Nexus74(), $overrides, $options)->forLibrary('Nexus CS Config', 'John Paul E. Balandan, CPA', 'paulbalandan@gmail.com', 2020);
+return Factory::create(new Nexus81(), $overrides, $options)->forLibrary(
+    'Nexus CS Config',
+    'John Paul E. Balandan, CPA',
+    'paulbalandan@gmail.com',
+    2020,
+);

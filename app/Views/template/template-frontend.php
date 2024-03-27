@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-dark navbar-primary">
+        <nav class="main-header navbar navbar-expand-md navbar-primary navbar-dark">
             <div class="container">
                 <a href="<?= base_url('ta') ?>" class="navbar-brand">
                     <span class="brand-text " style="font-weight: bold;">SIAKAD INKA</span>

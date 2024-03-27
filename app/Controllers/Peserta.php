@@ -118,7 +118,8 @@ class Peserta extends BaseController
                 'nisn'              => $this->request->getPost('nisn'),
                 'password'          => $this->request->getPost('password'),
                 'id_tingkat'        =>  $this->request->getPost('id_tingkat'),
-                'id_ta'        =>  $ta['id_ta'],
+                'status_daftar'     =>  1,
+                'aktif'             =>  1,
 
             );
             $this->ModelPeserta->add($data);

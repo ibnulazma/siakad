@@ -95,7 +95,7 @@
 <script src="<?= base_url() ?>/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 
-<!-- <script>
+<script>
     const swal = $('.swal').data('swal');
     if (swal) {
         Swal.fire({
@@ -123,7 +123,7 @@
             }
         })
     })
-</script> -->
+</script>
 
 
 

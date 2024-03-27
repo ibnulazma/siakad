@@ -679,7 +679,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('peserta/update_alamat/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/update_alamat/' . $siswa['nisn']) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">

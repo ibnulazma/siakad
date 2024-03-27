@@ -1,50 +1,6 @@
 <?= $this->extend('template/template-backend') ?>
 <?= $this->section('content') ?>
 
-
-
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-danger"><i class="fas fa-user-graduate"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Peserta Didik</span>
-                <span class="info-box-number"><?= $jumlahaktif ?> Orang</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-warning"><i class="fas fa-user-tie"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">PTK</span>
-                <span class="info-box-number"><?= $jumlahptk ?></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-success"><i class="fas fa-school"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Rombel</span>
-                <span class="info-box-number"><?= $jumlahkelas ?></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 col-sm-6 col-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">Messages</span>
-                <span class="info-box-number">1,410</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 <?php
 
 $db     = \Config\Database::connect();
@@ -54,28 +10,57 @@ $ta = $db->table('tbl_ta')
     ->get()->getRowArray();
 
 ?>
-<div class="row">
-    <div class="col-md-6">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h5 class="card-title">
-                    Selamat Datang
-                </h5>
-            </div>
-            <div class="card-body">
-                <h3>Tahun Pelajaran <b>Aktif</b></h3>
-                <h4><?= $ta['ta'] ?> Semester <b> <?= $ta['semester'] ?></b></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
+
+<div class="content-header">
+    <div class="container-fluid mt-4">
         <div class="card">
             <div class="card-body">
-                <div class="text-center">
-                    <img src="<?= base_url() ?>/foto/logo.png" alt="" width="90px">
-                    <p><b>SMP INSAN KAMIL</b></p>
-                    <p>Jalan Raya Legok-Karawaci No 89 Rt 07 Rw 02 Legok</p>
-                    <p></p>
+                <h1>Selamat datang di dashboard SIAKAD INSAN KAMIL !</h1>
+                <p class="text-muted">Tahun Pelajaran <b>Aktif</b> <?= $ta['ta'] ?> Semester <b> <?= $ta['semester'] ?></b></p>
+                <br>
+                <br>
+
+
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?= $jumlahaktif ?></h3>
+                                <p>Peserta Didik</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-primary">
+                            <div class="inner">
+                                <h3><?= $jumlahptk ?></h3>
+                                <p>Guru dan TU</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-6">
+                        <div class="small-box bg-pink">
+                            <div class="inner">
+                                <h3><?= $jumlahkelas ?></h3>
+                                <p>Rombel</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-building-columns"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+
 
                 </div>
             </div>
@@ -83,61 +68,6 @@ $ta = $db->table('tbl_ta')
     </div>
 
 </div>
-
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Rombel</th>
-                            <th>L</th>
-                            <th>P</th>
-                            <th>Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-
-                        foreach ($grupkelas->getResult() as $row) {
-                            $rombel = $row->kelas;
-                            $jumlah = $row->jumlah;
-
-                        ?>
-                            <tr>
-                                <td><?= $rombel ?> </td>
-                                <td></td>
-                                <td></td>
-                                <td> <strong><?= $jumlah ?></strong> </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <!-- <div width="50%">
-                    <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div> -->
-            </div>
-        </div>
-
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div width="50%">
-                    <canvas id="dognut" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
 
 
 
