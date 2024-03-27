@@ -72,12 +72,12 @@ if (!empty($session->getFlashdata('sukses'))) {
                             <td><?= $value["nama_guru"] ?></td>
                             <td class="text-center">
 
-                                <?php if ($value['status_daftar'] == 0) { ?>
-                                    <span class="btn btn-danger btn-xs ">belum aktif</span>
+                                <?php if ($value['status'] == 0) { ?>
+                                    <span class="badge badge-danger ">belum aktif</span>
 
-                                <?php } else if ($value['status_daftar'] == 1) { ?>
+                                <?php } else if ($value['status'] == 1) { ?>
                                     <button data-toggle="modal" data-target="#edit<?= $value['id_guru'] ?>" class="btn btn-danger btn-xs ">verifikasi</button>
-                                <?php } else if ($value['status_daftar'] == 2) { ?>
+                                <?php } else if ($value['status'] == 2) { ?>
                                     <a href="" class="btn btn-danger btn-xs ">aktif</a>
                                 <?php } ?>
                             </td>
@@ -121,6 +121,14 @@ if (!empty($session->getFlashdata('sukses'))) {
                     <label for="">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
+                <div class="form-group">
+                    <label for="">Wali Kelas</label>
+                    <select name="walas" id="" class="form-control">
+                        <option value="">-Walas Atau Tidak-</option>
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary pull-left">Simpan</button>
@@ -150,10 +158,15 @@ if (!empty($session->getFlashdata('sukses'))) {
                         <input type="text" class="form-control" name="nama_guru" value="<?= $value['nama_guru'] ?>">
                     </div>
                     <div class="form-group">
-                        <label for="">NUPTK</label>
-                        <input type="text" class="form-control" name="password">
+                        <label for="">Wali Kelas</label>
+                        <select name="walas" id="" class="form-control">
+                            <option value="">-Walas Atau Tidak-</option>
+                            <option value="1">Ya</option>
+                            <option value="0">Tidak</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-danger">Simpan</button>

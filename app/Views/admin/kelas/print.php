@@ -82,10 +82,15 @@
     }
 </style>
 
+
+
 <body>
+    <?php
 
-    <?php foreach ($datasiswa as $key => $value) { ?>
 
+    foreach ($datasiswa as $key => $value) { ?>
+
+        <!-- <img src="data:image/png;base64, '.base64_encode(file_get_contents($image_path)).'" alt="" srcset=""> -->
         <div class="content">
             <div class="container">
                 <h5 class="judul text-center"> KETERANGAN TENTANG DIRI PESERTA DIDIK</h5>
@@ -111,7 +116,7 @@
                         <td>4. Jenis Kelamin</td>
                         <td>:</td>
                         <td>
-                            <?php $jk = 'Laki-laki';
+                            <?php $jk = 'L';
                             if ($jk == $value['jenis_kelamin']) { ?>
                                 <?= strtoupper('Laki-laki') ?>
                             <?php } else { ?>
@@ -142,7 +147,7 @@
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;c. Kecamatan</td>
                         <td>:</td>
-                        <td><?= $value['kecamatan'] ?></td>
+                        <td><?= $value['nama_kecamatan'] ?></td>
                     </tr>
                     <tr>
                         <td>7. Diterima di sekolah ini</td>
@@ -163,7 +168,7 @@
                     <tr class="">
                         <td>&nbsp;&nbsp;&nbsp;a. Ayah</td>
                         <td>:</td>
-                        <td><?= $value['nama_ayah'] ?></td>
+                        <td><?= strtoupper($value['nama_ayah']) ?></td>
                     </tr>
                     <tr class="">
                         <td>&nbsp;&nbsp;&nbsp;b. Ibu</td>
@@ -176,8 +181,10 @@
                     <table style="width: 100%;">
                         <tr>
                             <td style="border: 1px solid black;text-align:center;" width="17%"> 3x4
+
                             </td>
-                            <td width="10%"></td>
+                            <td width=" 10%">
+                            </td>
                             <td>
                                 Tangerang, 17 Juli 2023<br>
                                 Kepala Sekolah <br><br><br><br><br><br>
@@ -185,14 +192,10 @@
                             </td>
                         </tr>
                         <tr>
-
                         </tr>
-
-
                     </table>
                 </div>
             </div>
-
         </div>
     <?php } ?>
 </body>

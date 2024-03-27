@@ -4,6 +4,53 @@ All notable changes to this library will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.7.15](https://github.com/CodeIgniter/coding-standard/compare/v1.7.14...v1.7.15) - 2024-03-24
+
+- Remove deprecated option of `nullable_type_declaration_for_default_null_value`
+
+## [v1.7.14](https://github.com/CodeIgniter/coding-standard/compare/v1.7.13...v1.7.14) - 2024-02-25
+
+- Bump php-cs-fixer to v3.49
+- Enable `string_implicit_backslashes` fixer
+- Add/remove property-read and property-write
+- Enable `phpdoc_list_type`
+- Bump to php-cs-fixer v3.50
+- Enable `allow_hidden_params` option
+- also align `@phpstan-type` and `@phpstan-var`
+- Enable `phpdoc_array_type`
+
+## [v1.7.13](https://github.com/CodeIgniter/coding-standard/compare/v1.7.12...v1.7.13) - 2024-01-27
+
+- Update GHA workflows
+- Bump to php-cs-fixer v3.47
+- Disable all new rules in v3.47
+- Apply new options to `phpdoc_align` fixer
+- Bump actions/cache from 3 to 4 (#17)
+
+## [v1.7.12](https://github.com/CodeIgniter/coding-standard/compare/v1.7.11...v1.7.12) - 2023-12-29
+
+- Bump php-cs-fixer to v3.43
+- Enable other options of `fully_qualified_strict_types`
+- Disable `class_keyword`
+- Disable option for `statement_indentation`
+- Use default for option of `unary_operator_spaces`
+
+## [v1.7.11](https://github.com/CodeIgniter/coding-standard/compare/v1.7.10...v1.7.11) - 2023-10-13
+
+- Bump to php-cs-fixer v3.35
+
+## [v1.7.10](https://github.com/CodeIgniter/coding-standard/compare/v1.7.9...v1.7.10) - 2023-10-01
+
+- Bump to php-cs-fixer v3.34
+- Bump to php-cs-fixer v3.30
+- Fix tag name in release
+
+## [v1.7.9](https://github.com/CodeIgniter/coding-standard/compare/v1.7.8...v1.7.9) - 2023-09-18
+
+- Update release.yml
+- Add `long_to_shorthand_operator` (#13)
+- Bump actions/checkout from 3 to 4 (#12)
+
 ## [v1.7.8](https://github.com/CodeIgniter/coding-standard/compare/v1.7.7...v1.7.8) - 2023-08-30
 
 - Add `case_sensitive` option to order fixers

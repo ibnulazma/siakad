@@ -19,7 +19,8 @@ class Siswa extends BaseController
     public function __construct()
     {
 
-        helper('form', 'input', 'url');
+        helper('terbilang');
+        helper('form');
         $this->ModelSiswa = new ModelSiswa();
         $this->ModelKelas = new ModelKelas();
         $this->ModelWilayah = new ModelWilayah();
@@ -43,8 +44,7 @@ class Siswa extends BaseController
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
 
-            // 'absen'         => $this->ModelSiswa->DataAbsen($mhs['id_siswa']),
-            // 'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
+
 
         ];
         return view('siswa/v_dashboard', $data);
@@ -71,21 +71,21 @@ class Siswa extends BaseController
     {
         session();
 
-        // $siswa = $this->ModelSiswa->DataSiswa();
+        $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'     => 'SIAKADINKA',
-            'subtitle'  => ' Profile',
+            'subtitle'  => ' Data Peserta Didik',
             'menu'      => 'profile',
             'submenu' => 'profile',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
-
             'provinsi'  => $this->ModelWilayah->provinsi(),
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
-            'validation'    =>  \Config\Services::validation(),
             'kerja'     => $this->ModelPekerjaan->AllData(),
             'didik'     => $this->ModelPendidikan->AllData(),
-            'hasil'     => $this->ModelPenghasilan->AllData()
+            'hasil'     => $this->ModelPenghasilan->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+            'datadidik' => $this->ModelSiswa->rekamdidik($siswa['nisn']),
         ];
         return view('siswa/v_profile', $data);
     }
@@ -97,8 +97,8 @@ class Siswa extends BaseController
         $data = [
             'title'     => 'SIAKADINKA',
             'subtitle'  => 'Update Profile',
-            'menu'      => 'siswa',
-            'submenu'   => 'siswa',
+            'menu'      => 'profile',
+            'submenu'   => 'profile',
             'nav'       => 'alamat',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'  => $this->ModelWilayah->provinsi(),
@@ -109,7 +109,7 @@ class Siswa extends BaseController
             'didik'     => $this->ModelPendidikan->AllData(),
             'hasil'     => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/edit_alamat', $data);
+        return view('siswa/update/edit_alamat', $data);
     }
     public function edit_orangtua($id_siswa)
     {
@@ -118,8 +118,8 @@ class Siswa extends BaseController
         $data = [
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Update Profile',
-            'menu'          => 'siswa',
-            'submenu'       => 'siswa',
+            'menu'          => 'profile',
+            'submenu'       => 'profile',
             'nav'           => 'orangtua',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'      => $this->ModelWilayah->provinsi(),
@@ -130,7 +130,7 @@ class Siswa extends BaseController
             'didik'         => $this->ModelPendidikan->AllData(),
             'hasil'         => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/edit_orangtua', $data);
+        return view('siswa/update/edit_orangtua', $data);
     }
     public function registrasi($id_siswa)
     {
@@ -139,8 +139,8 @@ class Siswa extends BaseController
         $data = [
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Update Profile',
-            'menu'          => 'siswa',
-            'submenu'       => 'siswa',
+            'menu'          => 'profile',
+            'submenu'       => 'profile',
             'nav'           => 'registrasi',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'      => $this->ModelWilayah->provinsi(),
@@ -151,7 +151,7 @@ class Siswa extends BaseController
             'didik'         => $this->ModelPendidikan->AllData(),
             'hasil'         => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/registrasi', $data);
+        return view('siswa/update/registrasi', $data);
     }
     public function periodik($id_siswa)
     {
@@ -160,8 +160,8 @@ class Siswa extends BaseController
         $data = [
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Update Profile',
-            'menu'          => 'siswa',
-            'submenu'       => 'siswa',
+            'menu'          => 'profile',
+            'submenu'       => 'profile',
             'nav'           => 'periodik',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'      => $this->ModelWilayah->provinsi(),
@@ -172,9 +172,8 @@ class Siswa extends BaseController
             'didik'         => $this->ModelPendidikan->AllData(),
             'hasil'         => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/periodik', $data);
+        return view('siswa/update/periodik', $data);
     }
-
 
     public function edit_siswa($id_siswa)
     {
@@ -577,8 +576,6 @@ class Siswa extends BaseController
         }
     }
 
-
-
     public function update_orangtua($id_siswa)
     {
         if ($this->validate([
@@ -696,8 +693,6 @@ class Siswa extends BaseController
             // return redirect()->to('siswa/profile');
         }
     }
-
-
 
     public function update_periodik($id_siswa)
     {
@@ -1148,54 +1143,17 @@ class Siswa extends BaseController
         }
     }
 
-
-
-
     // biodata siswa
-
-
-
-    public function jadwal()
-    {
-
-        $siswa = $this->ModelSiswa->DataSiswa();
-        $data = [
-            'title'     => 'SIAKADINKA',
-            'subtitle'  => 'Jadwal Pelajaran',
-            'menu'      =>  'jadwal',
-            'submenu' =>    'jadwal',
-            'jadwal'    => $this->ModelSiswa->Jadwal($siswa['id_kelas']),
-
-        ];
-        return view('siswa/v_jadwal', $data);
-    }
-
-    public function tambahMapel()
-    {
-        $siswa = $this->ModelSiswa->DataSiswa();
-        $data = [
-            'title'     => 'SIAKADINKA',
-            'subtitle'  => 'Jadwal Pelajaran',
-            'menu'      =>  'jadwal',
-            'submenu' =>    'jadwal',
-            'jadwal'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
-
-        ];
-        return view('siswa/v_jadwal', $data);
-    }
-
     public function nilai()
     {
         $siswa = $this->ModelSiswa->DataSiswa();
         $data = [
             'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Peserta Didik',
+            'subtitle'      => 'Nilai P3MP',
             'menu'          =>  'nilai',
             'submenu'       =>  'nilai',
             'siswa'         => $siswa,
-            'ambilmapel'    => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
-            // 'nilai'      => $this->ModelSiswa->AmbilMapel($siswa['id_kelas']),
-            'nilai'         => $this->ModelSiswa->DaftaNilai($siswa['id_siswa']),
+            'nilai'         => $this->ModelSiswa->Daftarnilai($siswa['nisn']),
         ];
         return view('siswa/v_nilai', $data);
     }
@@ -1208,35 +1166,6 @@ class Siswa extends BaseController
         ];
         return view('siswa/absen/v_absen', $data);
     }
-
-    public function AddMapel($id_jadwal)
-    {
-        $siswa = $this->ModelSiswa->DataSiswa();
-        $data = [
-            'id_jadwal' => $id_jadwal,
-            'id_siswa' => $siswa['id_siswa']
-        ];
-
-        $this->ModelSiswa->TambahJadwal($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
-        return redirect()->to(base_url('siswa'));
-    }
-
-
-    //Rumus1 MAnual
-    // public function mapeladd()
-    // {
-    //     $data = [
-    //         'id_mapel'       => $this->request->getPost('id_mapel'),
-    //         'id_siswa'        => $this->request->getPost('id_siswa'),
-
-    //     ];
-    //     $this->ModelMapel->addnilai($data);
-    //     return redirect()->to('siswa/nilai');
-    // }
-
-
-
 
     public function dataKabupaten($id_provinsi)
     {
@@ -1263,7 +1192,6 @@ class Siswa extends BaseController
         }
     }
 
-
     public function pengajuan()
     {
         $siswa = $this->ModelSiswa->DataSiswa();
@@ -1280,11 +1208,12 @@ class Siswa extends BaseController
         return view('siswa/v_pengajuan', $data);
     }
 
-    public function ajuan($id_siswa)
+    public function mutasi($id_siswa)
     {
         $data = [
             'id_siswa'       => $id_siswa,
             'alasan'         => $this->request->getPost('alasan'),
+            'sekolah'         => $this->request->getPost('sekolah'),
             'status' => 1,
         ];
         $this->ModelSiswa->insertpengajuan($data);
@@ -1293,34 +1222,5 @@ class Siswa extends BaseController
         //     $validation =  \Config\Services::validation();
         //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
         // }
-    }
-
-
-    public function resetdata($id_siswa)
-    {
-        $data = [
-            'id_siswa' => $id_siswa,
-            'status_daftar' => 1
-        ];
-        $this->ModelSiswa->resetstatus();
-        $this->ModelSiswa->edit($data);
-        session()->setFlashdata('pesan', 'Silahkan Edit Kembali !!!');
-        return redirect()->to(base_url('siswa/profile'));
-    }
-
-
-    public function updatedata($id_siswa)
-    {
-        $data = [
-            'id_siswa' => $id_siswa,
-            'status_daftar' => 4
-        ];
-        $this->ModelSiswa->reset($data);
-        session()->setFlashdata('pesan', 'Status Tahun Ajaran Berhasil Diganti !!!');
-        return redirect()->to(base_url('siswa/profile'));
-    }
-
-    public function mapeladd()
-    {
     }
 }

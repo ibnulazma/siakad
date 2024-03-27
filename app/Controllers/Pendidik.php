@@ -31,24 +31,37 @@ class Pendidik extends BaseController
             'subtitle' => 'Pendidik',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
-            'guru'          => $guru,
+            'guru'          => $this->ModelPendidik->DataGuru(),
             'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
         ];
         return view('guru/v_dashboard', $data);
     }
 
-    public function jadwal()
+    public function profile()
     {
-        $guru = $this->ModelPendidik->DataGuru();
+
         $data = [
             'title' => 'SIAKAD',
-            'subtitle' => 'Jadwal Mengajar',
-            'menu'          => 'pendidik',
-            'submenu'       => 'pendidik',
-            'jadwal' => $this->ModelPendidik->Jadwal($guru['id_guru'])
+            'subtitle' => 'Pendidik',
+            'menu'          => 'profile',
+            'submenu'       => 'profile',
+            'data'          => $this->ModelPendidik->DataGuru(),
         ];
-        return view('guru/jadwal', $data);
+        return view('guru/profile', $data);
     }
+
+    // public function jadwal()
+    // {
+    //     $guru = $this->ModelPendidik->DataGuru();
+    //     $data = [
+    //         'title' => 'SIAKAD',
+    //         'subtitle' => 'Jadwal Mengajar',
+    //         'menu'          => 'pendidik',
+    //         'submenu'       => 'pendidik',
+    //         'jadwal' => $this->ModelPendidik->Jadwal($guru['id_guru'])
+    //     ];
+    //     return view('guru/jadwal', $data);
+    // }
     public function walas()
     {
         $guru = $this->ModelPendidik->DataGuru();

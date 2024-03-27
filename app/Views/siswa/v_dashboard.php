@@ -15,13 +15,12 @@ $ta = $db->table('tbl_ta')
     ->where('status', '1')
     ->get()->getRowArray();
 
-$tahun = $db->table('tbl_ta')
 
-    ->get()->getRowArray();
 ?>
 
 <div class="row">
     <div class="col-md-12">
+
         <?php if ($siswa['status_daftar'] == 1) { ?>
 
             <div class="bg-danger p-2">
@@ -57,21 +56,21 @@ $tahun = $db->table('tbl_ta')
             </div>
             <div class="card-body">
                 <p> Selamat Datang <strong><?= $siswa['nama_siswa'] ?></strong> di Sistem Informasi Akademik SMP INSAN KAMIL <br></p>
-                <h5>TAHUN PELAJARAN AKTIF : Semester <?= $siswa['semester'] ?> <?= $siswa['ta'] ?></h5>
+                <h5>TAHUN PELAJARAN AKTIF : Semester <?= $ta['semester'] ?> <?= $ta['ta'] ?></h5>
             </div>
             <div class="card-footer">
-                <?php if ($siswa['status_daftar'] == 1) { ?>
+                <?php if ($siswa['status_daftar'] == 0) { ?>
                     <a href="<?= base_url('siswa/edit_alamat/' . $siswa['id_siswa']) ?>" class="btn btn-danger"><i class="fas fa-pencil"></i> Update Data </a>
+                <?php } elseif ($siswa['status_daftar'] == 1) { ?>
+                    <a href="<?= base_url('siswa/edit_alamat/' . $siswa['id_siswa']) ?>" class="btn btn-danger"><i class="fas fa-pencil"></i> Update Data </a>
+
                 <?php } elseif ($siswa['status_daftar'] == 2) { ?>
                     <p class="btn btn-warning"><i class="fas fa-list"></i> Verifikasi </p>
                 <?php } ?>
             </div>
         </div>
-
-
     </div>
 </div>
-
 
 
 

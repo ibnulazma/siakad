@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-
 use App\Models\ModelTa;
 use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
@@ -19,8 +18,8 @@ class Admin extends BaseController
 
     public function __construct()
     {
-
-        helper('form', 'download', 'file');
+        helper('form');
+        helper('terbilang');
 
         $this->ModelTa      = new ModelTa();
         $this->ModelSekolah = new ModelSekolah();
@@ -34,21 +33,23 @@ class Admin extends BaseController
 
     public function index()
     {
+
         $data = [
             'title'             => 'SIAKADINKA',
             'subtitle'          => 'Dashboard',
             'menu'              => 'admin',
             'submenu'           => 'admin',
-            'jumlahaktif'       => $this->ModelSiswa->jumlahAktif(),
-            'jumlahtidakaktif'  => $this->ModelSiswa->jumlahNonAktif(),
+            'jumlahaktif'       => $this->ModelPeserta->jumlahAktif(),
+            'jumlahtidakaktif'  => $this->ModelPeserta->jumlahNonAktif(),
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
-            'datatahun'        => $this->ModelTa->group_tahun(),
+            'grupkelas'        => $this->ModelKelas->kelas_grup(),
             // 'siswa'            => $this->ModelPeserta->verifikasi(),
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
-            'baru'            => $this->ModelSiswa->jml_baru(),
+            'baru'            => $this->ModelPeserta->jml_baru(),
             'profil' => $this->ModelSetting->Profile(),
+            // 'tahun'  => $this->ModelTa->tahun()
 
 
         ];
@@ -134,5 +135,15 @@ class Admin extends BaseController
 
         ];
         return view('admin/lembaran1', $data);
+    }
+
+
+    public function bukuinduk($id_siswa)
+    {
+        $data = [
+            'title' => 'Buku Induk Siswa-SIAKAD',
+            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
+        ];
+        return view('admin/bukuinduk', $data);
     }
 }

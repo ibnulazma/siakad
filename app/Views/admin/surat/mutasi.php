@@ -4,12 +4,11 @@
 
 
 
-<h5>Surat Penerimaan PD Pindahan</h5>
 <div class="row">
 
 
     <div class="col-md-8">
-        <div class="card">
+        <div class="card text-center">
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -17,7 +16,8 @@
                             <th>No</th>
                             <th>Nama Lengkap</th>
                             <th>NISN</th>
-                            <th>Aksi</th>
+                            <th>Surat Permohonan</th>
+                            <th>Surat Mutasi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +26,8 @@
                                 <td><?= $key + 1 ?></td>
                                 <td><?= $value['nama_siswa'] ?></td>
                                 <td><?= $value['nisn'] ?></td>
-                                <td><a href="" class="btn btn-success"><i class="fas fa-print"></i></a></td>
+                                <td><a href="<?= base_url('surat/permohonan/' . $value['nisn']) ?>" target="_blank" class="btn btn-success"><i class="fas fa-print"></i></a></td>
+                                <td><a href="" class="btn btn-info"><i class="fas fa-print"></i></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>

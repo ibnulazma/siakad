@@ -74,7 +74,13 @@
                         <li class="nav-item">
                             <a href="<?= base_url('peserta') ?>" class="nav-link <?= $submenu == 'peserta' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Peserta Didik</p>
+                                <p>Database Siswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('datatables') ?>" class="nav-link <?= $submenu == 'data' ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>DataTable</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -95,13 +101,37 @@
                                 <p>Mata Pelajaran</p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="<?= base_url('jadwal') ?>" class="nav-link <?= $submenu == 'jadwal' ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jadwal Pelajaran</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item <?= $menu == 'nilai' ? 'menu-open' : '' ?>">
+                    <a href="#" class="nav-link <?= $menu == 'nilai' ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-paper-plane"></i>
+                        <p>
+                            Penilaian
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('nilai/uts') ?>" class="nav-link <?= $submenu == 'uts' ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>UTS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('nilai/pas') ?>" class="nav-link <?= $submenu == 'pas' ? 'active' : '' ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>PAS</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item <?= $menu == 'surat' ? 'menu-open' : '' ?>">
@@ -172,6 +202,14 @@
                         <i class="fas fa-tachometer-alt nav-icon"></i>
                         <p>
                             Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('pendidik/profile') ?>" class="nav-link <?= $menu == 'profile' ? 'active' : '' ?>">
+                        <i class="fas fa-user nav-icon"></i>
+                        <p>
+                            Profile
                         </p>
                     </a>
                 </li>

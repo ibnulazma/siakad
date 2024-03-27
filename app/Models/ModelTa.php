@@ -49,14 +49,12 @@ class ModelTa extends Model
             ->get()->getRowArray();
     }
 
-    public function group_tahun()
-    {
-        $builder = $this->db->table('tbl_siswa');
-        $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
-        $builder->select('ta, COUNT("ta") AS jumlah');
-        $builder->where('status', '1');
-        $builder->groupBy('ta');
-        $query = $builder->get();
-        return $query;
-    }
+    // public function group_tahun()
+    // {
+    //     $builder = $this->db->table('tbl_siswa');
+    //     $builder->select('tahun, COUNT("ta") AS jumlah');
+    //     $builder->groupBy('tahun');
+    //     $query = $builder->get();
+    //     return $query;
+    // }
 }

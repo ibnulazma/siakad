@@ -66,7 +66,7 @@ class Guru extends BaseController
 
             );
 
-            $foto->move('foto', $nama_file);
+            // $foto->move('foto', $nama_file);
             $this->ModelGuru->add($data);
             session()->setFlashdata('pesan', 'Guru Berhasil Ditambah !!!');
             return redirect()->to(base_url('guru'));
@@ -152,5 +152,19 @@ class Guru extends BaseController
             $this->session->setFlashdata('sukses', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
             return redirect()->to('guru');
         }
+    }
+
+
+
+    public function edit($id_guru)
+    {
+        $data = [
+            'id_guru' => $id_guru,
+            'nama_guru' => $this->request->getPost('nama_guru'),
+            'walas' => $this->request->getPost('walas'),
+        ];
+        $this->ModelGuru->edit($data);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
+        return redirect()->to(base_url('guru'));
     }
 }

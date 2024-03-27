@@ -23,16 +23,6 @@ class ModelKelas extends Model
     }
 
 
-
-    public function DataKelas($id_kelas)
-    {
-        return $this->db->table('tbl_mapel')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_mapel.id_kelas', 'left')
-            ->where('tbl_mapel.id_kelas', $id_kelas)
-            ->get()
-            ->getResultArray();
-    }
-
     public function AllGuru()
     {
         return $this->db->table('tbl_guru')
@@ -87,10 +77,18 @@ class ModelKelas extends Model
     // Data Siswa berdasarkan kelas
     public function datasiswa($id_kelas)
     {
-        return $this->db->table('tbl_siswa')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta')
             ->orderBy('nama_siswa', 'ASC')
             ->where('tbl_kelas.id_kelas', $id_kelas)
+            ->where('tbl_ta.status', '1')
+            ->where('tbl_siswa.status_daftar', '3')
             ->get()
             ->getResultArray();
     }
@@ -123,12 +121,13 @@ class ModelKelas extends Model
     public function siswablmpuna()
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             // ->orderBy('id_kelas', 'DESC')
             // ->where('id_kelas = 0')
-            ->where('tbl_ta.status', '1')
-            ->where('status_daftar', '2')
+
+            ->where('status_daftar', '3')
+            // ->where('tbl_database.stat_daftar', '0')
             ->get()
             ->getResultArray();
     }
@@ -137,7 +136,9 @@ class ModelKelas extends Model
 
     public function jml_siswa($id_kelas)
     {
-        return $this->db->table('tbl_siswa')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->where('tbl_siswa.status_daftar', '3')
             ->where('id_kelas', $id_kelas)
             // ->where('jenis_kelamin', 'Laki-laki')
             ->countAllResults();
@@ -153,19 +154,25 @@ class ModelKelas extends Model
     }
 
 
-
     public function add_data($data)
     {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
-    }
 
-    public function hapusanggota($data)
+
+        $this->db->table('tbl_database')
+            ->insert($data);
+    }
+    // public function add_data($data)
+    // {
+    //     $this->db->table('tbl_siswa')
+    //         ->where('id_siswa', $data['id_siswa'])
+    //         ->update($data);
+    // }
+
+    public function hapus($data)
     {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
+        $this->db->table('tbl_database')
+            ->where('nisn', $data['nisn'])
+            ->delete($data);
     }
 
     ////////JADWAL PERKELAS
@@ -181,9 +188,10 @@ class ModelKelas extends Model
             ->getResultArray();
     }
 
-    public function DataPeserta($id_siswa)
+    public function DataPeserta($nisn)
     {
         return $this->db->table('tbl_siswa')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
@@ -192,7 +200,7 @@ class ModelKelas extends Model
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('id_siswa', $id_siswa)
+            ->where('nisn', $nisn)
             ->get()->getRowArray();
     }
 
@@ -208,14 +216,48 @@ class ModelKelas extends Model
             ->get()->getRowArray();
     }
 
-    // public function kelas_grup()
+    public function kelas_grup()
+    {
+        $builder = $this->db->table('tbl_database');
+        $builder->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left');
+        $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left');
+        $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left');
+        $builder->select('kelas, COUNT("kelas") AS jumlah');
+        // $bulider->count('jenis_kelamin ,'L') as JUMLAH_L
+        // $builder->select('jenis_kelamin, COUNT("L") AS L');
+        // $builder->select('jenis_kelamin, COUNT("jenis_kelamin") AS jkP');
+        $builder->where('tbl_ta.status', '1');
+        $builder->where('tbl_siswa.status_daftar', '3');
+        $builder->groupBy('kelas');
+        $query = $builder->get();
+
+        return $query;
+    }
+
+
+
+    public function halamansiswa($nisn)
+    {
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->where('tbl_siswa.nisn', $nisn)
+            ->get()->getRowArray();
+    }
+
+
+
+
+
+    // public function group_tahun()
     // {
     //     $builder = $this->db->table('tbl_siswa');
     //     $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left');
-    //     $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left');
-    //     $builder->select('kelas, COUNT("kelas") AS jumlah');
-    //     // $builder->select('jenis_kelamin, COUNT("L") AS jkL');
-    //     // $builder->select('jenis_kelamin, COUNT("P") AS jkP');
+    //     $builder->select('ta, COUNT("ta") AS jumlah');
     //     $builder->where('status', '1');
     //     $builder->groupBy('ta');
     //     $query = $builder->get();
